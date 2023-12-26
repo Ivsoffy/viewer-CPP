@@ -10,6 +10,12 @@ void s21::Figure::AddEdge(unsigned a, unsigned b) {
     edge_.push_back(b);
 }
 
-void s21::Figure::AddPolygons(unsigned num) {
-    polygons_.push_back(num);
+void s21::Figure::AddPolygonsSize(unsigned num) {
+    polygon_sizes_.push_back(num);
+}
+
+void s21::Figure::MutateFigure() {
+    // for (auto vertex : vertexes_) {
+    //     vertex.
+    // }
 }
