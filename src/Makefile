@@ -58,3 +58,8 @@ clean:
 	rm -rf ./report ./dist ./build
 	rm -rf *.o *.out *.gcno *.gcda *.gcov *.info *.dSYM *.DS_Store ../.DS_Store .DS_Store
 	rm -rf $(HOME)/settings.conf
+
+1:	
+	# rm model/a.out
+	g++ model/main.cc model/FileParser.cc model/Figure.cc -o model/a.out
+	model/a.out
