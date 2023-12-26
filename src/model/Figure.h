@@ -11,9 +11,25 @@ class Figure {
     public:
         Figure(){};
         ~Figure(){};
+
+        std::vector<s21::Vertex> GetVertexesVector() {return vertexes_;};
+        std::vector<unsigned> GetPoligonsVector() {return polygons_;};
+
+        double GetX(int index) {return vertexes_[index].GetX();};
+        double GetY(int index) {return vertexes_[index].GetY();};
+        double GetZ(int index) {return vertexes_[index].GetZ();};
+        void SetX(double x, int index) {vertexes_[index].SetX(x);};
+        void SetY(double y, int index) {vertexes_[index].SetY(y);};
+        void SetZ(double z, int index) {vertexes_[index].SetZ(z);};
+
+        void AddVertex(double x, double y, double z);
+        void AddEdge(unsigned a, unsigned b);
+        void AddPolygons(unsigned num);
+
     private:
         std::vector<s21::Vertex> vertexes_;
-        std::vector<int> edges_;
+        std::vector<unsigned> edge_;
+        std::vector<unsigned> polygons_; //сколько взять вершин из edge_ для одного полигона
 };
 
 } //namespace s21

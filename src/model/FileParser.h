@@ -10,6 +10,9 @@ class FileParser {
         FileParser(){};
         ~FileParser(){};
         s21::Figure Parser();
+
+    private:
+        
 };
 
 } //namespace s21
