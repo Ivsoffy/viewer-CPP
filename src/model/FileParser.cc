@@ -14,32 +14,71 @@ s21::Figure s21::FileParser::Parser(std::string file_name) {
         // unsigned index_to_loop
         std::string token;
         double num_double;
+        int num_int;
+        unsigned v_counter;
         while (std::getline(file,line)) {
             std::stringstream strstr(line);
             std::getline(strstr, token, ' ');
             if (token == "v") {
-                for (auto i = 0; i < 3; ++i) {
-                    std::getline(strstr, token, ' ');
-                    try {
-                        num_double = std::stod(token);
-                    } catch (const std::exception& e) {
-                        throw std::invalid_argument("ERROR: Invalid data in 'v'-line in objest file.");
-                    }
-                    std::cout << num_double << " ";////////
-                }
-                std::cout << "\n";
+                s21::FileParser::ParsVLine(strstr.str(), figure);
             } else if (token == "f") {
-                for (auto i = 0; i < 3; ++i) {
-                    std::getline(strstr, token, ' ');
-                    std::cout << token << " ";////////
-                }
-                std::cout << "\n";
+                s21::FileParser::ParsFLine(strstr.str(), figure);
             }
         }
     }
     file.close();
 
     return figure;
+}
+
+void s21::FileParser::ParsVLine(std::string line, s21::Figure figure) {
+    std::string token;
+    double num_double;
+    unsigned v_counter;
+    std::stringstream strstr(line);
+    std::getline(strstr, token, ' ');
+    while (std::getline(strstr, token, ' ')) {
+        if (++v_counter > 4) {
+            throw std::invalid_argument("ERROR: Invalid data in 'v'-line in objest file. Too many arguments.");
+        }
+        try {
+            num_double = std::stod(token);
+            if (figure.Get_Max() < std::fabs(num_double)) {
+                figure.Set_Max(std::fabs(num_double));
+            }
+            // if (figure.GetX_Max() < std::fabs(x)) {
+            //     figure.SetX_Max(std::fabs(x));
+            // }
+            // if (figure.GetY_Max() < std::fabs(y)) {
+            //     figure.SetY_Max(std::fabs(y));
+            // }
+            // if (figure.GetZ_Max() < std::fabs(z)) {
+            //     figure.SetZ_Max(std::fabs(z));
+            // }
+        } catch (const std::exception& e) {
+            throw std::invalid_argument("ERROR: Invalid data in 'v'-line in objest file.");
+        }
+        std::cout << num_double << " ";////////
+    }
+    std::cout << "\n";/////////
+}
+
+void s21::FileParser::ParsFLine(std::string line, s21::Figure figure) {
+    std::string token;
+    double num_double;
+    unsigned v_counter;
+    std::stringstream strstr(line);
+    std::getline(strstr, token, ' ');
+    while (std::getline(strstr, token, ' ')) {
+        unsigned v_counter;
+        try {
+            num_double = std::stod(token);
+        } catch (const std::exception& e) {
+            throw std::invalid_argument("ERROR: Invalid data in 'f'-line in objest file.");
+        }
+        std::cout << num_double << " ";////////
+    }
+    std::cout << "\n";/////////
 }
 
 
