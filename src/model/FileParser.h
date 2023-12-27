@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <exception>
 
 namespace s21 {
 
@@ -15,6 +16,10 @@ class FileParser {
         ~FileParser(){};
 
         s21::Figure Parser(std::string file_name);
+    
+    private:
+        void ParsFile(FILE *file);
+        void ParsVLine(FILE *file);
 };
 
 } //namespace s21

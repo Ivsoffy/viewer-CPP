@@ -31,9 +31,9 @@ install: clean
 uninstall:
 	rm -rf $(PROGRAMM_NAME)
 
-# tests:
-# 	$(CC) test/test.cc $(FLAGS) $(LIBS) $(WCHECK) -o test.out
-# 	./test.out
+tests:
+	$(CC) test/test.cc $(FLAGS) $(LIBS) $(WCHECK) -o test.out
+	./test.out
 
 # dist:
 # 	mkdir -p ./dist
