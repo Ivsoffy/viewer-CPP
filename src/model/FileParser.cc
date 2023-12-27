@@ -18,6 +18,15 @@ s21::Figure s21::FileParser::Parser(std::string file_name) {
             if (first == "v") {
                 strstr >> x >> y >> z;
                 // std::cout << x << " " << y << " " << z << std::endl;////////
+                if (figure.GetX_Max() < std::fabs(x)) {
+                    figure.SetX_Max(std::fabs(x));
+                }
+                if (figure.GetY_Max() < std::fabs(y)) {
+                    figure.SetY_Max(std::fabs(y));
+                }
+                if (figure.GetZ_Max() < std::fabs(z)) {
+                    figure.SetZ_Max(std::fabs(z));
+                }
                 figure.AddVertex(x, y, z);
             } else if (first == "f") {
                 edge_counter = 0;
@@ -27,6 +36,11 @@ s21::Figure s21::FileParser::Parser(std::string file_name) {
                     }
                     std::stringstream strstr2(curr_substring);
                     strstr2 >> num;
+                    if (num < 0) {
+                        num = figure.GetVertexesVector().size() + num + 1;
+                        // std::cout << num << "<<\n";////////////
+                    }
+
                     if (edge_counter == 0) {
                         figure.AddVertexToEdgesVector(num);
                         edge_counter++;
@@ -35,7 +49,6 @@ s21::Figure s21::FileParser::Parser(std::string file_name) {
                         figure.AddVertexToEdgesVector(num);
                         edge_counter+=2;
                     }
-                    
                     // std::cout << num << " ";////////////
                 }
                 if (edge_counter != 0) {
@@ -54,30 +67,25 @@ s21::Figure s21::FileParser::Parser(std::string file_name) {
     for (auto i : figure.GetVertexesVector()) {
         std::cout << i.GetX() << " " << i.GetY() << " " << i.GetZ() << std::endl;
     }
-    // std::cout << "\n";
-    // for (auto i : figure.GetEdgesVector()) {
-    //     std::cout << i << " ";
-    // }
+    std::cout << "\n";
+    unsigned index = figure.GetPoligonsSizesVector()[0];
+    for (auto i = 0, j =0; i < figure.GetEdgesVector().size(); ++i) {
+        std::cout << figure.GetEdgesVector()[i] << " ";
+        if (i == index -1) {
+            std::cout << "\n";
+            // std::cout << "index=" << index << "\n";
+            ++j;
+            index += figure.GetPoligonsSizesVector()[j];
+        }
+    }
     // std::cout << "\n";
     // for (auto i : figure.GetPoligonsSizesVector()) {
     //     std::cout << i << " ";
     // }
     std::cout << "\n";
-    unsigned index = figure.GetPoligonsSizesVector()[0];
-    for (auto i = 0, j =0; i < figure.GetEdgesVector().size(); ++i) {
-        // figure.GetEdgesVector()[i]
-        std::cout << figure.GetEdgesVector()[i] << " ";
-        if (i == index -1) {
-            std::cout << "\n";
-            std::cout << "index=" << index << "\n";
-            ++j;
-            index += figure.GetPoligonsSizesVector()[j];
-        }
-    }
-    std::cout << "\n";
-    for (auto i : figure.GetPoligonsSizesVector()) {
-        std::cout << i << " ";
-    }
+    std::cout << "x_max_=" << figure.GetX_Max() << " " 
+            << "x_max_=" << figure.GetY_Max() << " " 
+            << "x_max_=" << figure.GetZ_Max() << std::endl;////////
 
     return figure;
 }

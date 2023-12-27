@@ -15,9 +15,6 @@ class FileParser {
         ~FileParser(){};
 
         s21::Figure Parser(std::string file_name);
-
-    // private:
-
 };
 
 } //namespace s21

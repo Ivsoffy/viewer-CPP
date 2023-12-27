@@ -2,6 +2,7 @@
 #define MODEL_FIGURE_H_
 
 #include <vector>
+#include <cmath>
 
 #include "Vertex.h"
 
@@ -14,7 +15,13 @@ class Figure {
 
         std::vector<s21::Vertex> GetVertexesVector() {return vertexes_;};
         std::vector<unsigned> GetEdgesVector() {return edges_;};
-        std::vector<unsigned> GetPoligonsSizesVector() {return polygon_sizes_;};
+        std::vector<unsigned> GetPoligonsSizesVector() {return polygons_sizes_;};
+        double GetX_Max() {return x_max_;};
+        double GetY_Max() {return y_max_;};
+        double GetZ_Max() {return z_max_;};
+        void SetX_Max(double x) {x_max_ = x;};
+        void SetY_Max(double y) {y_max_ = y;};
+        void SetZ_Max(double z) {z_max_ = z;};
 
         double GetX(int index) {return vertexes_[index].GetX();};
         double GetY(int index) {return vertexes_[index].GetY();};
@@ -31,7 +38,8 @@ class Figure {
     private:
         std::vector<s21::Vertex> vertexes_;
         std::vector<unsigned> edges_;
-        std::vector<unsigned> polygon_sizes_; //сколько взять вершин из edges_ для одного полигона
+        std::vector<unsigned> polygons_sizes_; //сколько взять вершин из edges_ для одного полигона
+        double x_max_, y_max_, z_max_;
 };
 
 } //namespace s21

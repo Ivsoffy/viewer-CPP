@@ -10,7 +10,7 @@ void s21::Figure::AddVertexToEdgesVector(unsigned num) {
 }
 
 void s21::Figure::AddPolygonsSize(unsigned num) {
-    polygon_sizes_.push_back(num);
+    polygons_sizes_.push_back(num);
 }
 
 void s21::Figure::MutateFigure() {
