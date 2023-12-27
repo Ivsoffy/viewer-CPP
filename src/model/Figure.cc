@@ -5,9 +5,8 @@ void s21::Figure::AddVertex(double x, double y, double z) {
     vertexes_.push_back(vertex);
 }
 
-void s21::Figure::AddEdge(unsigned a, unsigned b) {
-    edge_.push_back(a);
-    edge_.push_back(b);
+void s21::Figure::AddVertexToEdgesVector(unsigned num) {
+    edges_.push_back(num);
 }
 
 void s21::Figure::AddPolygonsSize(unsigned num) {
