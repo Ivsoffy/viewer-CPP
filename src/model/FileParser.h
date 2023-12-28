@@ -19,8 +19,8 @@ class FileParser {
     
     private:
         // void ParsFile(std::stringstream strstr);
-        void ParsVLine(std::string strstr, s21::Figure figure);
-        void ParsFLine(std::string strstr, s21::Figure figure);
+        void ParsVLine(std::string strstr, s21::Figure *figure);
+        void ParsFLine(std::string strstr, s21::Figure *figure);
 };
 
 } //namespace s21
