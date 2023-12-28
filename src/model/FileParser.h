@@ -7,6 +7,7 @@
 #include <fstream>
 #include <sstream>
 #include <exception>
+#include <iomanip>
 
 namespace s21 {
 

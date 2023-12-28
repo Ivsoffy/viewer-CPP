@@ -24,7 +24,7 @@ s21::Figure s21::FileParser::Parser(std::string file_name) {
 
     //////TODO//checks////////////////////////////////////////////////////////////////////
     for (auto i : figure.GetVertexesVector()) {
-        std::cout << i.GetX() << " " << i.GetY() << " " << i.GetZ() << std::endl;
+        std::cout << std::setprecision(11) << i.GetX() << " " << i.GetY() << " " << i.GetZ() << std::endl;
     }
 
     std::cout << "\n";
@@ -60,7 +60,7 @@ void s21::FileParser::ParsVLine(std::string line, s21::Figure *figure) {
     double num_double;
     unsigned v_counter;
     std::stringstream strstr(line);
-    std::vector<int> temp_vertex;
+    std::vector<double> temp_vertex;
     std::getline(strstr, token, ' ');
     while (std::getline(strstr, token, ' ')) {
         if (++v_counter > 4) {
@@ -68,6 +68,7 @@ void s21::FileParser::ParsVLine(std::string line, s21::Figure *figure) {
         }
         try {
             num_double = std::stod(token);
+            // std::cout << num_double << "|||";//////////////////////////////////
             temp_vertex.push_back(num_double);
             if (figure->Get_Max() < std::fabs(num_double)) {
                 figure->Set_Max(std::fabs(num_double));
