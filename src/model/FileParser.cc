@@ -2,7 +2,8 @@
 
 s21::Figure s21::FileParser::Parser(std::string file_name) {
     s21::Figure figure = s21::Figure();
-    std::ifstream file;
+    // std::ifstream file;
+    std::ifstream(file);
     file.open(file_name);
     // std::cout << "||||||||||||||||||||||||||||||||" << std::endl;/////////////////
     if (file.is_open()) {

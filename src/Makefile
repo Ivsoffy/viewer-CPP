@@ -40,7 +40,6 @@ tests: test.o
 # $(CC) tests/main_test.cc tests/model/model_test.cc $(FLAGS) $(LIBS) $(WCHECK) -o test.out
 	$(CC) $(SOURCES) *.o $(FLAGS) $(LIBS) $(WCHECK) -o test.out
 	./test.out
-	# rm *.o *.a
 
 # tests: s21_viewer.a
 # 	$(CC) tests/main_test.cc tests/model/model_test.cc s21_viewer.a $(FLAGS) $(LIBS) $(WCHECK) -o test.out
@@ -55,7 +54,7 @@ tests: test.o
 # 	ranlib s21_viewer.a
 
 clean:
-	rm *.o *.a
+	rm *.o test.out
 
 # test: clean smart_calc.a test.o
 # 	$(CXX) $(CXXFLAGS) smart_calc.a *.o -o $(PATH_TESTS)/test $(LDLIBS)

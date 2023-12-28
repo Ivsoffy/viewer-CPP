@@ -6,16 +6,12 @@
 #include "../../model/FileParser.h"
 
 void printToFile(s21::Figure figure) {
-    std::ofstream(out);          // поток для запи
-    // std::ofstream out;          // поток для запи
-    out.open("model/test_result.txt");      // открываем файл для записи
-    // out.open("/Users/vanesabo/CPP/CPP4_3DViewer_v2.0-1/src/tests/model/test_result.txt");      // открываем файл для записи
+    std::ofstream out;
+    out.open("tests/model/test_result.txt");
     if(!out) { std::cerr << "Could not open file" << std::endl; }
     if (out.is_open()) {
-        // std::cout << figure.GetVertexesVector().size() << std::endl;//////////
         for (auto i : figure.GetVertexesVector()) {
             out << std::setprecision(11) << i.GetX() << " " << i.GetY() << " " << i.GetZ() << std::endl;
-            // std::cout << std::setprecision(11) << i.GetX() << " " << i.GetY() << " " << i.GetZ() << std::endl;
         }
 
         out << "\n";
@@ -43,16 +39,13 @@ bool compareFile(std::string path_f1, std::string path_f2){
     std::string sf1, sf2;
     std::ifstream f1(path_f1);
     std::ifstream f2(path_f2);
-    // std::ifstream(f1);
-    // std::ifstream(f2);
-    // f1.open(path_f1);
-    // f2.open(path_f2);
     if(!f1) { std::cerr << "Could not open file" << std::endl; }
     if(!f2) { std::cerr << "Could not open file" << std::endl; }
     if(f1.is_open() && f2.is_open()) {
         while(getline(f1, sf1) && getline(f2, sf2)) {
-            if(sf1 != sf1) {
+            if(sf1 != sf2) {
                 result = false;
+                break;
             }
         }
         f1.close();
@@ -64,13 +57,10 @@ bool compareFile(std::string path_f1, std::string path_f2){
 }
 
 TEST(model, parser_1) {
-    std::string path_file = "model/test_result.txt";
-    // std::string path_etalon_file = "model/parser_1_result_to_assert.txt";
-    // std::string path_file = "/Users/vanesabo/CPP/CPP4_3DViewer_v2.0-1/src/tests/model/test_result.txt";
-    std::string path_etalon_file = "/Users/vanesabo/CPP/CPP4_3DViewer_v2.0-1/src/tests/model/parser_1_result_to_assert.txt";
+    std::string path_file = "tests/model/test_result.txt";
+    std::string path_etalon_file = "tests/model//parser_1_result_to_assert.txt";
     s21::FileParser file_parser = s21::FileParser();
-    // s21::Figure figure = file_parser.Parser("3d_objects/cube_good.obj");
-    s21::Figure figure = file_parser.Parser("/Users/vanesabo/CPP/CPP4_3DViewer_v2.0-1/src/3d_objects/cube.obj");
+    s21::Figure figure = file_parser.Parser("3d_objects/cube.obj");
     printToFile(figure);
     bool result = compareFile(path_file, path_etalon_file);
     ASSERT_TRUE(result);
