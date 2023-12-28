@@ -7,6 +7,7 @@ BUILD_DIR=build
 # HEADERS=model/*.h view/*.h controller/*.h
 SOURCES=model/*.cc
 HEADERS=model/*.h
+OBJECT_FOLDER=obj
 
 OS=$(shell uname)
 ifeq ($(OS), Linux)
@@ -33,13 +34,55 @@ install: clean
 uninstall:
 	rm -rf $(PROGRAMM_NAME)
 
-test.o: tests/*.cc tests/model/*.cc
-	$(CC) $(FLAGS) -c tests/*.cc tests/model/*.cc
+##############################################################################################################################################
+##############################################################################################################################################
+##############################################################################################################################################
+##############################################################################################################################################
+# LDLIBS = -lgtest -pthread
+
+# PATH_OBJ=obj
+# PATH_TESTS=tests
+
+# HEADERS_LIB = $(wildcard model/*.h) $(wildcard tests/model/*.h)
+# HEADERS_TEST = $(wildcard $(PATH_TESTS)/model/*.h)
+# CXXFILES_TEST = $(wildcard $(PATH_TESTS)/model/*.cc)
+
+# CXXOBJECTS_TEST = $(addprefix $(PATH_OBJ)/, $(patsubst %.cc,%.o,$(CXXFILES_TEST)))
+
+# CXXOBJECTS = $(CXXOBJECTS_TEST)
+
+# test: $(HEADERS_TEST) $(CXXOBJECTS_TEST)
+# 	$(CC) $(CXXOBJECTS_TEST) $(LDLIBS) -o $(PATH_TESTS)/test
+# 	tests/test
+
+# $(CXXOBJECTS): $(PATH_OBJ)/%.o: %.cc $(HEADERS_LIB)
+# 	$(CC) $(FLAGS) -c $< -o $@
+##############################################################################################################################################
+##############################################################################################################################################
+##############################################################################################################################################
+
+# test.o: tests/*.cc tests/model/*.cc
+# 	$(CC) $(FLAGS) -o $(OBJECT_FOLDER)/test.o - c tests/*.cc tests/model/*.cc
+
+# # test.o: tests/*.cc tests/model/*.cc
+# # 	$(CC) $(FLAGS) -o $(OBJECT_FOLDER)/test.o -c tests/model/*.cc
+
+# tests: test.o
+# 	$(CC) $(SOURCES) *.o $(FLAGS) $(LIBS) $(WCHECK) -o test.out
+# 	./test.out
+
+#######################################################################
+## working one
+#######################################################################
+test.o: tests/main_test.cc tests/*/*.cc
+	$(CC) $(FLAGS) -c tests/main_test.cc tests/*/*.cc
 
 tests: test.o
-# $(CC) tests/main_test.cc tests/model/model_test.cc $(FLAGS) $(LIBS) $(WCHECK) -o test.out
 	$(CC) $(SOURCES) *.o $(FLAGS) $(LIBS) $(WCHECK) -o test.out
 	./test.out
+#######################################################################
+
+#######################################################################
 
 # tests: s21_viewer.a
 # 	$(CC) tests/main_test.cc tests/model/model_test.cc s21_viewer.a $(FLAGS) $(LIBS) $(WCHECK) -o test.out
