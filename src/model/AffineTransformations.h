@@ -20,7 +20,7 @@ class AffineTransformations {
         void SetAngleZ(double angle);
         void SetScale(int scale);
 
-        s21::Vertex Trasformate(s21::Vertex *vertex);
+        void Trasformate(s21::Vertex *vertex);
 
     private:
         double move_x_;        

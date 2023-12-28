@@ -1,0 +1,33 @@
+#include <iostream>
+#include "FileParser.h"
+
+int main() {
+    s21::FileParser file_parser = s21::FileParser();
+    // s21::Figure figure = file_parser.Parser("../3d_objects/cube.obj");
+    s21::Figure figure = file_parser.Parser("/Users/vanesabo/CPP/CPP4_3DViewer_v2.0-1/src/3d_objects/cube.obj");
+
+    /////////////
+        std::ofstream out;          // поток для записи
+    out.open("test/test_result.txt");      // открываем файл для записи
+    if (out.is_open()) {
+        for (auto i : figure.GetVertexesVector()) {
+        out << std::setprecision(11) << i.GetX() << " " << i.GetY() << " " << i.GetZ() << std::endl;
+    }
+
+    out << "\n";
+    unsigned index = figure.GetPoligonsSizesVector()[0];
+    for (auto i = 0, j =0; i < figure.GetEdgesVector().size(); ++i) {
+        out << figure.GetEdgesVector()[i] << " ";
+        if (i == index -1) {
+            out << "\n";
+            ++j;
+            index += figure.GetPoligonsSizesVector()[j];
+        }
+    }
+
+    out << "\n";
+    out << "max_=" << figure.Get_Max() << std::endl;
+    }
+    out.close(); 
+    /////////////
+}
