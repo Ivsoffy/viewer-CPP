@@ -41,8 +41,8 @@ class Figure {
         std::vector<s21::Vertex> vertexes_;
         std::vector<unsigned> edges_;
         std::vector<unsigned> polygons_sizes_; //сколько взять вершин из edges_ для одного полигона
-        double x_max_, y_max_, z_max_;
-        double max_;
+        double x_max_{}, y_max_{}, z_max_{};
+        double max_{};
 };
 
 } //namespace s21

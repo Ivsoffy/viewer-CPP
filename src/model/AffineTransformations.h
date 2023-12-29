@@ -2,7 +2,6 @@
 #define MODEL_AFFINETRANSFORMATIONS_H_
 
 #include <cmath>
-#include <iostream>///////////////////////////////////////////////////
 
 #include "Vertex.h"
 

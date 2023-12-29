@@ -17,13 +17,17 @@ void printToFile(s21::Figure figure) {
         }
 
         out << "\n";
+        unsigned edgesSize = figure.GetEdgesVector().size();
+        unsigned poligonsSize = figure.GetPoligonsSizesVector().size();
         unsigned index = figure.GetPoligonsSizesVector()[0];
-        for (unsigned i = 0, j =0; i < figure.GetEdgesVector().size(); ++i) {
+        for (unsigned i = 0, j =0; i < edgesSize && j < poligonsSize; ++i) {
             out << figure.GetEdgesVector()[i] << " ";
             if (i == index -1) {
                 out << "\n";
                 ++j;
-                index += figure.GetPoligonsSizesVector()[j];
+                if (j < figure.GetPoligonsSizesVector().size()) {
+                    index += figure.GetPoligonsSizesVector()[j];
+                }
             }
         }
 

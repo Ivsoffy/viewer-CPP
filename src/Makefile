@@ -13,12 +13,12 @@ OS=$(shell uname)
 ifeq ($(OS), Linux)
 	APP_NAME=$(PROGRAMM_NAME)
 	LIBS=-lcheck -lpthread -lrt -lm -lsubunit
-# LEAKS=CK_FORK=no valgrind -s --tool=memcheck --leak-check=full --show-leak-kinds=all --show-reachable=yes ./test.out
+	LEAKS=valgrind -s --tool=memcheck --leak-check=full --show-leak-kinds=all --show-reachable=yes ./test.out
 	OPEN=xdg-open
 else
 	APP_NAME=$(PROGRAMM_NAME).app
 	LIBS=-lcheck -lgtest -pthread
-# LEAKS=leaks --atExit -- ./test.out
+	LEAKS=leaks --atExit -- ./test.out
 	OPEN=open
 endif
 
@@ -48,7 +48,8 @@ tests: test.o
 #######################################################################	
 
 clean:
-	rm *.o test.out tests/model/test_result.txt
+	rm -f *.o test.out tests/model/test_result.txt 
+	rm -rf  test.out.dSYM
 
 ##############################################################################################################################################
 ##############################################################################################################################################
@@ -122,11 +123,16 @@ clean:
 # cppcheck:
 # 	cppcheck --enable=all --language=c++ --std=c++17 --suppress=unusedFunction --suppress=missingInclude $(SOURCES) $(HEADERS)
 
-valgrind: tests
-	valgrind -s --tool=memcheck --leak-check=full --show-leak-kinds=all --show-reachable=yes ./test.out
+##############################################################################################################################################
+# valgrind: tests
+# 	valgrind -s --tool=memcheck --leak-check=full --show-leak-kinds=all --show-reachable=yes ./test.out
+
+# leaks: tests
+# 	leaks --atExit -- ./test.out
+##############################################################################################################################################
 
 leaks: tests
-	leaks --atExit -- ./test.out
+	$(LEAKS)
 
 # clean:
 # 	rm -rf ./report ./dist ./build

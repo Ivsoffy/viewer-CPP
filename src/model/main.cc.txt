@@ -30,4 +30,34 @@ int main() {
     }
     out.close(); 
     /////////////
+
+    // //////TODO//checks////////////////////////////////////////////////////////////////////
+    // for (auto i : figure.GetVertexesVector()) {
+    //     std::cout << std::setprecision(11) << i.GetX() << " " << i.GetY() << " " << i.GetZ() << std::endl;
+    // }
+
+    // std::cout << "\n";
+    // unsigned index = figure.GetPoligonsSizesVector()[0];
+    // for (auto i = 0, j =0; i < figure.GetEdgesVector().size(); ++i) {
+    //     std::cout << figure.GetEdgesVector()[i] << " ";
+    //     if (i == index -1) {
+    //         std::cout << "\n";
+    //         ++j;
+    //         index += figure.GetPoligonsSizesVector()[j];
+    //     }
+    // }
+
+    // std::cout << "\n";
+    // std::cout << "max_=" << figure.Get_Max() << std::endl;
+
+    // // std::cout << "\n";
+    // // for (auto i : figure.GetPoligonsSizesVector()) {
+    // //     std::cout << i << " ";
+    // // }
+
+    // // std::cout << "\n";
+    // // std::cout << "x_max_=" << figure.GetX_Max() << " " 
+    // //         << "x_max_=" << figure.GetY_Max() << " " 
+    // //         << "x_max_=" << figure.GetZ_Max() << std::endl;
+    // //////////////////////////////////////////////////////////////////////////////////////
 }
