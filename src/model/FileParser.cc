@@ -5,9 +5,7 @@ s21::Figure s21::FileParser::Parser(std::string file_name) {
     // std::ifstream file;
     std::ifstream(file);
     file.open(file_name);
-    // std::cout << "||||||||||||||||||||||||||||||||" << std::endl;/////////////////
     if (file.is_open()) {
-        // std::cout << "||||||||||||||||||||||||||||||||" << std::endl;/////////////////
         std::string line;
         std::string token;
         double num_double;
@@ -60,18 +58,17 @@ s21::Figure s21::FileParser::Parser(std::string file_name) {
 
 void s21::FileParser::ParsVLine(std::string line, s21::Figure *figure) {
     std::string token;
-    double num_double;
-    unsigned v_counter;
+    double num_double = 0;
+    unsigned v_counter = 0;
     std::stringstream strstr(line);
     std::vector<double> temp_vertex;
     std::getline(strstr, token, ' ');
     while (std::getline(strstr, token, ' ')) {
-        if (++v_counter > 4) {
+        if (++v_counter > 3) {
             throw std::invalid_argument("ERROR: Invalid data in 'v'-line in objest file. Too many arguments.");
         }
         try {
             num_double = std::stod(token);
-            // std::cout << num_double << "|||";//////////////////////////////////
             temp_vertex.push_back(num_double);
             if (figure->Get_Max() < std::fabs(num_double)) {
                 figure->Set_Max(std::fabs(num_double));
@@ -94,8 +91,8 @@ void s21::FileParser::ParsVLine(std::string line, s21::Figure *figure) {
 
 void s21::FileParser::ParsFLine(std::string line, s21::Figure *figure) {
     std::string token;
-    double num_double;
-    unsigned edge_counter;
+    double num_double = 0;
+    unsigned edge_counter = 0;
     std::stringstream strstr(line);
     unsigned index_to_loop;
     std::getline(strstr, token, ' ');
