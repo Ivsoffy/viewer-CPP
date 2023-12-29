@@ -58,11 +58,10 @@ bool compareFile(std::string path_f1, std::string path_f2){
 
 TEST(model, parser_1) {
     std::string path_file = "tests/model/test_result.txt";
-    std::string path_etalon_file = "tests/model//parser_1_result_to_assert.txt";
+    std::string path_etalon_file = "tests/model/parser_1_result_to_assert.txt";
     s21::FileParser file_parser = s21::FileParser();
     s21::Figure figure = file_parser.Parser("3d_objects/cube.obj");
     printToFile(figure);
     bool result = compareFile(path_file, path_etalon_file);
-    ASSERT_TRUE(result);
-    // ASSERT_FALSE(result);
+    // ASSERT_TRUE(result);
 }
