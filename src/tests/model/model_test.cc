@@ -1,9 +1,11 @@
 #include <gtest/gtest.h>
 #include <vector>
 #include <iostream>
+#include <fstream>
 
 #include "../main_test.h"
 #include "../../model/FileParser.h"
+#include "../../model/AffineTransformations.h"
 
 void printToFile(s21::Figure figure) {
     std::ofstream out;
@@ -31,9 +33,8 @@ void printToFile(s21::Figure figure) {
     out.close(); 
 }
 
-#include <fstream>
-using namespace std;
- 
+
+
 bool compareFile(std::string path_f1, std::string path_f2){
     bool result = true;
     std::string sf1, sf2;
@@ -56,12 +57,58 @@ bool compareFile(std::string path_f1, std::string path_f2){
     return result;
 }
 
+bool is_vertices_equal(s21::Vertex v1, s21::Vertex v2) {
+    std::cout << v1.GetX() << " " << v2.GetX() << std::endl;
+    std::cout << v1.GetY() << " " << v2.GetY() << std::endl;
+    std::cout << v1.GetZ() << " " << v2.GetZ() << std::endl;
+    if (v1.GetX() != v2.GetX()) return false;
+    if (v1.GetY() != v2.GetY()) return false;
+    if (v1.GetZ() != v2.GetZ()) return false;
+    return true;
+}
+
 TEST(model, parser_1) {
     std::string path_file = "tests/model/test_result.txt";
     std::string path_etalon_file = "tests/model/parser_1_result_to_assert.txt";
     s21::FileParser file_parser = s21::FileParser();
-    s21::Figure figure = file_parser.Parser("3d_objects/cube.obj");
+    s21::Figure figure = file_parser.Parser("tests/model/3d_objects/cube_good_1.obj");
     printToFile(figure);
     bool result = compareFile(path_file, path_etalon_file);
-    // ASSERT_TRUE(result);
+    ASSERT_TRUE(result);
+}
+
+TEST(model, parser_2) {
+    std::string path_file = "tests/model/test_result.txt";
+    std::string path_etalon_file = "tests/model/parser_2_result_to_assert.txt";
+    s21::FileParser file_parser = s21::FileParser();
+    s21::Figure figure = file_parser.Parser("tests/model/3d_objects/cube_good_2.obj");
+    printToFile(figure);
+    bool result = compareFile(path_file, path_etalon_file);
+    ASSERT_TRUE(result);
+}
+
+TEST(model, parser_throw_1) {
+    s21::FileParser file_parser = s21::FileParser();
+    ASSERT_THROW(file_parser.Parser("tests/model/3d_objects/cube_bad_v_1.obj"), std::invalid_argument);
+}
+
+TEST(model, parser_throw_2) {
+    s21::FileParser file_parser = s21::FileParser();
+    ASSERT_THROW(file_parser.Parser("tests/model/3d_objects/cube_bad_v_2.obj"), std::invalid_argument);
+}
+
+TEST(model, parser_throw_3) {
+    s21::FileParser file_parser = s21::FileParser();
+    ASSERT_THROW(file_parser.Parser("tests/model/3d_objects/cube_bad_f.obj"), std::invalid_argument);
+}
+
+TEST(model, affine_1_move) {
+    s21::Vertex vertex_to_move(1, 1, 1);
+    s21::Vertex vertex_to_assert(2, 3, 4);
+    s21::AffineTransformations aff_tran = s21::AffineTransformations();
+    aff_tran.SetMoveX(1);
+    aff_tran.SetMoveY(2);
+    aff_tran.SetMoveZ(3);
+    aff_tran.Trasformate(&vertex_to_move);
+    ASSERT_TRUE(is_vertices_equal(vertex_to_move, vertex_to_assert));
 }

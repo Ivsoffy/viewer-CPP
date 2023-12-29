@@ -2,12 +2,18 @@
 #define MODEL_AFFINETRANSFORMATIONS_H_
 
 #include <cmath>
+#include <iostream>///////////////////////////////////////////////////
 
 #include "Vertex.h"
 
 namespace s21 {
 
+    class Vertex;
+
 class AffineTransformations {
+
+    friend Vertex;
+
     public:
         AffineTransformations(){};
         ~AffineTransformations(){};
@@ -22,14 +28,16 @@ class AffineTransformations {
 
         void Trasformate(s21::Vertex *vertex);
 
+        void add_x(int* x);
+        
     private:
-        double move_x_;        
-        double move_y_;
-        double move_z_;
-        double angle_x_;
-        double angle_y_;
-        double angle_z_;
-        double scale_;
+        double move_x_{};
+        double move_y_{};
+        double move_z_{};
+        double angle_x_{};
+        double angle_y_{};
+        double angle_z_{};
+        double scale_{};
 };
 
 } //namespace s21

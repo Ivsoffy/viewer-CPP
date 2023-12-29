@@ -1,9 +1,14 @@
 #ifndef MODEL_VERTEX_H_
 #define MODEL_VERTEX_H_
 
+#include "AffineTransformations.h"
+
 namespace s21 {
 
 class Vertex {
+
+    // friend AffineTransformations;
+    
     public:
         Vertex(){};
         Vertex(double x, double y, double z) {
@@ -21,9 +26,9 @@ class Vertex {
         void SetZ(double z) {z_ = z;};
         
     private:
-        double x_;
-        double y_;
-        double z_;
+        double x_{};
+        double y_{};
+        double z_{};
 
 };
 

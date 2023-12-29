@@ -36,7 +36,6 @@ class Figure {
         void AddVertex(double x, double y, double z);
         void AddVertexToEdgesVector(unsigned num);
         void AddPolygonsSize(unsigned num);
-        void MutateFigure();
 
     private:
         std::vector<s21::Vertex> vertexes_;
