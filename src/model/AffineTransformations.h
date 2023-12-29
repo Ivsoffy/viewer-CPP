@@ -12,8 +12,6 @@ namespace s21 {
 
 class AffineTransformations {
 
-    friend Vertex;
-
     public:
         AffineTransformations(){};
         ~AffineTransformations(){};
@@ -27,8 +25,6 @@ class AffineTransformations {
         void SetScale(int scale);
 
         void Trasformate(s21::Vertex *vertex);
-
-        void add_x(int* x);
         
     private:
         double move_x_{};

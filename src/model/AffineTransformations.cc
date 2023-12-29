@@ -28,10 +28,6 @@
         scale_ = scale;
     }
 
-    void s21::AffineTransformations::add_x(int* x) {
-        *x = 10;
-    }
-
     void s21::AffineTransformations::Trasformate(s21::Vertex* vertex) {
         double x = vertex->GetX();
         double y = vertex->GetY();
@@ -39,7 +35,6 @@
         double angle_x = angle_x_ * M_PI / 180;
         double angle_y = angle_y_ * M_PI / 180;
         double angle_z = angle_z_ * M_PI / 180;
-
         if (move_x_ != 0) {
             vertex->SetX(x + move_x_);
         }
@@ -55,12 +50,12 @@
             vertex->SetZ(-y * sin(angle_x) + z * cos(angle_x));
         }
         if (angle_y_ != 0) {
-            vertex->SetX(x * cos(angle_y) + z * sin(angle_y));
-            vertex->SetZ(-x * sin(angle_y) + z * cos(angle_y));
+            vertex->SetX(x * cos(angle_y) - z * sin(angle_y));
+            vertex->SetZ(x * sin(angle_y) + z * cos(angle_y));
         }
         if (angle_z_ != 0) {
-            vertex->SetX(-x * sin(angle_z) + y * cos(angle_z));
-            vertex->SetY(x * cos(angle_z) + y * sin(angle_z));
+            vertex->SetX(x * cos(angle_z) + y * sin(angle_z));
+            vertex->SetY(-x * sin(angle_z) + y * cos(angle_z));
         }
         if (scale_ != 0) {
             vertex->SetX(x * scale_);

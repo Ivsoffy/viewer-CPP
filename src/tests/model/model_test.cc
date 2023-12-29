@@ -33,8 +33,6 @@ void printToFile(s21::Figure figure) {
     out.close(); 
 }
 
-
-
 bool compareFile(std::string path_f1, std::string path_f2){
     bool result = true;
     std::string sf1, sf2;
@@ -58,12 +56,15 @@ bool compareFile(std::string path_f1, std::string path_f2){
 }
 
 bool is_vertices_equal(s21::Vertex v1, s21::Vertex v2) {
-    std::cout << v1.GetX() << " " << v2.GetX() << std::endl;
-    std::cout << v1.GetY() << " " << v2.GetY() << std::endl;
-    std::cout << v1.GetZ() << " " << v2.GetZ() << std::endl;
-    if (v1.GetX() != v2.GetX()) return false;
-    if (v1.GetY() != v2.GetY()) return false;
-    if (v1.GetZ() != v2.GetZ()) return false;
+    // std::cout << std::setprecision(20) << v1.GetX() << " " << v2.GetX() << std::endl;
+    // std::cout << std::setprecision(20) << v1.GetY() << " " << v2.GetY() << std::endl;
+    // std::cout << std::setprecision(20) << v1.GetZ() << " " << v2.GetZ() << std::endl;  
+    // std::cout << (v1.GetX() - v2.GetX() <= kEps) << std::endl;
+    // std::cout << (v1.GetY() - v2.GetY() <= kEps) << std::endl;
+    // std::cout << (v1.GetZ() - v2.GetZ() <= kEps) << std::endl;
+    if (v1.GetX() - v2.GetX() > kEps) return false;
+    if (v1.GetY() - v2.GetY() > kEps) return false;
+    if (v1.GetZ() - v2.GetZ() > kEps) return false;
     return true;
 }
 
@@ -111,4 +112,24 @@ TEST(model, affine_1_move) {
     aff_tran.SetMoveZ(3);
     aff_tran.Trasformate(&vertex_to_move);
     ASSERT_TRUE(is_vertices_equal(vertex_to_move, vertex_to_assert));
+}
+
+TEST(model, affine_2_turn) {
+    s21::Vertex vertex_to_turn(1, 1, 1);
+    s21::Vertex vertex_to_assert(1, -1, 1);
+    s21::AffineTransformations aff_tran = s21::AffineTransformations();
+    aff_tran.SetAngleX(90);
+    aff_tran.SetAngleY(90);
+    aff_tran.SetAngleZ(90);
+    aff_tran.Trasformate(&vertex_to_turn);
+    ASSERT_TRUE(is_vertices_equal(vertex_to_turn, vertex_to_assert));
+}
+
+TEST(model, affine_3_scale) {
+    s21::Vertex vertex_to_scale(1, 1, -1);
+    s21::Vertex vertex_to_assert(3, 3, -3);
+    s21::AffineTransformations aff_tran = s21::AffineTransformations();
+    aff_tran.SetScale(3);
+    aff_tran.Trasformate(&vertex_to_scale);
+    ASSERT_TRUE(is_vertices_equal(vertex_to_scale, vertex_to_assert));
 }

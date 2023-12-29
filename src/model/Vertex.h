@@ -6,8 +6,6 @@
 namespace s21 {
 
 class Vertex {
-
-    // friend AffineTransformations;
     
     public:
         Vertex(){};
@@ -29,7 +27,6 @@ class Vertex {
         double x_{};
         double y_{};
         double z_{};
-
 };
 
 } //namespace s21
