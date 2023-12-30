@@ -60,12 +60,6 @@ bool compareFile(std::string path_f1, std::string path_f2){
 }
 
 bool is_vertices_equal(s21::Vertex v1, s21::Vertex v2) {
-    // std::cout << std::setprecision(20) << v1.GetX() << " " << v2.GetX() << std::endl;
-    // std::cout << std::setprecision(20) << v1.GetY() << " " << v2.GetY() << std::endl;
-    // std::cout << std::setprecision(20) << v1.GetZ() << " " << v2.GetZ() << std::endl;  
-    // std::cout << (v1.GetX() - v2.GetX() <= kEps) << std::endl;
-    // std::cout << (v1.GetY() - v2.GetY() <= kEps) << std::endl;
-    // std::cout << (v1.GetZ() - v2.GetZ() <= kEps) << std::endl;
     if (v1.GetX() - v2.GetX() > kEps) return false;
     if (v1.GetY() - v2.GetY() > kEps) return false;
     if (v1.GetZ() - v2.GetZ() > kEps) return false;
@@ -137,3 +131,13 @@ TEST(model, affine_3_scale) {
     aff_tran.Trasformate(&vertex_to_scale);
     ASSERT_TRUE(is_vertices_equal(vertex_to_scale, vertex_to_assert));
 }
+
+// TEST(model, XXXXXXXX) {
+//     s21::FileParser file_parser = s21::FileParser();
+//     s21::Figure figure = file_parser.Parser("tests/model/3d_objects/cube_good_1.obj");
+//     std::vector<double> result = file_parser.PrepareVertecesToOGL(&figure);
+//     for (auto i = 0; i < result.size(); ++i) {
+//         std::cout << result[i] << std::endl;
+//     }
+//     // ASSERT_TRUE(result);
+// }
