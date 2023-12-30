@@ -1,7 +1,7 @@
 CC=g++ -g
 PROGRAMM_NAME=3d_viewer_2
 FLAGS=-std=c++17 -lgtest -lstdc++ 
-# WCHECK=-Wall -Werror -Wextra
+WCHECK=-Wall -Werror -Wextra
 BUILD_DIR=build
 # SOURCES=model/*.cc view/*.cc controller/*.cc
 # HEADERS=model/*.h view/*.h controller/*.h

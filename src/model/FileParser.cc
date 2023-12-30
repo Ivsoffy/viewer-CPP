@@ -7,9 +7,6 @@ s21::Figure s21::FileParser::Parser(std::string file_name) {
     if (file.is_open()) {
         std::string line;
         std::string token;
-        double num_double;
-        int num_int;
-        unsigned v_counter;
         while (std::getline(file,line)) {
             std::stringstream strstr(line);
             std::getline(strstr, token, ' ');
