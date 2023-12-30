@@ -1,0 +1,63 @@
+#include <iostream>
+#include "FileParser.h"
+
+int main() {
+    s21::FileParser file_parser = s21::FileParser();
+    // s21::Figure figure = file_parser.Parser("../3d_objects/cube.obj");
+    s21::Figure figure = file_parser.Parser("/Users/vanesabo/CPP/CPP4_3DViewer_v2.0-1/src/3d_objects/cube.obj");
+
+    /////////////
+        std::ofstream out;          // поток для записи
+    out.open("test/test_result.txt");      // открываем файл для записи
+    if (out.is_open()) {
+        for (auto i : figure.GetVertexesVector()) {
+        out << std::setprecision(11) << i.GetX() << " " << i.GetY() << " " << i.GetZ() << std::endl;
+    }
+
+    out << "\n";
+    unsigned index = figure.GetPoligonsSizesVector()[0];
+    for (auto i = 0, j =0; i < figure.GetEdgesVector().size(); ++i) {
+        out << figure.GetEdgesVector()[i] << " ";
+        if (i == index -1) {
+            out << "\n";
+            ++j;
+            index += figure.GetPoligonsSizesVector()[j];
+        }
+    }
+
+    out << "\n";
+    out << "max_=" << figure.Get_Max() << std::endl;
+    }
+    out.close(); 
+    /////////////
+
+    // //////TODO//checks////////////////////////////////////////////////////////////////////
+    // for (auto i : figure.GetVertexesVector()) {
+    //     std::cout << std::setprecision(11) << i.GetX() << " " << i.GetY() << " " << i.GetZ() << std::endl;
+    // }
+
+    // std::cout << "\n";
+    // unsigned index = figure.GetPoligonsSizesVector()[0];
+    // for (auto i = 0, j =0; i < figure.GetEdgesVector().size(); ++i) {
+    //     std::cout << figure.GetEdgesVector()[i] << " ";
+    //     if (i == index -1) {
+    //         std::cout << "\n";
+    //         ++j;
+    //         index += figure.GetPoligonsSizesVector()[j];
+    //     }
+    // }
+
+    // std::cout << "\n";
+    // std::cout << "max_=" << figure.Get_Max() << std::endl;
+
+    // // std::cout << "\n";
+    // // for (auto i : figure.GetPoligonsSizesVector()) {
+    // //     std::cout << i << " ";
+    // // }
+
+    // // std::cout << "\n";
+    // // std::cout << "x_max_=" << figure.GetX_Max() << " " 
+    // //         << "x_max_=" << figure.GetY_Max() << " " 
+    // //         << "x_max_=" << figure.GetZ_Max() << std::endl;
+    // //////////////////////////////////////////////////////////////////////////////////////
+}
