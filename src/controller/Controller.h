@@ -5,7 +5,7 @@
 #include <string>
 
 namespace s21 {
-class CalcController {
+class Controller {
  public:
   class ParamDTO {
    public:
@@ -24,6 +24,7 @@ class CalcController {
   void TransferObject(std::string file_name);
   void TransferGLBuffer(GLuint VertexBuffer, GLuint IndexBuffer,
                         uint IndecesSize, uint VerticesSize);
+  ParamDTO *paramDTO_;
 };
 
 }  // namespace s21

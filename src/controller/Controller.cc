@@ -1,6 +1,6 @@
 #include "Controller.h"
 
-s21::CalcController::ParamDTO::ParamDTO(double move_x, double move_y,
+s21::Controller::ParamDTO::ParamDTO(double move_x, double move_y,
                                         double move_z, double angle_x,
                                         double angle_y, double angle_z,
                                         double scale) {
@@ -13,15 +13,15 @@ s21::CalcController::ParamDTO::ParamDTO(double move_x, double move_y,
   scale_ = scale;
 }
 
-void s21::CalcController::TransferFigureParams(ParamDTO *param) {
+void s21::Controller::TransferFigureParams(ParamDTO *param) {
   // call func from fasad
 }
 
-void s21::CalcController::TransferObject(std::string file_name) {
+void s21::Controller::TransferObject(std::string file_name) {
   // call func from fasad
 }
 
-void s21::CalcController::TransferGLBuffer(GLuint VertexBuffer,
+void s21::Controller::TransferGLBuffer(GLuint VertexBuffer,
                                            GLuint IndexBuffer, uint IndecesSize,
                                            uint VerticesSize) {
   // call func from fasad
