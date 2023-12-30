@@ -121,7 +121,7 @@ TEST(model, affine_1_move) {
   aff_tran.SetMoveX(1);
   aff_tran.SetMoveY(2);
   aff_tran.SetMoveZ(3);
-  aff_tran.TrasformateVertex(&vertex_to_move);
+  aff_tran.Trasformate(&vertex_to_move);
   ASSERT_TRUE(is_vertices_equal(vertex_to_move, vertex_to_assert));
 }
 
@@ -132,7 +132,7 @@ TEST(model, affine_2_turn) {
   aff_tran.SetAngleX(90);
   aff_tran.SetAngleY(90);
   aff_tran.SetAngleZ(90);
-  aff_tran.TrasformateVertex(&vertex_to_turn);
+  aff_tran.Trasformate(&vertex_to_turn);
   ASSERT_TRUE(is_vertices_equal(vertex_to_turn, vertex_to_assert));
 }
 
@@ -141,27 +141,18 @@ TEST(model, affine_3_scale) {
   s21::Vertex vertex_to_assert(3, 3, -3);
   s21::AffineTransformations aff_tran = s21::AffineTransformations();
   aff_tran.SetScale(3);
-  aff_tran.TrasformateVertex(&vertex_to_scale);
+  aff_tran.Trasformate(&vertex_to_scale);
   ASSERT_TRUE(is_vertices_equal(vertex_to_scale, vertex_to_assert));
 }
 
-//// TEST(model, XXXXXXXX) {
-////     s21::FileParser file_parser = s21::FileParser();
-////     s21::Figure figure =
-/// file_parser.Parser("tests/model/3d_objects/cube_good_1.obj"); /
-/// std::vector<double> result = file_parser.PrepareVertecesToOGL(&figure); /
-/// for (auto i = 0; i < result.size(); ++i) { /         std::cout << result[i]
-///<< std::endl; /     } /     // ASSERT_TRUE(result); / }
-
-// TEST(model, facade_1) {
-//     std::string path_file = "tests/model/test_result.txt";
-//     std::string path_etalon_file =
-//     "tests/model/parser_1_result_to_assert.txt";
-//     // s21::FileParser file_parser = s21::FileParser();
-//     // s21::Figure figure =
+// TEST(model, XXXXXXXX) {
+//     s21::FileParser file_parser = s21::FileParser();
+//     s21::Figure figure =
 //     file_parser.Parser("tests/model/3d_objects/cube_good_1.obj");
-//     // printToFile(figure);
-//     // bool result = compareFile(path_file, path_etalon_file);
+//     std::vector<double> result = file_parser.PrepareVertecesToOGL(&figure);
+//     for (auto i = 0; i < result.size(); ++i) {
+//         std::cout << result[i] << std::endl;
+//     }
 //     // ASSERT_TRUE(result);
 //     s21::Facade facade = s21::Facade();
 //     facade.SetPathToObject("tests/model/3d_objects/cube_good_1.obj");
