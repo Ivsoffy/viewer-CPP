@@ -2,7 +2,9 @@
 #define MODEL_AFFINETRANSFORMATIONS_H_
 
 #include <cmath>
+#include <vector>
 
+#include "Figure.h"
 #include "Vertex.h"
 
 namespace s21 {
@@ -23,7 +25,9 @@ class AffineTransformations {
         void SetAngleZ(double angle);
         void SetScale(int scale);
 
-        void Trasformate(s21::Vertex *vertex);
+        void TrasformateVertex(s21::Vertex *vertex);
+        void TrasformateVectorOfVerteces(std::vector<s21::Vertex> *vertex);
+        void Trasformate(s21::Figure *figure);
         
     private:
         double move_x_{};

@@ -1,8 +1,6 @@
 #ifndef MODEL_VERTEX_H_
 #define MODEL_VERTEX_H_
 
-#include "AffineTransformations.h"
-
 namespace s21 {
 
 class Vertex {
