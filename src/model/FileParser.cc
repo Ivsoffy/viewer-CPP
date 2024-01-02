@@ -1,4 +1,5 @@
 #include "FileParser.h"
+#include <iostream>
 
 void s21::FileParser::Parser(s21::Figure *figure, std::string file_name) {
 //  s21::Figure figure = s21::Figure();
@@ -29,13 +30,26 @@ void s21::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
   std::vector<double> temp_vertex{};
   std::getline(strstr, token, ' ');
   while (std::getline(strstr, token, ' ')) {
+    if (token == "" || token == " ") {
+      // std::cerr << "7777777" << std::endl;/////////////////////
+      continue;
+    }
+    if ((int) token[0] == 13) { // 13 - перевод каретки
+      // std::cerr << "555555" << std::endl;/////////////////////
+      break;
+    }
+
+
+    // std::cerr << "11 | " << strstr.str() << std::endl;///////////////
+    // std::cerr << "33 | " << token << std::endl;/////////////////////
+
     if (++v_counter > 3) {
       throw std::invalid_argument(
           "ERROR: Invalid data in 'v'-line in objest file. Too many "
           "arguments.");
     }
     try {
-      num_double = std::stod(token);
+      num_double = 999;
       temp_vertex.push_back(num_double);
       if (figure->Get_Max() < std::fabs(num_double)) {
         figure->Set_Max(std::fabs(num_double));
@@ -51,6 +65,7 @@ void s21::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
       //     figure.SetZ_Max(std::fabs(z));
       // }
     } catch (const std::exception& e) {
+      std::cerr << "2 | " << strstr.str() << std::endl;
       throw std::invalid_argument(
           "ERROR: Invalid data in 'v'-line in objest file.");
     }
@@ -66,6 +81,20 @@ void s21::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
   unsigned index_to_loop;
   std::getline(strstr, token, ' ');
   while (std::getline(strstr, token, ' ')) {
+    if (token == "" || token == " " || token.size() == 1) { // 13 - перевод каретки
+      // std::cerr << "555555" << std::endl;/////////////////////
+      // std::cerr << "11 | " << strstr.str() << std::endl;///////////////
+      continue;
+    }
+    // if ((int) token[0] == 13) { // 13 - перевод каретки
+    //   // std::cerr << "555555" << std::endl;/////////////////////
+    //   break;
+    // }
+    // std::cerr << "11 | " << strstr.str() << std::endl;///////////////
+    // std::cerr << "33 | " << token << std::endl;/////////////////////
+    // std::cerr << "33 | " << token.size() << std::endl;/////////////////////
+    // std::cerr << (int) token[0] << std::endl;/////////////////////
+
     try {
       num_double = std::stod(token);
 

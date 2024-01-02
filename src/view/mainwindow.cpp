@@ -2,9 +2,9 @@
 
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(s21::Controller controller, QWidget *parent)
+MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
-  controller_ = &controller;
+  controller_ = controller;
   controller_->paramDTO_ = new s21::ParamDTO(0, 0, 0, 0, 0, 0, 3);
   //  user_settings_setup(&user_settings);
   ui->setupUi(this);

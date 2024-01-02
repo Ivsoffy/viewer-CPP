@@ -33,7 +33,7 @@ class MainWindow : public QMainWindow {
   Q_OBJECT
 
  public:
-  MainWindow(s21::Controller controller, QWidget *parent = nullptr);
+  MainWindow(s21::Controller *controller, QWidget *parent = nullptr);
   ~MainWindow();
 
 //  void closeEvent(QCloseEvent *event);

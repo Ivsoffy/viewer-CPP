@@ -10,8 +10,8 @@
 namespace s21 {
 class Controller {
  public:
-  Controller(Facade facade) {
-    facade_ = &facade;
+  Controller(Facade *facade) {
+    facade_ = facade;
   }
 
   ParamDTO* paramDTO_;

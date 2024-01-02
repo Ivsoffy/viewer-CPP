@@ -9,7 +9,7 @@ s21::Facade::Facade() {
 }
 
 void s21::Facade::SetPathToObject(std::string path) {
-  path = "/Users/rosmertt/CPP4_3DViewer_v2.0-1/src/3d_objects/cube.obj";
+//  path = "/Users/rosmertt/CPP4_3DViewer_v2.0-1/src/3d_objects/cube.obj";
   fileParser_->Parser(this->GetFigure(), path);
 }
 
