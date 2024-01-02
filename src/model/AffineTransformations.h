@@ -37,6 +37,15 @@ class AffineTransformations {
         double angle_y_{};
         double angle_z_{};
         double scale_{};
+
+        double old_move_x_{};
+        double old_move_y_{};
+        double old_move_z_{};
+        double old_angle_x_{};
+        double old_angle_y_{};
+        double old_angle_z_{};
+        double old_scale_{};
+
 };
 
 } //namespace s21

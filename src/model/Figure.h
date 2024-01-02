@@ -14,20 +14,23 @@ class Figure {
   Figure(){};
   ~Figure(){};
 
-//  void operator=(Figure &other) {
-//    this->SetVertexesVector(other.GetVertexesVector());
-//    this->SetEdgesVector(other.GetEdgesVector());
-//    this->SetPoligonsSizesVector(other.GetPoligonsSizesVector());
-//  };
+  //  void operator=(Figure &other) {
+  //    this->SetVertexesVector(other.GetVertexesVector());
+  //    this->SetEdgesVector(other.GetEdgesVector());
+  //    this->SetPoligonsSizesVector(other.GetPoligonsSizesVector());
+  //  };
 
   std::vector<s21::Vertex> GetVertexesVector() { return vertexes_; };
+  std::vector<s21::Vertex>* GetVertexesVectorRef() { return &vertexes_; };
   std::vector<double> GetDoubleVector();
   std::vector<unsigned> GetEdgesVector() { return edges_; };
   std::vector<unsigned> GetPoligonsSizesVector() { return polygons_sizes_; };
 
   void SetVertexesVector(std::vector<s21::Vertex> vert) { vertexes_ = vert; };
   void SetEdgesVector(std::vector<unsigned> vect) { edges_ = vect; };
-  void SetPoligonsSizesVector(std::vector<unsigned> vect) { polygons_sizes_ = vect; };
+  void SetPoligonsSizesVector(std::vector<unsigned> vect) {
+    polygons_sizes_ = vect;
+  };
 
   double GetX_Max() { return x_max_; };
   double GetY_Max() { return y_max_; };

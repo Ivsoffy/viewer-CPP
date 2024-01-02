@@ -13,7 +13,7 @@ void s21::Facade::SetPathToObject(std::string path) {
   fileParser_->Parser(this->GetFigure(), path);
 }
 
-void s21::Facade::SetAffineTransformations(s21::ParamDTO paramDTO) {
+void s21::Facade::TrasformateFigure(s21::ParamDTO paramDTO) {
   affineTransformations_->SetMoveX(paramDTO.move_x_);
   affineTransformations_->SetMoveY(paramDTO.move_y_);
   affineTransformations_->SetMoveZ(paramDTO.move_z_);
@@ -21,9 +21,7 @@ void s21::Facade::SetAffineTransformations(s21::ParamDTO paramDTO) {
   affineTransformations_->SetAngleY(paramDTO.angle_y_);
   affineTransformations_->SetAngleZ(paramDTO.angle_z_);
   affineTransformations_->SetScale(paramDTO.scale_);
-}
 
-void s21::Facade::TrasformateFigure() {
   affineTransformations_->TrasformateVectorOfVerteces(figure_);
 }
 

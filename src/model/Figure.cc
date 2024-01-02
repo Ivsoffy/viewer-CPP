@@ -15,7 +15,7 @@ void s21::Figure::AddPolygonsSize(unsigned num) {
 
 std::vector<double> s21::Figure::GetDoubleVector() {
   std::vector<double> double_vector;
-  for (int i = 0; i < vertexes_.size(); i++) {
+  for (size_t i = 0; i < vertexes_.size(); i++) {
     double_vector.push_back(vertexes_[i].GetX());
     double_vector.push_back(vertexes_[i].GetY());
     double_vector.push_back(vertexes_[i].GetZ());

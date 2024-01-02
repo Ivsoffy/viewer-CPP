@@ -10,14 +10,14 @@
 namespace s21 {
 class Controller {
  public:
-  Controller(Facade facade) {
-    facade_ = &facade;
+  Controller(Facade *facade) {
+    facade_ = facade;
   }
 
   ParamDTO* paramDTO_;
   GLBufferDTO TransferGLBuffer();
 
-  void TransferFigureParams(ParamDTO param);
+  void TransferFigureParams();
   void TransferObject(std::string file_name);
 
 

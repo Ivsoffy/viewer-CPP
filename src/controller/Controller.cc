@@ -1,8 +1,8 @@
 #include "Controller.h"
 
-void s21::Controller::TransferFigureParams(ParamDTO param) {
+void s21::Controller::TransferFigureParams() {
   // call func from fasad
-  facade_->SetAffineTransformations(param);
+  facade_->TrasformateFigure(*paramDTO_);
 }
 
 void s21::Controller::TransferObject(std::string file_name) {

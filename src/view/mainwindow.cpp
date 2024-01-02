@@ -2,9 +2,9 @@
 
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(s21::Controller controller, QWidget *parent)
+MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
-  controller_ = &controller;
+  controller_ = controller;
   controller_->paramDTO_ = new s21::ParamDTO(0, 0, 0, 0, 0, 0, 3);
   //  user_settings_setup(&user_settings);
   ui->setupUi(this);
@@ -193,6 +193,16 @@ void MainWindow::choose_file() {
   }
 }
 
+void MainWindow::redraw() {
+  controller_->TransferFigureParams();
+  s21::GLBufferDTO GLBuffDTO = controller_->TransferGLBuffer();
+  ui->openGLWidget->SetVertexBuffer(GLBuffDTO.vertex_buffer_);
+  ui->openGLWidget->SetIndexBuffer(GLBuffDTO.index_buffer_);
+  ui->openGLWidget->SetIndicesSize(GLBuffDTO.indices_size_);
+  ui->openGLWidget->SetVerticesSize(GLBuffDTO.vertices_size_);
+  ui->openGLWidget->repaint();
+}
+
 // void MainWindow::open_file() {
 //   controller.TransferObject()
 
@@ -283,8 +293,22 @@ void MainWindow::on_doubleSpinBox_settings_move_move_x_valueChanged(
     double arg1) {
   ui->openGLWidget->shift_x = arg1;
   ui->horizontalSlider_settings_move_move_x->setValue(arg1);
-  ui->openGLWidget->repaint();
+  changeXcoord();
 }
+
+void MainWindow::on_horizontalSlider_settings_move_move_x_sliderMoved(
+    int position) {
+  ui->openGLWidget->shift_x = (double)position;
+  ui->doubleSpinBox_settings_move_move_x->setValue((double)position);
+  changeXcoord();
+}
+
+void MainWindow::changeXcoord(){
+  controller_->paramDTO_->move_x_ = ui->openGLWidget->shift_x;
+  redraw();
+
+}
+
 
 void MainWindow::on_doubleSpinBox_settings_move_move_y_valueChanged(
     double arg1) {
@@ -297,13 +321,6 @@ void MainWindow::on_doubleSpinBox_settings_move_move_z_valueChanged(
     double arg1) {
   ui->openGLWidget->shift_z = arg1;
   ui->horizontalSlider_settings_move_move_z->setValue(arg1);
-  ui->openGLWidget->repaint();
-}
-
-void MainWindow::on_horizontalSlider_settings_move_move_x_sliderMoved(
-    int position) {
-  ui->openGLWidget->shift_x = (double)position;
-  ui->doubleSpinBox_settings_move_move_x->setValue((double)position);
   ui->openGLWidget->repaint();
 }
 
@@ -320,6 +337,8 @@ void MainWindow::on_horizontalSlider_settings_move_move_z_sliderMoved(
   ui->doubleSpinBox_settings_move_move_z->setValue(position);
   ui->openGLWidget->repaint();
 }
+
+
 
 void MainWindow::on_doubleSpinBox_settings_move_rotate_x_valueChanged(
     double arg1) {

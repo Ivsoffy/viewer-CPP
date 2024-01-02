@@ -33,7 +33,7 @@ class MainWindow : public QMainWindow {
   Q_OBJECT
 
  public:
-  MainWindow(s21::Controller controller, QWidget *parent = nullptr);
+  MainWindow(s21::Controller *controller, QWidget *parent = nullptr);
   ~MainWindow();
 
 //  void closeEvent(QCloseEvent *event);
@@ -42,6 +42,8 @@ class MainWindow : public QMainWindow {
 
  public slots:
   void choose_file();
+  void redraw();
+  void changeXcoord();
 //  void open_file();
 
   void take_screenshot();
@@ -84,6 +86,7 @@ class MainWindow : public QMainWindow {
 
  private:
   s21::Controller *controller_;
+//  s21::ParamDTO * paramDTO_;
 
   Ui::MainWindow *ui;
 
