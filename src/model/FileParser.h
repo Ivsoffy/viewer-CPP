@@ -18,9 +18,7 @@ class FileParser {
         FileParser(){};
         ~FileParser(){};
 
-        s21::Figure Parser(std::string file_name);
-    
-        std::vector<double> PrepareVertecesToOGL(s21::Figure *figure);
+        const s21::Figure Parser(std::string file_name);
 
     private:
         void ParsVLine(std::string strstr, s21::Figure *figure);

@@ -26,8 +26,8 @@ class AffineTransformations {
         void SetScale(int scale);
 
         void TrasformateVertex(s21::Vertex *vertex);
-        void TrasformateVectorOfVerteces(std::vector<s21::Vertex> *vertex);
-        void Trasformate(s21::Figure *figure);
+        void TrasformateVectorOfVerteces(s21::Figure *figure);
+        // void Trasformate(s21::Figure *figure);
         
     private:
         double move_x_{};

@@ -14,7 +14,11 @@ class Figure {
         Figure(){};
         ~Figure(){};
 
+        void operator=(const Figure& other);
+
+        // std::vector<double> PrepareVertecesToOGL(s21::Figure *figure);
         std::vector<s21::Vertex> GetVertexesVector() {return vertexes_;};
+        std::vector<s21::Vertex>* GetVertexesVectorPtr() {return &vertexes_;};
         std::vector<unsigned> GetEdgesVector() {return edges_;};
         std::vector<unsigned> GetPoligonsSizesVector() {return polygons_sizes_;};
         double GetX_Max() {return x_max_;};

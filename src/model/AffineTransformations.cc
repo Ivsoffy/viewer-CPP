@@ -64,13 +64,13 @@ void s21::AffineTransformations::TrasformateVertex(s21::Vertex* vertex) {
     }
 }
 
-void s21::AffineTransformations::TrasformateVectorOfVerteces(std::vector<s21::Vertex> *vertexs) {
-    unsigned vector_size = vertexs->size();
+void s21::AffineTransformations::TrasformateVectorOfVerteces(s21::Figure *figure) {
+    unsigned vector_size = figure->GetVertexesVector().size();
     for (unsigned i = 0; i < vector_size; ++i) {
-        s21::AffineTransformations::TrasformateVertex(&vertexs->at(i));
+        s21::AffineTransformations::TrasformateVertex(&figure->GetVertexesVectorPtr()->at(i));
     }
 }
 
-void s21::AffineTransformations::Trasformate(s21::Figure *figure) {
-    s21::AffineTransformations::TrasformateVectorOfVerteces(&figure->GetVertexesVector());
-}
+// void s21::AffineTransformations::Trasformate(s21::Figure *figure) {
+//     s21::AffineTransformations::TrasformateVectorOfVerteces(figure);
+// }
