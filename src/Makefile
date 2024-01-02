@@ -1,12 +1,15 @@
-CC=gcc
-CFLAGS = -c -g -std=c11 -Wall -Werror -Wextra
+CC=g++ -g
+PROGRAMM_NAME=3d_viewer_2
+FLAGS=-std=c++17 -lgtest -lstdc++ 
+# WCHECK=-Wall -Werror -Wextra
+BUILD_DIR=build
+# SOURCES=model/*.cc view/*.cc controller/*.cc
+# HEADERS=model/*.h view/*.h controller/*.h
+SOURCES=model/*.cc
+HEADERS=model/*.h
+OBJECT_FOLDER=obj
 
-PROGRAMM_NAME=3d_viewer
-
-LIBS_CHECK =
-
-OS := $(shell uname -s)
-
+OS=$(shell uname)
 ifeq ($(OS), Linux)
 	LINUX := $(shell cat /etc/os-release | grep ID_LIKE | sed 's|.*=||')
 

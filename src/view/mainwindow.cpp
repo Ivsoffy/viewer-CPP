@@ -2,14 +2,14 @@
 
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
+MainWindow::MainWindow(s21::Controller controller, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
-  controller_ = controller;
-  controller_->paramDTO_ = new s21::Controller::ParamDTO(0,0,0,0,0,0,3);
+  controller_ = &controller;
+  controller_->paramDTO_ = new s21::ParamDTO(0, 0, 0, 0, 0, 0, 3);
   //  user_settings_setup(&user_settings);
   ui->setupUi(this);
   //  ui->openGLWidget->main_window = this;
-  init_settings();
+//  init_settings();
   connects();
 }
 
@@ -64,9 +64,9 @@ MainWindow::~MainWindow() { delete ui; }
 //}
 
 void MainWindow::connects() {
-  connect(ui->pushButton_file_open, SIGNAL(clicked()), this, SLOT(open_file()));
-  connect(ui->lineEdit_file_input, SIGNAL(returnPressed()), this,
-          SLOT(open_file()));
+//  connect(ui->pushButton_file_open, SIGNAL(clicked()), this, SLOT(open_file()));
+//  connect(ui->lineEdit_file_input, SIGNAL(returnPressed()), this,
+//          SLOT(open_file()));
   connect(ui->pushButton_file_select, SIGNAL(clicked()), this,
           SLOT(choose_file()));
 
@@ -75,29 +75,29 @@ void MainWindow::connects() {
   connect(ui->pushButton_screen_gif_start, SIGNAL(clicked()), this,
           SLOT(record_gif()));
 
-  connect(ui->comboBox_settings_view_projection_type,
-          SIGNAL(currentIndexChanged(int)), this,
-          SLOT(user_settings_combo_box_change()));
-  connect(ui->comboBox_settings_view_vertex_type,
-          SIGNAL(currentIndexChanged(int)), this,
-          SLOT(user_settings_combo_box_change()));
-  connect(ui->comboBox_settings_view_polygon_type,
-          SIGNAL(currentIndexChanged(int)), this,
-          SLOT(user_settings_combo_box_change()));
+//  connect(ui->comboBox_settings_view_projection_type,
+//          SIGNAL(currentIndexChanged(int)), this,
+//          SLOT(user_settings_combo_box_change()));
+//  connect(ui->comboBox_settings_view_vertex_type,
+//          SIGNAL(currentIndexChanged(int)), this,
+//          SLOT(user_settings_combo_box_change()));
+//  connect(ui->comboBox_settings_view_polygon_type,
+//          SIGNAL(currentIndexChanged(int)), this,
+//          SLOT(user_settings_combo_box_change()));
 
-  connect(ui->doubleSpinBox_settings_view_polygon_width,
-          SIGNAL(valueChanged(double)), this,
-          SLOT(user_settings_double_spin_box_change()));
-  connect(ui->doubleSpinBox_settings_view_vertex_size,
-          SIGNAL(valueChanged(double)), this,
-          SLOT(user_settings_double_spin_box_change()));
+//  connect(ui->doubleSpinBox_settings_view_polygon_width,
+//          SIGNAL(valueChanged(double)), this,
+//          SLOT(user_settings_double_spin_box_change()));
+//  connect(ui->doubleSpinBox_settings_view_vertex_size,
+//          SIGNAL(valueChanged(double)), this,
+//          SLOT(user_settings_double_spin_box_change()));
 
-  connect(ui->pushButton_settings_view_other_color, SIGNAL(clicked()), this,
-          SLOT(user_settings_color_change()));
-  connect(ui->pushButton_settings_view_polygon_color, SIGNAL(clicked()), this,
-          SLOT(user_settings_color_change()));
-  connect(ui->pushButton_settings_view_vertex_color, SIGNAL(clicked()), this,
-          SLOT(user_settings_color_change()));
+//  connect(ui->pushButton_settings_view_other_color, SIGNAL(clicked()), this,
+//          SLOT(user_settings_color_change()));
+//  connect(ui->pushButton_settings_view_polygon_color, SIGNAL(clicked()), this,
+//          SLOT(user_settings_color_change()));
+//  connect(ui->pushButton_settings_view_vertex_color, SIGNAL(clicked()), this,
+//          SLOT(user_settings_color_change()));
 }
 
 // void MainWindow::user_settings_combo_box_change() {
@@ -174,22 +174,27 @@ void MainWindow::choose_file() {
   file_dialog.setFileMode(QFileDialog::ExistingFile);
   file_dialog.setNameFilter(tr("Object Files (*.obj)"));
   QString std_path =
-      QCoreApplication::applicationDirPath();// + PATH_STD_OPEN_FINDER;
+      QCoreApplication::applicationDirPath();  // + PATH_STD_OPEN_FINDER;
   file_dialog.setDirectory(std_path);
 
   if (file_dialog.exec()) {
     QStringList fileNames = file_dialog.selectedFiles();
     QString filename = fileNames[0];
     controller_->TransferObject(filename.toStdString());
-
+    s21::GLBufferDTO GLBuffDTO = controller_->TransferGLBuffer();
+    ui->openGLWidget->SetVertexBuffer(GLBuffDTO.vertex_buffer_);
+    ui->openGLWidget->SetIndexBuffer(GLBuffDTO.index_buffer_);
+    ui->openGLWidget->SetIndicesSize(GLBuffDTO.indices_size_);
+    ui->openGLWidget->SetVerticesSize(GLBuffDTO.vertices_size_);
 
     ui->lineEdit_file_input->setText(filename);
-    open_file();
+    ui->openGLWidget->repaint();
+    // open_file();
   }
 }
 
-//void MainWindow::open_file() {
-//  controller.TransferObject()
+// void MainWindow::open_file() {
+//   controller.TransferObject()
 
 //      if (error) {
 //    //    struct error_mes_str er_mes[3] = {ERROR_MES};
@@ -210,8 +215,9 @@ void MainWindow::choose_file() {
 //        (struct vertex *)calloc(sizeof(struct vertex *), data.vertex_count);
 
 //    object_data_for_opengl(
-//        data, ui->openGLWidget->vertex_array, &ui->openGLWidget->polygons_array,
-//        &ui->openGLWidget->edges_counter, &ui->openGLWidget->total_edges);
+//        data, ui->openGLWidget->vertex_array,
+//        &ui->openGLWidget->polygons_array, &ui->openGLWidget->edges_counter,
+//        &ui->openGLWidget->total_edges);
 
 //    fprintf(stderr, "\n");
 //    fprintf(stderr, "\n");
@@ -383,12 +389,12 @@ void MainWindow::on_doubleSpinBox_settings_view_polygon_width_valueChanged(
   ui->openGLWidget->repaint();
 }
 
-void MainWindow::on_comboBox_settings_view_projection_type_currentIndexChanged(
-    int index) {
-  ui->openGLWidget->view_type = index;
-  ui->openGLWidget->repaint();
-  projection_settings();
-}
+//void MainWindow::on_comboBox_settings_view_projection_type_currentIndexChanged(
+//    int index) {
+//  ui->openGLWidget->view_type = index;
+//  ui->openGLWidget->repaint();
+//  projection_settings();
+//}
 
 void MainWindow::on_comboBox_settings_view_vertex_type_currentIndexChanged(
     int index) {
@@ -402,31 +408,31 @@ void MainWindow::on_doubleSpinBox_settings_view_vertex_size_valueChanged(
   ui->openGLWidget->repaint();
 }
 
-void MainWindow::projection_settings() {
-  ui->doubleSpinBox_settings_move_move_z->setMaximum(max_coord * 4);
-  ui->doubleSpinBox_settings_move_move_z->setMinimum(-max_coord * 4);
-  ui->horizontalSlider_settings_move_move_z->setMaximum(max_coord * 4);
-  ui->horizontalSlider_settings_move_move_z->setMinimum(-max_coord * 4);
-  if (ui->comboBox_settings_view_projection_type->currentIndex()) {
-    ui->openGLWidget->shift_z = -max_coord * 1.2;
-    ui->openGLWidget->frustum_far = max_coord * 4;
-    ui->openGLWidget->scale = 1;
-    ui->doubleSpinBox_settings_move_scale->setMaximum(10);
-    ui->doubleSpinBox_settings_move_scale->setValue(1);
-    ui->horizontalSlider_settings_move_scale->setMaximum(10);
-    ui->horizontalSlider_settings_move_scale->setValue(1);
-    ui->doubleSpinBox_settings_move_move_z->setValue(-max_coord * 1.2);
-    ui->horizontalSlider_settings_move_move_z->setValue(-max_coord * 1.2);
-  } else {
-    ui->doubleSpinBox_settings_move_scale->setMaximum(max_coord * 2);
-    ui->doubleSpinBox_settings_move_scale->setValue(max_coord * 1.5);
-    ui->horizontalSlider_settings_move_scale->setMaximum(max_coord * 2);
-    ui->horizontalSlider_settings_move_scale->setValue(max_coord * 1.5);
-    ui->openGLWidget->scale = max_coord * 1.5;
-    ui->doubleSpinBox_settings_move_move_z->setValue(0);
-    ui->horizontalSlider_settings_move_move_z->setValue(0);
-  }
-}
+//void MainWindow::projection_settings() {
+//  ui->doubleSpinBox_settings_move_move_z->setMaximum(max_coord * 4);
+//  ui->doubleSpinBox_settings_move_move_z->setMinimum(-max_coord * 4);
+//  ui->horizontalSlider_settings_move_move_z->setMaximum(max_coord * 4);
+//  ui->horizontalSlider_settings_move_move_z->setMinimum(-max_coord * 4);
+//  if (ui->comboBox_settings_view_projection_type->currentIndex()) {
+//    ui->openGLWidget->shift_z = -max_coord * 1.2;
+//    ui->openGLWidget->frustum_far = max_coord * 4;
+//    ui->openGLWidget->scale = 1;
+//    ui->doubleSpinBox_settings_move_scale->setMaximum(10);
+//    ui->doubleSpinBox_settings_move_scale->setValue(1);
+//    ui->horizontalSlider_settings_move_scale->setMaximum(10);
+//    ui->horizontalSlider_settings_move_scale->setValue(1);
+//    ui->doubleSpinBox_settings_move_move_z->setValue(-max_coord * 1.2);
+//    ui->horizontalSlider_settings_move_move_z->setValue(-max_coord * 1.2);
+//  } else {
+//    ui->doubleSpinBox_settings_move_scale->setMaximum(max_coord * 2);
+//    ui->doubleSpinBox_settings_move_scale->setValue(max_coord * 1.5);
+//    ui->horizontalSlider_settings_move_scale->setMaximum(max_coord * 2);
+//    ui->horizontalSlider_settings_move_scale->setValue(max_coord * 1.5);
+//    ui->openGLWidget->scale = max_coord * 1.5;
+//    ui->doubleSpinBox_settings_move_move_z->setValue(0);
+//    ui->horizontalSlider_settings_move_move_z->setValue(0);
+//  }
+//}
 
 void MainWindow::on_pushButton_screen_start_clicked() {
   QImage screenshot = ui->openGLWidget->grabFramebuffer();
