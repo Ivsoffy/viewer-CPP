@@ -27,6 +27,13 @@ void s21::FileParser::Parser(s21::Figure *figure, std::string file_name) {
     }
   }
   file.close();
+//////////////////////////////////////////////////////////////////////////////////////////
+  // std::cerr << std::endl;/////////////////////
+  // for (unsigned i = 0; i < figure->GetEdgesVector().size(); ++i) {
+  //   std::cerr << figure->GetEdgesVector().at(i) << "|";/////////////////////
+  // }
+  // std::cerr << std::endl;/////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
 
   std::cerr << "))))))))))))))))))))((((((((((((((((((((" << std::endl;/////////////////////
   auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
@@ -39,134 +46,142 @@ void s21::FileParser::Parser(s21::Figure *figure, std::string file_name) {
 void s21::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
   std::string token;
   double num_double = 0;
-  unsigned v_counter = 0;
   std::vector<double> temp_vertex{};
-  unsigned start = 0;
-  unsigned end = 0;
   unsigned space_1 = 0;
   unsigned space_2 = 0;
   unsigned space_couter = 0;
   unsigned length = line.size();
-  for (unsigned index = 0; index < length; ++index) {
-    if (line[index] == ' ' || line[index] == '\r' || line[index] == '\n') {
-      if (space_couter == 0) {
-        ++space_couter;
-        space_1 = index;
-      } else {
-        space_2 = index;
-        token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
-        std::cerr << space_1 + 1 << "|" << space_2 << "|" << token << std::endl;/////////////////////
-        space_couter = 1;
-        space_1 = index;
+  try {
+    for (unsigned index = 0; index < length; ++index) {
+      if (line[index] == ' ' || line[index] == '\r' || line[index] == '\n') {
+        if (space_couter == 0) {
+          ++space_couter;
+          space_1 = index;
+        } else {
+          space_2 = index;
+          token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
+          num_double = std::stod(token);
+          temp_vertex.push_back(num_double);
+          if (figure->Get_Max() < std::fabs(num_double)) {
+            figure->Set_Max(std::fabs(num_double));
+          }
+          // std::cerr << space_1 + 1 << "|" << space_2 << "|" << token << std::endl;/////////////////////
+          space_couter = 1;
+          space_1 = index;
+        }
+        continue;
       }
-      continue;
     }
+    token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
+    num_double = std::stod(token);
+    temp_vertex.push_back(num_double);
+    if (figure->Get_Max() < std::fabs(num_double)) {
+      figure->Set_Max(std::fabs(num_double));
+    }
+    // std::cerr << space_1 + 1 << "|" << space_2 << "|" << token << std::endl;/////////////////////
+  } catch(const std::exception& e) {
+    throw std::invalid_argument("ERROR: Invalid data in 'v'-line in object file.");
   }
-  token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
-  std::cerr << space_1 + 1 << "|" << space_2 << "|" << token << std::endl;/////////////////////
 
-
-    // if ((end > 0 && start > 0) > 0) {
-    //   token = line.substr(start, end - start);
-    //   std::cerr << start << "|" << end << "|" << token << std::endl;/////////////////////
-    //   end = 0;
-    //   start = 0;
-
-    //   // try {
-    //   //   num_double = std::stod(token);
-    //   //   temp_vertex.push_back(num_double);
-    //   //   if (figure->Get_Max() < std::fabs(num_double)) {
-    //   //     figure->Set_Max(std::fabs(num_double));
-    //   //   }
-    //   // } catch(const std::exception& e) {
-    //   //   throw std::invalid_argument("ERROR: Invalid data in 'v'-line in object file.");
-    //   // }
-    // }
-  // }
-
-
+  figure->AddVertex(temp_vertex[0], temp_vertex[1], temp_vertex[2]);
 }
-//   std::getline(strstr, token, ' ');
-//   while (std::getline(strstr, token, ' ')) {
-//     if (token == "") {
-//       continue;
-//     }
-
-//     try {
-//       num_double = std::stod(token);
-//       temp_vertex.push_back(num_double);
-//       if (figure->Get_Max() < std::fabs(num_double)) {
-//         figure->Set_Max(std::fabs(num_double));
-//       }
-//     } catch(const std::exception& e) {
-//       throw std::invalid_argument("ERROR: Invalid data in 'v'-line in object file.");
-//     }
-//   }
-
-//   if (temp_vertex.size() > 3) {
-//     throw std::invalid_argument("ERROR: Invalid data in 'v'-line in object file. Too many arguments.");
-//   }
-
-//   figure->AddVertex(temp_vertex[0], temp_vertex[1], temp_vertex[2]);
-// }
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
 
 void s21::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
   std::string token;
   double num_double = 0;
   unsigned edge_counter = 0;
-  std::stringstream strstr(line);
   unsigned index_to_loop;
-  std::getline(strstr, token, ' ');
-  while (std::getline(strstr, token, ' ')) {
-    if (token == "" || token == " " || token.size() == 1) {
-      continue;
-    }
-    if (token == "\r") { // 13 - перевод каретки
-      break;
-    }
 
-    try {
-      num_double = std::stod(token);
-
-      if (num_double < 0) {
-        num_double = figure->GetVertexesVector().size() + num_double + 1;
+  unsigned space_1 = 0;
+  unsigned space_2 = 0;
+  unsigned space_couter = 0;
+  unsigned length = line.size();
+  try {
+    for (unsigned index = 0; index < length; ++index) {
+      if (line[index] == ' ' || line[index] == '\r' || line[index] == '\n') {
+        if (space_couter == 0) {
+          ++space_couter;
+          space_1 = index;
+        } else {
+          space_2 = index;
+          token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
+          // std::cerr << space_1 + 1 << "|" << space_2 << "|" << token << std::endl;/////////////////////
+          num_double = std::stod(token);
+          // std::cerr << num_double -1 << "|";/////////////////////
+          /////////////////////////////////////////
+          if (num_double < 0) {
+            num_double = figure->GetVertexesVector().size() + num_double + 1;
+          }
+          if (edge_counter == 0) {
+            figure->AddVertexToEdgesVector(num_double - 1);
+            edge_counter++;
+          } else {
+            figure->AddVertexToEdgesVector(num_double - 1);
+            figure->AddVertexToEdgesVector(num_double - 1);
+            edge_counter += 2;
+          }
+          /////////////////////////////////////////
+          space_couter = 1;
+          space_1 = index;
+        }
       }
-
-      if (edge_counter == 0) {
-        figure->AddVertexToEdgesVector(num_double - 1);
-        edge_counter++;
-      } else {
-        figure->AddVertexToEdgesVector(num_double - 1);
-        figure->AddVertexToEdgesVector(num_double - 1);
-        edge_counter += 2;
-      }
-    } catch (const std::exception& e) {
-      throw std::invalid_argument(
-          "ERROR: Invalid data in 'f'-line in objest file.");
     }
+    token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
+    // std::cerr << space_1 + 1 << "|" << space_2 << "|" << token << std::endl;/////////////////////
+    num_double = std::stod(token);
+    // std::cerr << num_double - 1 << "|";/////////////////////
+    figure->AddVertexToEdgesVector(num_double - 1);
+    figure->AddVertexToEdgesVector(num_double - 1);
+    edge_counter += 2;
+    /////////////////////////////////////////
+    if (edge_counter != 0) {
+      index_to_loop = figure->GetEdgesVector().size() - edge_counter;
+      figure->AddVertexToEdgesVector(figure->GetEdgesVector()[index_to_loop]);
+      // edge_counter++;
+    }
+    // figure->AddPolygonsSize(edge_counter);
+    /////////////////////////////////////////
+  } catch(const std::exception& e) {
+    throw std::invalid_argument("ERROR: Invalid data in 'f'-line in object file.");
   }
-  if (edge_counter != 0) {
-    index_to_loop = figure->GetEdgesVector().size() - edge_counter;
-    figure->AddVertexToEdgesVector(figure->GetEdgesVector()[index_to_loop]);
-    edge_counter++;
-  }
-  figure->AddPolygonsSize(edge_counter);
-
 }
 
 
 
+
+//   std::getline(strstr, token, ' ');
+//   while (std::getline(strstr, token, ' ')) {
+
+//     try {
+//       num_double = std::stod(token);
+
+//       if (num_double < 0) {
+//         num_double = figure->GetVertexesVector().size() + num_double + 1;
+//       }
+
+//       if (edge_counter == 0) {
+//         figure->AddVertexToEdgesVector(num_double - 1);
+//         edge_counter++;
+//       } else {
+//         figure->AddVertexToEdgesVector(num_double - 1);
+//         figure->AddVertexToEdgesVector(num_double - 1);
+//         edge_counter += 2;
+//       }
+//     } catch (const std::exception& e) {
+//       throw std::invalid_argument(
+//           "ERROR: Invalid data in 'f'-line in objest file.");
+//     }
+//   }
+//   if (edge_counter != 0) {
+//     index_to_loop = figure->GetEdgesVector().size() - edge_counter;
+//     figure->AddVertexToEdgesVector(figure->GetEdgesVector()[index_to_loop]);
+//     edge_counter++;
+//   }
+//   figure->AddPolygonsSize(edge_counter);
+// }
 
 
 

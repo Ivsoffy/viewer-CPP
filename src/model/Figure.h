@@ -11,7 +11,10 @@ namespace s21 {
 
 class Figure {
  public:
-  Figure(){};
+  Figure(){
+    vertexes_.reserve(1000000);
+    edges_.reserve(1000000);
+  };
   ~Figure(){};
 
   //  void operator=(Figure &other) {
