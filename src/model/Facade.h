@@ -29,11 +29,13 @@ class Facade {
 
   FileParser GetFileParser() { return *fileParser_; }
 
-  Figure* GetFigure() { return figure_; }
+  Figure* GetFigureDef() { return figure_def_; }
+  Figure* GetFigureDraw() { return figure_draw_; }
 
  private:
   AffineTransformations *affineTransformations_;
-  Figure *figure_;
+  Figure *figure_def_;
+  Figure *figure_draw_;
   FileParser *fileParser_;
   Vertex *vertex_;
   GLmodel *glmodel_;

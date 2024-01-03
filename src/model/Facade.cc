@@ -2,15 +2,17 @@
 
 s21::Facade::Facade() {
   affineTransformations_ = new AffineTransformations();
-  figure_ = new Figure();
+  figure_def_ = new Figure();
+  figure_draw_ = new Figure();
   fileParser_ = new FileParser();
   vertex_ = new Vertex();
   glmodel_ = new GLmodel();
 }
 
 void s21::Facade::SetPathToObject(std::string path) {
-  path = "/Users/rosmertt/CPP4_3DViewer_v2.0-1/src/3d_objects/cube.obj";
-  fileParser_->Parser(this->GetFigure(), path);
+//  path = "/Users/rosmertt/CPP4_3DViewer_v2.0-1/src/3d_objects/cube.obj";
+  fileParser_->Parser(GetFigureDef(), path);
+  figure_draw_ = figure_def_;
 }
 
 void s21::Facade::TrasformateFigure(s21::ParamDTO paramDTO) {
@@ -22,10 +24,10 @@ void s21::Facade::TrasformateFigure(s21::ParamDTO paramDTO) {
   affineTransformations_->SetAngleZ(paramDTO.angle_z_);
   affineTransformations_->SetScale(paramDTO.scale_);
 
-  affineTransformations_->TrasformateVectorOfVerteces(figure_);
+  affineTransformations_->TrasformateVectorOfVerteces(figure_draw_);
 }
 
 void s21::Facade::GetBuffer() {
-  glmodel_->FillBufferData(figure_->GetDoubleVector(),
-                           figure_->GetEdgesVector());
+  glmodel_->FillBufferData(figure_draw_->GetDoubleVector(),
+                           figure_draw_->GetEdgesVector());
 }

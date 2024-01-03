@@ -374,14 +374,14 @@ void MainWindow::on_doubleSpinBox_settings_move_rotate_y_valueChanged(
     double arg1) {
   ui->openGLWidget->rot_y = arg1;
   ui->horizontalSlider_settings_move_rotate_y->setValue(arg1);
-  ui->openGLWidget->repaint();
+  changeYangle();
 }
 
 void MainWindow::on_horizontalSlider_settings_move_rotate_y_sliderMoved(
     int position) {
   ui->openGLWidget->rot_y = position;
   ui->doubleSpinBox_settings_move_rotate_y->setValue(position);
-  ui->openGLWidget->repaint();
+  changeYangle();
 }
 
 void MainWindow::changeYangle(){
@@ -395,14 +395,14 @@ void MainWindow::on_doubleSpinBox_settings_move_rotate_z_valueChanged(
     double arg1) {
   ui->openGLWidget->rot_z = arg1;
   ui->horizontalSlider_settings_move_rotate_z->setValue(arg1);
-  ui->openGLWidget->repaint();
+  changeZangle();
 }
 
 void MainWindow::on_horizontalSlider_settings_move_rotate_z_sliderMoved(
     int position) {
   ui->openGLWidget->rot_z = position;
   ui->doubleSpinBox_settings_move_rotate_z->setValue(position);
-  ui->openGLWidget->repaint();
+  changeZangle();
 }
 
 void MainWindow::changeZangle(){
