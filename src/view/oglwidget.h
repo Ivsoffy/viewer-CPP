@@ -64,7 +64,7 @@ class OGLwidget : public QOpenGLWidget {
   double rot_y = 0;
   double rot_z = 0;
 
-  double scale = 2;
+  double scale = 4;
 
   int line_color_r = 0;
   int line_color_g = 255;
