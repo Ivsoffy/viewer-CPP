@@ -55,7 +55,7 @@ class Figure {
   void AddVertexToEdgesVector(unsigned num);
   void AddPolygonsSize(unsigned num);
 
- private:
+//  private:
   std::vector<s21::Vertex> vertexes_;
   std::vector<unsigned> edges_;
   std::vector<unsigned>

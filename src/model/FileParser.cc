@@ -91,7 +91,7 @@ void s21::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
 
 void s21::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
   std::string token;
-  double num_double = 0;
+  int num_int = 0;
   unsigned edge_counter = 0;
   unsigned index_to_loop;
 
@@ -109,18 +109,21 @@ void s21::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
           space_2 = index;
           token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
           // std::cerr << space_1 + 1 << "|" << space_2 << "|" << token << std::endl;/////////////////////
-          num_double = std::stod(token);
-          // std::cerr << num_double -1 << "|";/////////////////////
+          num_int = std::stoi(token);
+          // std::cerr << num_int -1 << "|";/////////////////////
           /////////////////////////////////////////
-          if (num_double < 0) {
-            num_double = figure->GetVertexesVector().size() + num_double + 1;
+          if (num_int < 0) {
+            num_int = figure->GetVertexesVector().size() + num_int + 1;
           }
           if (edge_counter == 0) {
-            figure->AddVertexToEdgesVector(num_double - 1);
+            // figure->AddVertexToEdgesVector(num_int - 1);
+            figure->edges_.push_back(num_int - 1);
             edge_counter++;
           } else {
-            figure->AddVertexToEdgesVector(num_double - 1);
-            figure->AddVertexToEdgesVector(num_double - 1);
+            // figure->AddVertexToEdgesVector(num_int - 1);
+            figure->edges_.push_back(num_int - 1);
+            // figure->AddVertexToEdgesVector(num_int - 1);
+            figure->edges_.push_back(num_int - 1);
             edge_counter += 2;
           }
           /////////////////////////////////////////
@@ -131,15 +134,18 @@ void s21::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
     }
     token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
     // std::cerr << space_1 + 1 << "|" << space_2 << "|" << token << std::endl;/////////////////////
-    num_double = std::stod(token);
-    // std::cerr << num_double - 1 << "|";/////////////////////
-    figure->AddVertexToEdgesVector(num_double - 1);
-    figure->AddVertexToEdgesVector(num_double - 1);
+    num_int = std::stod(token);
+    // std::cerr << num_int - 1 << "|";/////////////////////
+    // figure->AddVertexToEdgesVector(num_int - 1);
+    figure->edges_.push_back(num_int - 1);
+    // figure->AddVertexToEdgesVector(num_int - 1);
+    figure->edges_.push_back(num_int - 1);
     edge_counter += 2;
     /////////////////////////////////////////
     if (edge_counter != 0) {
       index_to_loop = figure->GetEdgesVector().size() - edge_counter;
-      figure->AddVertexToEdgesVector(figure->GetEdgesVector()[index_to_loop]);
+      // figure->AddVertexToEdgesVector(figure->GetEdgesVector()[index_to_loop]);
+      figure->edges_.push_back(num_int - 1);
       // edge_counter++;
     }
     // figure->AddPolygonsSize(edge_counter);
@@ -322,11 +328,11 @@ void s21::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
 //   figure->AddPolygonsSize(edge_counter);
 
 // }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // #include "FileParser.h"
 // #include <iostream>
