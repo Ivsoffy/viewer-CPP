@@ -42,6 +42,18 @@ class MainWindow : public QMainWindow {
 
  public slots:
   void choose_file();
+
+  void redraw();
+
+  void changeXcoord();
+  void changeYcoord();
+  void changeZcoord();
+
+  void changeXangle();
+  void changeYangle();
+  void changeZangle();
+
+  void changeScale();
 //  void open_file();
 
   void take_screenshot();
@@ -84,6 +96,7 @@ class MainWindow : public QMainWindow {
 
  private:
   s21::Controller *controller_;
+//  s21::ParamDTO * paramDTO_;
 
   Ui::MainWindow *ui;
 

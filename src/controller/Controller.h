@@ -17,7 +17,7 @@ class Controller {
   ParamDTO* paramDTO_;
   GLBufferDTO TransferGLBuffer();
 
-  void TransferFigureParams(ParamDTO param);
+  void TransferFigureParams();
   void TransferObject(std::string file_name);
 
 

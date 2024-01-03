@@ -16,7 +16,7 @@ class Facade {
   ~Facade(){};
 
   void SetPathToObject(std::string path);
-  void SetAffineTransformations(ParamDTO paramDTO);
+  void TrasformateFigure(ParamDTO paramDTO);
   void GetBuffer();
   GLuint GetVertexBuffer() { return glmodel_->GetVertexBuffer(); }
   GLuint GetIndexBuffer() { return glmodel_->GetIndexBuffer(); }
@@ -37,8 +37,6 @@ class Facade {
   FileParser *fileParser_;
   Vertex *vertex_;
   GLmodel *glmodel_;
-
-  void TrasformateFigure();
 };
 
 }  // namespace s21
