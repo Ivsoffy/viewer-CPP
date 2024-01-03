@@ -14,6 +14,12 @@
 #include "../controller/Controller.h"
 #include "oglwidget.h"
 
+#ifdef __APPLE__
+#define PATH_FROM_EXE_TO_SRC "../../../.."
+#else
+#define PATH_FROM_EXE_TO_SRC ".."
+#endif
+
 #define ICON_FINDER_PATH \
   "/" PATH_FROM_EXE_TO_SRC "/../misc/images/mac_os_finder_icon.png"
 
@@ -44,6 +50,7 @@ class MainWindow : public QMainWindow {
   void choose_file();
 
   void redraw();
+  void rebuff();
 
   void changeXcoord();
   void changeYcoord();
@@ -110,6 +117,8 @@ class MainWindow : public QMainWindow {
 //  void user_settings_set();
 //  void user_settings_save();
 //  void projection_settings();
+
+  QFileDialog file_dialog;
 
   int flag = 0;
   QTimer *timer;

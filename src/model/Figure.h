@@ -14,11 +14,11 @@ class Figure {
   Figure(){};
   ~Figure(){};
 
-  //  void operator=(Figure &other) {
-  //    this->SetVertexesVector(other.GetVertexesVector());
-  //    this->SetEdgesVector(other.GetEdgesVector());
-  //    this->SetPoligonsSizesVector(other.GetPoligonsSizesVector());
-  //  };
+    void copy_figure(Figure *other) {
+      this->SetVertexesVector(other->GetVertexesVector());
+      this->SetEdgesVector(other->GetEdgesVector());
+      this->SetPoligonsSizesVector(other->GetPoligonsSizesVector());
+    };
 
   std::vector<s21::Vertex> GetVertexesVector() { return vertexes_; };
   std::vector<s21::Vertex>* GetVertexesVectorRef() { return &vertexes_; };

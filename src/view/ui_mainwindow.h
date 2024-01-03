@@ -489,6 +489,7 @@ public:
 "\n"
 "\n"
 ""));
+        horizontalSlider_settings_move_scale->setMinimum(-1000);
         horizontalSlider_settings_move_scale->setMaximum(1000);
         horizontalSlider_settings_move_scale->setOrientation(Qt::Horizontal);
         doubleSpinBox_settings_move_scale = new QDoubleSpinBox(frame_settings_move_scale);
@@ -502,7 +503,9 @@ public:
 "\n"
 ""));
         doubleSpinBox_settings_move_scale->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        doubleSpinBox_settings_move_scale->setMinimum(-1000.000000000000000);
         doubleSpinBox_settings_move_scale->setMaximum(1000.000000000000000);
+        doubleSpinBox_settings_move_scale->setValue(0.000000000000000);
         frame_screen = new QFrame(centralwidget);
         frame_screen->setObjectName(QString::fromUtf8("frame_screen"));
         frame_screen->setGeometry(QRect(255, 330, 303, 63));

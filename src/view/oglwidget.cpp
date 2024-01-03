@@ -286,6 +286,7 @@ void OGLwidget::SetVerticesSize(GLuint vertices_size) {
 }
 
 void OGLwidget::paintGL() {
+  if (need_paint) {
   glClearColor(1.0 * background_color_r / 255, 1.0 * background_color_g / 255,
                1.0 * background_color_b / 255, 0);
 
@@ -355,4 +356,5 @@ void OGLwidget::paintGL() {
 
   // Освобождение буфера полигонов
   glDeleteBuffers(1, &IndexBuffer_);
+}
 }
