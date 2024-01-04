@@ -8,29 +8,28 @@ using std::chrono::milliseconds;////////////////////////////
 using std::chrono::seconds;////////////////////////////
 using std::chrono::system_clock;////////////////////////////
 
-void s21::FileParser::Parser(s21::Figure *figure, std::string file_name) {
-
+// void s21::FileParser::Parser(s21::Figure *figure, std::string file_name) {
+s21::Figure s21::FileParser::Parser(std::string file_name) {
+  s21::Figure figure{};
   std::cerr << "(((((((((((((((((((())))))))))))))))))))" << std::endl;/////////////////////
   auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
-
-  figure->Set_Max(9.99);
   std::ifstream file;
   file.open(file_name);
   if (file.is_open()) {
     std::string line;
     while (std::getline(file, line)) {
       if (line[0] == 'v' && line[1] == ' ') {
-        s21::FileParser::ParsVLine(line, figure);
+        s21::FileParser::ParsVLine(line, &figure);
       } else if (line[0] == 'f' && line[1] == ' ') {
-        s21::FileParser::ParsFLine(line, figure);
+        s21::FileParser::ParsFLine(line, &figure);
       }
     }
   }
   file.close();
 //////////////////////////////////////////////////////////////////////////////////////////
   // std::cerr << std::endl;/////////////////////
-  // for (unsigned i = 0; i < figure->GetEdgesVector().size(); ++i) {
-  //   std::cerr << figure->GetEdgesVector().at(i) << "|";/////////////////////
+  // for (unsigned i = 0; i < figure.GetEdgesVector().size(); ++i) {
+  //   std::cerr << figure.GetEdgesVector().at(i) << "|";/////////////////////
   // }
   // std::cerr << std::endl;/////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -38,20 +37,20 @@ void s21::FileParser::Parser(s21::Figure *figure, std::string file_name) {
   std::cerr << "))))))))))))))))))))((((((((((((((((((((" << std::endl;/////////////////////
   auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
   std::cerr << millisec_end - millisec_start << std::endl;/////////////////////
+
+  return figure;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
 void s21::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
-  std::string token;
+  // std::string token;
   double num_double = 0;
-  std::vector<double> temp_vertex{};
+  double temp_vertex_arr[3];
   unsigned space_1 = 0;
   unsigned space_2 = 0;
   unsigned space_couter = 0;
   unsigned length = line.size();
   try {
+    unsigned j = 0;
     for (unsigned index = 0; index < length; ++index) {
       if (line[index] == ' ' || line[index] == '\r' || line[index] == '\n') {
         if (space_couter == 0) {
@@ -59,9 +58,10 @@ void s21::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
           space_1 = index;
         } else {
           space_2 = index;
-          token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
-          num_double = std::stod(token);
-          temp_vertex.push_back(num_double);
+          // token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
+          // num_double = std::stod(token);
+          num_double = std::stod(line.substr(space_1 + 1, space_2 - (space_1 + 1)));
+          temp_vertex_arr[j++] = num_double;
           if (figure->Get_Max() < std::fabs(num_double)) {
             figure->Set_Max(std::fabs(num_double));
           }
@@ -72,9 +72,10 @@ void s21::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
         continue;
       }
     }
-    token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
-    num_double = std::stod(token);
-    temp_vertex.push_back(num_double);
+    // token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
+    // num_double = std::stod(token);
+    num_double = std::stod(line.substr(space_1 + 1, space_2 - (space_1 + 1)));
+    temp_vertex_arr[j] = num_double;
     if (figure->Get_Max() < std::fabs(num_double)) {
       figure->Set_Max(std::fabs(num_double));
     }
@@ -83,14 +84,13 @@ void s21::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
     throw std::invalid_argument("ERROR: Invalid data in 'v'-line in object file.");
   }
 
-  figure->AddVertex(temp_vertex[0], temp_vertex[1], temp_vertex[2]);
+  // figure->AddVertex(temp_vertex[0], temp_vertex[1], temp_vertex[2]);
+  // figure->vertexes_.push_back(s21::Vertex(temp_vertex[0], temp_vertex[1], temp_vertex[2]));
+  figure->vertexes_.push_back(s21::Vertex(temp_vertex_arr[0], temp_vertex_arr[1], temp_vertex_arr[2]));
 }
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
 
 void s21::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
-  std::string token;
+  // std::string token;
   int num_int = 0;
   unsigned edge_counter = 0;
   unsigned index_to_loop;
@@ -107,9 +107,10 @@ void s21::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
           space_1 = index;
         } else {
           space_2 = index;
-          token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
+          // token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
           // std::cerr << space_1 + 1 << "|" << space_2 << "|" << token << std::endl;/////////////////////
-          num_int = std::stoi(token);
+          // num_int = std::stoi(token);
+          num_int = std::stoi(line.substr(space_1 + 1, space_2 - (space_1 + 1)));
           // std::cerr << num_int -1 << "|";/////////////////////
           /////////////////////////////////////////
           if (num_int < 0) {
@@ -132,9 +133,10 @@ void s21::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
         }
       }
     }
-    token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
+    // token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
     // std::cerr << space_1 + 1 << "|" << space_2 << "|" << token << std::endl;/////////////////////
-    num_int = std::stod(token);
+    // num_int = std::stod(token);
+    num_int = std::stoi(line.substr(space_1 + 1, space_2 - (space_1 + 1)));
     // std::cerr << num_int - 1 << "|";/////////////////////
     // figure->AddVertexToEdgesVector(num_int - 1);
     figure->edges_.push_back(num_int - 1);
@@ -143,7 +145,8 @@ void s21::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
     edge_counter += 2;
     /////////////////////////////////////////
     if (edge_counter != 0) {
-      index_to_loop = figure->GetEdgesVector().size() - edge_counter;
+      // index_to_loop = figure->GetEdgesVector().size() - edge_counter;
+      index_to_loop = figure->edges_.size() - edge_counter;
       // figure->AddVertexToEdgesVector(figure->GetEdgesVector()[index_to_loop]);
       figure->edges_.push_back(num_int - 1);
       // edge_counter++;
@@ -154,6 +157,166 @@ void s21::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
     throw std::invalid_argument("ERROR: Invalid data in 'f'-line in object file.");
   }
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// #include "FileParser.h"
+// #include <iostream>
+
+// #include <ctime>/////////////////////////////
+// #include <chrono>/////////////////////
+// using std::chrono::duration_cast;////////////////////////////
+// using std::chrono::milliseconds;////////////////////////////
+// using std::chrono::seconds;////////////////////////////
+// using std::chrono::system_clock;////////////////////////////
+
+// void s21::FileParser::Parser(s21::Figure *figure, std::string file_name) {
+
+//   std::cerr << "(((((((((((((((((((())))))))))))))))))))" << std::endl;/////////////////////
+//   auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+
+//   figure->Set_Max(9.99);
+//   std::ifstream file;
+//   file.open(file_name);
+//   if (file.is_open()) {
+//     std::string line;
+//     while (std::getline(file, line)) {
+//       if (line[0] == 'v' && line[1] == ' ') {
+//         s21::FileParser::ParsVLine(line, figure);
+//       } else if (line[0] == 'f' && line[1] == ' ') {
+//         s21::FileParser::ParsFLine(line, figure);
+//       }
+//     }
+//   }
+//   file.close();
+// //////////////////////////////////////////////////////////////////////////////////////////
+//   // std::cerr << std::endl;/////////////////////
+//   // for (unsigned i = 0; i < figure->GetEdgesVector().size(); ++i) {
+//   //   std::cerr << figure->GetEdgesVector().at(i) << "|";/////////////////////
+//   // }
+//   // std::cerr << std::endl;/////////////////////
+// //////////////////////////////////////////////////////////////////////////////////////////
+
+//   std::cerr << "))))))))))))))))))))((((((((((((((((((((" << std::endl;/////////////////////
+//   auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+//   std::cerr << millisec_end - millisec_start << std::endl;/////////////////////
+// }
+
+// void s21::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
+//   std::string token;
+//   double num_double = 0;
+//   std::vector<double> temp_vertex{};
+//   unsigned space_1 = 0;
+//   unsigned space_2 = 0;
+//   unsigned space_couter = 0;
+//   unsigned length = line.size();
+//   try {
+//     for (unsigned index = 0; index < length; ++index) {
+//       if (line[index] == ' ' || line[index] == '\r' || line[index] == '\n') {
+//         if (space_couter == 0) {
+//           ++space_couter;
+//           space_1 = index;
+//         } else {
+//           space_2 = index;
+//           token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
+//           num_double = std::stod(token);
+//           temp_vertex.push_back(num_double);
+//           if (figure->Get_Max() < std::fabs(num_double)) {
+//             figure->Set_Max(std::fabs(num_double));
+//           }
+//           // std::cerr << space_1 + 1 << "|" << space_2 << "|" << token << std::endl;/////////////////////
+//           space_couter = 1;
+//           space_1 = index;
+//         }
+//         continue;
+//       }
+//     }
+//     token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
+//     num_double = std::stod(token);
+//     temp_vertex.push_back(num_double);
+//     if (figure->Get_Max() < std::fabs(num_double)) {
+//       figure->Set_Max(std::fabs(num_double));
+//     }
+//     // std::cerr << space_1 + 1 << "|" << space_2 << "|" << token << std::endl;/////////////////////
+//   } catch(const std::exception& e) {
+//     throw std::invalid_argument("ERROR: Invalid data in 'v'-line in object file.");
+//   }
+
+//   figure->AddVertex(temp_vertex[0], temp_vertex[1], temp_vertex[2]);
+// }
+
+// void s21::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
+//   std::string token;
+//   int num_int = 0;
+//   unsigned edge_counter = 0;
+//   unsigned index_to_loop;
+
+//   unsigned space_1 = 0;
+//   unsigned space_2 = 0;
+//   unsigned space_couter = 0;
+//   unsigned length = line.size();
+//   try {
+//     for (unsigned index = 0; index < length; ++index) {
+//       if (line[index] == ' ' || line[index] == '\r' || line[index] == '\n') {
+//         if (space_couter == 0) {
+//           ++space_couter;
+//           space_1 = index;
+//         } else {
+//           space_2 = index;
+//           token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
+//           // std::cerr << space_1 + 1 << "|" << space_2 << "|" << token << std::endl;/////////////////////
+//           num_int = std::stoi(token);
+//           // std::cerr << num_int -1 << "|";/////////////////////
+//           /////////////////////////////////////////
+//           if (num_int < 0) {
+//             num_int = figure->GetVertexesVector().size() + num_int + 1;
+//           }
+//           if (edge_counter == 0) {
+//             // figure->AddVertexToEdgesVector(num_int - 1);
+//             figure->edges_.push_back(num_int - 1);
+//             edge_counter++;
+//           } else {
+//             // figure->AddVertexToEdgesVector(num_int - 1);
+//             figure->edges_.push_back(num_int - 1);
+//             // figure->AddVertexToEdgesVector(num_int - 1);
+//             figure->edges_.push_back(num_int - 1);
+//             edge_counter += 2;
+//           }
+//           /////////////////////////////////////////
+//           space_couter = 1;
+//           space_1 = index;
+//         }
+//       }
+//     }
+//     token = line.substr(space_1 + 1, space_2 - (space_1 + 1));
+//     // std::cerr << space_1 + 1 << "|" << space_2 << "|" << token << std::endl;/////////////////////
+//     num_int = std::stod(token);
+//     // std::cerr << num_int - 1 << "|";/////////////////////
+//     // figure->AddVertexToEdgesVector(num_int - 1);
+//     figure->edges_.push_back(num_int - 1);
+//     // figure->AddVertexToEdgesVector(num_int - 1);
+//     figure->edges_.push_back(num_int - 1);
+//     edge_counter += 2;
+//     /////////////////////////////////////////
+//     if (edge_counter != 0) {
+//       index_to_loop = figure->GetEdgesVector().size() - edge_counter;
+//       // figure->AddVertexToEdgesVector(figure->GetEdgesVector()[index_to_loop]);
+//       figure->edges_.push_back(num_int - 1);
+//       // edge_counter++;
+//     }
+//     // figure->AddPolygonsSize(edge_counter);
+//     /////////////////////////////////////////
+//   } catch(const std::exception& e) {
+//     throw std::invalid_argument("ERROR: Invalid data in 'f'-line in object file.");
+//   }
+// }
 
 
 
