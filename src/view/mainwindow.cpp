@@ -5,7 +5,13 @@
 MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   controller_ = controller;
-  controller_->paramDTO_ = new s21::ParamDTO(0, 0, 0, 0, 0, 0, 3);
+  controller_->paramDTO_ = new s21::ParamDTO(0, 0, 0, 0, 0, 0, 1);
+//  file_dialog.setParent(parent);
+  file_dialog.setFileMode(QFileDialog::ExistingFile);
+  file_dialog.setNameFilter(tr("Object Files (*.obj)"));
+  QString std_path =
+      QCoreApplication::applicationDirPath() + PATH_STD_OPEN_FINDER;
+  file_dialog.setDirectory(std_path);
   //  user_settings_setup(&user_settings);
   ui->setupUi(this);
   //  ui->openGLWidget->main_window = this;
@@ -170,37 +176,30 @@ void MainWindow::connects() {
 //}
 
 void MainWindow::choose_file() {
-  QFileDialog file_dialog(this);
-  file_dialog.setFileMode(QFileDialog::ExistingFile);
-  file_dialog.setNameFilter(tr("Object Files (*.obj)"));
-  QString std_path =
-      QCoreApplication::applicationDirPath();  // + PATH_STD_OPEN_FINDER;
-  file_dialog.setDirectory(std_path);
-
+  ui->openGLWidget->need_paint = false;
   if (file_dialog.exec()) {
     QStringList fileNames = file_dialog.selectedFiles();
     QString filename = fileNames[0];
     controller_->TransferObject(filename.toStdString());
-    s21::GLBufferDTO GLBuffDTO = controller_->TransferGLBuffer();
-    ui->openGLWidget->SetVertexBuffer(GLBuffDTO.vertex_buffer_);
-    ui->openGLWidget->SetIndexBuffer(GLBuffDTO.index_buffer_);
-    ui->openGLWidget->SetIndicesSize(GLBuffDTO.indices_size_);
-    ui->openGLWidget->SetVerticesSize(GLBuffDTO.vertices_size_);
-
+    rebuff();
     ui->lineEdit_file_input->setText(filename);
-    ui->openGLWidget->repaint();
-    // open_file();
   }
+
 }
 
-void MainWindow::redraw() {
-  controller_->TransferFigureParams();
+void MainWindow::rebuff() {
   s21::GLBufferDTO GLBuffDTO = controller_->TransferGLBuffer();
   ui->openGLWidget->SetVertexBuffer(GLBuffDTO.vertex_buffer_);
   ui->openGLWidget->SetIndexBuffer(GLBuffDTO.index_buffer_);
   ui->openGLWidget->SetIndicesSize(GLBuffDTO.indices_size_);
   ui->openGLWidget->SetVerticesSize(GLBuffDTO.vertices_size_);
+  ui->openGLWidget->need_paint = true;
   ui->openGLWidget->repaint();
+}
+
+void MainWindow::redraw() {
+  controller_->TransferFigureParams();
+  rebuff();
 }
 
 // void MainWindow::open_file() {
