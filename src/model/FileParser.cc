@@ -8,20 +8,21 @@ using std::chrono::milliseconds;////////////////////////////
 using std::chrono::seconds;////////////////////////////
 using std::chrono::system_clock;////////////////////////////
 
-// void s21::FileParser::Parser(s21::Figure *figure, std::string file_name) {
-s21::Figure s21::FileParser::Parser(std::string file_name) {
-  s21::Figure figure{};
+void s21::FileParser::Parser(s21::Figure *figure, std::string file_name) {
+// s21::Figure s21::FileParser::Parser(std::string file_name) {
+  // s21::Figure figure{};
   std::cerr << "(((((((((((((((((((())))))))))))))))))))" << std::endl;/////////////////////
   auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+  
   std::ifstream file;
   file.open(file_name);
   if (file.is_open()) {
     std::string line;
     while (std::getline(file, line)) {
       if (line[0] == 'v' && line[1] == ' ') {
-        s21::FileParser::ParsVLine(line, &figure);
+        s21::FileParser::ParsVLine(line, figure);
       } else if (line[0] == 'f' && line[1] == ' ') {
-        s21::FileParser::ParsFLine(line, &figure);
+        s21::FileParser::ParsFLine(line, figure);
       }
     }
   }
@@ -38,7 +39,7 @@ s21::Figure s21::FileParser::Parser(std::string file_name) {
   auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
   std::cerr << millisec_end - millisec_start << std::endl;/////////////////////
 
-  return figure;
+  // return figure;
 }
 
 void s21::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
@@ -114,7 +115,8 @@ void s21::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
           // std::cerr << num_int -1 << "|";/////////////////////
           /////////////////////////////////////////
           if (num_int < 0) {
-            num_int = figure->GetVertexesVector().size() + num_int + 1;
+            // num_int = figure->GetVertexesVector().size() + num_int + 1;
+            num_int = figure->vertexes_.size() + num_int + 1;
           }
           if (edge_counter == 0) {
             // figure->AddVertexToEdgesVector(num_int - 1);
