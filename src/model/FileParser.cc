@@ -69,7 +69,6 @@ void s21::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
           if (figure->Get_Max() < std::fabs(num_double)) {
             figure->Set_Max(std::fabs(num_double));
           }
-          // std::cerr << space_1 + 1 << "|" << space_2 << "|" << token << std::endl;/////////////////////
           space_couter = 1;
           space_1 = index;
         }
@@ -81,7 +80,6 @@ void s21::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
     if (figure->Get_Max() < std::fabs(num_double)) {
       figure->Set_Max(std::fabs(num_double));
     }
-    // std::cerr << space_1 + 1 << "|" << space_2 << "|" << token << std::endl;/////////////////////
   } catch(const std::exception& e) {
     throw std::invalid_argument("ERROR: Invalid data in 'v'-line in object file.");
   }
@@ -93,23 +91,13 @@ void s21::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
   int num_int = 0;
   unsigned edge_counter = 0;
   unsigned index_to_loop;
-
   unsigned space_1 = 0;
-  unsigned space_2 = 0;
   unsigned space_couter = 0;
   unsigned length = line.size();
-  bool end_flag = false;
-
-  int counter1 = figure->edges_.size();
-  int counter2 = 0;
   unsigned index = 0;
 
   try {
     for (index = 0; index < length; ++index) {
-      // if (line[index] == '\r' || line[index] == '\n') {
-      //   end_flag = true;
-      //   break;
-      // }
       if (line[index] == ' ') {
         if (line[index + 1] == ' ') {
           continue;
@@ -118,9 +106,7 @@ void s21::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
           ++space_couter;
           space_1 = index;
         } else {
-          // space_2 = index;
           num_int = std::stoi(line.substr(space_1 + 1, index - (space_1 + 1)));
-          // std::cerr << num_int -1 << "|";/////////////////////
           if (num_int < 0) {
             num_int = figure->vertexes_.size() + num_int + 1;
           }
@@ -132,50 +118,26 @@ void s21::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
             figure->edges_.push_back(num_int - 1);
             edge_counter += 2;
           }
-          // space_couter = 1;
           space_1 = index;
-          // space_2 = 0;
         }
       }
     }
-    // if (!end_flag) {
-    // if (isdigit(line.substr(space_1 + 1, space_2 - (space_1 + 1))[-1]) == 0) {
-      // std::cerr << "--------000000--------" << std::endl;/////////////////////
-      // std::cerr << isdigit(line.substr(space_1 + 1, space_2 - (space_1 + 1))[-1]) << std::endl;/////////////////////
-      // num_int = std::stoi(line.substr(space_1 + 1, space_2 - (space_1 + 1)));
-      // // std::cerr << "}}}}}}}}}}}}}}}}}}}" << "|";/////////////////////
-      // figure->edges_.push_back(num_int - 1);
-      // figure->edges_.push_back(num_int - 1);
-      // edge_counter += 2;
-
-      // std::cerr << "last"+line+"\n"+ std::to_string(space_1)+"|"+ std::to_string(index) << std::endl;
-      // if (edge_counter != 0 && (index - 1 - space_1) < 1) {
-      // if (edge_counter != 0 && (index - 1 - space_1) > 1) {
-      if (edge_counter != 0) {
-        if ((index - 1 - space_1) > 1) {
-          num_int = std::stoi(line.substr(space_1 + 1, index - (space_1 + 1)));
-          if (num_int < 0) {
-            num_int = figure->vertexes_.size() + num_int + 1;
-          }
-          figure->edges_.push_back(num_int - 1);
-          figure->edges_.push_back(num_int - 1);
-          edge_counter += 2;
-          // index_to_loop = figure->edges_.size() - edge_counter;
-          // figure->edges_.push_back(figure->edges_[index_to_loop]);
+    if (edge_counter != 0) {
+      if ((index - 1 - space_1) > 1) {
+        num_int = std::stoi(line.substr(space_1 + 1, index - (space_1 + 1)));
+        if (num_int < 0) {
+          num_int = figure->vertexes_.size() + num_int + 1;
         }
-        index_to_loop = figure->edges_.size() - edge_counter;
-        figure->edges_.push_back(figure->edges_[index_to_loop]);
+        figure->edges_.push_back(num_int - 1);
+        figure->edges_.push_back(num_int - 1);
+        edge_counter += 2;
       }
-    // }
+      index_to_loop = figure->edges_.size() - edge_counter;
+      figure->edges_.push_back(figure->edges_[index_to_loop]);
+    }
   } catch(const std::exception& e) {
-    // throw std::invalid_argument("ERROR: Invalid data in 'f'-line in object file.");
-    throw std::invalid_argument("ERROR"+line+"\n"+ std::to_string(space_1)+"|"+ std::to_string(space_2)+
-                  "|"+ std::to_string(index));
+    throw std::invalid_argument("ERROR: Invalid data in 'f'-line in object file.");
   }
-
-  counter2 = figure->edges_.size();
-  // std::cerr << counter2 - counter1 << std::endl;/////////////////////
-
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
