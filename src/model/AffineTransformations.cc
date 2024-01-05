@@ -18,7 +18,7 @@ void s21::AffineTransformations::SetAngleY(double angle) { angle_y_ = angle; }
 
 void s21::AffineTransformations::SetAngleZ(double angle) { angle_z_ = angle; }
 
-void s21::AffineTransformations::SetScale(int scale) { scale_ = scale; }
+void s21::AffineTransformations::SetScale(double scale) { scale_ = scale; }
 
 void s21::AffineTransformations::TrasformateVertex(s21::Vertex* vertex) {
   double angle_x = angle_x_ * M_PI / 180;
@@ -34,30 +34,35 @@ void s21::AffineTransformations::TrasformateVertex(s21::Vertex* vertex) {
     vertex->SetZ(vertex->GetZ() + move_z_);
   }
 
-  if (angle_x_ != 0) {
-    vertex->SetY(vertex->GetY() * cos(angle_x) + vertex->GetZ() * sin(angle_x));
-    vertex->SetZ(-vertex->GetY() * sin(angle_x) +
-                 vertex->GetZ() * cos(angle_x));
-  }
-  if (angle_y_ != 0) {
-    vertex->SetX(vertex->GetX() * cos(angle_y) - vertex->GetZ() * sin(angle_y));
-    vertex->SetZ(vertex->GetX() * sin(angle_y) + vertex->GetZ() * cos(angle_y));
-  }
-  if (angle_z_ != 0) {
-    vertex->SetX(vertex->GetX() * cos(angle_z) + vertex->GetY() * sin(angle_z));
-    vertex->SetY(-vertex->GetX() * sin(angle_z) +
-                 vertex->GetY() * cos(angle_z));
-  }
-  if (scale_ > 1) {
+  // if (angle_x_ != 0) {
+  //   vertex->SetY(vertex->GetY() * cos(angle_x) + vertex->GetZ() * sin(angle_x));
+  //   vertex->SetZ(-vertex->GetY() * sin(angle_x) + vertex->GetZ() * cos(angle_x));
+  // }
+  // if (angle_y_ != 0) {
+  //   vertex->SetX(vertex->GetX() * cos(angle_y) - vertex->GetZ() * sin(angle_y));
+  //   vertex->SetZ(vertex->GetX() * sin(angle_y) + vertex->GetZ() * cos(angle_y));
+  // }
+  // if (angle_z_ != 0) {
+  //   vertex->SetX(vertex->GetX() * cos(angle_z) + vertex->GetY() * sin(angle_z));
+  //   vertex->SetY(-vertex->GetX() * sin(angle_z) +
+  //               vertex->GetY() * cos(angle_z));
+  // }
+  if (scale_ != 1) {
+    double x = vertex->GetX();
+    std::cerr << vertex->GetX() << "|" << vertex->GetY() << "|" << vertex->GetZ() << "|" << std::endl;
+    std::cerr << scale_ << std::endl;
+
     vertex->SetX(vertex->GetX() * scale_);
     vertex->SetY(vertex->GetY() * scale_);
     vertex->SetZ(vertex->GetZ() * scale_);
+
+    std::cerr << vertex->GetX() << "|" << vertex->GetY() << "|" << vertex->GetZ() << "|" << std::endl;
   }
-  else if (scale_ < -1) {
-      vertex->SetX(vertex->GetX() / -scale_);
-      vertex->SetY(vertex->GetY() / -scale_);
-      vertex->SetZ(vertex->GetZ() / -scale_);
-}
+  // else if (scale_ < 0) {
+  //     vertex->SetX(vertex->GetX() * -scale_);
+  //     vertex->SetY(vertex->GetY() * -scale_);
+  //     vertex->SetZ(vertex->GetZ() * -scale_);
+  // }
 }
 
 void s21::AffineTransformations::TrasformateVectorOfVerteces(

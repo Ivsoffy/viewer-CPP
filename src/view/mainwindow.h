@@ -52,9 +52,9 @@ class MainWindow : public QMainWindow {
   void redraw();
   void rebuff();
 
-  void changeXcoord();
-  void changeYcoord();
-  void changeZcoord();
+  void changeXcoord(double arg);
+  void changeYcoord(double arg);
+  void changeZcoord(double arg);
 
   void changeXangle();
   void changeYangle();

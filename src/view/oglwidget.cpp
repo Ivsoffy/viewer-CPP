@@ -41,12 +41,13 @@ void OGLwidget::paintGL() {
   glClearColor(1.0 * background_color_r / 255, 1.0 * background_color_g / 255,
                1.0 * background_color_b / 255, 0);
 
+  //очистка экрана и буфера глубины
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
-////  glTranslatef(0.0f, 0.0f, 0.0f);
-  glRotatef(45.0f, 1.0f, 0.0f, 0.0f); // Наклон оси X на 45 градусов вперед
-  glRotatef(-45.0f, 0.0f, 0.0f, 1.0f); // Наклон оси Z на 45 градусов влево
+  glRotatef(60.0f, 1.0f, 0.0f, 0.0f); // Наклон оси X на 45 градусов вперед
+  glRotatef(-60.0f, 0.0f, 0.0f, 1.0f); // Наклон оси Z на 45 градусов влево
 
   float scalef = 1.0f / sqrt(2.0f);
       glScalef(scalef, scalef, scalef);
@@ -56,22 +57,20 @@ void OGLwidget::paintGL() {
 
   // Ось X (красный цвет)
   glColor3f(1.0f, 0.0f, 0.0f);
-  glVertex3f(-1.0f, 0.0f, 0.0f);
-  glVertex3f(1.0f, 0.0f, 0.0f);
+  glVertex3f(-100.0f, 0.0f, 0.0f);
+  glVertex3f(100.0f, 0.0f, 0.0f);
 
   // Ось Y (зеленый цвет)
-  glColor3f(0.0f, 1.0f, 0.0f);
-  glVertex3f(0.0f, -1.0f, 0.0f);
-  glVertex3f(0.0f, 1.0f, 0.0f);
+  glColor3f(0.0f, 100.0f, 0.0f);
+  glVertex3f(0.0f, -100.0f, 0.0f);
+  glVertex3f(0.0f, 100.0f, 0.0f);
 
   // Ось Z (синий цвет)
-  glColor3f(0.0f, 0.0f, 1.0f);
-  glVertex3f(0.0f, 0.0f, -1.0f);
-  glVertex3f(0.0f, 0.0f, 1.0f);
+  glColor3f(0.0f, 0.0f, 100.0f);
+  glVertex3f(0.0f, 0.0f, -100.0f);
+  glVertex3f(0.0f, 0.0f, 100.0f);
 
   glEnd();
-
-  glMatrixMode(GL_PROJECTION);
 
   if (view_type) {
     double fov = frustum_fov * M_PI / 180;
@@ -79,22 +78,10 @@ void OGLwidget::paintGL() {
     frustum_near *= fabs(scale);
     glFrustum(-frustum_widht, frustum_widht, -frustum_hight, frustum_hight,
               frustum_near, frustum_far);
-
   } else {
     glOrtho(-scale, scale, -scale, scale, -scale, scale);
   }
 
-
-
-  //      // shift to x,y,z
-  //      glTranslated(shift_x, shift_y, shift_z);
-
-  //      // rotate to x,y,z
-  //      glRotated(rot_x, 1, 0, 0);
-  //      glRotated(rot_y, 0, 1, 0);
-  //      glRotated(rot_z, 0, 0, 1);
-
-  // type of dotted line
   if (line_type) {
     glLineStipple(1, 0x3333);
     glEnable(GL_LINE_STIPPLE);
@@ -136,8 +123,5 @@ void OGLwidget::paintGL() {
 
   // Освобождение буфера полигонов
   glDeleteBuffers(1, &IndexBuffer_);
-
-
-
 }
 }

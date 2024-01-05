@@ -23,7 +23,7 @@ class AffineTransformations {
         void SetAngleX(double angle);
         void SetAngleY(double angle);
         void SetAngleZ(double angle);
-        void SetScale(int scale);
+        void SetScale(double scale);
 
         void TrasformateVertex(s21::Vertex *vertex);
         void TrasformateVectorOfVerteces(s21::Figure *figure_draw);
