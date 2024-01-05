@@ -38,8 +38,8 @@ void OGLwidget::SetVerticesSize(GLuint vertices_size) {
 
 void OGLwidget::paintGL() {
   if (need_paint) {
-  glClearColor(1.0 * background_color_r / 255, 1.0 * background_color_g / 255,
-               1.0 * background_color_b / 255, 0);
+  glClearColor(background_color_r / 255.0, background_color_g / 255.0,
+               background_color_b / 255.0, 0);
 
   //очистка экрана и буфера глубины
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -97,8 +97,8 @@ void OGLwidget::paintGL() {
   if (vertex_type != NONE) {
     // size and color of vertex
     glPointSize(vertex_size);
-    glColor3d(1.0 * vertex_color_r / 255, 1.0 * vertex_color_g / 255,
-              1.0 * vertex_color_b / 255);
+    glColor3d(vertex_color_r / 255.0, vertex_color_g / 255.0,
+              vertex_color_b / 255.0);
 
     if (vertex_type == CIRCLE) glEnable(GL_POINT_SMOOTH);
 
@@ -107,7 +107,8 @@ void OGLwidget::paintGL() {
     if (vertex_type == CIRCLE) glDisable(GL_POINT_SMOOTH);
   }
 
-  glLineWidth(line_size);
+//  glLineWidth(line_size);
+  glLineWidth(1);
   glColor3d(1.0 * line_color_r / 255, 1.0 * line_color_g / 255,
             1.0 * line_color_b / 255);
 

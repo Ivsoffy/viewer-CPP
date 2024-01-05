@@ -68,7 +68,7 @@ class OGLwidget : public QOpenGLWidget {
   double scale = 20;
 
   int line_color_r = 0;
-  int line_color_g = 255;
+  int line_color_g = 0;
   int line_color_b = 0;
 
   float line_size = 2;
@@ -77,11 +77,11 @@ class OGLwidget : public QOpenGLWidget {
   int vertex_color_g = 0;
   int vertex_color_b = 0;
 
-  int background_color_r = 189;
-  int background_color_g = 183;
-  int background_color_b = 107;
+  int background_color_r = 255;
+  int background_color_g = 253;
+  int background_color_b = 239;
 
-  float vertex_size = 10;
+  float vertex_size = 5;
 
  private:
   enum vertex_type { NONE, CIRCLE, SQUARE };
