@@ -1,5 +1,12 @@
 #include "oglwidget.h"
 
+#include <ctime>/////////////////////////////TODO
+#include <chrono>/////////////////////TODO
+#include <iostream>////////////////////////////TODO
+using std::chrono::duration_cast;////////////////////////////TODO
+using std::chrono::milliseconds;////////////////////////////TODO
+using std::chrono::system_clock;////////////////////////////TODO
+
 void OGLwidget::initializeGL() {}
 
 void OGLwidget::init_setttings() {
@@ -33,7 +40,7 @@ void OGLwidget::SetIndicesSize(GLuint indices_size) {
   IndecesSize_ = indices_size;
 }
 void OGLwidget::SetVerticesSize(GLuint vertices_size) {
-  VerticesSize_ = vertices_size;
+  VerticesSize_ =  vertices_size;
 }
 
 void OGLwidget::paintGL() {
@@ -46,8 +53,8 @@ void OGLwidget::paintGL() {
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
-  glRotatef(60.0f, 1.0f, 0.0f, 0.0f); // Наклон оси X на 45 градусов вперед
-  glRotatef(-60.0f, 0.0f, 0.0f, 1.0f); // Наклон оси Z на 45 градусов влево
+  glRotatef(-30.0f, 1.0f, 0.0f, 0.0f); // Наклон оси X на 45 градусов вперед
+  glRotatef(30.0f, 0.0f, 1.0f, 0.0f); // Наклон оси Z на 45 градусов влево
 
   float scalef = 1.0f / sqrt(2.0f);
       glScalef(scalef, scalef, scalef);
@@ -112,9 +119,15 @@ void OGLwidget::paintGL() {
   glColor3d(1.0 * line_color_r / 255, 1.0 * line_color_g / 255,
             1.0 * line_color_b / 255);
 
+  std::cerr << ">>>>>>>paintGL<<<<<<<" << std::endl;/////////////////////TODO
+  auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+
   // Отрисовка куба
   glDrawElements(GL_LINES, IndecesSize_, GL_UNSIGNED_INT, 0);
 
+  std::cerr << "<<<<<<<<paintGL>>>>>>>" << std::endl;/////////////////////TODO
+  auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+  std::cerr << millisec_end - millisec_start << std::endl;/////////////////////TODO
 
   // Отключение атрибута вершин
   glDisableClientState(GL_VERTEX_ARRAY);

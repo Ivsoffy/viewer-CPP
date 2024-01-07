@@ -13,7 +13,7 @@ class ParamDTO {
   double angle_x_{};
   double angle_y_{};
   double angle_z_{};
-  double scale_ = 1;
+  double scale_{};
 };
 
 class GLBufferDTO {
