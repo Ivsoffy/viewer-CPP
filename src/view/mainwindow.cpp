@@ -195,6 +195,8 @@ void MainWindow::choose_file() {
 }
 
 void MainWindow::rebuff() {
+    std::cerr << "((((((((((((((((((((repaint))))))))))))))))))))" << std::endl;/////////////////////TODO
+    auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
   s21::GLBufferDTO GLBuffDTO = controller_->TransferGLBuffer();
 
   ui->openGLWidget->SetVertices(GLBuffDTO.vertices_);
@@ -202,20 +204,17 @@ void MainWindow::rebuff() {
 
   ui->openGLWidget->need_paint = true;
 
-// std::cerr << "((((((((((((((((((((repaint))))))))))))))))))))" << std::endl;/////////////////////TODO
-// auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
 
-  ui->openGLWidget->repaint();//1920ms
+  ui->openGLWidget->repaint();
 
-// std::cerr << "))))))))))))))))))))repaint((((((((((((((((((((" << std::endl;/////////////////////TODO
-// auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
-// std::cerr << millisec_end - millisec_start << std::endl;/////////////////////TODO
+ auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+ std::cerr << millisec_end - millisec_start << ")))))))))repaint(((((((((" << std::endl;/////////////////////TODO
 
 }
 
 void MainWindow::redraw() {
-  controller_->TransferFigureParams();/////////////////////
-  rebuff();/////////////////////
+  controller_->TransferFigureParams();
+  rebuff();
 }
 
 // void MainWindow::open_file() {
