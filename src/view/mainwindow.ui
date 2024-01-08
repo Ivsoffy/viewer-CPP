@@ -359,7 +359,7 @@ background-color: rgb(50, 50, 50);
        <number>360</number>
       </property>
       <property name="pageStep">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -415,7 +415,7 @@ background-color: rgb(50, 50, 50);
        <number>360</number>
       </property>
       <property name="pageStep">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -471,7 +471,7 @@ background-color: rgb(50, 50, 50);
        <number>360</number>
       </property>
       <property name="pageStep">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -653,7 +653,10 @@ background-color: rgb(50, 50, 50);
        <number>100</number>
       </property>
       <property name="pageStep">
-       <number>1</number>
+       <number>0</number>
+      </property>
+      <property name="tracking">
+       <bool>true</bool>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -715,7 +718,7 @@ background-color: rgb(50, 50, 50);
        <number>100</number>
       </property>
       <property name="pageStep">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -752,7 +755,7 @@ background-color: rgb(50, 50, 50);
        <double>0.100000000000000</double>
       </property>
       <property name="value">
-       <double>-2.000000000000000</double>
+       <double>0.000000000000000</double>
       </property>
      </widget>
      <widget class="QSlider" name="horizontalSlider_settings_move_move_z">
@@ -778,6 +781,9 @@ background-color: rgb(50, 50, 50);
       </property>
       <property name="maximum">
        <number>100</number>
+      </property>
+      <property name="pageStep">
+       <number>0</number>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -847,10 +853,13 @@ background-color: rgb(50, 50, 50);
 </string>
       </property>
       <property name="minimum">
-       <number>-1000</number>
+       <number>0</number>
       </property>
       <property name="maximum">
-       <number>1000</number>
+       <number>20</number>
+      </property>
+      <property name="pageStep">
+       <number>0</number>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -877,14 +886,20 @@ background-color: rgb(50, 50, 50);
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
+      <property name="decimals">
+       <number>1</number>
+      </property>
       <property name="minimum">
-       <double>-1000.000000000000000</double>
+       <double>0.100000000000000</double>
       </property>
       <property name="maximum">
-       <double>1000.000000000000000</double>
+       <double>20.000000000000000</double>
+      </property>
+      <property name="singleStep">
+       <double>0.100000000000000</double>
       </property>
       <property name="value">
-       <double>0.000000000000000</double>
+       <double>1.000000000000000</double>
       </property>
      </widget>
     </widget>

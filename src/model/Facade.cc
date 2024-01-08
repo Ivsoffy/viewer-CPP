@@ -4,13 +4,12 @@ s21::Facade::Facade() {
   affineTransformations_ = new AffineTransformations();
   figure_def_ = new Figure();
   figure_draw_ = new Figure();
-  fileParser_ = new FileParser();
+  fileParser_ = new Figure::FileParser();
   vertex_ = new Vertex();
   glmodel_ = new GLmodel();
 }
 
 void s21::Facade::SetPathToObject(std::string path) {
-//  path = "/Users/rosmertt/CPP4_3DViewer_v2.0-1/src/3d_objects/cube.obj";
   fileParser_->Parser(GetFigureDef(), path);
   figure_draw_->copy_figure(figure_def_);
 }

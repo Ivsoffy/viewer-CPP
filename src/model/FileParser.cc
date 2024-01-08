@@ -1,108 +1,136 @@
-#include "FileParser.h"
+#include "Figure.h"
 
-void s21::FileParser::Parser(s21::Figure *figure, std::string file_name) {
-//  s21::Figure figure = s21::Figure();
+#include <ctime>/////////////////////////////TODO
+#include <chrono>/////////////////////TODO
+using std::chrono::duration_cast;////////////////////////////TODO
+using std::chrono::milliseconds;////////////////////////////TODO
+using std::chrono::seconds;////////////////////////////TODO
+using std::chrono::system_clock;////////////////////////////TODO
+
+void s21::Figure::FileParser::Parser(s21::Figure *figure, std::string file_name) {
+  std::cerr << "(((((((((((((((((((())))))))))))))))))))" << std::endl;/////////////////////TODO
+  auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+
   std::ifstream file;
   file.open(file_name);
   if (file.is_open()) {
     std::string line;
-    std::string token;
     while (std::getline(file, line)) {
-      std::stringstream strstr(line);
-      std::getline(strstr, token, ' ');
-      figure->Set_Max(9.99);
-      if (token == "v") {
-        s21::FileParser::ParsVLine(strstr.str(), figure);
-      } else if (token == "f") {
-        s21::FileParser::ParsFLine(strstr.str(), figure);
+      if (line[0] == 'v' && line[1] == ' ') {
+        s21::Figure::FileParser::ParsVLine(line, figure);
+      } else if (line[0] == 'f' && line[1] == ' ') {
+        s21::Figure::FileParser::ParsFLine(line, figure);
       }
     }
   }
   file.close();
+//////////////////////////////////////////////////////////////////////////////////////////
+  // std::cerr << std::endl;/////////////////////
+  // for (unsigned i = 0; i < figure->GetEdgesVector().size(); ++i) {
+  //   std::cerr << figure->GetEdgesVector().at(i) + 1 << "|";/////////////////////
+  // }
+  // std::cerr << std::endl;/////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+  std::cerr << "))))))))))))))))))))((((((((((((((((((((" << std::endl;/////////////////////TODO
+  auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+  std::cerr << millisec_end - millisec_start << std::endl;/////////////////////TODO
 }
 
-void s21::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
-  std::string token;
+void s21::Figure::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
   double num_double = 0;
-  unsigned v_counter = 0;
-  std::stringstream strstr(line);
-  std::vector<double> temp_vertex{};
-  std::getline(strstr, token, ' ');
-  while (std::getline(strstr, token, ' ')) {
-    if (++v_counter > 3) {
-      throw std::invalid_argument(
-          "ERROR: Invalid data in 'v'-line in objest file. Too many "
-          "arguments.");
-    }
-    try {
-      num_double = std::stod(token);
-      temp_vertex.push_back(num_double);
-      if (figure->Get_Max() < std::fabs(num_double)) {
-        figure->Set_Max(std::fabs(num_double));
+  double temp_vertex_arr[3];
+  unsigned space_1 = 0;
+  unsigned space_2 = 0;
+  unsigned space_couter = 0;
+  unsigned length = line.size();
+  try {
+    unsigned j = 0;
+    for (unsigned index = 0; index < length; ++index) {
+      if (line[index] == '\r' || line[index] == '\n') {
+        break;
       }
-
-      // if (figure.GetX_Max() < std::fabs(x)) {
-      //     figure.SetX_Max(std::fabs(x));
-      // }
-      // if (figure.GetY_Max() < std::fabs(y)) {
-      //     figure.SetY_Max(std::fabs(y));
-      // }
-      // if (figure.GetZ_Max() < std::fabs(z)) {
-      //     figure.SetZ_Max(std::fabs(z));
-      // }
-    } catch (const std::exception& e) {
-      throw std::invalid_argument(
-          "ERROR: Invalid data in 'v'-line in objest file.");
+      if (line[index] == ' ') {
+        if (line[index + 1] == ' ') {
+          continue;
+        }
+        if (space_couter == 0) {
+          ++space_couter;
+          space_1 = index;
+        } else {
+          space_2 = index;
+          num_double = std::stod(line.substr(space_1 + 1, space_2 - (space_1 + 1)));
+          temp_vertex_arr[j++] = num_double;
+          if (figure->Get_Max() < std::fabs(num_double)) {
+            figure->Set_Max(std::fabs(num_double));
+          }
+          space_couter = 1;
+          space_1 = index;
+        }
+        continue;
+      }
     }
+    num_double = std::stod(line.substr(space_1 + 1, space_2 - (space_1 + 1)));
+    temp_vertex_arr[j] = num_double;
+    if (figure->Get_Max() < std::fabs(num_double)) {
+      figure->Set_Max(std::fabs(num_double));
+    }
+  } catch(const std::exception& e) {
+    throw std::invalid_argument("ERROR: Invalid data in 'v'-line in object file.");
   }
-  figure->AddVertex(temp_vertex[0], temp_vertex[1], temp_vertex[2]);
+
+  figure->vertexes_.push_back(s21::Vertex(temp_vertex_arr[0], temp_vertex_arr[1], temp_vertex_arr[2]));
 }
 
-void s21::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
-  std::string token;
-  double num_double = 0;
+void s21::Figure::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
+  int num_int = 0;
   unsigned edge_counter = 0;
-  std::stringstream strstr(line);
   unsigned index_to_loop;
-  std::getline(strstr, token, ' ');
-  while (std::getline(strstr, token, ' ')) {
-    try {
-      num_double = std::stod(token);
+  unsigned space_1 = 0;
+  unsigned space_couter = 0;
+  unsigned length = line.size();
+  unsigned index = 0;
 
-      if (num_double < 0) {
-        num_double = figure->GetVertexesVector().size() + num_double + 1;
+  try {
+    for (index = 0; index < length; ++index) {
+      if (line[index] == ' ') {
+        if (line[index + 1] == ' ') {
+          continue;
+        }
+        if (space_couter == 0) {
+          ++space_couter;
+          space_1 = index;
+        } else {
+          num_int = std::stoi(line.substr(space_1 + 1, index - (space_1 + 1)));
+          if (num_int < 0) {
+            num_int = figure->vertexes_.size() + num_int + 1;
+          }
+          if (edge_counter == 0) {
+            figure->edges_.push_back(num_int - 1);
+            edge_counter++;
+          } else {
+            figure->edges_.push_back(num_int - 1);
+            figure->edges_.push_back(num_int - 1);
+            edge_counter += 2;
+          }
+          space_1 = index;
+        }
       }
-
-      if (edge_counter == 0) {
-        figure->AddVertexToEdgesVector(num_double);
-        edge_counter++;
-      } else {
-        figure->AddVertexToEdgesVector(num_double);
-        figure->AddVertexToEdgesVector(num_double);
+    }
+    if (edge_counter != 0) {
+      if ((index - 1 - space_1) > 1) {
+        num_int = std::stoi(line.substr(space_1 + 1, index - (space_1 + 1)));
+        if (num_int < 0) {
+          num_int = figure->vertexes_.size() + num_int + 1;
+        }
+        figure->edges_.push_back(num_int - 1);
+        figure->edges_.push_back(num_int - 1);
         edge_counter += 2;
       }
-    } catch (const std::exception& e) {
-      throw std::invalid_argument(
-          "ERROR: Invalid data in 'f'-line in objest file.");
+      index_to_loop = figure->edges_.size() - edge_counter;
+      figure->edges_.push_back(figure->edges_[index_to_loop]);
     }
+  } catch(const std::exception& e) {
+    throw std::invalid_argument("ERROR: Invalid data in 'f'-line in object file.");
   }
-  if (edge_counter != 0) {
-    index_to_loop = figure->GetEdgesVector().size() - edge_counter;
-    figure->AddVertexToEdgesVector(figure->GetEdgesVector()[index_to_loop]);
-    edge_counter++;
-  }
-  figure->AddPolygonsSize(edge_counter);
 }
-
-// std::vector<double> s21::FileParser::PrepareVertecesToOGL(s21::Figure
-// *figure) {
-//     std::vector<double> result;
-//     std::vector<s21::Vertex> vertexes_vector = figure->GetVertexesVector();
-//     unsigned vector_size = vertexes_vector.size();
-//     for (unsigned i = 0; i < vector_size; ++i) {
-//         result.push_back(vertexes_vector[i].GetX());
-//         result.push_back(vertexes_vector[i].GetY());
-//         result.push_back(vertexes_vector[i].GetZ());
-//     }
-//     return result;
-// }

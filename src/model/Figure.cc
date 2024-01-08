@@ -9,10 +9,6 @@ void s21::Figure::AddVertexToEdgesVector(unsigned num) {
   edges_.push_back(num);
 }
 
-void s21::Figure::AddPolygonsSize(unsigned num) {
-  polygons_sizes_.push_back(num);
-}
-
 std::vector<double> s21::Figure::GetDoubleVector() {
   std::vector<double> double_vector;
   for (size_t i = 0; i < vertexes_.size(); i++) {

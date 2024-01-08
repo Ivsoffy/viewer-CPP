@@ -52,13 +52,13 @@ class MainWindow : public QMainWindow {
   void redraw();
   void rebuff();
 
-  void changeXcoord();
-  void changeYcoord();
-  void changeZcoord();
+  void changeXcoord(double arg);
+  void changeYcoord(double arg);
+  void changeZcoord(double arg);
 
-  void changeXangle();
-  void changeYangle();
-  void changeZangle();
+  void changeXangle(double arg);
+  void changeYangle(double arg);
+  void changeZangle(double arg);
 
   void changeScale();
 //  void open_file();

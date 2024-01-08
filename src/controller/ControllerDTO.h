@@ -2,6 +2,7 @@
 #define CONTROLLERDTO_H
 
 #include <QOpenGLFunctions>
+
 namespace s21 {
 class ParamDTO {
  public:

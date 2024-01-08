@@ -1,6 +1,6 @@
 #include "Controller.h"
 
-void s21::Controller::TransferFigureParams() {
+void s21::Controller::TransferFigureParams() {////////////
   // call func from fasad
   facade_->TrasformateFigure(*paramDTO_);
 }
@@ -10,7 +10,7 @@ void s21::Controller::TransferObject(std::string file_name) {
   facade_->SetPathToObject(file_name);
 }
 
-s21::GLBufferDTO s21::Controller::TransferGLBuffer() {
+s21::GLBufferDTO s21::Controller::TransferGLBuffer() {/////////////////////////
   // call func from fasad
   facade_->GetBuffer();
   s21::GLBufferDTO GLBuffDTO = s21::GLBufferDTO(

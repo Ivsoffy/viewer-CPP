@@ -46,6 +46,8 @@ class OGLwidget : public QOpenGLWidget {
   //  MainWindow *main_window;
   //  struct user_settings *init_set;
 
+  GLuint shaderProgram;
+
   int line_type = 0;
   int vertex_type = 1;
   uint total_edges = 0;
@@ -58,16 +60,17 @@ class OGLwidget : public QOpenGLWidget {
 
   double shift_x = 0;
   double shift_y = 0;
-  double shift_z = -2;
+  double shift_z = 0;
 
   double rot_x = 0;
   double rot_y = 0;
   double rot_z = 0;
 
-  double scale = 4;
+//  double scale = 1100;
+  double scale = 20;
 
   int line_color_r = 0;
-  int line_color_g = 255;
+  int line_color_g = 0;
   int line_color_b = 0;
 
   float line_size = 2;
@@ -76,11 +79,11 @@ class OGLwidget : public QOpenGLWidget {
   int vertex_color_g = 0;
   int vertex_color_b = 0;
 
-  int background_color_r = 189;
-  int background_color_g = 183;
-  int background_color_b = 107;
+  int background_color_r = 255;
+  int background_color_g = 253;
+  int background_color_b = 239;
 
-  float vertex_size = 10;
+  float vertex_size = 5;
 
  private:
   enum vertex_type { NONE, CIRCLE, SQUARE };

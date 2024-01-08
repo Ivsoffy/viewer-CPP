@@ -4,7 +4,6 @@
 #include "../controller/ControllerDTO.h"
 #include "AffineTransformations.h"
 #include "Figure.h"
-#include "FileParser.h"
 #include "GLmodel.h"
 #include "Vertex.h"
 
@@ -27,7 +26,7 @@ class Facade {
     return *affineTransformations_;
   }
 
-  FileParser GetFileParser() { return *fileParser_; }
+  Figure::FileParser GetFileParser() { return *fileParser_; }
 
   Figure* GetFigureDef() { return figure_def_; }
   Figure* GetFigureDraw() { return figure_draw_; }
@@ -36,7 +35,7 @@ class Facade {
   AffineTransformations *affineTransformations_;
   Figure *figure_def_;
   Figure *figure_draw_;
-  FileParser *fileParser_;
+  Figure::FileParser *fileParser_;
   Vertex *vertex_;
   GLmodel *glmodel_;
 };

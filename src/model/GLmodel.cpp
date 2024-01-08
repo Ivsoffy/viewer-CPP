@@ -1,18 +1,17 @@
 #include "GLmodel.h"
 
 GLmodel::GLmodel() {
-//  // Создание буфера вершин
-//  glGenBuffers(1, &VertexBuffer_);
-//  glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer_);
+  //  // Создание буфера вершин
+  //  glGenBuffers(1, &VertexBuffer_);
+  //  glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer_);
 
-//  // Создание буфера индексов
-//  glGenBuffers(1, &IndexBuffer_);
-//  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBuffer_);
+  //  // Создание буфера индексов
+  //  glGenBuffers(1, &IndexBuffer_);
+  //  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBuffer_);
 }
 
 void GLmodel::FillBufferData(std::vector<double> vertices,
                              std::vector<unsigned int> indices) {
-
   // Создание буфера вершин
   glGenBuffers(1, &VertexBuffer_);
   glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer_);
