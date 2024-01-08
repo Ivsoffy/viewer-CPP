@@ -2,6 +2,8 @@
 #define CONTROLLERDTO_H
 
 #include <QOpenGLFunctions>
+#include "../model/Vertex.h"
+
 namespace s21 {
 class ParamDTO {
  public:
@@ -18,12 +20,10 @@ class ParamDTO {
 
 class GLBufferDTO {
  public:
-  GLBufferDTO(GLuint vertex_buffer, GLuint index_buffer, GLuint indices_size,
-              GLuint vertices_size);
-  GLuint vertex_buffer_{};
-  GLuint index_buffer_{};
-  GLuint indices_size_{};
-  GLuint vertices_size_{};
+  GLBufferDTO(std::vector<s21::Vertex>* vertices, std::vector<unsigned>* edges);
+
+  std::vector<s21::Vertex>* vertices_;
+  std::vector<unsigned>* edges_;
 };
 }  // namespace s21
 

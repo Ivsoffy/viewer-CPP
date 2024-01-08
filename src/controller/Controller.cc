@@ -11,10 +11,8 @@ void s21::Controller::TransferObject(std::string file_name) {
 }
 
 s21::GLBufferDTO s21::Controller::TransferGLBuffer() {/////////////////////////
-  // call func from fasad
-  facade_->GetBuffer();
-  s21::GLBufferDTO GLBuffDTO = s21::GLBufferDTO(
-      facade_->GetVertexBuffer(), facade_->GetIndexBuffer(),
-      facade_->GetIndicesSize(), facade_->GetVerticesSize());
-  return GLBuffDTO;
+
+    s21::GLBufferDTO glBufferDTO = s21::GLBufferDTO(facade_->GetVertecisRef(),
+                                                    facade_->GetEdges());
+    return glBufferDTO;
 }

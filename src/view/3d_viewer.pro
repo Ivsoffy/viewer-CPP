@@ -19,7 +19,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 SOURCES +=         \
     ../controller/ControllerDTO.cc \
-    ../model/GLmodel.cpp \
+#    ../model/GLmodel.cpp \
     ../model/AffineTransformations.cc \
     ../model/Figure.cc \
     ../model/FileParser.cc \
@@ -31,10 +31,10 @@ SOURCES +=         \
 
 HEADERS +=       \
     ../controller/ControllerDTO.h \
-    ../model/GLmodel.h \
     ../model/AffineTransformations.h \
     ../model/Figure.h \
     ../model/FileParser.h \
+#    ../model/GLmodelh.txt \
     ../model/Vertex.h \
     ../model/Facade.h \
     ../controller/Controller.h \

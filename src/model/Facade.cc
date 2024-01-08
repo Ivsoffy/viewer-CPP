@@ -5,8 +5,7 @@ s21::Facade::Facade() {
   figure_def_ = new Figure();
   figure_draw_ = new Figure();
   fileParser_ = new Figure::FileParser();
-  vertex_ = new Vertex();
-  glmodel_ = new GLmodel();
+//  glmodel_ = new GLmodel();
 }
 
 void s21::Facade::SetPathToObject(std::string path) {
@@ -26,7 +25,7 @@ void s21::Facade::TrasformateFigure(s21::ParamDTO paramDTO) {
   affineTransformations_->TrasformateVectorOfVerteces(figure_draw_);
 }
 
-void s21::Facade::GetBuffer() {
-  glmodel_->FillBufferData(figure_draw_->GetDoubleVector(),
-                           figure_draw_->GetEdgesVector());
-}
+//void s21::Facade::GetBuffer() {
+//  glmodel_->FillBufferData(figure_draw_->GetDoubleVector(),
+//                           figure_draw_->GetEdgesVector());
+//}

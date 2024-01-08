@@ -1,6 +1,12 @@
 #include "mainwindow.h"
-
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 #include "ui_mainwindow.h"
+
+#include <ctime>/////////////////////////////TODO
+#include <chrono>/////////////////////TODO
+using std::chrono::duration_cast;////////////////////////////TODO
+using std::chrono::milliseconds;////////////////////////////TODO
+using std::chrono::system_clock;////////////////////////////TODO
 
 MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -189,14 +195,22 @@ void MainWindow::choose_file() {
 }
 
 void MainWindow::rebuff() {
-
   s21::GLBufferDTO GLBuffDTO = controller_->TransferGLBuffer();
-  ui->openGLWidget->SetVertexBuffer(GLBuffDTO.vertex_buffer_);
-  ui->openGLWidget->SetIndexBuffer(GLBuffDTO.index_buffer_);
-  ui->openGLWidget->SetIndicesSize(GLBuffDTO.indices_size_);
-  ui->openGLWidget->SetVerticesSize(GLBuffDTO.vertices_size_);
+
+  ui->openGLWidget->SetVertices(GLBuffDTO.vertices_);
+  ui->openGLWidget->SetEdges(GLBuffDTO.edges_);
+
   ui->openGLWidget->need_paint = true;
-  ui->openGLWidget->repaint();
+
+// std::cerr << "((((((((((((((((((((repaint))))))))))))))))))))" << std::endl;/////////////////////TODO
+// auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+
+  ui->openGLWidget->repaint();//1920ms
+
+// std::cerr << "))))))))))))))))))))repaint((((((((((((((((((((" << std::endl;/////////////////////TODO
+// auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+// std::cerr << millisec_end - millisec_start << std::endl;/////////////////////TODO
+
 }
 
 void MainWindow::redraw() {

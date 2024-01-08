@@ -9,12 +9,12 @@ void s21::Figure::AddVertexToEdgesVector(unsigned num) {
   edges_.push_back(num);
 }
 
-std::vector<double> s21::Figure::GetDoubleVector() {
-  std::vector<double> double_vector;
-  for (size_t i = 0; i < vertexes_.size(); i++) {
-    double_vector.push_back(vertexes_[i].GetX());
-    double_vector.push_back(vertexes_[i].GetY());
-    double_vector.push_back(vertexes_[i].GetZ());
-  }
-  return double_vector;
-}
+//std::vector<double> s21::Figure::GetDoubleVector() {
+//  std::vector<double> double_vector;
+//  for (size_t i = 0; i < vertexes_.size(); i++) {
+//    double_vector.push_back(vertexes_[i].GetX());
+//    double_vector.push_back(vertexes_[i].GetY());
+//    double_vector.push_back(vertexes_[i].GetZ());
+//  }
+//  return double_vector;
+//}

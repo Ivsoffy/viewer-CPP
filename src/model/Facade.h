@@ -4,7 +4,7 @@
 #include "../controller/ControllerDTO.h"
 #include "AffineTransformations.h"
 #include "Figure.h"
-#include "GLmodel.h"
+#include "GLmodelh.txt"
 #include "Vertex.h"
 
 namespace s21 {
@@ -17,10 +17,9 @@ class Facade {
   void SetPathToObject(std::string path);
   void TrasformateFigure(ParamDTO paramDTO);
   void GetBuffer();
-  GLuint GetVertexBuffer() { return glmodel_->GetVertexBuffer(); }
-  GLuint GetIndexBuffer() { return glmodel_->GetIndexBuffer(); }
-  GLuint GetIndicesSize() { return glmodel_->GetIndicesSize(); }
-  GLuint GetVerticesSize() { return glmodel_->GetVerticesSize(); }
+//  GLuint GetVertexBuffer() { return glmodel_->GetVertexBuffer(); }
+  std::vector<s21::Vertex>* GetVertecisRef() { return figure_draw_->GetVertexesVectorRef(); }
+  std::vector<unsigned>* GetEdges() { return  figure_draw_->GetEdgesVectorRef(); }
 
   AffineTransformations GetAffineTransformations() {
     return *affineTransformations_;
@@ -36,8 +35,10 @@ class Facade {
   Figure *figure_def_;
   Figure *figure_draw_;
   Figure::FileParser *fileParser_;
-  Vertex *vertex_;
-  GLmodel *glmodel_;
+
+//  std::vector<double> vertices_;
+//  std::vector<unsigned> edges_;
+//  GLmodel *glmodel_;
 };
 
 }  // namespace s21

@@ -12,10 +12,7 @@ s21::ParamDTO::ParamDTO(double move_x, double move_y, double move_z,
   scale_ = scale;
 }
 
-s21::GLBufferDTO::GLBufferDTO(GLuint vertex_buffer, GLuint index_buffer,
-                             GLuint indices_size, GLuint vertices_size) {
-  vertex_buffer_ = vertex_buffer;
-  index_buffer_ = index_buffer;
-  indices_size_ = indices_size;
-  vertices_size_ = vertices_size;
+s21::GLBufferDTO::GLBufferDTO(std::vector<s21::Vertex>* vertices, std::vector<unsigned>* edges) {
+  vertices_ = vertices;
+  edges_ = edges;
 }

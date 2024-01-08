@@ -45,11 +45,12 @@ class Figure {
 
   std::vector<s21::Vertex> GetVertexesVector() { return vertexes_; };
   std::vector<s21::Vertex>* GetVertexesVectorRef() { return &vertexes_; };
-  std::vector<double> GetDoubleVector();
+//  std::vector<double> GetDoubleVector();
   std::vector<unsigned> GetEdgesVector() { return edges_; };
+  std::vector<unsigned>* GetEdgesVectorRef() { return &edges_; };
 
   void SetVertexesVector(std::vector<s21::Vertex> vert) { vertexes_ = vert; };
-  void SetEdgesVector(std::vector<unsigned> vect) { edges_ = vect; };
+  void SetEdgesVector(std::vector<unsigned> edge) { edges_ = edge; };
 
   double Get_Max() { return max_; };
   void Set_Max(double m) { max_ = m; };
@@ -66,8 +67,8 @@ class Figure {
   void AddPolygonsSize(unsigned num);
 
  private:
-  std::vector<s21::Vertex> vertexes_;
-  std::vector<unsigned> edges_;
+  std::vector<s21::Vertex> vertexes_{};
+  std::vector<unsigned> edges_{};
   double max_ = 0;
 };
 

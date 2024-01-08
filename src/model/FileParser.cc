@@ -4,7 +4,6 @@
 #include <chrono>/////////////////////TODO
 using std::chrono::duration_cast;////////////////////////////TODO
 using std::chrono::milliseconds;////////////////////////////TODO
-using std::chrono::seconds;////////////////////////////TODO
 using std::chrono::system_clock;////////////////////////////TODO
 
 void s21::Figure::FileParser::Parser(s21::Figure *figure, std::string file_name) {

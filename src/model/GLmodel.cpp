@@ -1,4 +1,4 @@
-#include "GLmodel.h"
+#include "GLmodelh.txt"
 
 GLmodel::GLmodel() {
 //  // Создание буфера вершин
@@ -27,6 +27,8 @@ void GLmodel::FillBufferData(std::vector<double> vertices,
                indices.data(), GL_STATIC_DRAW);
   IndicesSize_ = indices.size();
   VerticesSize_ = vertices.size() / 3;
+
+  Edges_ = indices;
 }
 
 GLuint GLmodel::GetVertexBuffer() { return VertexBuffer_; }
@@ -36,3 +38,5 @@ GLuint GLmodel::GetIndexBuffer() { return IndexBuffer_; }
 GLuint GLmodel::GetIndicesSize() { return IndicesSize_; }
 
 GLuint GLmodel::GetVerticesSize() { return VerticesSize_; }
+
+std::vector<unsigned int> GLmodel::GetEdges() { return Edges_; }/////

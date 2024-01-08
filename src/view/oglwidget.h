@@ -7,7 +7,8 @@
 #include <QOpenGLWidget>
 #include <QWindow>
 
-#include "../model/GLmodel.h"
+//#include "../model/GLmodelh.txt"
+#include "../model/Vertex.h"
 
 class OGLwidget : public QOpenGLWidget {
   Q_OBJECT
@@ -27,10 +28,11 @@ class OGLwidget : public QOpenGLWidget {
 
   void init_setttings();
 
-  void SetVertexBuffer(GLuint vertex_buffer);
-  void SetIndexBuffer(GLuint index_buffer);
-  void SetIndicesSize(GLuint indices_size);
-  void SetVerticesSize(GLuint vertices_size);
+  void SetVertices(std::vector<s21::Vertex>* vertices);
+  void SetEdges(std::vector<unsigned>* edges);
+
+  std::vector<s21::Vertex>* GetVerticesRef();
+  std::vector<unsigned>* GetEdgesRef();
 
   int init_key = 0;
 
@@ -84,11 +86,9 @@ class OGLwidget : public QOpenGLWidget {
   float vertex_size = 5;
 
  private:
-  enum vertex_type { NONE, CIRCLE, SQUARE };
-  GLuint VertexBuffer_;
-  GLuint IndexBuffer_;
-  uint IndecesSize_;
-  uint VerticesSize_;
+    enum vertex_type { NONE, CIRCLE, SQUARE };
+    std::vector<s21::Vertex>* vertices_;
+    std::vector<unsigned>* edges_;
 };
 
 #endif  // OGLWIDGET_H

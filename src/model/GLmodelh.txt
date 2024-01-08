@@ -18,6 +18,7 @@ class GLmodel {
   GLuint GetIndexBuffer();
   uint GetIndicesSize();
   uint GetVerticesSize();
+  std::vector<unsigned int> GetEdges();//////////////
 
 //  std::vector<double> cubeVertices = {
 //      // Верхняя грань
@@ -41,6 +42,7 @@ class GLmodel {
   GLuint IndexBuffer_;
   uint IndicesSize_;
   uint VerticesSize_;
+  std::vector<unsigned int> Edges_;/////
 };
 
 #endif  // GL_MODEL_H

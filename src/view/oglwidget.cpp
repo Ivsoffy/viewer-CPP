@@ -1,5 +1,12 @@
 #include "oglwidget.h"
 
+#include <ctime>/////////////////////////////TODO
+#include <chrono>/////////////////////TODO
+using std::chrono::duration_cast;////////////////////////////TODO
+using std::chrono::milliseconds;////////////////////////////TODO
+using std::chrono::system_clock;////////////////////////////TODO
+#include <iostream>////////////////////////////TODO
+
 void OGLwidget::initializeGL() {}
 
 void OGLwidget::init_setttings() {
@@ -23,20 +30,24 @@ void OGLwidget::init_setttings() {
   //  background_color_b = init_set->background_color.blue;
 }
 
-void OGLwidget::SetVertexBuffer(GLuint vertex_buffer) {
-  VertexBuffer_ = vertex_buffer;
+void OGLwidget::SetVertices(std::vector<s21::Vertex>* vertices) {//////////
+  vertices_ = vertices;
 }
-void OGLwidget::SetIndexBuffer(GLuint index_buffer) {
-  IndexBuffer_ = index_buffer;
+
+void OGLwidget::SetEdges(std::vector<unsigned>* edges) {//////////
+  edges_ = edges;
 }
-void OGLwidget::SetIndicesSize(GLuint indices_size) {
-  IndecesSize_ = indices_size;
+
+std::vector<s21::Vertex>* OGLwidget::GetVerticesRef() {
+    return vertices_;
 }
-void OGLwidget::SetVerticesSize(GLuint vertices_size) {
-  VerticesSize_ = vertices_size;
+
+std::vector<unsigned>* OGLwidget::GetEdgesRef() {
+    return edges_;
 }
 
 void OGLwidget::paintGL() {
+
   if (need_paint) {
   glClearColor(background_color_r / 255.0, background_color_g / 255.0,
                background_color_b / 255.0, 0);
@@ -46,8 +57,8 @@ void OGLwidget::paintGL() {
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
-  glRotatef(60.0f, 1.0f, 0.0f, 0.0f); // Наклон оси X на 45 градусов вперед
-  glRotatef(-60.0f, 0.0f, 0.0f, 1.0f); // Наклон оси Z на 45 градусов влево
+  glRotatef(-30.0f, 1.0f, 0.0f, 0.0f); // Наклон оси X на 60 градусов вперед
+  glRotatef(30.0f, 0.0f, 1.0f, 0.0f); // Наклон оси Y на 60 градусов влево
 
   float scalef = 1.0f / sqrt(2.0f);
       glScalef(scalef, scalef, scalef);
@@ -87,14 +98,15 @@ void OGLwidget::paintGL() {
     glEnable(GL_LINE_STIPPLE);
   }
 
-  glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer_);
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBuffer_);
+//  glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer_);
+//  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBuffer_);
 
   // Включение атрибута вершин
   glEnableClientState(GL_VERTEX_ARRAY);
-  glVertexPointer(3, GL_DOUBLE, 0, 0);
+//   glVertexPointer(3, GL_DOUBLE, 0, 0);
+   glVertexPointer(3, GL_DOUBLE, 0, vertices_->data());
 
-  if (vertex_type != NONE) {
+  if (vertex_type != NONE) { //257ms
     // size and color of vertex
     glPointSize(vertex_size);
     glColor3d(vertex_color_r / 255.0, vertex_color_g / 255.0,
@@ -102,8 +114,9 @@ void OGLwidget::paintGL() {
 
     if (vertex_type == CIRCLE) glEnable(GL_POINT_SMOOTH);
 
+  
     // paint vertex
-    glDrawArrays(GL_POINTS, 0, VerticesSize_);
+    glDrawArrays(GL_POINTS, 0, vertices_->size());
     if (vertex_type == CIRCLE) glDisable(GL_POINT_SMOOTH);
   }
 
@@ -112,17 +125,28 @@ void OGLwidget::paintGL() {
   glColor3d(1.0 * line_color_r / 255, 1.0 * line_color_g / 255,
             1.0 * line_color_b / 255);
 
-  // Отрисовка куба
-  glDrawElements(GL_LINES, IndecesSize_, GL_UNSIGNED_INT, 0);
+  std::cerr << ">>>>>>>paintGL<<<<<<<" << std::endl;/////////////////////TODO
+  auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
 
+  // Отрисовка куба
+//   glDrawElements(GL_LINES, edges_->size(), GL_UNSIGNED_INT, 0);//1615ms <<--
+  glDrawElements(GL_LINES, edges_->size(), GL_UNSIGNED_INT, edges_->data());
+  std::cerr << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << std::endl;
+
+  // glDrawElements(GL_LINES, IndecesSize_, GL_UNSIGNED_INT, Edges_);
+  // glDrawElements (GLenum mode, GLsizei count, GLenum type, const GLvoid *indices)
+
+  std::cerr << "<<<<<<<<paintGL>>>>>>>" << std::endl;/////////////////////TODO
+  auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+  std::cerr << millisec_end - millisec_start << std::endl;/////////////////////TODO
 
   // Отключение атрибута вершин
   glDisableClientState(GL_VERTEX_ARRAY);
 
-  // Освобождение буфера вершин
-  glDeleteBuffers(1, &VertexBuffer_);
+//  // Освобождение буфера вершин
+//  glDeleteBuffers(1, &VertexBuffer_);
 
-  // Освобождение буфера полигонов
-  glDeleteBuffers(1, &IndexBuffer_);
+//  // Освобождение буфера полигонов
+//  glDeleteBuffers(1, &IndexBuffer_);
 }
 }
