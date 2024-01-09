@@ -52,15 +52,15 @@ class MainWindow : public QMainWindow {
   void redraw();
   void rebuff();
 
-  void changeXcoord(double arg);
-  void changeYcoord(double arg);
-  void changeZcoord(double arg);
+//  void changeXcoord(double arg);
+//  void changeYcoord(double arg);
+//  void changeZcoord(double arg);
 
-  void changeXangle(int arg);
-  void changeYangle(double arg);
-  void changeZangle(double arg);
+//  void changeXangle(int arg);
+//  void changeYangle(double arg);
+//  void changeZangle(double arg);
 
-  void changeScale();
+//  void changeScale();
 //  void open_file();
 
   void take_screenshot();
@@ -70,25 +70,34 @@ class MainWindow : public QMainWindow {
 //  void user_settings_double_spin_box_change();
 //  void user_settings_color_change();
 
- private slots:
-  void on_doubleSpinBox_settings_move_move_x_valueChanged(double arg1);
-  void on_doubleSpinBox_settings_move_move_y_valueChanged(double arg1);
-  void on_doubleSpinBox_settings_move_move_z_valueChanged(double arg1);
-  void on_horizontalSlider_settings_move_move_x_sliderMoved(int position);
-  void on_horizontalSlider_settings_move_move_y_sliderMoved(int position);
-  void on_horizontalSlider_settings_move_move_z_sliderMoved(int position);
+ private slots:  
+  void valueChanged_to_Rot_X(int value);
+  void valueChanged_to_Rot_Y(int value);
+  void valueChanged_to_Rot_Z(int value);
 
-//  void on_doubleSpinBox_settings_move_rotate_x_valueChanged(double arg1);
-  void valueChanged_to_Rot_X(int value);/////////////////////////////////////////
-  void on_spinBox_settings_move_rotate_x_valueChanged(int arg1);
-  void on_doubleSpinBox_settings_move_rotate_y_valueChanged(double arg1);
-  void on_doubleSpinBox_settings_move_rotate_z_valueChanged(double arg1);
-  void on_horizontalSlider_settings_move_rotate_x_sliderMoved(int position);
-  void on_horizontalSlider_settings_move_rotate_y_sliderMoved(int position);
-  void on_horizontalSlider_settings_move_rotate_z_sliderMoved(int position);
+  void valueChanged_to_Move_X(int value);
+  void valueChanged_to_Move_Y(int value);
+  void valueChanged_to_Move_Z(int value);
 
-  void on_doubleSpinBox_settings_move_scale_valueChanged(double arg1);
-  void on_horizontalSlider_settings_move_scale_sliderMoved(int position);
+
+
+
+//  void on_doubleSpinBox_settings_move_move_x_valueChanged(double arg1);
+//  void on_doubleSpinBox_settings_move_move_y_valueChanged(double arg1);
+//  void on_doubleSpinBox_settings_move_move_z_valueChanged(double arg1);
+//  void on_horizontalSlider_settings_move_move_x_sliderMoved(int position);
+//  void on_horizontalSlider_settings_move_move_y_sliderMoved(int position);
+//  void on_horizontalSlider_settings_move_move_z_sliderMoved(int position);
+
+//  void on_spinBox_settings_move_rotate_x_valueChanged(int arg1);
+//  void on_doubleSpinBox_settings_move_rotate_y_valueChanged(double arg1);
+//  void on_doubleSpinBox_settings_move_rotate_z_valueChanged(double arg1);
+//  void on_horizontalSlider_settings_move_rotate_x_sliderMoved(int position);
+//  void on_horizontalSlider_settings_move_rotate_y_sliderMoved(int position);
+//  void on_horizontalSlider_settings_move_rotate_z_sliderMoved(int position);
+
+//  void on_doubleSpinBox_settings_move_scale_valueChanged(double arg1);
+//  void on_horizontalSlider_settings_move_scale_sliderMoved(int position);
 
 //  void on_comboBox_settings_view_projection_type_currentIndexChanged(int index);
 

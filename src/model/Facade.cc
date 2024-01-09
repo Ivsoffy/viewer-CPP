@@ -15,25 +15,10 @@ s21::Facade::Facade() {
 }
 
 void s21::Facade::SetPathToObject(std::string path) {
-  // fileParser_->Parser(GetFigureDef(), path);
   fileParser_->Parser(figure_def_, path);
   figure_draw_->copy_figure(figure_def_);
-
 }
 
-// void s21::Facade::TrasformateFigure(s21::ParamDTO paramDTO) {
-//   affineTransformations_->SetMoveX(paramDTO.move_x_);
-//   affineTransformations_->SetMoveY(paramDTO.move_y_);
-//   affineTransformations_->SetMoveZ(paramDTO.move_z_);
-//   affineTransformations_->SetAngleX(paramDTO.angle_x_);
-//   affineTransformations_->SetAngleY(paramDTO.angle_y_);
-//   affineTransformations_->SetAngleZ(paramDTO.angle_z_);
-//   affineTransformations_->SetScale(paramDTO.scale_);
-//   figure_draw_->copy_figure(figure_def_);
-//   figure_draw_->copy_figure(figure_def_);
-//   figure_draw_->TransformFigure();
-// //  affineTransformations_-> TrasformateVectorOfVerteces(figure_draw_);
-// }
 
 void s21::Facade::TrasformateFigure2() {
   auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO

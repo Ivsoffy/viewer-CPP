@@ -35,8 +35,37 @@ MainWindow::~MainWindow() { delete ui; }
 
 
 void MainWindow::connects() {
-  connect(this->ui->slide_rot_x, SIGNAL(valueChanged(int)), this,
+  connect(this->ui->slider_rot_x, SIGNAL(valueChanged(int)), this,
           SLOT(valueChanged_to_Rot_X(int)));
+  connect(this->ui->spinbox_rot_x, SIGNAL(valueChanged(int)), this,
+          SLOT(valueChanged_to_Rot_X(int)));
+
+  connect(this->ui->slider_rot_y, SIGNAL(valueChanged(int)), this,
+          SLOT(valueChanged_to_Rot_Y(int)));
+  connect(this->ui->spinbox_rot_y, SIGNAL(valueChanged(int)), this,
+          SLOT(valueChanged_to_Rot_Y(int)));
+
+  connect(this->ui->slider_rot_z, SIGNAL(valueChanged(int)), this,
+          SLOT(valueChanged_to_Rot_Z(int)));
+  connect(this->ui->spinbox_rot_z, SIGNAL(valueChanged(int)), this,
+          SLOT(valueChanged_to_Rot_Z(int)));
+
+
+  connect(this->ui->slider_move_x, SIGNAL(valueChanged(int)), this,
+          SLOT(valueChanged_to_Move_X(int)));
+  connect(this->ui->spinbox_move_x, SIGNAL(valueChanged(int)), this,
+          SLOT(valueChanged_to_Move_X(int)));
+
+  connect(this->ui->slider_move_y, SIGNAL(valueChanged(int)), this,
+          SLOT(valueChanged_to_Move_Y(int)));
+  connect(this->ui->spinbox_move_y, SIGNAL(valueChanged(int)), this,
+          SLOT(valueChanged_to_Move_Y(int)));
+
+  connect(this->ui->slider_move_z, SIGNAL(valueChanged(int)), this,
+          SLOT(valueChanged_to_Move_Z(int)));
+  connect(this->ui->spinbox_move_z, SIGNAL(valueChanged(int)), this,
+          SLOT(valueChanged_to_Move_Z(int)));
+
 
 //  connect(ui->pushButton_file_open, SIGNAL(clicked()), this, SLOT(open_file()));
 //  connect(ui->lineEdit_file_input, SIGNAL(returnPressed()), this,
@@ -68,25 +97,12 @@ void MainWindow::choose_file() {
 }
 
 void MainWindow::rebuff() {
-
-//  s21::GLBufferDTO GLBuffDTO = controller_->TransferGLBuffer();//
-
-//  ui->openGLWidget->SetVertices(GLBuffDTO.vertices_);
-//  ui->openGLWidget->SetEdges(GLBuffDTO.edges_);
-
-
   ui->openGLWidget->SetVertices(controller_->GetVertecisRef());
   ui->openGLWidget->SetEdges(controller_->GetEdgesRef());
-
-  // std::cerr << "((((((((((((((((((((repaint))))))))))))))))))))" << std::endl;/////////////////////TODO
-  // auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
 
   // ui->openGLWidget->repaint();
   ui->openGLWidget->update();
   ui->openGLWidget->need_paint = true;//
-
-  // auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
-  // std::cerr << millisec_end - millisec_start << ")))))))))repaint(((((((((" << std::endl;/////////////////////TODO
 }
 
 void MainWindow::redraw() {
@@ -96,48 +112,101 @@ void MainWindow::redraw() {
 
 ////////////////////////////////////////////
 ////////////////////////////////////////////
-void MainWindow::on_spinBox_settings_move_rotate_x_valueChanged(
-    int arg) {
-  ui->horizontalSlider_settings_move_rotate_x->setValue(arg);
-  changeXangle(arg);
-}
-
-void MainWindow::on_horizontalSlider_settings_move_rotate_x_sliderMoved(
-    int position) {
-  ui->spinBox_settings_move_rotate_x->setValue(position);
-  changeXangle(position);
-}
-
-void MainWindow::changeXangle(int arg){
-      controller_->paramDTO_->angle_x_ = (double) arg;
-  redraw();
-}
-
-//////////////////////////////////////////////////
 void MainWindow::valueChanged_to_Rot_X(int value) {
+  ui->spinbox_rot_x->setValue(value);
+  ui->slider_rot_x->setValue(value);
+
   controller_->GetAffineTransformationsRef()->SetAngleX(value);
+  controller_->TransferFigureParams();
 
-//  controller_->GetAffineTransformationsRef()->SetMoveX(0);
-//  controller_->GetAffineTransformationsRef()->SetMoveY(0);
-//  controller_->GetAffineTransformationsRef()->SetMoveZ(0);
-//  controller_->GetAffineTransformationsRef()->SetAngleY(0);
-//  controller_->GetAffineTransformationsRef()->SetAngleZ(0);
-//  controller_->GetAffineTransformationsRef()->SetScale(1);
-
-  auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
-
-  controller_->TransferFigureParams();//150
-
-  auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
-  std::cerr << millisec_end - millisec_start << ")))TransferFigureParams(((" << "\n" << std::endl;/////////////////////TODO
-
-  // rebuff();
   ui->openGLWidget->update();
-
 }
-////////////////////////////////////////////
-////////////////////////////////////////////
 
+void MainWindow::valueChanged_to_Rot_Y(int value) {
+  ui->spinbox_rot_y->setValue(value);
+  ui->slider_rot_y->setValue(value);
+
+  controller_->GetAffineTransformationsRef()->SetAngleY(value);
+  controller_->TransferFigureParams();
+
+  ui->openGLWidget->update();
+}
+
+void MainWindow::valueChanged_to_Rot_Z(int value) {
+  ui->spinbox_rot_z->setValue(value);
+  ui->slider_rot_z->setValue(value);
+
+  controller_->GetAffineTransformationsRef()->SetAngleZ(value);
+  controller_->TransferFigureParams();
+
+  ui->openGLWidget->update();
+}
+
+void MainWindow::valueChanged_to_Move_X(int value) {
+  ui->spinbox_move_x->setValue(value);
+  ui->slider_move_x->setValue(value);
+
+  controller_->GetAffineTransformationsRef()->SetMoveX(value);
+  controller_->TransferFigureParams();
+
+  ui->openGLWidget->update();
+}
+
+void MainWindow::valueChanged_to_Move_Y(int value) {
+  ui->spinbox_move_y->setValue(value);
+  ui->slider_move_y->setValue(value);
+
+  controller_->GetAffineTransformationsRef()->SetMoveY(value);
+  controller_->TransferFigureParams();
+
+  ui->openGLWidget->update();
+}
+
+void MainWindow::valueChanged_to_Move_Z(int value) {
+  ui->spinbox_move_z->setValue(value);
+  ui->slider_move_z->setValue(value);
+
+  controller_->GetAffineTransformationsRef()->SetMoveZ(value);
+  controller_->TransferFigureParams();
+
+  ui->openGLWidget->update();
+}
+
+
+
+
+//void MainWindow::on_spinBox_settings_move_rotate_x_valueChanged(
+//    int arg) {
+//  ui->horizontalSlider_settings_move_rotate_x->setValue(arg);
+//  changeXangle(arg);
+//}
+
+//void MainWindow::on_horizontalSlider_settings_move_rotate_x_sliderMoved(
+//    int position) {
+//  ui->spinBox_settings_move_rotate_x->setValue(position);
+//  changeXangle(position);
+//}
+
+//void MainWindow::changeXangle(int arg){
+//      controller_->paramDTO_->angle_x_ = (double) arg;
+//  redraw();
+//}
+//////////////////////////////////////////////////
+//void MainWindow::valueChanged_to_Rot_X(int value) {
+//  ui->spinbox_rot_x->setValue(value);
+//  ui->slider_rot_x->setValue(value);
+//  controller_->GetAffineTransformationsRef()->SetAngleX(value);
+
+////  auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+
+//  controller_->TransferFigureParams();//150
+
+////  auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+////  std::cerr << millisec_end - millisec_start << ")))TransferFigureParams(((" << "\n" << std::endl;/////////////////////TODO
+//  ui->openGLWidget->update();
+//}
+////////////////////////////////////////////
+////////////////////////////////////////////
 
 void MainWindow::take_screenshot() {
   //
@@ -147,67 +216,57 @@ void MainWindow::record_gif() {
   //
 }
 
-void MainWindow::on_doubleSpinBox_settings_move_move_x_valueChanged(
-    double arg) {
-//  ui->openGLWidget->shift_x = arg;// --
-  ui->horizontalSlider_settings_move_move_x->setValue(arg);
-  changeXcoord(arg);///////////////////
-}
+//void MainWindow::on_doubleSpinBox_settings_move_move_x_valueChanged(
+//    double arg) {
+//  ui->horizontalSlider_settings_move_move_x->setValue(arg);
+//  changeXcoord(arg);///////////////////
+//}
 
-void MainWindow::on_horizontalSlider_settings_move_move_x_sliderMoved(
-    int position) {
-//  ui->openGLWidget->shift_x = (double)position;// --
-  ui->doubleSpinBox_settings_move_move_x->setValue((double)position);
-  changeXcoord((double)position);
-}
+//void MainWindow::on_horizontalSlider_settings_move_move_x_sliderMoved(
+//    int position) {
+//  ui->doubleSpinBox_settings_move_move_x->setValue((double)position);
+//  changeXcoord((double)position);
+//}
 
-void MainWindow::changeXcoord(double arg){
-//  controller_->paramDTO_->move_x_ = ui->openGLWidget->shift_x;// --
-  controller_->paramDTO_->move_x_ = arg;// --
-  redraw();/////////////////////
-}
+//void MainWindow::changeXcoord(double arg){
+//  controller_->paramDTO_->move_x_ = arg;// --
+//  redraw();/////////////////////
+//}
 
-void MainWindow::on_doubleSpinBox_settings_move_move_y_valueChanged(
-    double arg) {
-//  ui->openGLWidget->shift_y = ar1;// --
-  ui->horizontalSlider_settings_move_move_y->setValue(arg);
-  changeYcoord(arg);
-}
+//void MainWindow::on_doubleSpinBox_settings_move_move_y_valueChanged(
+//    double arg) {
+//  ui->horizontalSlider_settings_move_move_y->setValue(arg);
+//  changeYcoord(arg);
+//}
 
-void MainWindow::on_horizontalSlider_settings_move_move_y_sliderMoved(
-    int position) {
-//  ui->openGLWidget->shift_y = position;// --
-  ui->doubleSpinBox_settings_move_move_y->setValue((double)position);
-changeYcoord((double)position);
-}
+//void MainWindow::on_horizontalSlider_settings_move_move_y_sliderMoved(
+//    int position) {
+//  ui->doubleSpinBox_settings_move_move_y->setValue((double)position);
+//changeYcoord((double)position);
+//}
 
-void MainWindow::changeYcoord(double arg){
-//  controller_->paramDTO_->move_y_ = ui->openGLWidget->shift_y;// --
-  controller_->paramDTO_->move_y_ = arg;// --
-  redraw();
-}
+//void MainWindow::changeYcoord(double arg){
+//  controller_->paramDTO_->move_y_ = arg;// --
+//  redraw();
+//}
 
-void MainWindow::on_doubleSpinBox_settings_move_move_z_valueChanged(
-    double arg) {
-//  ui->openGLWidget->shift_z = ar1;// --
-  ui->horizontalSlider_settings_move_move_z->setValue(arg);
-  changeZcoord(arg);
-}
+//void MainWindow::on_doubleSpinBox_settings_move_move_z_valueChanged(
+//    double arg) {
+//  ui->horizontalSlider_settings_move_move_z->setValue(arg);
+//  changeZcoord(arg);
+//}
 
-void MainWindow::on_horizontalSlider_settings_move_move_z_sliderMoved(
-    int position) {
-//  ui->openGLWidget->shift_z = position;// --
-    ui->doubleSpinBox_settings_move_move_z->setValue((double)position);
-    changeZcoord((double)position);
-}
+//void MainWindow::on_horizontalSlider_settings_move_move_z_sliderMoved(
+//    int position) {
+//    ui->doubleSpinBox_settings_move_move_z->setValue((double)position);
+//    changeZcoord((double)position);
+//}
 
-void MainWindow::changeZcoord(double arg){
-//  controller_->paramDTO_->move_z_ = ui->openGLWidget->shift_z;// --
-  controller_->paramDTO_->move_z_ = arg;// --
-  redraw();
-}
+//void MainWindow::changeZcoord(double arg){
+//  controller_->paramDTO_->move_z_ = arg;// --
+//  redraw();
+//}
 
-//void MainWindow::on_doubleSpinBox_settings_move_rotate_x_valueChanged(
 //    double arg) {
 ////  ui->openGLWidget->rot_x = arg;// --
 //  ui->horizontalSlider_settings_move_rotate_x->setValue(arg);
@@ -228,63 +287,57 @@ void MainWindow::changeZcoord(double arg){
 
 //}
 
-void MainWindow::on_doubleSpinBox_settings_move_rotate_y_valueChanged(
-    double arg) {
-  ui->horizontalSlider_settings_move_rotate_y->setValue(arg);
-  changeYangle(arg);
-}
+//void MainWindow::on_doubleSpinBox_settings_move_rotate_y_valueChanged(
+//    double arg) {
+//  ui->horizontalSlider_settings_move_rotate_y->setValue(arg);
+//  changeYangle(arg);
+//}
 
-void MainWindow::on_horizontalSlider_settings_move_rotate_y_sliderMoved(
-    int position) {
-  ui->doubleSpinBox_settings_move_rotate_y->setValue((double)position);
-  changeYangle((double)position);
-}
+//void MainWindow::on_horizontalSlider_settings_move_rotate_y_sliderMoved(
+//    int position) {
+//  ui->doubleSpinBox_settings_move_rotate_y->setValue((double)position);
+//  changeYangle((double)position);
+//}
 
-void MainWindow::changeYangle(double arg){
-  controller_->paramDTO_->angle_y_ = arg;
-  redraw();
-}
-void MainWindow::on_doubleSpinBox_settings_move_rotate_z_valueChanged(
-    double arg) {
-//  ui->openGLWidget->rot_z = arg;// --
-  ui->horizontalSlider_settings_move_rotate_z->setValue(arg);
-  changeZangle(arg);
-}
+//void MainWindow::changeYangle(double arg){
+//  controller_->paramDTO_->angle_y_ = arg;
+//  redraw();
+//}
+//void MainWindow::on_doubleSpinBox_settings_move_rotate_z_valueChanged(
+//    double arg) {
+//  ui->horizontalSlider_settings_move_rotate_z->setValue(arg);
+//  changeZangle(arg);
+//}
 
-void MainWindow::on_horizontalSlider_settings_move_rotate_z_sliderMoved(
-    int position) {
-//  ui->openGLWidget->rot_z = position;// --
-  ui->doubleSpinBox_settings_move_rotate_z->setValue((double)position);
-  changeZangle((double)position);
-}
+//void MainWindow::on_horizontalSlider_settings_move_rotate_z_sliderMoved(
+//    int position) {
+//  ui->doubleSpinBox_settings_move_rotate_z->setValue((double)position);
+//  changeZangle((double)position);
+//}
 
-void MainWindow::changeZangle(double arg){
-//  controller_->paramDTO_->angle_z_ = ui->openGLWidget->rot_z;// --
-  controller_->paramDTO_->angle_z_ = arg;
-  redraw();
+//void MainWindow::changeZangle(double arg){
+//  controller_->paramDTO_->angle_z_ = arg;
+//  redraw();
 
-}
+//}
 
-void MainWindow::on_doubleSpinBox_settings_move_scale_valueChanged(
-    double arg1) {
-//  ui->openGLWidget->scale = arg1;// --
-  controller_->paramDTO_->scale_ = arg1;
-  ui->horizontalSlider_settings_move_scale->setValue(arg1);
-  changeScale();
-}
+//void MainWindow::on_doubleSpinBox_settings_move_scale_valueChanged(
+//    double arg1) {
+//  controller_->paramDTO_->scale_ = arg1;
+//  ui->horizontalSlider_settings_move_scale->setValue(arg1);
+//  changeScale();
+//}
 
-void MainWindow::on_horizontalSlider_settings_move_scale_sliderMoved(
-    int position) {
-//  ui->openGLWidget->scale = position;// --
-  ui->doubleSpinBox_settings_move_scale->setValue(position);
-  changeScale();
-}
+//void MainWindow::on_horizontalSlider_settings_move_scale_sliderMoved(
+//    int position) {
+//  ui->doubleSpinBox_settings_move_scale->setValue(position);
+//  changeScale();
+//}
 
-void MainWindow::changeScale(){
-//  controller_->paramDTO_->scale_ = ui->openGLWidget->scale;// --
-  redraw();
+//void MainWindow::changeScale(){
+//  redraw();
 
-}
+//}
 
 void MainWindow::on_comboBox_settings_view_polygon_type_currentIndexChanged(
     int index) {
@@ -298,12 +351,6 @@ void MainWindow::on_doubleSpinBox_settings_view_polygon_width_valueChanged(
   ui->openGLWidget->repaint();
 }
 
-//void MainWindow::on_comboBox_settings_view_projection_type_currentIndexChanged(
-//    int index) {
-//  ui->openGLWidget->view_type = index;
-//  ui->openGLWidget->repaint();
-//  projection_settings();
-//}
 
 void MainWindow::on_comboBox_settings_view_vertex_type_currentIndexChanged(
     int index) {
