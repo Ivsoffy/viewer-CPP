@@ -18,6 +18,7 @@
 
 class OGLwidget : public QOpenGLWidget, public QOpenGLFunctions {
   Q_OBJECT
+  
  public:
   OGLwidget(QWidget *parent = NULL) : QOpenGLWidget(parent)  {}
   ~OGLwidget() {

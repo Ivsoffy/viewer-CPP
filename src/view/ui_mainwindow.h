@@ -20,9 +20,10 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
-#include "oglwidget.h"
+#include <oglwidget.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -41,7 +42,6 @@ public:
     QLabel *label_settings_move_rotate_x;
     QLabel *label_settings_move_rotate_y;
     QLabel *label_settings_move_rotate_z;
-    QDoubleSpinBox *doubleSpinBox_settings_move_rotate_x;
     QSlider *horizontalSlider_settings_move_rotate_x;
     QDoubleSpinBox *doubleSpinBox_settings_move_rotate_y;
     QSlider *horizontalSlider_settings_move_rotate_y;
@@ -100,6 +100,10 @@ public:
     QLabel *label_info_object_info_file_name_ans_2;
     QLabel *label_info_object_info_vertex_count_ans_2;
     QLabel *label_info_object_info_polygon_count_ans_2;
+    QDoubleSpinBox *doubleSpinBox_settings_move_rotate_x2;
+    QSpinBox *spinBox_settings_move_rotate_x;
+    QSpinBox *box_rot_x;
+    QSlider *slide_rot_x;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -248,19 +252,6 @@ public:
 "\n"
 ""));
         label_settings_move_rotate_z->setAlignment(Qt::AlignCenter);
-        doubleSpinBox_settings_move_rotate_x = new QDoubleSpinBox(frame_settings_move_rotate);
-        doubleSpinBox_settings_move_rotate_x->setObjectName(QString::fromUtf8("doubleSpinBox_settings_move_rotate_x"));
-        doubleSpinBox_settings_move_rotate_x->setGeometry(QRect(41, 31, 110, 31));
-        doubleSpinBox_settings_move_rotate_x->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
-"background-color: rgb(50, 50, 50);\n"
-" \n"
-"\n"
-"\n"
-"\n"
-""));
-        doubleSpinBox_settings_move_rotate_x->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        doubleSpinBox_settings_move_rotate_x->setMaximum(360.000000000000000);
-        doubleSpinBox_settings_move_rotate_x->setSingleStep(0.100000000000000);
         horizontalSlider_settings_move_rotate_x = new QSlider(frame_settings_move_rotate);
         horizontalSlider_settings_move_rotate_x->setObjectName(QString::fromUtf8("horizontalSlider_settings_move_rotate_x"));
         horizontalSlider_settings_move_rotate_x->setGeometry(QRect(41, 61, 111, 31));
@@ -885,6 +876,32 @@ public:
 "\n"
 ""));
         label_info_object_info_polygon_count_ans_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        doubleSpinBox_settings_move_rotate_x2 = new QDoubleSpinBox(centralwidget);
+        doubleSpinBox_settings_move_rotate_x2->setObjectName(QString::fromUtf8("doubleSpinBox_settings_move_rotate_x2"));
+        doubleSpinBox_settings_move_rotate_x2->setGeometry(QRect(280, 450, 110, 31));
+        doubleSpinBox_settings_move_rotate_x2->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
+"background-color: rgb(50, 50, 50);\n"
+" \n"
+"\n"
+"\n"
+"\n"
+""));
+        doubleSpinBox_settings_move_rotate_x2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        doubleSpinBox_settings_move_rotate_x2->setMaximum(360.000000000000000);
+        doubleSpinBox_settings_move_rotate_x2->setSingleStep(0.100000000000000);
+        spinBox_settings_move_rotate_x = new QSpinBox(centralwidget);
+        spinBox_settings_move_rotate_x->setObjectName(QString::fromUtf8("spinBox_settings_move_rotate_x"));
+        spinBox_settings_move_rotate_x->setGeometry(QRect(410, 450, 101, 31));
+        spinBox_settings_move_rotate_x->setMaximum(360);
+        box_rot_x = new QSpinBox(centralwidget);
+        box_rot_x->setObjectName(QString::fromUtf8("box_rot_x"));
+        box_rot_x->setGeometry(QRect(130, 440, 91, 41));
+        box_rot_x->setMaximum(360);
+        slide_rot_x = new QSlider(centralwidget);
+        slide_rot_x->setObjectName(QString::fromUtf8("slide_rot_x"));
+        slide_rot_x->setGeometry(QRect(80, 480, 160, 25));
+        slide_rot_x->setMaximum(360);
+        slide_rot_x->setOrientation(Qt::Horizontal);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));

@@ -56,7 +56,7 @@ class MainWindow : public QMainWindow {
   void changeYcoord(double arg);
   void changeZcoord(double arg);
 
-  void changeXangle(double arg);
+  void changeXangle(int arg);
   void changeYangle(double arg);
   void changeZangle(double arg);
 
@@ -78,7 +78,9 @@ class MainWindow : public QMainWindow {
   void on_horizontalSlider_settings_move_move_y_sliderMoved(int position);
   void on_horizontalSlider_settings_move_move_z_sliderMoved(int position);
 
-  void on_doubleSpinBox_settings_move_rotate_x_valueChanged(double arg1);
+//  void on_doubleSpinBox_settings_move_rotate_x_valueChanged(double arg1);
+  void valueChanged_to_Rot_X(int value);/////////////////////////////////////////
+  void on_spinBox_settings_move_rotate_x_valueChanged(int arg1);
   void on_doubleSpinBox_settings_move_rotate_y_valueChanged(double arg1);
   void on_doubleSpinBox_settings_move_rotate_z_valueChanged(double arg1);
   void on_horizontalSlider_settings_move_rotate_x_sliderMoved(int position);

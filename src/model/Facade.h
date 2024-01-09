@@ -2,9 +2,8 @@
 #define MODEL_FACADE_H_
 
 #include "../controller/ControllerDTO.h"
-#include "AffineTransformations.h"
+// #include "AffineTransformations.h"
 #include "Figure.h"
-#include "GLmodelh.txt"
 #include "Vertex.h"
 
 namespace s21 {
@@ -15,14 +14,18 @@ class Facade {
   ~Facade(){};
 
   void SetPathToObject(std::string path);
-  void TrasformateFigure(ParamDTO paramDTO);
+  // void TrasformateFigure(ParamDTO paramDTO);
+  void TrasformateFigure2();
   void GetBuffer();
-//  GLuint GetVertexBuffer() { return glmodel_->GetVertexBuffer(); }
   std::vector<s21::Vertex>* GetVertecisRef() { return figure_draw_->GetVertexesVectorRef(); }
-  std::vector<unsigned>* GetEdges() { return  figure_draw_->GetEdgesVectorRef(); }
+  std::vector<unsigned>* GetEdgesRef() { return  figure_draw_->GetEdgesVectorRef(); }
 
   AffineTransformations GetAffineTransformations() {
     return *affineTransformations_;
+  }
+
+  AffineTransformations *GetAffineTransformationsRef() {//////////
+    return affineTransformations_;
   }
 
   Figure::FileParser GetFileParser() { return *fileParser_; }

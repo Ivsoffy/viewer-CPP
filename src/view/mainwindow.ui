@@ -309,34 +309,6 @@ background-color: rgb(50, 50, 50);
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_settings_move_rotate_x">
-      <property name="geometry">
-       <rect>
-        <x>41</x>
-        <y>31</y>
-        <width>110</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-      <property name="maximum">
-       <double>360.000000000000000</double>
-      </property>
-      <property name="singleStep">
-       <double>0.100000000000000</double>
-      </property>
-     </widget>
      <widget class="QSlider" name="horizontalSlider_settings_move_rotate_x">
       <property name="geometry">
        <rect>
@@ -1810,6 +1782,76 @@ background-color: rgb(50, 50, 50);
      </widget>
     </widget>
    </widget>
+   <widget class="QDoubleSpinBox" name="doubleSpinBox_settings_move_rotate_x2">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>450</y>
+      <width>110</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
+background-color: rgb(50, 50, 50);
+ 
+
+
+
+</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+    <property name="maximum">
+     <double>360.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.100000000000000</double>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinBox_settings_move_rotate_x">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>450</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>360</number>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="box_rot_x">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>440</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>360</number>
+    </property>
+   </widget>
+   <widget class="QSlider" name="slide_rot_x">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>480</y>
+      <width>160</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>360</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -1827,7 +1869,7 @@ background-color: rgb(50, 50, 50);
   <customwidget>
    <class>OGLwidget</class>
    <extends>QOpenGLWidget</extends>
-   <header>oglwidget.h</header>
+   <header location="global">oglwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
