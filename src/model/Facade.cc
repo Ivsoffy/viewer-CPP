@@ -2,13 +2,15 @@
 
 s21::Facade::Facade() {
   affineTransformations_ = new AffineTransformations();
-  figure_def_ = new Figure();
-  figure_draw_ = new Figure();
   fileParser_ = new Figure::FileParser();
 //  glmodel_ = new GLmodel();
 }
 
 void s21::Facade::SetPathToObject(std::string path) {
+  delete figure_def_;
+  delete figure_draw_;
+  figure_def_ = new Figure();
+  figure_draw_ = new Figure();
   fileParser_->Parser(GetFigureDef(), path);
   figure_draw_->copy_figure(figure_def_);
 }

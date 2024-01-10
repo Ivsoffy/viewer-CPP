@@ -35,30 +35,6 @@ void s21::AffineTransformations::TrasformateVertex(s21::Vertex* vertex) {
     vertex->SetZ(vertex->GetZ() + move_z_);
   }
 
-  // if (angle_x_ != 0) {
-  //   vertex->SetY(y * cos(angle_x) - z * sin(angle_x));
-  //   vertex->SetZ(y * sin(angle_x) + z * cos(angle_x));
-  // }
-  // if (angle_y_ != 0) {
-  //   vertex->SetX(x * cos(angle_y) + z * sin(angle_y));
-  //   vertex->SetZ(x * -sin(angle_y) + z * cos(angle_y));
-  // }
-  // if (angle_z_ != 0) {
-  //   vertex->SetX(x * cos(angle_z) - y * sin(angle_z));
-  //   vertex->SetY(x * sin(angle_z) + y * cos(angle_z));
-  // }
-  // if (angle_x_ != 0) {
-  //   vertex->SetY(vertex->GetY() * cos(angle_x) - vertex->GetZ() * sin(angle_x));
-  //   vertex->SetZ(vertex->GetY() * sin(angle_x) + vertex->GetZ() * cos(angle_x));
-  // }
-  // if (angle_y_ != 0) {
-  //   vertex->SetX(vertex->GetX() * cos(angle_y) + vertex->GetZ() * sin(angle_y));
-  //   vertex->SetZ(vertex->GetX() * -sin(angle_y) + vertex->GetZ() * cos(angle_y));
-  // }
-  // if (angle_z_ != 0) {
-  //   vertex->SetX(vertex->GetX() * cos(angle_z) - vertex->GetY() * sin(angle_z));
-  //   vertex->SetY(vertex->GetX() * sin(angle_z) + vertex->GetY() * cos(angle_z));
-  // }
   if (angle_x_ != 0) {
     double y = vertex->GetY();
     double z = vertex->GetZ();

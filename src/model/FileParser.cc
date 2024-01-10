@@ -10,6 +10,9 @@ void s21::Figure::FileParser::Parser(s21::Figure *figure, std::string file_name)
   std::cerr << "(((((((((((((((((((())))))))))))))))))))" << std::endl;/////////////////////TODO
   auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
 
+//  figure->GetEdgesVector().clear();
+//  figure->GetVertexesVector().clear();
+
   std::ifstream file;
   file.open(file_name);
   if (file.is_open()) {
