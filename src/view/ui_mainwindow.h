@@ -101,6 +101,8 @@ public:
     QLabel *label_info_object_info_polygon_count_ans_2;
     QSlider *slider_scale;
     QDoubleSpinBox *double_spinbox_scale;
+    QSlider *slider_scale_2;
+    QSpinBox *spinbox_scale_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -787,6 +789,21 @@ public:
         double_spinbox_scale->setMaximum(20.000000000000000);
         double_spinbox_scale->setSingleStep(0.100000000000000);
         double_spinbox_scale->setValue(1.000000000000000);
+        slider_scale_2 = new QSlider(centralwidget);
+        slider_scale_2->setObjectName(QString::fromUtf8("slider_scale_2"));
+        slider_scale_2->setGeometry(QRect(260, 480, 111, 31));
+        slider_scale_2->setMinimum(-100);
+        slider_scale_2->setMaximum(300);
+        slider_scale_2->setSingleStep(10);
+        slider_scale_2->setValue(0);
+        slider_scale_2->setSliderPosition(0);
+        slider_scale_2->setOrientation(Qt::Horizontal);
+        spinbox_scale_2 = new QSpinBox(centralwidget);
+        spinbox_scale_2->setObjectName(QString::fromUtf8("spinbox_scale_2"));
+        spinbox_scale_2->setGeometry(QRect(270, 440, 101, 22));
+        spinbox_scale_2->setMinimum(-100);
+        spinbox_scale_2->setMaximum(300);
+        spinbox_scale_2->setSingleStep(10);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));

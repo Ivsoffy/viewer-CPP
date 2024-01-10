@@ -75,6 +75,10 @@ class MainWindow : public QMainWindow {
 
   void valueChanged_to_Slider_scale(int value);
   void valueChanged_to_Double_spinbox_scale(double value);
+  ///////////////////////////////////////////////////////////////
+  void valueChanged_to_Slider_scale_2(int value);
+  void valueChanged_to_Spinbox_scale_2(int value);
+  ///////////////////////////////////////////////////////////////
 
 //  void on_comboBox_settings_view_projection_type_currentIndexChanged(int index);
 
