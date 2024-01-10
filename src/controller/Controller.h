@@ -10,16 +10,20 @@
 namespace s21 {
 class Controller {
  public:
-  Controller(Facade *facade) {
-    facade_ = facade;
-  }
+  Controller(Facade *facade) { facade_ = facade; }
 
-  ParamDTO* paramDTO_;
+  ParamDTO *paramDTO_;
   s21::GLBufferDTO TransferGLBuffer();
 
   void TransferFigureParams();
   void TransferObject(std::string file_name);
 
+  std::vector<s21::Vertex> *GetVertecisRef();
+  std::vector<unsigned> *GetEdgesRef();
+
+  double GetMax();
+
+  s21::AffineTransformations *GetAffineTransformationsRef();  ////////
 
  private:
   Facade *facade_;

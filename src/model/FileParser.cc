@@ -63,8 +63,8 @@ void s21::Figure::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
           space_2 = index;
           num_double = std::stod(line.substr(space_1 + 1, space_2 - (space_1 + 1)));
           temp_vertex_arr[j++] = num_double;
-          if (figure->Get_Max() < std::fabs(num_double)) {
-            figure->Set_Max(std::fabs(num_double));
+          if (figure->GetMax() < std::fabs(num_double)) {
+            figure->SetMax(std::fabs(num_double));
           }
           space_couter = 1;
           space_1 = index;
@@ -74,14 +74,14 @@ void s21::Figure::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
     }
     num_double = std::stod(line.substr(space_1 + 1, space_2 - (space_1 + 1)));
     temp_vertex_arr[j] = num_double;
-    if (figure->Get_Max() < std::fabs(num_double)) {
-      figure->Set_Max(std::fabs(num_double));
+    if (figure->GetMax() < std::fabs(num_double)) {
+      figure->SetMax(std::fabs(num_double));
     }
   } catch(const std::exception& e) {
     throw std::invalid_argument("ERROR: Invalid data in 'v'-line in object file.");
   }
 
-  figure->vertexes_.push_back(s21::Vertex(temp_vertex_arr[0], temp_vertex_arr[1], temp_vertex_arr[2]));
+  figure->vertices_.push_back(s21::Vertex(temp_vertex_arr[0], temp_vertex_arr[1], temp_vertex_arr[2]));
 }
 
 void s21::Figure::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
@@ -105,7 +105,7 @@ void s21::Figure::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
         } else {
           num_int = std::stoi(line.substr(space_1 + 1, index - (space_1 + 1)));
           if (num_int < 0) {
-            num_int = figure->vertexes_.size() + num_int + 1;
+            num_int = figure->vertices_.size() + num_int + 1;
           }
           if (edge_counter == 0) {
             figure->edges_.push_back(num_int - 1);
@@ -123,7 +123,7 @@ void s21::Figure::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
       if ((index - 1 - space_1) > 1) {
         num_int = std::stoi(line.substr(space_1 + 1, index - (space_1 + 1)));
         if (num_int < 0) {
-          num_int = figure->vertexes_.size() + num_int + 1;
+          num_int = figure->vertices_.size() + num_int + 1;
         }
         figure->edges_.push_back(num_int - 1);
         figure->edges_.push_back(num_int - 1);

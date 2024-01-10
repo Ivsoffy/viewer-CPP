@@ -50,18 +50,6 @@ class MainWindow : public QMainWindow {
   void choose_file();
 
   void redraw();
-  void rebuff();
-
-  void changeXcoord(double arg);
-  void changeYcoord(double arg);
-  void changeZcoord(double arg);
-
-  void changeXangle(double arg);
-  void changeYangle(double arg);
-  void changeZangle(double arg);
-
-  void changeScale();
-//  void open_file();
 
   void take_screenshot();
   void record_gif();
@@ -70,23 +58,23 @@ class MainWindow : public QMainWindow {
 //  void user_settings_double_spin_box_change();
 //  void user_settings_color_change();
 
- private slots:
-  void on_doubleSpinBox_settings_move_move_x_valueChanged(double arg1);
-  void on_doubleSpinBox_settings_move_move_y_valueChanged(double arg1);
-  void on_doubleSpinBox_settings_move_move_z_valueChanged(double arg1);
-  void on_horizontalSlider_settings_move_move_x_sliderMoved(int position);
-  void on_horizontalSlider_settings_move_move_y_sliderMoved(int position);
-  void on_horizontalSlider_settings_move_move_z_sliderMoved(int position);
+ private slots:  
+  void valueChanged_to_Slider_rot_x(int value);
+  void valueChanged_to_Spinbox_rot_x(int value);
+  void valueChanged_to_Slider_rot_y(int value);
+  void valueChanged_to_Spinbox_rot_y(int value);
+  void valueChanged_to_Slider_rot_z(int value);
+  void valueChanged_to_Spinbox_rot_z(int value);
 
-  void on_doubleSpinBox_settings_move_rotate_x_valueChanged(double arg1);
-  void on_doubleSpinBox_settings_move_rotate_y_valueChanged(double arg1);
-  void on_doubleSpinBox_settings_move_rotate_z_valueChanged(double arg1);
-  void on_horizontalSlider_settings_move_rotate_x_sliderMoved(int position);
-  void on_horizontalSlider_settings_move_rotate_y_sliderMoved(int position);
-  void on_horizontalSlider_settings_move_rotate_z_sliderMoved(int position);
+  void valueChanged_to_Slider_move_x(int value);
+  void valueChanged_to_Spinbox_move_x(int value);
+  void valueChanged_to_Slider_move_y(int value);
+  void valueChanged_to_Spinbox_move_y(int value);
+  void valueChanged_to_Slider_move_z(int value);
+  void valueChanged_to_Spinbox_move_z(int value);
 
-  void on_doubleSpinBox_settings_move_scale_valueChanged(double arg1);
-  void on_horizontalSlider_settings_move_scale_sliderMoved(int position);
+  void valueChanged_to_Slider_scale(int value);
+  void valueChanged_to_Double_spinbox_scale(double value);
 
 //  void on_comboBox_settings_view_projection_type_currentIndexChanged(int index);
 
@@ -101,7 +89,7 @@ class MainWindow : public QMainWindow {
   void recording_gif();
   void recording_stop();
 
- private:
+private:
   s21::Controller *controller_;
 //  s21::ParamDTO * paramDTO_;
 

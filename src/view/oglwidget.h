@@ -6,14 +6,21 @@
 #include <QOpenGLFunctions>
 #include <QOpenGLWidget>
 #include <QWindow>
+#include <OpenGL/glu.h>
 
-//#include "../model/GLmodelh.txt"
 #include "../model/Vertex.h"
 
-class OGLwidget : public QOpenGLWidget {
+//class OGLwidget : public QOpenGLWidget, public QOpenGLFunctions {
+//  Q_OBJECT
+
+//    public:
+//        explicit QWidget(QWidget *parent = nullptr);
+
+class OGLwidget : public QOpenGLWidget, public QOpenGLFunctions {
   Q_OBJECT
+  
  public:
-  OGLwidget(QWidget *parent = NULL) : QOpenGLWidget(parent) {}
+  OGLwidget(QWidget *parent = NULL) : QOpenGLWidget(parent)  {}
   ~OGLwidget() {
     //    if (vertex_array) {
     //      opengl_array_destroy(polygons_array, edges_counter);

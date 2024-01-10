@@ -20,9 +20,10 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
-#include "oglwidget.h"
+#include <oglwidget.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -41,27 +42,25 @@ public:
     QLabel *label_settings_move_rotate_x;
     QLabel *label_settings_move_rotate_y;
     QLabel *label_settings_move_rotate_z;
-    QDoubleSpinBox *doubleSpinBox_settings_move_rotate_x;
-    QSlider *horizontalSlider_settings_move_rotate_x;
-    QDoubleSpinBox *doubleSpinBox_settings_move_rotate_y;
-    QSlider *horizontalSlider_settings_move_rotate_y;
-    QDoubleSpinBox *doubleSpinBox_settings_move_rotate_z;
-    QSlider *horizontalSlider_settings_move_rotate_z;
+    QSlider *slider_rot_x;
+    QSlider *slider_rot_y;
+    QSpinBox *spinbox_rot_y;
+    QSpinBox *spinbox_rot_z;
+    QSpinBox *spinbox_rot_x;
+    QSlider *slider_rot_z;
     QFrame *frame_settings_move_move;
     QLabel *label_settings_move_move_info;
     QLabel *label_settings_move_move_x;
     QLabel *label_settings_move_move_y;
     QLabel *label_settings_move_move_z;
-    QDoubleSpinBox *doubleSpinBox_settings_move_move_x;
-    QSlider *horizontalSlider_settings_move_move_x;
-    QDoubleSpinBox *doubleSpinBox_settings_move_move_y;
-    QSlider *horizontalSlider_settings_move_move_y;
-    QDoubleSpinBox *doubleSpinBox_settings_move_move_z;
-    QSlider *horizontalSlider_settings_move_move_z;
+    QSpinBox *spinbox_move_x;
+    QSlider *slider_move_x;
+    QSlider *slider_move_y;
+    QSpinBox *spinbox_move_y;
+    QSpinBox *spinbox_move_z;
+    QSlider *slider_move_z;
     QFrame *frame_settings_move_scale;
     QLabel *label_settings_move_scale;
-    QSlider *horizontalSlider_settings_move_scale;
-    QDoubleSpinBox *doubleSpinBox_settings_move_scale;
     QFrame *frame_screen;
     QFrame *frame_screen_2;
     QLabel *label_screen;
@@ -100,6 +99,10 @@ public:
     QLabel *label_info_object_info_file_name_ans_2;
     QLabel *label_info_object_info_vertex_count_ans_2;
     QLabel *label_info_object_info_polygon_count_ans_2;
+    QSlider *horizontalSlider_settings_move_scale;
+    QSlider *slider_scale;
+    QDoubleSpinBox *doubleSpinBox_settings_move_scale;
+    QDoubleSpinBox *double_spinbox_scale;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -248,84 +251,47 @@ public:
 "\n"
 ""));
         label_settings_move_rotate_z->setAlignment(Qt::AlignCenter);
-        doubleSpinBox_settings_move_rotate_x = new QDoubleSpinBox(frame_settings_move_rotate);
-        doubleSpinBox_settings_move_rotate_x->setObjectName(QString::fromUtf8("doubleSpinBox_settings_move_rotate_x"));
-        doubleSpinBox_settings_move_rotate_x->setGeometry(QRect(41, 31, 110, 31));
-        doubleSpinBox_settings_move_rotate_x->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
-"background-color: rgb(50, 50, 50);\n"
-" \n"
-"\n"
-"\n"
-"\n"
-""));
-        doubleSpinBox_settings_move_rotate_x->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        doubleSpinBox_settings_move_rotate_x->setMaximum(360.000000000000000);
-        doubleSpinBox_settings_move_rotate_x->setSingleStep(0.100000000000000);
-        horizontalSlider_settings_move_rotate_x = new QSlider(frame_settings_move_rotate);
-        horizontalSlider_settings_move_rotate_x->setObjectName(QString::fromUtf8("horizontalSlider_settings_move_rotate_x"));
-        horizontalSlider_settings_move_rotate_x->setGeometry(QRect(41, 61, 111, 31));
-        horizontalSlider_settings_move_rotate_x->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
-"background-color: rgb(50, 50, 50);\n"
-" \n"
-"\n"
-"\n"
-"\n"
-""));
-        horizontalSlider_settings_move_rotate_x->setMaximum(360);
-        horizontalSlider_settings_move_rotate_x->setPageStep(0);
-        horizontalSlider_settings_move_rotate_x->setOrientation(Qt::Horizontal);
-        doubleSpinBox_settings_move_rotate_y = new QDoubleSpinBox(frame_settings_move_rotate);
-        doubleSpinBox_settings_move_rotate_y->setObjectName(QString::fromUtf8("doubleSpinBox_settings_move_rotate_y"));
-        doubleSpinBox_settings_move_rotate_y->setGeometry(QRect(41, 91, 110, 31));
-        doubleSpinBox_settings_move_rotate_y->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
-"background-color: rgb(50, 50, 50);\n"
-" \n"
-"\n"
-"\n"
-"\n"
-""));
-        doubleSpinBox_settings_move_rotate_y->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        doubleSpinBox_settings_move_rotate_y->setMaximum(360.000000000000000);
-        doubleSpinBox_settings_move_rotate_y->setSingleStep(0.100000000000000);
-        horizontalSlider_settings_move_rotate_y = new QSlider(frame_settings_move_rotate);
-        horizontalSlider_settings_move_rotate_y->setObjectName(QString::fromUtf8("horizontalSlider_settings_move_rotate_y"));
-        horizontalSlider_settings_move_rotate_y->setGeometry(QRect(41, 121, 111, 31));
-        horizontalSlider_settings_move_rotate_y->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
-"background-color: rgb(50, 50, 50);\n"
-" \n"
-"\n"
-"\n"
-"\n"
-""));
-        horizontalSlider_settings_move_rotate_y->setMaximum(360);
-        horizontalSlider_settings_move_rotate_y->setPageStep(0);
-        horizontalSlider_settings_move_rotate_y->setOrientation(Qt::Horizontal);
-        doubleSpinBox_settings_move_rotate_z = new QDoubleSpinBox(frame_settings_move_rotate);
-        doubleSpinBox_settings_move_rotate_z->setObjectName(QString::fromUtf8("doubleSpinBox_settings_move_rotate_z"));
-        doubleSpinBox_settings_move_rotate_z->setGeometry(QRect(41, 151, 110, 31));
-        doubleSpinBox_settings_move_rotate_z->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
-"background-color: rgb(50, 50, 50);\n"
-" \n"
-"\n"
-"\n"
-"\n"
-""));
-        doubleSpinBox_settings_move_rotate_z->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        doubleSpinBox_settings_move_rotate_z->setMaximum(360.000000000000000);
-        doubleSpinBox_settings_move_rotate_z->setSingleStep(0.100000000000000);
-        horizontalSlider_settings_move_rotate_z = new QSlider(frame_settings_move_rotate);
-        horizontalSlider_settings_move_rotate_z->setObjectName(QString::fromUtf8("horizontalSlider_settings_move_rotate_z"));
-        horizontalSlider_settings_move_rotate_z->setGeometry(QRect(41, 181, 111, 31));
-        horizontalSlider_settings_move_rotate_z->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
-"background-color: rgb(50, 50, 50);\n"
-" \n"
-"\n"
-"\n"
-"\n"
-""));
-        horizontalSlider_settings_move_rotate_z->setMaximum(360);
-        horizontalSlider_settings_move_rotate_z->setPageStep(0);
-        horizontalSlider_settings_move_rotate_z->setOrientation(Qt::Horizontal);
+        slider_rot_x = new QSlider(frame_settings_move_rotate);
+        slider_rot_x->setObjectName(QString::fromUtf8("slider_rot_x"));
+        slider_rot_x->setGeometry(QRect(39, 64, 111, 31));
+        slider_rot_x->setMinimum(-180);
+        slider_rot_x->setMaximum(180);
+        slider_rot_x->setOrientation(Qt::Horizontal);
+        slider_rot_y = new QSlider(frame_settings_move_rotate);
+        slider_rot_y->setObjectName(QString::fromUtf8("slider_rot_y"));
+        slider_rot_y->setGeometry(QRect(40, 120, 111, 31));
+        slider_rot_y->setMinimum(-180);
+        slider_rot_y->setMaximum(180);
+        slider_rot_y->setOrientation(Qt::Horizontal);
+        spinbox_rot_y = new QSpinBox(frame_settings_move_rotate);
+        spinbox_rot_y->setObjectName(QString::fromUtf8("spinbox_rot_y"));
+        spinbox_rot_y->setGeometry(QRect(40, 90, 111, 31));
+        QFont font;
+        font.setKerning(true);
+        spinbox_rot_y->setFont(font);
+        spinbox_rot_y->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        spinbox_rot_y->setMinimum(-180);
+        spinbox_rot_y->setMaximum(180);
+        spinbox_rot_z = new QSpinBox(frame_settings_move_rotate);
+        spinbox_rot_z->setObjectName(QString::fromUtf8("spinbox_rot_z"));
+        spinbox_rot_z->setGeometry(QRect(40, 150, 111, 31));
+        spinbox_rot_z->setFont(font);
+        spinbox_rot_z->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        spinbox_rot_z->setMinimum(-180);
+        spinbox_rot_z->setMaximum(180);
+        spinbox_rot_x = new QSpinBox(frame_settings_move_rotate);
+        spinbox_rot_x->setObjectName(QString::fromUtf8("spinbox_rot_x"));
+        spinbox_rot_x->setGeometry(QRect(40, 30, 111, 31));
+        spinbox_rot_x->setFont(font);
+        spinbox_rot_x->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        spinbox_rot_x->setMinimum(-180);
+        spinbox_rot_x->setMaximum(180);
+        slider_rot_z = new QSlider(frame_settings_move_rotate);
+        slider_rot_z->setObjectName(QString::fromUtf8("slider_rot_z"));
+        slider_rot_z->setGeometry(QRect(40, 180, 111, 31));
+        slider_rot_z->setMinimum(-180);
+        slider_rot_z->setMaximum(180);
+        slider_rot_z->setOrientation(Qt::Horizontal);
         frame_settings_move_move = new QFrame(frame_settings_move);
         frame_settings_move_move->setObjectName(QString::fromUtf8("frame_settings_move_move"));
         frame_settings_move_move->setGeometry(QRect(0, 0, 151, 213));
@@ -377,92 +343,45 @@ public:
 "\n"
 ""));
         label_settings_move_move_z->setAlignment(Qt::AlignCenter);
-        doubleSpinBox_settings_move_move_x = new QDoubleSpinBox(frame_settings_move_move);
-        doubleSpinBox_settings_move_move_x->setObjectName(QString::fromUtf8("doubleSpinBox_settings_move_move_x"));
-        doubleSpinBox_settings_move_move_x->setGeometry(QRect(41, 31, 109, 31));
-        doubleSpinBox_settings_move_move_x->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
-"background-color: rgb(50, 50, 50);\n"
-" \n"
-"\n"
-"\n"
-"\n"
-""));
-        doubleSpinBox_settings_move_move_x->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        doubleSpinBox_settings_move_move_x->setMinimum(-100.000000000000000);
-        doubleSpinBox_settings_move_move_x->setMaximum(100.000000000000000);
-        doubleSpinBox_settings_move_move_x->setSingleStep(0.100000000000000);
-        horizontalSlider_settings_move_move_x = new QSlider(frame_settings_move_move);
-        horizontalSlider_settings_move_move_x->setObjectName(QString::fromUtf8("horizontalSlider_settings_move_move_x"));
-        horizontalSlider_settings_move_move_x->setGeometry(QRect(41, 61, 110, 31));
-        horizontalSlider_settings_move_move_x->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
-"background-color: rgb(50, 50, 50);\n"
-" \n"
-"\n"
-"\n"
-"\n"
-""));
-        horizontalSlider_settings_move_move_x->setMinimum(-100);
-        horizontalSlider_settings_move_move_x->setMaximum(100);
-        horizontalSlider_settings_move_move_x->setPageStep(0);
-        horizontalSlider_settings_move_move_x->setTracking(true);
-        horizontalSlider_settings_move_move_x->setOrientation(Qt::Horizontal);
-        doubleSpinBox_settings_move_move_y = new QDoubleSpinBox(frame_settings_move_move);
-        doubleSpinBox_settings_move_move_y->setObjectName(QString::fromUtf8("doubleSpinBox_settings_move_move_y"));
-        doubleSpinBox_settings_move_move_y->setGeometry(QRect(41, 91, 109, 31));
-        doubleSpinBox_settings_move_move_y->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
-"background-color: rgb(50, 50, 50);\n"
-" \n"
-"\n"
-"\n"
-"\n"
-""));
-        doubleSpinBox_settings_move_move_y->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        doubleSpinBox_settings_move_move_y->setMinimum(-100.000000000000000);
-        doubleSpinBox_settings_move_move_y->setMaximum(100.000000000000000);
-        doubleSpinBox_settings_move_move_y->setSingleStep(0.100000000000000);
-        horizontalSlider_settings_move_move_y = new QSlider(frame_settings_move_move);
-        horizontalSlider_settings_move_move_y->setObjectName(QString::fromUtf8("horizontalSlider_settings_move_move_y"));
-        horizontalSlider_settings_move_move_y->setGeometry(QRect(41, 121, 110, 31));
-        horizontalSlider_settings_move_move_y->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
-"background-color: rgb(50, 50, 50);\n"
-" \n"
-"\n"
-"\n"
-"\n"
-""));
-        horizontalSlider_settings_move_move_y->setMinimum(-100);
-        horizontalSlider_settings_move_move_y->setMaximum(100);
-        horizontalSlider_settings_move_move_y->setPageStep(0);
-        horizontalSlider_settings_move_move_y->setOrientation(Qt::Horizontal);
-        doubleSpinBox_settings_move_move_z = new QDoubleSpinBox(frame_settings_move_move);
-        doubleSpinBox_settings_move_move_z->setObjectName(QString::fromUtf8("doubleSpinBox_settings_move_move_z"));
-        doubleSpinBox_settings_move_move_z->setGeometry(QRect(41, 151, 109, 31));
-        doubleSpinBox_settings_move_move_z->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
-"background-color: rgb(50, 50, 50);\n"
-" \n"
-"\n"
-"\n"
-"\n"
-""));
-        doubleSpinBox_settings_move_move_z->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        doubleSpinBox_settings_move_move_z->setMinimum(-100.000000000000000);
-        doubleSpinBox_settings_move_move_z->setMaximum(100.000000000000000);
-        doubleSpinBox_settings_move_move_z->setSingleStep(0.100000000000000);
-        doubleSpinBox_settings_move_move_z->setValue(0.000000000000000);
-        horizontalSlider_settings_move_move_z = new QSlider(frame_settings_move_move);
-        horizontalSlider_settings_move_move_z->setObjectName(QString::fromUtf8("horizontalSlider_settings_move_move_z"));
-        horizontalSlider_settings_move_move_z->setGeometry(QRect(41, 181, 110, 31));
-        horizontalSlider_settings_move_move_z->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
-"background-color: rgb(50, 50, 50);\n"
-" \n"
-"\n"
-"\n"
-"\n"
-""));
-        horizontalSlider_settings_move_move_z->setMinimum(-100);
-        horizontalSlider_settings_move_move_z->setMaximum(100);
-        horizontalSlider_settings_move_move_z->setPageStep(0);
-        horizontalSlider_settings_move_move_z->setOrientation(Qt::Horizontal);
+        spinbox_move_x = new QSpinBox(frame_settings_move_move);
+        spinbox_move_x->setObjectName(QString::fromUtf8("spinbox_move_x"));
+        spinbox_move_x->setGeometry(QRect(40, 30, 111, 31));
+        spinbox_move_x->setFont(font);
+        spinbox_move_x->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        spinbox_move_x->setMinimum(-100);
+        spinbox_move_x->setMaximum(100);
+        slider_move_x = new QSlider(frame_settings_move_move);
+        slider_move_x->setObjectName(QString::fromUtf8("slider_move_x"));
+        slider_move_x->setGeometry(QRect(40, 60, 111, 31));
+        slider_move_x->setMinimum(-100);
+        slider_move_x->setMaximum(100);
+        slider_move_x->setOrientation(Qt::Horizontal);
+        slider_move_y = new QSlider(frame_settings_move_move);
+        slider_move_y->setObjectName(QString::fromUtf8("slider_move_y"));
+        slider_move_y->setGeometry(QRect(40, 120, 111, 31));
+        slider_move_y->setMinimum(-100);
+        slider_move_y->setMaximum(100);
+        slider_move_y->setOrientation(Qt::Horizontal);
+        spinbox_move_y = new QSpinBox(frame_settings_move_move);
+        spinbox_move_y->setObjectName(QString::fromUtf8("spinbox_move_y"));
+        spinbox_move_y->setGeometry(QRect(40, 90, 111, 31));
+        spinbox_move_y->setFont(font);
+        spinbox_move_y->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        spinbox_move_y->setMinimum(-100);
+        spinbox_move_y->setMaximum(100);
+        spinbox_move_z = new QSpinBox(frame_settings_move_move);
+        spinbox_move_z->setObjectName(QString::fromUtf8("spinbox_move_z"));
+        spinbox_move_z->setGeometry(QRect(40, 150, 111, 31));
+        spinbox_move_z->setFont(font);
+        spinbox_move_z->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        spinbox_move_z->setMinimum(-100);
+        spinbox_move_z->setMaximum(100);
+        slider_move_z = new QSlider(frame_settings_move_move);
+        slider_move_z->setObjectName(QString::fromUtf8("slider_move_z"));
+        slider_move_z->setGeometry(QRect(40, 180, 111, 31));
+        slider_move_z->setMinimum(-100);
+        slider_move_z->setMaximum(100);
+        slider_move_z->setOrientation(Qt::Horizontal);
         frame_settings_move_scale = new QFrame(frame_settings_move);
         frame_settings_move_scale->setObjectName(QString::fromUtf8("frame_settings_move_scale"));
         frame_settings_move_scale->setGeometry(QRect(0, 210, 303, 53));
@@ -481,36 +400,6 @@ public:
 "\n"
 ""));
         label_settings_move_scale->setAlignment(Qt::AlignCenter);
-        horizontalSlider_settings_move_scale = new QSlider(frame_settings_move_scale);
-        horizontalSlider_settings_move_scale->setObjectName(QString::fromUtf8("horizontalSlider_settings_move_scale"));
-        horizontalSlider_settings_move_scale->setGeometry(QRect(151, 26, 151, 26));
-        horizontalSlider_settings_move_scale->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
-"background-color: rgb(50, 50, 50);\n"
-" \n"
-"\n"
-"\n"
-"\n"
-""));
-        horizontalSlider_settings_move_scale->setMinimum(0);
-        horizontalSlider_settings_move_scale->setMaximum(20);
-        horizontalSlider_settings_move_scale->setPageStep(0);
-        horizontalSlider_settings_move_scale->setOrientation(Qt::Horizontal);
-        doubleSpinBox_settings_move_scale = new QDoubleSpinBox(frame_settings_move_scale);
-        doubleSpinBox_settings_move_scale->setObjectName(QString::fromUtf8("doubleSpinBox_settings_move_scale"));
-        doubleSpinBox_settings_move_scale->setGeometry(QRect(151, 1, 150, 26));
-        doubleSpinBox_settings_move_scale->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
-"background-color: rgb(50, 50, 50);\n"
-" \n"
-"\n"
-"\n"
-"\n"
-""));
-        doubleSpinBox_settings_move_scale->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        doubleSpinBox_settings_move_scale->setDecimals(1);
-        doubleSpinBox_settings_move_scale->setMinimum(0.100000000000000);
-        doubleSpinBox_settings_move_scale->setMaximum(20.000000000000000);
-        doubleSpinBox_settings_move_scale->setSingleStep(0.100000000000000);
-        doubleSpinBox_settings_move_scale->setValue(1.000000000000000);
         frame_screen = new QFrame(centralwidget);
         frame_screen->setObjectName(QString::fromUtf8("frame_screen"));
         frame_screen->setGeometry(QRect(255, 330, 303, 63));
@@ -633,9 +522,9 @@ public:
         label_settings_view_polygon_width = new QLabel(frame_settings_view_polygon);
         label_settings_view_polygon_width->setObjectName(QString::fromUtf8("label_settings_view_polygon_width"));
         label_settings_view_polygon_width->setGeometry(QRect(1, 30, 120, 31));
-        QFont font;
-        font.setPointSize(13);
-        label_settings_view_polygon_width->setFont(font);
+        QFont font1;
+        font1.setPointSize(13);
+        label_settings_view_polygon_width->setFont(font1);
         label_settings_view_polygon_width->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
 "background-color: rgb(50, 50, 50);\n"
 "\n"
@@ -739,8 +628,8 @@ public:
         label_settings_view_polygon_display = new QLabel(frame_settings_view_vertex);
         label_settings_view_polygon_display->setObjectName(QString::fromUtf8("label_settings_view_polygon_display"));
         label_settings_view_polygon_display->setGeometry(QRect(1, 0, 120, 31));
-        QFont font1;
-        label_settings_view_polygon_display->setFont(font1);
+        QFont font2;
+        label_settings_view_polygon_display->setFont(font2);
         label_settings_view_polygon_display->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
 "background-color: rgb(50, 50, 50);\n"
 "font-size: 13px;"));
@@ -829,9 +718,9 @@ public:
         label_info_object_info_vertex_count_2 = new QLabel(frame_info_object_info_2);
         label_info_object_info_vertex_count_2->setObjectName(QString::fromUtf8("label_info_object_info_vertex_count_2"));
         label_info_object_info_vertex_count_2->setGeometry(QRect(1, 30, 120, 31));
-        QFont font2;
-        font2.setPointSize(12);
-        label_info_object_info_vertex_count_2->setFont(font2);
+        QFont font3;
+        font3.setPointSize(12);
+        label_info_object_info_vertex_count_2->setFont(font3);
         label_info_object_info_vertex_count_2->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
 "background-color: rgb(50, 50, 50);\n"
 " \n"
@@ -885,6 +774,48 @@ public:
 "\n"
 ""));
         label_info_object_info_polygon_count_ans_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        horizontalSlider_settings_move_scale = new QSlider(centralwidget);
+        horizontalSlider_settings_move_scale->setObjectName(QString::fromUtf8("horizontalSlider_settings_move_scale"));
+        horizontalSlider_settings_move_scale->setGeometry(QRect(120, 470, 151, 26));
+        horizontalSlider_settings_move_scale->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
+"background-color: rgb(50, 50, 50);\n"
+" \n"
+"\n"
+"\n"
+"\n"
+""));
+        horizontalSlider_settings_move_scale->setMinimum(0);
+        horizontalSlider_settings_move_scale->setMaximum(20);
+        horizontalSlider_settings_move_scale->setPageStep(0);
+        horizontalSlider_settings_move_scale->setOrientation(Qt::Horizontal);
+        slider_scale = new QSlider(centralwidget);
+        slider_scale->setObjectName(QString::fromUtf8("slider_scale"));
+        slider_scale->setGeometry(QRect(380, 490, 111, 31));
+        slider_scale->setMinimum(-50);
+        slider_scale->setMaximum(50);
+        slider_scale->setOrientation(Qt::Horizontal);
+        doubleSpinBox_settings_move_scale = new QDoubleSpinBox(centralwidget);
+        doubleSpinBox_settings_move_scale->setObjectName(QString::fromUtf8("doubleSpinBox_settings_move_scale"));
+        doubleSpinBox_settings_move_scale->setGeometry(QRect(120, 430, 150, 26));
+        doubleSpinBox_settings_move_scale->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
+"background-color: rgb(50, 50, 50);\n"
+" \n"
+"\n"
+"\n"
+"\n"
+""));
+        doubleSpinBox_settings_move_scale->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        doubleSpinBox_settings_move_scale->setDecimals(1);
+        doubleSpinBox_settings_move_scale->setMinimum(0.100000000000000);
+        doubleSpinBox_settings_move_scale->setMaximum(20.000000000000000);
+        doubleSpinBox_settings_move_scale->setSingleStep(0.100000000000000);
+        doubleSpinBox_settings_move_scale->setValue(1.000000000000000);
+        double_spinbox_scale = new QDoubleSpinBox(centralwidget);
+        double_spinbox_scale->setObjectName(QString::fromUtf8("double_spinbox_scale"));
+        double_spinbox_scale->setGeometry(QRect(381, 450, 91, 22));
+        double_spinbox_scale->setMinimum(-50.000000000000000);
+        double_spinbox_scale->setMaximum(50.000000000000000);
+        double_spinbox_scale->setSingleStep(0.100000000000000);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
