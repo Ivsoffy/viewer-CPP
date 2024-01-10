@@ -1,5 +1,7 @@
 #include "AffineTransformations.h"
 
+#include <iostream>////////////////////////////TODO
+
 void s21::AffineTransformations::SetMoveX(double distance) {
   CleanData();
   move_x_ = distance - old_move_x_;
@@ -39,7 +41,24 @@ void s21::AffineTransformations::SetAngleZ(double angle) {
 void s21::AffineTransformations::SetScale(double scale) {
   CleanData();
   scale_ = scale - old_scale_;
+  // scale_ = scale;
+  // std::cerr << "scale_1=" << scale_ << " | old_scale_=" <<   old_scale_ << std::endl;/////////////////////TODO
+  // std::cerr << "scale=" << scale << std::endl;/////////////////////TODO
+  // scale_ = scale;
+  // scale_ = pow(5, scale / 100.0);
+  // if (scale >= 1) {
+  //   scale_ = scale - old_scale_;
+  // } else {
+  //   // scale_ = -scale - old_scale_;
+  //   scale_ = 1;
+  // }
   old_scale_ = scale;
+  std::cerr << "scale=" << scale << " scale_=" << scale_ <<" old_scale_=" <<  old_scale_ << std::endl;/////////////////////TODO
+  // if (scale_ < 1) {
+  //   scale_;
+  // } else if (scale_ > 1) {
+    
+  // }
 }
 
 void s21::AffineTransformations::CleanData() {
@@ -49,7 +68,7 @@ void s21::AffineTransformations::CleanData() {
   angle_x_ = 0;
   angle_y_ = 0;
   angle_z_ = 0;
-  scale_ = 1;
+  scale_ = 0;
 }
 
 void s21::AffineTransformations::Trasformate(double *x_, double *y_, double *z_) {
@@ -86,19 +105,18 @@ void s21::AffineTransformations::Trasformate(double *x_, double *y_, double *z_)
     *y_ = (x * sin(angle_z) + y * cos(angle_z));
   }
 
-  // if (scale_ != 1) {
-  //   *x_ = (*x_ * scale_);
-  //   *y_ = (*y_ * scale_);
-  //   *z_ = (*z_ * scale_);
-  // }
-
-  if (scale_ > 1) {
+  if (scale_ != 0) {
     *x_ = (*x_ * scale_);
     *y_ = (*y_ * scale_);
     *z_ = (*z_ * scale_);
-  } else if (scale_ < -1) {
-    *x_ = (*x_ / -scale_);
-    *y_ = (*y_ / -scale_);
-    *z_ = (*z_ / -scale_);
+  }
+  if (scale_ < 0) {
+    *x_ = (*x_ * (-scale_ + 1));
+    *y_ = (*y_ * (-scale_ + 1));
+    *z_ = (*z_ * (-scale_ + 1));
+  } else if (scale_ > 0) {
+    *x_ = (*x_ * (scale_ + 1));
+    *y_ = (*y_ * (scale_ + 1));
+    *z_ = (*z_ * (scale_ + 1));
   }
 }

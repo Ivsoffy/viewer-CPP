@@ -4,6 +4,7 @@
 
 #include <ctime>/////////////////////////////TODO
 #include <chrono>/////////////////////TODO
+#include <iostream>////////////////////////////TODO
 using std::chrono::duration_cast;////////////////////////////TODO
 using std::chrono::milliseconds;////////////////////////////TODO
 using std::chrono::system_clock;////////////////////////////TODO
@@ -35,7 +36,6 @@ MainWindow::~MainWindow() { delete ui; }
 
 
 void MainWindow::connects() {
-    ///////////////////////////////
     connect(this->ui->slider_rot_x, SIGNAL(valueChanged(int)), this,
             SLOT(valueChanged_to_Slider_rot_x(int)));
     connect(this->ui->spinbox_rot_x, SIGNAL(valueChanged(int)), this,
@@ -98,8 +98,10 @@ void MainWindow::choose_file() {
 }
 
 void MainWindow::redraw() {
-  controller_->TransferFigureParams();
-  ui->openGLWidget->update();
+  if (ui->openGLWidget->need_paint) {
+      controller_->TransferFigureParams();
+      ui->openGLWidget->update();
+  }
 }
 
 void MainWindow::valueChanged_to_Slider_rot_x(int value) {

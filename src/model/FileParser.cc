@@ -25,7 +25,8 @@ void s21::Figure::FileParser::Parser(s21::Figure *figure, std::string file_name)
   file.close();
 //////////////////////////////////////////////////////////////////////////////////////////
   // std::cerr << std::endl;/////////////////////
-  // for (unsigned i = 0; i < figure->GetEdgesVector().size(); ++i) {
+  // // for (unsigned i = 0; i < figure->GetEdgesVector().size(); ++i) {
+  // for (unsigned i = 0; i < 10; ++i) {
   //   std::cerr << figure->GetEdgesVector().at(i) + 1 << "|";/////////////////////
   // }
   // std::cerr << std::endl;/////////////////////
@@ -117,14 +118,17 @@ void s21::Figure::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
       }
     }
     if (edge_counter != 0) {
-      if ((index - 1 - space_1) > 1) {
-        num_int = std::stoi(line.substr(space_1 + 1, index - (space_1 + 1)));
-        if (num_int < 0) {
-          num_int = figure->vertices_.size() + num_int + 1;
+      if ((index - 1 - space_1) > 0) {
+        std::string string_to_check = line.substr(space_1 + 1, index - (space_1 + 1));
+        if (string_to_check != "\r") {
+          num_int = std::stoi(string_to_check);
+          if (num_int < 0) {
+            num_int = figure->vertices_.size() + num_int + 1;
+          }
+          figure->edges_.push_back(num_int - 1);
+          figure->edges_.push_back(num_int - 1);
+          edge_counter += 2;
         }
-        figure->edges_.push_back(num_int - 1);
-        figure->edges_.push_back(num_int - 1);
-        edge_counter += 2;
       }
       index_to_loop = figure->edges_.size() - edge_counter;
       figure->edges_.push_back(figure->edges_[index_to_loop]);

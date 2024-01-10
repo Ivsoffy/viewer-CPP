@@ -99,9 +99,7 @@ public:
     QLabel *label_info_object_info_file_name_ans_2;
     QLabel *label_info_object_info_vertex_count_ans_2;
     QLabel *label_info_object_info_polygon_count_ans_2;
-    QSlider *horizontalSlider_settings_move_scale;
     QSlider *slider_scale;
-    QDoubleSpinBox *doubleSpinBox_settings_move_scale;
     QDoubleSpinBox *double_spinbox_scale;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -353,8 +351,8 @@ public:
         slider_move_x = new QSlider(frame_settings_move_move);
         slider_move_x->setObjectName(QString::fromUtf8("slider_move_x"));
         slider_move_x->setGeometry(QRect(40, 60, 111, 31));
-        slider_move_x->setMinimum(-100);
-        slider_move_x->setMaximum(100);
+        slider_move_x->setMinimum(-1000);
+        slider_move_x->setMaximum(1000);
         slider_move_x->setOrientation(Qt::Horizontal);
         slider_move_y = new QSlider(frame_settings_move_move);
         slider_move_y->setObjectName(QString::fromUtf8("slider_move_y"));
@@ -774,48 +772,21 @@ public:
 "\n"
 ""));
         label_info_object_info_polygon_count_ans_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        horizontalSlider_settings_move_scale = new QSlider(centralwidget);
-        horizontalSlider_settings_move_scale->setObjectName(QString::fromUtf8("horizontalSlider_settings_move_scale"));
-        horizontalSlider_settings_move_scale->setGeometry(QRect(120, 470, 151, 26));
-        horizontalSlider_settings_move_scale->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
-"background-color: rgb(50, 50, 50);\n"
-" \n"
-"\n"
-"\n"
-"\n"
-""));
-        horizontalSlider_settings_move_scale->setMinimum(0);
-        horizontalSlider_settings_move_scale->setMaximum(20);
-        horizontalSlider_settings_move_scale->setPageStep(0);
-        horizontalSlider_settings_move_scale->setOrientation(Qt::Horizontal);
         slider_scale = new QSlider(centralwidget);
         slider_scale->setObjectName(QString::fromUtf8("slider_scale"));
-        slider_scale->setGeometry(QRect(380, 490, 111, 31));
-        slider_scale->setMinimum(-50);
-        slider_scale->setMaximum(50);
+        slider_scale->setGeometry(QRect(410, 480, 111, 31));
+        slider_scale->setMinimum(0);
+        slider_scale->setMaximum(20);
+        slider_scale->setValue(1);
         slider_scale->setOrientation(Qt::Horizontal);
-        doubleSpinBox_settings_move_scale = new QDoubleSpinBox(centralwidget);
-        doubleSpinBox_settings_move_scale->setObjectName(QString::fromUtf8("doubleSpinBox_settings_move_scale"));
-        doubleSpinBox_settings_move_scale->setGeometry(QRect(120, 430, 150, 26));
-        doubleSpinBox_settings_move_scale->setStyleSheet(QString::fromUtf8("border: 1px  solid rgb(150, 150, 150) ;\n"
-"background-color: rgb(50, 50, 50);\n"
-" \n"
-"\n"
-"\n"
-"\n"
-""));
-        doubleSpinBox_settings_move_scale->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        doubleSpinBox_settings_move_scale->setDecimals(1);
-        doubleSpinBox_settings_move_scale->setMinimum(0.100000000000000);
-        doubleSpinBox_settings_move_scale->setMaximum(20.000000000000000);
-        doubleSpinBox_settings_move_scale->setSingleStep(0.100000000000000);
-        doubleSpinBox_settings_move_scale->setValue(1.000000000000000);
         double_spinbox_scale = new QDoubleSpinBox(centralwidget);
         double_spinbox_scale->setObjectName(QString::fromUtf8("double_spinbox_scale"));
-        double_spinbox_scale->setGeometry(QRect(381, 450, 91, 22));
-        double_spinbox_scale->setMinimum(-50.000000000000000);
-        double_spinbox_scale->setMaximum(50.000000000000000);
+        double_spinbox_scale->setGeometry(QRect(420, 440, 91, 22));
+        double_spinbox_scale->setDecimals(1);
+        double_spinbox_scale->setMinimum(0.100000000000000);
+        double_spinbox_scale->setMaximum(20.000000000000000);
         double_spinbox_scale->setSingleStep(0.100000000000000);
+        double_spinbox_scale->setValue(1.000000000000000);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));

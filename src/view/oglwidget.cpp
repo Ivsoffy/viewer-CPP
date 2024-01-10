@@ -54,9 +54,7 @@ std::vector<s21::Vertex>* OGLwidget::GetVerticesRef() {
 std::vector<unsigned>* OGLwidget::GetEdgesRef() {
     return edges_;
 }
-//////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
+
 void OGLwidget::paintGL() {
 
   if (need_paint) {
@@ -131,107 +129,16 @@ void OGLwidget::paintGL() {
   glColor3d(line_color_r / 255.0, line_color_g / 255.0,
             line_color_b / 255.0);
 
-   std::cerr << ">>>>>>>paintGL<<<<<<<" << std::endl;/////////////////////TODO
-   auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+  //  std::cerr << ">>>>>>>paintGL<<<<<<<" << std::endl;/////////////////////TODO
+  //  auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
 
   // Отрисовка куба
   glDrawElements(GL_LINES, edges_->size(), GL_UNSIGNED_INT, edges_->data());
 
-   auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
-   std::cerr << millisec_end - millisec_start << "<<<<<<<<paintGL>>>>>>>" << std::endl;/////////////////////TODO
+  //  auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+  //  std::cerr << millisec_end - millisec_start << "<<<<<<<<paintGL>>>>>>>" << std::endl;/////////////////////TODO
 
   // Отключение атрибута вершин
   glDisableClientState(GL_VERTEX_ARRAY);
   }
 }
-// //////////////////////////////////////////////////////////////
-// //////////////////////////////////////////////////////////////
-// //////////////////////////////////////////////////////////////
-// void OGLwidget::paintGL() {
-
-//   if (need_paint) {
-//   glClearColor(background_color_r / 255.0, background_color_g / 255.0,
-//                background_color_b / 255.0, 0);
-
-//   //очистка экрана и буфера глубины
-//   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-//   glMatrixMode(GL_MODELVIEW);
-//   glLoadIdentity();
-
-
-//   glRotatef(-30.0f, 1.0f, 0.0f, 0.0f); // Наклон оси X на 60 градусов вперед
-//   glRotatef(30.0f, 0.0f, 1.0f, 0.0f); // Наклон оси Y на 60 градусов влево
-
-//   // Отрисовка осей
-//   glBegin(GL_LINES);
-
-//   // Ось X (красный цвет)
-//   glColor3f(1.0f, 0.0f, 0.0f);
-//   glVertex3f(-100.0f, 0.0f, 0.0f);
-//   glVertex3f(100.0f, 0.0f, 0.0f);
-
-//   // Ось Y (зеленый цвет)
-//   glColor3f(0.0f, 100.0f, 0.0f);
-//   glVertex3f(0.0f, -100.0f, 0.0f);
-//   glVertex3f(0.0f, 100.0f, 0.0f);
-
-//   // Ось Z (синий цвет)
-//   glColor3f(0.0f, 0.0f, 100.0f);
-//   glVertex3f(0.0f, 0.0f, -100.0f);
-//   glVertex3f(0.0f, 0.0f, 100.0f);
-
-//   glEnd();
-
-//   if (view_type) {
-//     double fov = frustum_fov * M_PI / 180;
-//     double frustum_near = frustum_hight / (2 * tan(fov / 2));
-//     frustum_near *= fabs(scale);
-//     glFrustum(-frustum_widht, frustum_widht, -frustum_hight, frustum_hight,
-//               frustum_near, frustum_far);
-//   } else {
-//     glOrtho(-scale, scale, -scale, scale, -scale, scale);
-//   }
-
-//   if (line_type) {
-//     glLineStipple(1, 0x3333);
-//     glEnable(GL_LINE_STIPPLE);
-//   }
-
-//   // Включение атрибута вершин
-//   glEnableClientState(GL_VERTEX_ARRAY);
-// //   glVertexPointer(3, GL_DOUBLE, 0, 0);
-//    glVertexPointer(3, GL_DOUBLE, 0, vertices_->data());
-
-//   if (vertex_type != NONE) {
-//     // size and color of vertex
-//     glPointSize(vertex_size);
-//     glColor3d(vertex_color_r / 255.0, vertex_color_g / 255.0,
-//               vertex_color_b / 255.0);
-
-//     if (vertex_type == CIRCLE) glEnable(GL_POINT_SMOOTH);
-
-  
-//     // paint vertex
-//     glDrawArrays(GL_POINTS, 0, vertices_->size());
-//     if (vertex_type == CIRCLE) glDisable(GL_POINT_SMOOTH);
-//   }
-
-//   glLineWidth(1);
-//   glColor3d(line_color_r / 255.0, line_color_g / 255.0,
-//             line_color_b / 255.0);
-
-//   std::cerr << ">>>>>>>paintGL<<<<<<<" << std::endl;/////////////////////TODO
-//   auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
-
-//   // Отрисовка куба
-//   glDrawElements(GL_LINES, edges_->size(), GL_UNSIGNED_INT, edges_->data());
-//   std::cerr << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << std::endl;
-
-//   auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
-//   std::cerr << millisec_end - millisec_start << "<<<<<<<<paintGL>>>>>>>" << std::endl;/////////////////////TODO
-
-//   // Отключение атрибута вершин
-//   glDisableClientState(GL_VERTEX_ARRAY);
-//   }
-// }
