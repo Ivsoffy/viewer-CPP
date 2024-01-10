@@ -86,9 +86,19 @@ void s21::AffineTransformations::Trasformate(double *x_, double *y_, double *z_)
     *y_ = (x * sin(angle_z) + y * cos(angle_z));
   }
 
-  if (scale_ != 1) {
+  // if (scale_ != 1) {
+  //   *x_ = (*x_ * scale_);
+  //   *y_ = (*y_ * scale_);
+  //   *z_ = (*z_ * scale_);
+  // }
+
+  if (scale_ > 1) {
     *x_ = (*x_ * scale_);
     *y_ = (*y_ * scale_);
     *z_ = (*z_ * scale_);
+  } else if (scale_ < -1) {
+    *x_ = (*x_ / -scale_);
+    *y_ = (*y_ / -scale_);
+    *z_ = (*z_ / -scale_);
   }
 }

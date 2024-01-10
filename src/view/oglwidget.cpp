@@ -131,14 +131,14 @@ void OGLwidget::paintGL() {
   glColor3d(line_color_r / 255.0, line_color_g / 255.0,
             line_color_b / 255.0);
 
-  // std::cerr << ">>>>>>>paintGL<<<<<<<" << std::endl;/////////////////////TODO
-  // auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+   std::cerr << ">>>>>>>paintGL<<<<<<<" << std::endl;/////////////////////TODO
+   auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
 
   // Отрисовка куба
   glDrawElements(GL_LINES, edges_->size(), GL_UNSIGNED_INT, edges_->data());
 
-  // auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
-  // std::cerr << millisec_end - millisec_start << "<<<<<<<<paintGL>>>>>>>" << std::endl;/////////////////////TODO
+   auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+   std::cerr << millisec_end - millisec_start << "<<<<<<<<paintGL>>>>>>>" << std::endl;/////////////////////TODO
 
   // Отключение атрибута вершин
   glDisableClientState(GL_VERTEX_ARRAY);

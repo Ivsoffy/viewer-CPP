@@ -328,54 +328,11 @@ background-color: rgb(50, 50, 50);
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
-     <widget class="QSpinBox" name="spinbox_rot_x">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>30</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-      <property name="minimum">
-       <number>-180</number>
-      </property>
-      <property name="maximum">
-       <number>180</number>
-      </property>
-     </widget>
      <widget class="QSlider" name="slider_rot_y">
       <property name="geometry">
        <rect>
         <x>40</x>
         <y>120</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="minimum">
-       <number>-180</number>
-      </property>
-      <property name="maximum">
-       <number>180</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QSlider" name="slider_rot_z">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>180</y>
         <width>111</width>
         <height>31</height>
        </rect>
@@ -436,6 +393,49 @@ background-color: rgb(50, 50, 50);
       </property>
       <property name="maximum">
        <number>180</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spinbox_rot_x">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>30</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="minimum">
+       <number>-180</number>
+      </property>
+      <property name="maximum">
+       <number>180</number>
+      </property>
+     </widget>
+     <widget class="QSlider" name="slider_rot_z">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>180</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>-180</number>
+      </property>
+      <property name="maximum">
+       <number>180</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </widget>
@@ -730,74 +730,6 @@ background-color: rgb(50, 50, 50);
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QSlider" name="horizontalSlider_settings_move_scale">
-      <property name="geometry">
-       <rect>
-        <x>151</x>
-        <y>26</y>
-        <width>151</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="minimum">
-       <number>0</number>
-      </property>
-      <property name="maximum">
-       <number>20</number>
-      </property>
-      <property name="pageStep">
-       <number>0</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_settings_move_scale">
-      <property name="geometry">
-       <rect>
-        <x>151</x>
-        <y>1</y>
-        <width>150</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-      <property name="decimals">
-       <number>1</number>
-      </property>
-      <property name="minimum">
-       <double>0.100000000000000</double>
-      </property>
-      <property name="maximum">
-       <double>20.000000000000000</double>
-      </property>
-      <property name="singleStep">
-       <double>0.100000000000000</double>
-      </property>
-      <property name="value">
-       <double>1.000000000000000</double>
       </property>
      </widget>
     </widget>
@@ -1707,6 +1639,112 @@ background-color: rgb(50, 50, 50);
       </property>
      </widget>
     </widget>
+   </widget>
+   <widget class="QSlider" name="horizontalSlider_settings_move_scale">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>470</y>
+      <width>151</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
+background-color: rgb(50, 50, 50);
+ 
+
+
+
+</string>
+    </property>
+    <property name="minimum">
+     <number>0</number>
+    </property>
+    <property name="maximum">
+     <number>20</number>
+    </property>
+    <property name="pageStep">
+     <number>0</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="slider_scale">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>490</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>-50</number>
+    </property>
+    <property name="maximum">
+     <number>50</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="doubleSpinBox_settings_move_scale">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>430</y>
+      <width>150</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
+background-color: rgb(50, 50, 50);
+ 
+
+
+
+</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+    <property name="decimals">
+     <number>1</number>
+    </property>
+    <property name="minimum">
+     <double>0.100000000000000</double>
+    </property>
+    <property name="maximum">
+     <double>20.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.100000000000000</double>
+    </property>
+    <property name="value">
+     <double>1.000000000000000</double>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="double_spinbox_scale">
+    <property name="geometry">
+     <rect>
+      <x>381</x>
+      <y>450</y>
+      <width>91</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <double>-50.000000000000000</double>
+    </property>
+    <property name="maximum">
+     <double>50.000000000000000</double>
+    </property>
+    <property name="singleStep">
+     <double>0.100000000000000</double>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
