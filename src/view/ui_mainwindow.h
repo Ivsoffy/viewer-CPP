@@ -794,7 +794,7 @@ public:
         slider_scale_2->setGeometry(QRect(260, 480, 111, 31));
         slider_scale_2->setMinimum(-100);
         slider_scale_2->setMaximum(300);
-        slider_scale_2->setSingleStep(10);
+        slider_scale_2->setSingleStep(1);
         slider_scale_2->setValue(0);
         slider_scale_2->setSliderPosition(0);
         slider_scale_2->setOrientation(Qt::Horizontal);
@@ -803,7 +803,7 @@ public:
         spinbox_scale_2->setGeometry(QRect(270, 440, 101, 22));
         spinbox_scale_2->setMinimum(-100);
         spinbox_scale_2->setMaximum(300);
-        spinbox_scale_2->setSingleStep(10);
+        spinbox_scale_2->setSingleStep(1);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));

@@ -52,9 +52,13 @@ void s21::AffineTransformations::SetAngleZ(double angle) {
 // }
 void s21::AffineTransformations::SetScale(double scale) {
   CleanData();
-  scale = scale / 10.0;
   scale_ = scale - old_scale_;
+
+  scale_ = pow(5, scale / 100.0);
+  // scale = scale / 10.0;  
   
+
+
   old_scale_ = scale;
 
   // scale_ = pow(2, scale / 100.0);
@@ -131,13 +135,13 @@ void s21::AffineTransformations::Trasformate(double *x_, double *y_, double *z_)
   //   *y_ = (*y_ * (scale_ + 1));
   //   *z_ = (*z_ * (scale_ + 1));
   // }
-  if (scale_ < 0) {
-    *x_ = (*x_ / -scale_);
-    *y_ = (*y_ / -scale_);
-    *z_ = (*z_ / -scale_);
-  } else if (scale_ > 0) {
-    *y_ = (*y_ * scale_);
-    *z_ = (*z_ * scale_);
-    *x_ = (*x_ * scale_);
-  }
+  // if (scale_ < 0) {
+  //   *x_ = (*x_ / -scale_);
+  //   *y_ = (*y_ / -scale_);
+  //   *z_ = (*z_ / -scale_);
+  // } else if (scale_ > 0) {
+  //   *y_ = (*y_ * scale_);
+  //   *z_ = (*z_ * scale_);
+  //   *x_ = (*x_ * scale_);
+  // }
 }
