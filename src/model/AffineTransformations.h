@@ -26,7 +26,7 @@ class AffineTransformations {
         static void TrasformateVertex(s21::Vertex *vertex_def, s21::Vertex *vertex_draw);
         // static void Trasformate(double *x_, double *y_, double *z_, Figure *figure_draw_);
         // void TrasformateVectorOfVerteces(s21::Figure *figure_draw);
-        void CleanData();
+        // void CleanData();
         
     private:
         static inline double move_x_{};
