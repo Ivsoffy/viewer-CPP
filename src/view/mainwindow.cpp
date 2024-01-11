@@ -40,7 +40,6 @@ void MainWindow::connects() {
             SLOT(valueChanged_to_Slider_rot_x(int)));
     connect(this->ui->spinbox_rot_x, SIGNAL(valueChanged(int)), this,
             SLOT(valueChanged_to_Spinbox_rot_x(int)));
-
     connect(this->ui->slider_rot_y, SIGNAL(valueChanged(int)), this,
             SLOT(valueChanged_to_Slider_rot_y(int)));
     connect(this->ui->spinbox_rot_y, SIGNAL(valueChanged(int)), this,
@@ -114,8 +113,6 @@ void MainWindow::redraw() {
 
 void MainWindow::valueChanged_to_Slider_rot_x(int value) {
   ui->spinbox_rot_x->setValue(value);
-  controller_->GetAffineTransformationsRef()->SetAngleX(value);
-  redraw();
 }
 
 void MainWindow::valueChanged_to_Spinbox_rot_x(int value) {
@@ -126,8 +123,6 @@ void MainWindow::valueChanged_to_Spinbox_rot_x(int value) {
 
 void MainWindow::valueChanged_to_Slider_rot_y(int value) {
   ui->spinbox_rot_y->setValue(value);
-  controller_->GetAffineTransformationsRef()->SetAngleY(value);
-  redraw();
 }
 
 void MainWindow::valueChanged_to_Spinbox_rot_y(int value) {
@@ -138,8 +133,6 @@ void MainWindow::valueChanged_to_Spinbox_rot_y(int value) {
 
 void MainWindow::valueChanged_to_Slider_rot_z(int value) {
   ui->spinbox_rot_z->setValue(value);
-  controller_->GetAffineTransformationsRef()->SetAngleZ(value);
-  redraw();
 }
 
 void MainWindow::valueChanged_to_Spinbox_rot_z(int value) {
@@ -150,8 +143,6 @@ void MainWindow::valueChanged_to_Spinbox_rot_z(int value) {
 
 void MainWindow::valueChanged_to_Slider_move_x(int value) {
   ui->spinbox_move_x->setValue(value);
-  controller_->GetAffineTransformationsRef()->SetMoveX(value);
-  redraw();
 }
 
 void MainWindow::valueChanged_to_Spinbox_move_x(int value) {
@@ -162,8 +153,6 @@ void MainWindow::valueChanged_to_Spinbox_move_x(int value) {
 
 void MainWindow::valueChanged_to_Slider_move_y(int value) {
   ui->spinbox_move_y->setValue(value);
-  controller_->GetAffineTransformationsRef()->SetMoveY(value);
-  redraw();
 }
 
 void MainWindow::valueChanged_to_Spinbox_move_y(int value) {
@@ -174,8 +163,6 @@ void MainWindow::valueChanged_to_Spinbox_move_y(int value) {
 
 void MainWindow::valueChanged_to_Slider_move_z(int value) {
   ui->spinbox_move_z->setValue(value);
-  controller_->GetAffineTransformationsRef()->SetMoveZ(value);
-  redraw();
 }
 
 void MainWindow::valueChanged_to_Spinbox_move_z(int value) {
@@ -186,8 +173,6 @@ void MainWindow::valueChanged_to_Spinbox_move_z(int value) {
 
 void MainWindow::valueChanged_to_Slider_scale(int value) {
   ui->double_spinbox_scale->setValue(value);
-  controller_->GetAffineTransformationsRef()->SetScale(value);
-  redraw();
 }
 
 void MainWindow::valueChanged_to_Double_spinbox_scale(double value) {
@@ -199,8 +184,6 @@ void MainWindow::valueChanged_to_Double_spinbox_scale(double value) {
 ////////////////////////////////////////////////////////////////////////
 void MainWindow::valueChanged_to_Slider_scale_2(int value) {
   ui->spinbox_scale_2->setValue(value);
-  controller_->GetAffineTransformationsRef()->SetScale(value);
-  redraw();
 }
 void MainWindow::valueChanged_to_Spinbox_scale_2(int value) {
   ui->slider_scale_2->setValue(value);

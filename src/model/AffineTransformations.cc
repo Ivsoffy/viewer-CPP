@@ -53,28 +53,15 @@ void s21::AffineTransformations::SetAngleZ(double angle) {
 void s21::AffineTransformations::SetScale(double scale) {
   CleanData();
   scale_ = scale - old_scale_;
-
-  scale_ = pow(5, scale / 100.0);
-  // scale = scale / 10.0;  
-  
-
-
+  std::cerr << "scale= " << scale << std::endl;/////////////////////TODO
+  std::cerr << "old_scale_= " << old_scale_ << std::endl;/////////////////////TODO
   old_scale_ = scale;
 
-  // scale_ = pow(2, scale / 100.0);
-  // scale = scale / 100.0;
-  // scale_ = pow(scale_, scale);
-  // scale_ = scale_ * scale;
+  scale_ = 1 + scale_ / 10;
 
-  // std::cerr << "scale= " << scale << std::endl;/////////////////////TODO
-  // std::cerr <<"old_scale_= " << old_scale_ << std::endl;/////////////////////TODO
+  std::cerr << "scale_= " << scale_ << std::endl;/////////////////////TODO
+  std::cerr << std::endl;/////////////////////TODO
 
-  // scale_ = scale - old_scale_;
-
-  // std::cerr << "scale_= " << scale_ << std::endl;/////////////////////TODO
-  // std::cerr << std::endl;/////////////////////TODO
-
-  // old_scale_ = scale;
 }
 
 void s21::AffineTransformations::CleanData() {
@@ -121,11 +108,16 @@ void s21::AffineTransformations::Trasformate(double *x_, double *y_, double *z_)
     *y_ = (x * sin(angle_z) + y * cos(angle_z));
   }
 
-  // if (scale_ != 0) {
-  //   *x_ = (*x_ * scale_);
-  //   *y_ = (*y_ * scale_);
-  //   *z_ = (*z_ * scale_);
-  // }
+  std::cerr << "*x_in= " << *x_ << std::endl;/////////////////////TODO
+  
+  if (scale_ != 0) {
+    *x_ = (*x_ * scale_);
+    *y_ = (*y_ * scale_);
+    *z_ = (*z_ * scale_);
+  }
+  std::cerr << "*x_ou= " << *x_ << std::endl;/////////////////////TODO
+  std::cerr << std::endl;/////////////////////TODO
+
   // if (scale_ < 0) {
   //   *x_ = (*x_ * (scale_ + 1));
   //   *y_ = (*y_ * (scale_ + 1));

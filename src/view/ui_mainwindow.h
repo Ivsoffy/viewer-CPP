@@ -804,6 +804,7 @@ public:
         spinbox_scale_2->setMinimum(-100);
         spinbox_scale_2->setMaximum(300);
         spinbox_scale_2->setSingleStep(1);
+        spinbox_scale_2->setValue(0);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
