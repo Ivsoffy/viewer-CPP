@@ -592,10 +592,10 @@ background-color: rgb(50, 50, 50);
        </rect>
       </property>
       <property name="minimum">
-       <number>-1000</number>
+       <number>-100</number>
       </property>
       <property name="maximum">
-       <number>1000</number>
+       <number>100</number>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -1690,9 +1690,9 @@ background-color: rgb(50, 50, 50);
    <widget class="QSlider" name="slider_scale_2">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>10</x>
       <y>480</y>
-      <width>111</width>
+      <width>371</width>
       <height>31</height>
      </rect>
     </property>
@@ -1735,6 +1735,16 @@ background-color: rgb(50, 50, 50);
     </property>
     <property name="value">
      <number>0</number>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="spinbox_scale_3">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>440</y>
+      <width>62</width>
+      <height>22</height>
+     </rect>
     </property>
    </widget>
   </widget>

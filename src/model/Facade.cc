@@ -20,21 +20,27 @@ void s21::Facade::SetPathToObject(std::string path) {
 }
 
 
-void s21::Facade::TrasformateFigure2() {
-  // auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
-  //
-  // figure_draw_->copy_figure(figure_def_);//90ms
-  //
-  // auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
-  // std::cerr << millisec_end - millisec_start << "<<copy_figure>>" << std::endl;/////////////////////TODO
+// void s21::Facade::TrasformateFigure() {
+//   // auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+//   //
+//   // figure_draw_->copy_figure(figure_def_);//90ms
+//   //
+//   // auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+//   // std::cerr << millisec_end - millisec_start << "<<copy_figure>>" << std::endl;/////////////////////TODO
 
-  // millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
-  //
-//  affineTransformations_->TrasformateVectorOfVerteces(figure_draw_);//80ms
-  figure_draw_->TransformFigure();//53ms
-  // *figure_draw_ = figure_def_->TransformFigure2(*figure_def_);
-  // affineTransformations_->Trasformate();// ->TransformFigure();
+//   // millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+//   //
+// //  affineTransformations_->TrasformateVectorOfVerteces(figure_draw_);//80ms
+
+
+//   // figure_draw_->TransformFigure();//53ms old one//last
+//   // figure_def_->TransformFigure(*figure_draw_);///////////<<--
+//   TrasformateFigure(*figure_def_, *figure_draw_);///////////<<--
+
+
+//   // *figure_draw_ = figure_def_->TransformFigure2(*figure_def_);
+//   // affineTransformations_->Trasformate();// ->TransformFigure();
   
-  // millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
-  // std::cerr << millisec_end - millisec_start << "<<TrasformateVectorOfVerteces>>" << std::endl;/////////////////////TODO
-}
+//   // millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+//   // std::cerr << millisec_end - millisec_start << "<<TrasformateVectorOfVerteces>>" << std::endl;/////////////////////TODO
+// }

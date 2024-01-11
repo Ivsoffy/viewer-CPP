@@ -353,8 +353,8 @@ public:
         slider_move_x = new QSlider(frame_settings_move_move);
         slider_move_x->setObjectName(QString::fromUtf8("slider_move_x"));
         slider_move_x->setGeometry(QRect(40, 60, 111, 31));
-        slider_move_x->setMinimum(-1000);
-        slider_move_x->setMaximum(1000);
+        slider_move_x->setMinimum(-100);
+        slider_move_x->setMaximum(100);
         slider_move_x->setOrientation(Qt::Horizontal);
         slider_move_y = new QSlider(frame_settings_move_move);
         slider_move_y->setObjectName(QString::fromUtf8("slider_move_y"));

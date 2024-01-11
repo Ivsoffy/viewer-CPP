@@ -11,10 +11,12 @@
 #include <sstream>
 #include <string>
 
-#include "Vertex.h"
-//#include "AffineTransformations.h"
+#include "AffineTransformations.h"
+// #include "Vertex.h"
 
 namespace s21 {
+
+class Vertex;
 
 class Figure {
  public:
@@ -31,22 +33,31 @@ class Figure {
     };
 
   Figure(){
-    vertices_.reserve(1000000);
-    edges_.reserve(1000000);
+    vertices_.reserve(10000010);
+    edges_.reserve(1000010);
   };
   ~Figure(){};
 
   void copy_figure(Figure *other) {
-    this->SetVertexesVector(other->GetVertexesVector());
+    this->SetVertexesVector(other->GetVerticesVector());
     this->SetEdgesVector(other->GetEdgesVector());
-    // this->SetPoligonsSizesVector(other->GetPoligonsSizesVector());
   };
 
-  void TransformFigure();//////////////////
-  s21::Figure TransformFigure2(s21::Figure figure);//////////////////
+  // void TransformFigure(s21::Figure* figure_def_, s21::Figure* figure_draw_) {
+  //   s21::Vertex::TransformVertices(figure_def_, figure_draw_);
+  //  };//////////////////
 
-  std::vector<s21::Vertex> GetVertexesVector() { return vertices_; };
-  std::vector<s21::Vertex>* GetVertexesVectorRef() { return &vertices_; };
+//  static void TransformFigure(s21::Figure* figure_def_, s21::Figure* figure_draw_) {//////////
+  void TransformFigure(s21::Figure* figure_draw_) {//////////
+      unsigned vector_size =  this->GetVerticesVectorRef()->size();
+      for (unsigned i = 0; i < vector_size; i++) {
+        AffineTransformations::TrasformateVertex(&(this->GetVerticesVectorRef()->at(i)),
+                                                &(figure_draw_->GetVerticesVectorRef()->at(i)));
+      }
+  };
+
+  std::vector<s21::Vertex> GetVerticesVector() { return vertices_; };
+  std::vector<s21::Vertex>* GetVerticesVectorRef() { return &vertices_; };
   std::vector<unsigned> GetEdgesVector() { return edges_; };
   std::vector<unsigned>* GetEdgesVectorRef() { return &edges_; };
 
