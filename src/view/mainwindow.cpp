@@ -62,18 +62,10 @@ void MainWindow::connects() {
     connect(this->ui->spinbox_rot_z, SIGNAL(valueChanged(int)), this,
             SLOT(valueChanged_to_Spinbox_rot_z(int)));
 
-
-
-    ///////////////////////////////////////////////////////////////
     connect(this->ui->slider_scale, SIGNAL(valueChanged(int)), this,
             SLOT(valueChanged_to_Slider_scale(int)));
-    connect(this->ui->spinbox_scale, SIGNAL(valueChanged(double)), this,
-            SLOT(valueChanged_to_Spinbox_scale(double)));
-
-    connect(this->ui->slider_scale_2, SIGNAL(valueChanged(int)), this,
-            SLOT(valueChanged_to_Slider_scale_2(int)));
-    connect(this->ui->spinbox_scale_2, SIGNAL(valueChanged(int)), this,
-            SLOT(valueChanged_to_Spinbox_scale_2(int)));
+    connect(this->ui->spinbox_scale, SIGNAL(valueChanged(int)), this,
+            SLOT(valueChanged_to_Spinbox_scale(int)));
 
 //  connect(ui->lineEdit_file_input, SIGNAL(returnPressed()), this,
 //          SLOT(open_file()));
@@ -178,37 +170,8 @@ void MainWindow::valueChanged_to_Spinbox_rot_z(int value) {
 void MainWindow::valueChanged_to_Slider_scale(int value) {
   ui->spinbox_scale->setValue(value);
 }
-void MainWindow::valueChanged_to_Spinbox_scale(double value) {
+void MainWindow::valueChanged_to_Spinbox_scale(int value) {
   ui->slider_scale->setValue(value);
-  controller_->GetAffineTransformationsRef()->SetScale(value);
-  redraw();
-}
-////////////////////////////////////////////////////////////////////
-//void MainWindow::valueChanged_to_Slider_scale_2(int value) {
-//  if (value == 0) {
-//      value = -2;
-//  } else if (value == -1) {
-//      value = 1;
-//  }
-//  ui->spinbox_scale_2->setValue(value);
-//}
-//void MainWindow::valueChanged_to_Spinbox_scale_2(int value) {
-//  if (value == 0) {
-//     value = -2;
-//     ui->spinbox_scale_2->setValue(value);
-//  } else if (value == -1) {
-//      value = 1;
-//  }
-//  ui->slider_scale_2->setValue(value);
-//  controller_->GetAffineTransformationsRef()->SetScale(value);
-//  redraw();
-//}
-////////////////////////////////////////////////////////////////////
-void MainWindow::valueChanged_to_Slider_scale_2(int value) {
-  ui->spinbox_scale_2->setValue(value);
-}
-void MainWindow::valueChanged_to_Spinbox_scale_2(int value) {
-  ui->slider_scale_2->setValue(value);
   controller_->GetAffineTransformationsRef()->SetScale(value);
   redraw();
 }

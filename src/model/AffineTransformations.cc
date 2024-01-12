@@ -46,16 +46,16 @@ void s21::AffineTransformations::SetAngleZ(double angle) {
 
 void s21::AffineTransformations::SetScale(double scale) {
   CleanData();
-  std::cerr << std::endl;/////////////////////TODO
-  std::cerr << "scale= " << scale << std::endl;/////////////////////TODO
-  std::cerr <<"old_scale_= " << old_scale_ << std::endl;/////////////////////TODO
+  // std::cerr << std::endl;/////////////////////TODO
+  // std::cerr << "scale= " << scale << std::endl;/////////////////////TODO
+  // std::cerr <<"old_scale_= " << old_scale_ << std::endl;/////////////////////TODO
 
   // std::cerr << "(double)(scale - old_scale_) / 100.0= " << (double)(scale - old_scale_) / 100.0 << std::endl;/////////////////////TODO
   // scale_ = scale - old_scale_;
   scale_ = pow(5, (double)(scale - old_scale_) / 100.0);
   old_scale_ = scale;
 
-  std::cerr << "scale_= " << scale_ << std::endl;/////////////////////TODO
+  // std::cerr << "scale_= " << scale_ << std::endl;/////////////////////TODO
 }
 
 void s21::AffineTransformations::CleanData() {
@@ -106,7 +106,7 @@ void s21::AffineTransformations::TrasformateVertex(s21::Vertex *vertex_def, s21:
   if (scale_ != 0 ) {
     // double real_scale = (scale_ + 1000000) / 1000000.0;
     double real_scale = scale_;
-    std::cerr << "real_scale= " << real_scale << std::endl;/////////////////////TODO
+    // std::cerr << "real_scale= " << real_scale << std::endl;/////////////////////TODO
     vertex_draw->SetX(vertex_draw->GetX() * real_scale);
     vertex_draw->SetY(vertex_draw->GetY() * real_scale);
     vertex_draw->SetZ(vertex_draw->GetZ() * real_scale);
