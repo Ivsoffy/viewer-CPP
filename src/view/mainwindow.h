@@ -53,7 +53,7 @@ class MainWindow : public QMainWindow {
 
   void take_screenshot();
   void record_gif();
-
+// 10 100 101000
 //  void user_settings_combo_box_change();
 //  void user_settings_double_spin_box_change();
 //  void user_settings_color_change();
@@ -75,6 +75,9 @@ class MainWindow : public QMainWindow {
 
   void valueChanged_to_Slider_scale(int value);
   void valueChanged_to_Spinbox_scale(double value);
+
+  void valueChanged_to_Slider_scale_2(int value);/////
+  void valueChanged_to_Spinbox_scale_2(int value);////
 
 //  void on_comboBox_settings_view_projection_type_currentIndexChanged(int index);
 
