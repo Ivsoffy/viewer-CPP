@@ -7,8 +7,7 @@ using std::chrono::milliseconds;////////////////////////////TODO
 using std::chrono::system_clock;////////////////////////////TODO
 
 void s21::Figure::FileParser::Parser(s21::Figure *figure, std::string file_name) {
-  std::cerr << "(((((((((((((((((((())))))))))))))))))))" << std::endl;/////////////////////TODO
-  auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+  // auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
 
   std::ifstream file;
   file.open(file_name);
@@ -32,11 +31,10 @@ void s21::Figure::FileParser::Parser(s21::Figure *figure, std::string file_name)
   // std::cerr << std::endl;/////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-  std::cerr << "))))))))))))))))))))((((((((((((((((((((" << std::endl;/////////////////////TODO
-  auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
-  std::cerr << millisec_end - millisec_start << std::endl;/////////////////////TODO
+  // auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+  // std::cerr << "))))))))))))))))))))" << millisec_end - millisec_start << "((((((((((((((((((((" << std::endl;/////////////////////TODO
 }
-
+ 
 void s21::Figure::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
   double num_double = 0;
   double temp_vertex_arr[3];

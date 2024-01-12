@@ -24,7 +24,7 @@ class Controller {
   std::vector<unsigned> *GetEdgesRef();
 
   s21::AffineTransformations GetAffineTransformations();
-  s21::AffineTransformations *GetAffineTransformationsRef();////////
+  s21::AffineTransformations *GetAffineTransformationsRef();
 
  private:
   Facade *facade_;

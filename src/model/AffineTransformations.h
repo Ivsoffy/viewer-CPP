@@ -7,8 +7,6 @@
 
 namespace s21 {
 
-//class Vertex;
-
 class AffineTransformations {
 
     public:
@@ -24,8 +22,6 @@ class AffineTransformations {
         void SetScale(double scale);
 
         static void TrasformateVertex(s21::Vertex *vertex_def, s21::Vertex *vertex_draw);
-        // static void Trasformate(double *x_, double *y_, double *z_, Figure *figure_draw_);
-        // void TrasformateVectorOfVerteces(s21::Figure *figure_draw);
         void CleanData();
         
     private:

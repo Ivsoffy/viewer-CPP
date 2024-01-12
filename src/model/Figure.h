@@ -12,7 +12,6 @@
 #include <string>
 
 #include "AffineTransformations.h"
-// #include "Vertex.h"
 
 namespace s21 {
 
@@ -43,12 +42,7 @@ class Figure {
     this->SetEdgesVector(other->GetEdgesVector());
   };
 
-  // void TransformFigure(s21::Figure* figure_def_, s21::Figure* figure_draw_) {
-  //   s21::Vertex::TransformVertices(figure_def_, figure_draw_);
-  //  };//////////////////
-
-//  static void TransformFigure(s21::Figure* figure_def_, s21::Figure* figure_draw_) {//////////
-  void TransformFigure(s21::Figure* figure_draw_) {//////////
+  void TransformFigure(s21::Figure* figure_draw_) {
       unsigned vector_size =  this->GetVerticesVectorRef()->size();
       for (unsigned i = 0; i < vector_size; i++) {
         AffineTransformations::TrasformateVertex(&(this->GetVerticesVectorRef()->at(i)),

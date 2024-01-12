@@ -2,7 +2,6 @@
 #define MODEL_FACADE_H_
 
 #include "../controller/ControllerDTO.h"
-// #include "../controller/Controller.h"
 #include "Figure.h"
 #include "Vertex.h"
 #include "AffineTransformations.h"
