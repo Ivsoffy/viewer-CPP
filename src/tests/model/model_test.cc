@@ -58,9 +58,6 @@ bool compareFile(std::string path_f1, std::string path_f2) {
 }
 
 bool is_vertices_equal(s21::Vertex v1, s21::Vertex v2) {
-  std::cerr << "v.GetX()"<< v1.GetX() << " " << v2.GetX()  << std::endl;
-  std::cerr << "v.GetY()"<< v1.GetY() << " " << v2.GetY()  << std::endl;
-  std::cerr << "v.GetZ()"<< v1.GetZ() << " " << v2.GetZ()  << std::endl;
   if (abs(v1.GetX() - v2.GetX()) > kEps) return false;
   if (abs(v1.GetY() - v2.GetY()) > kEps) return false;
   if (abs(v1.GetZ() - v2.GetZ()) > kEps) return false;

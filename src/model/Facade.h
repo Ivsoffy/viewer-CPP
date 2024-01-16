@@ -38,14 +38,19 @@ class Facade {
                       double angle_y,
                       double angle_z,
                       double scale) {
-    snapshot_ = new Snapshot(figure_draw_,
-                              move_x,
-                              move_y,
-                              move_z,
-                              angle_x,
-                              angle_y,
-                              angle_z,
-                              scale);
+    snapshot_ = new Snapshot(figure_def_,
+                            figure_draw_,
+                            move_x,
+                            move_y,
+                            move_z,
+                            angle_x,
+                            angle_y,
+                            angle_z,
+                            scale);
+  }
+
+  void Restore() {
+      snapshot_->Restore(figure_def_, figure_draw_);
   }
 
   Figure::FileParser GetFileParser() { return *fileParser_; }

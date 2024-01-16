@@ -265,19 +265,12 @@ void MainWindow::recording_stop() {
   repaint();
 }
 
-void MainWindow::CreateSnapshot(double move_x,
-                                double move_y,
-                                double move_z,
-                                double angle_x,
-                                double angle_y,
-                                double angle_z,
-                                double scale) 
-                                {
-                                  move_x = ui->spinbox_move_x->value();
-                                  move_y = ui->spinbox_move_y->value();
-                                  move_z = ui->spinbox_move_z->value();
-                                  angle_x = ui->spinbox_rot_x->value();
-                                  angle_y = ui->spinbox_rot_y->value();
-                                  angle_z = ui->spinbox_rot_z->value();
-                                  scale = ui->slider_scale->value();
+void MainWindow::CreateSnapshot() {
+    controller_->CreateSnapshot(ui->spinbox_move_x->value(),
+                                ui->spinbox_move_y->value(),
+                                ui->spinbox_move_z->value(),
+                                ui->spinbox_rot_x->value(),
+                                ui->spinbox_rot_y->value(),
+                                ui->spinbox_rot_z->value(),
+                                ui->slider_scale->value());
 }

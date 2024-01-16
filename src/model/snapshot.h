@@ -7,7 +7,8 @@ namespace s21 {
 
 class Snapshot {
 public:
-    Snapshot(s21::Figure *figure_draw,
+    Snapshot(s21::Figure *figure_def,
+            s21::Figure *figure_draw,
             double move_x,
             double move_y,
             double move_z,
@@ -23,12 +24,17 @@ public:
             angle_y_(angle_y),
             angle_z_(angle_z),
             scale_(scale)
-            { figure_.CopyFigure(figure_draw); };
+            { figure_def_.CopyFigure(figure_def);
+              figure_draw_.CopyFigure(figure_draw); };
     ~Snapshot(){};
-    void Restore() {};
+    void Restore(Figure *figure_def, Figure *figure_draw) {
+        figure_def->CopyFigure(&figure_def_);
+        figure_draw->CopyFigure(&figure_draw_);
+    };
 
 private:
-    s21::Figure figure_;
+    s21::Figure figure_def_;
+    s21::Figure figure_draw_;
     double move_x_{0};
     double move_y_{0};
     double move_z_{0};

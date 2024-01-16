@@ -25,6 +25,27 @@ class Controller {
 
   double GetMax();
 
+  void CreateSnapshot(double move_x,
+                      double move_y,
+                      double move_z,
+                      double angle_x,
+                      double angle_y,
+                      double angle_z,
+                      double scale
+                      ) {
+    facade_->CreateSnapshot(move_x,
+                            move_y,
+                            move_z,
+                            angle_x,
+                            angle_y,
+                            angle_z,
+                            scale);
+                      };
+
+  void Restore() {
+    facade_->Restore();
+  };
+
   s21::AffineTransformations *GetAffineTransformationsRef();
 
   Facade* GetFacadeRef() {return facade_; };

@@ -53,13 +53,9 @@ class MainWindow : public QMainWindow {
   void take_screenshot();
   void record_gif();
 
-  void CreateSnapshot(double move_x,
-                      double move_y,
-                      double move_z,
-                      double angle_x,
-                      double angle_y,
-                      double angle_z,
-                      double scale);
+  void CreateSnapshot();
+
+  void Restore() { controller_->Restore(); };
 
 //  void user_settings_combo_box_change();
 //  void user_settings_double_spin_box_change();
