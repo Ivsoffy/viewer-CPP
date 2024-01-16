@@ -11,7 +11,7 @@
 #include <QTimer>
 #include <iostream>
 
-#include "../controller/Controller.h"
+#include "../controller/controller.h"
 #include "oglwidget.h"
 
 #ifdef __APPLE__
@@ -53,7 +53,7 @@ class MainWindow : public QMainWindow {
 
   void take_screenshot();
   void record_gif();
-// 10 100 101000
+
 //  void user_settings_combo_box_change();
 //  void user_settings_double_spin_box_change();
 //  void user_settings_color_change();
@@ -74,14 +74,11 @@ class MainWindow : public QMainWindow {
   void valueChanged_to_Spinbox_move_z(int value);
 
   void valueChanged_to_Slider_scale(int value);
-  void valueChanged_to_Spinbox_scale(int value);
 
-//  void on_comboBox_settings_view_projection_type_currentIndexChanged(int index);
+  void combo_box_change();
 
-  void on_comboBox_settings_view_polygon_type_currentIndexChanged(int index);
   void on_doubleSpinBox_settings_view_polygon_width_valueChanged(double arg1);
 
-  void on_comboBox_settings_view_vertex_type_currentIndexChanged(int index);
   void on_doubleSpinBox_settings_view_vertex_size_valueChanged(double arg1);
 
   void on_pushButton_screen_start_clicked();
@@ -91,11 +88,9 @@ class MainWindow : public QMainWindow {
 
  private:
   s21::Controller *controller_;
-//  s21::ParamDTO * paramDTO_;
 
   Ui::MainWindow *ui;
 
-  //  struct object_data data = {0, NULL, 0, NULL, 0, 0, 0, 0, 0, 0};
   double max_coord;
 
 //  void init_settings();

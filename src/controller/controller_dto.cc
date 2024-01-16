@@ -1,4 +1,4 @@
-#include "ControllerDTO.h"
+#include "controller_dto.h"
 
 s21::ParamDTO::ParamDTO(double move_x, double move_y, double move_z,
                                     double angle_x, double angle_y,

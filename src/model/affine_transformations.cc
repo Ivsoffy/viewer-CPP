@@ -1,6 +1,4 @@
-#include "AffineTransformations.h"
-
-#include <iostream>////////////////////////////TODO
+#include "affine_transformations.h"
 
 void s21::AffineTransformations::SetMoveX(double value) {
   CleanData();
@@ -40,16 +38,9 @@ void s21::AffineTransformations::SetAngleZ(double angle) {
 
 void s21::AffineTransformations::SetScale(double scale) {
   CleanData();
-  // std::cerr << std::endl;/////////////////////TODO
-  // std::cerr << "scale= " << scale << std::endl;/////////////////////TODO
-  // std::cerr <<"old_scale_= " << old_scale_ << std::endl;/////////////////////TODO
-
-  // std::cerr << "(double)(scale - old_scale_) / 100.0= " << (double)(scale - old_scale_) / 100.0 << std::endl;/////////////////////TODO
-  // scale_ = scale - old_scale_;
-  scale_ = pow(5, (double)(scale - old_scale_) / 100.0);
+  scale_ = scale - old_scale_;
   old_scale_ = scale;
-
-  // std::cerr << "scale_= " << scale_ << std::endl;/////////////////////TODO
+  scale_ = pow(3, scale_ / 100.0);
 }
 
 void s21::AffineTransformations::CleanData() {
@@ -61,7 +52,6 @@ void s21::AffineTransformations::CleanData() {
   angle_z_ = 0;
   scale_ = 0;
 }
-
 
 void s21::AffineTransformations::TrasformateVertex(s21::Vertex *vertex_def, s21::Vertex *vertex_draw) {
   double angle_x = angle_x_ * M_PI / 180;
@@ -98,9 +88,8 @@ void s21::AffineTransformations::TrasformateVertex(s21::Vertex *vertex_def, s21:
   }
 
   if (scale_ != 0 ) {
-    double real_scale = scale_;
-    vertex_draw->SetX(vertex_draw->GetX() * real_scale);
-    vertex_draw->SetY(vertex_draw->GetY() * real_scale);
-    vertex_draw->SetZ(vertex_draw->GetZ() * real_scale);
+    vertex_draw->SetX(vertex_draw->GetX() * scale_);
+    vertex_draw->SetY(vertex_draw->GetY() * scale_);
+    vertex_draw->SetZ(vertex_draw->GetZ() * scale_);
   }
 }

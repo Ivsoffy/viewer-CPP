@@ -1,27 +1,25 @@
-#include "Figure.h"
-
-#include <ctime>/////////////////////////////TODO
-#include <chrono>/////////////////////TODO
-using std::chrono::duration_cast;////////////////////////////TODO
-using std::chrono::milliseconds;////////////////////////////TODO
-using std::chrono::system_clock;////////////////////////////TODO
+#include "figure.h"
 
 void s21::Figure::FileParser::Parser(s21::Figure *figure, std::string file_name) {
-  // auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
-
   std::ifstream file;
   file.open(file_name);
   if (file.is_open()) {
     std::string line;
     while (std::getline(file, line)) {
-      if (line[0] == 'v' && line[1] == ' ') {
-        s21::Figure::FileParser::ParsVLine(line, figure);
-      } else if (line[0] == 'f' && line[1] == ' ') {
-        s21::Figure::FileParser::ParsFLine(line, figure);
+      try {
+        if (line[0] == 'v' && line[1] == ' ') {
+          s21::Figure::FileParser::ParsVLine(line, figure);
+        } else if (line[0] == 'f' && line[1] == ' ') {
+          s21::Figure::FileParser::ParsFLine(line, figure);
+        }
+      } catch(const std::exception& e) {
+        throw std::invalid_argument(e.what());
       }
+
     }
   }
   file.close();
+
 //////////////////////////////////////////////////////////////////////////////////////////
   // std::cerr << std::endl;/////////////////////
   // // for (unsigned i = 0; i < figure->GetEdgesVector().size(); ++i) {
@@ -30,9 +28,6 @@ void s21::Figure::FileParser::Parser(s21::Figure *figure, std::string file_name)
   // }
   // std::cerr << std::endl;/////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
-
-  // auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
-  // std::cerr << "))))))))))))))))))))" << millisec_end - millisec_start << "((((((((((((((((((((" << std::endl;/////////////////////TODO
 }
  
 void s21::Figure::FileParser::ParsVLine(std::string line, s21::Figure* figure) {

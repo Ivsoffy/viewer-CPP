@@ -3,7 +3,7 @@
 
 #include <cmath>
 #include <vector>
-#include "Vertex.h"
+#include "vertex.h"
 
 namespace s21 {
 
@@ -20,6 +20,11 @@ class AffineTransformations {
         void SetAngleY(double angle);
         void SetAngleZ(double angle);
         void SetScale(double scale);
+        
+        
+        static double GetMoveX() { return move_x_; };////////////////////////
+
+
 
         static void TrasformateVertex(s21::Vertex *vertex_def, s21::Vertex *vertex_draw);
         void CleanData();

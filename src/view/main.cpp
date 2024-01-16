@@ -1,8 +1,8 @@
 #include <QApplication>
 
 #include "mainwindow.h"
-#include "../controller/Controller.h"
-#include "../model/Facade.h"
+#include "../controller/controller.h"
+#include "../model/facade.h"
 
 int main(int argc, char *argv[]) {
   setlocale(LC_ALL, "C");

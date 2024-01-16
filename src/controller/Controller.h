@@ -4,8 +4,8 @@
 #include <QOpenGLFunctions>
 #include <string>
 
-#include "../model/Facade.h"
-#include "ControllerDTO.h"
+#include "../model/facade.h"
+#include "controller_dto.h"
 
 namespace s21 {
 class Controller {
@@ -23,7 +23,8 @@ class Controller {
   std::vector<s21::Vertex> *GetVertecisRef();
   std::vector<unsigned> *GetEdgesRef();
 
-  s21::AffineTransformations GetAffineTransformations();
+  double GetMax();
+
   s21::AffineTransformations *GetAffineTransformationsRef();
 
  private:

@@ -8,13 +8,10 @@
 #include <QWindow>
 #include <OpenGL/glu.h>
 
-#include "../model/Vertex.h"
+#include "../model/vertex.h"
 
 //class OGLwidget : public QOpenGLWidget, public QOpenGLFunctions {
 //  Q_OBJECT
-
-//    public:
-//        explicit QWidget(QWidget *parent = nullptr);
 
 class OGLwidget : public QOpenGLWidget, public QOpenGLFunctions {
   Q_OBJECT
@@ -55,6 +52,10 @@ class OGLwidget : public QOpenGLWidget, public QOpenGLFunctions {
   //  MainWindow *main_window;
   //  struct user_settings *init_set;
 
+  double eyeX=2;
+  double eyeY=1;
+  double eyeZ=3;
+
   int line_type = 0;
   int vertex_type = 1;
   uint total_edges = 0;
@@ -73,9 +74,7 @@ class OGLwidget : public QOpenGLWidget, public QOpenGLFunctions {
   double rot_y = 0;
   double rot_z = 0;
 
-//  double scale = 100;
-  double scale = 10;
-//  double scale = 4;
+  double scale = 1;
 
   int line_color_r = 0;
   int line_color_g = 0;

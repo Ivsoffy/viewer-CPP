@@ -1,4 +1,4 @@
-#include "Figure.h"
+#include "figure.h"
 
 void s21::Figure::AddVertex(double x, double y, double z) {
   s21::Vertex vertex(s21::Vertex(x, y, z));

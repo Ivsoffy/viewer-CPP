@@ -1,10 +1,10 @@
 #ifndef MODEL_FACADE_H_
 #define MODEL_FACADE_H_
 
-#include "../controller/ControllerDTO.h"
-#include "Figure.h"
-#include "Vertex.h"
-#include "AffineTransformations.h"
+#include "../controller/controller_dto.h"
+#include "figure.h"
+#include "vertex.h"
+#include "affine_transformations.h"
 
 namespace s21 {
 
@@ -16,11 +16,11 @@ class Facade {
   void SetPathToObject(std::string path);
   void TrasformateFigure() { figure_def_->TransformFigure(figure_draw_); }
 
-  std::vector<s21::Vertex>* GetDrawVertecisRef() { return figure_draw_->GetVerticesVectorRef(); }/////////
-  std::vector<unsigned>* GetDrawEdgesRef() { return  figure_draw_->GetEdgesVectorRef(); }////////
+  std::vector<s21::Vertex>* GetDrawVertecisRef() { return figure_draw_->GetVerticesVectorRef(); }
+  std::vector<unsigned>* GetDrawEdgesRef() { return  figure_draw_->GetEdgesVectorRef(); }
 
-  std::vector<s21::Vertex>* GetDefVertecisRef() { return figure_def_->GetVerticesVectorRef(); }////////
-  std::vector<unsigned>* GetDefEdgesRef() { return  figure_def_->GetEdgesVectorRef(); }//////////
+  std::vector<s21::Vertex>* GetDefVertecisRef() { return figure_def_->GetVerticesVectorRef(); }
+  std::vector<unsigned>* GetDefEdgesRef() { return  figure_def_->GetEdgesVectorRef(); }
 
   AffineTransformations GetAffineTransformations() {
     return *affineTransformations_;
@@ -35,10 +35,12 @@ class Facade {
   Figure* GetFigureDef() { return figure_def_; }
   Figure* GetFigureDraw() { return figure_draw_; }
 
+  double GetMax() { return figure_draw_->Get_Max(); }
+
  private:
   AffineTransformations *affineTransformations_;
-  Figure *figure_def_;
-  Figure *figure_draw_;
+  Figure *figure_def_ = nullptr;
+  Figure *figure_draw_ = nullptr;
   Figure::FileParser *fileParser_;
 };
 

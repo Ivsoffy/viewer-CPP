@@ -2,7 +2,8 @@
 #define CONTROLLERDTO_H
 
 #include <QOpenGLFunctions>
-#include "../model/Vertex.h"
+#include "../model/vertex.h"
+#include <vector>
 
 namespace s21 {
 class ParamDTO {

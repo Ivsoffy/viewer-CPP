@@ -1,12 +1,5 @@
 #include "oglwidget.h"
 
-#include <ctime>/////////////////////////////TODO
-#include <chrono>/////////////////////TODO
-using std::chrono::duration_cast;////////////////////////////TODO
-using std::chrono::milliseconds;////////////////////////////TODO
-using std::chrono::system_clock;////////////////////////////TODO
-#include <iostream>////////////////////////////TODO
-
 //OGLwidget::OGLwidget(QWidget *parent) : QOpenGLWidget{parent} {}
 
 void OGLwidget::initializeGL() {
@@ -56,7 +49,6 @@ std::vector<unsigned>* OGLwidget::GetEdgesRef() {
 }
 
 void OGLwidget::paintGL() {
-
   if (need_paint) {
   glClearColor(background_color_r / 255.0, background_color_g / 255.0,
                background_color_b / 255.0, 0);
@@ -64,51 +56,49 @@ void OGLwidget::paintGL() {
   //очистка экрана и буфера глубины
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  glMatrixMode(GL_MODELVIEW);
+  glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
 
 
-  glRotatef(-30.0f, 1.0f, 0.0f, 0.0f); // Наклон оси X на 60 градусов вперед
-  glRotatef(30.0f, 0.0f, 1.0f, 0.0f); // Наклон оси Y на 60 градусов влево
+  if (view_type) {
+    gluPerspective(frustum_fov, this->width()/ this->height(), 0.1, scale * 3);
+  } else {
+    glOrtho(-scale * this->width()/ this->height(), scale *  this->width()/ this->height(), -scale, scale, -scale * 10, scale * 10);
+  }
 
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  double look_scale = scale*0.4;
+  gluLookAt(look_scale*1.2,look_scale,look_scale*2, 0,0,0,0,1,0);
+
+  glLineWidth(1);
   // Отрисовка осей
   glBegin(GL_LINES);
 
   // Ось X (красный цвет)
   glColor3f(1.0f, 0.0f, 0.0f);
-  glVertex3f(-100.0f, 0.0f, 0.0f);
-  glVertex3f(100.0f, 0.0f, 0.0f);
+  glVertex3f(-scale * 1.3, 0.0f, 0.0f);
+  glVertex3f(scale * 1.3, 0.0f, 0.0f);
 
   // Ось Y (зеленый цвет)
   glColor3f(0.0f, 100.0f, 0.0f);
-  glVertex3f(0.0f, -100.0f, 0.0f);
-  glVertex3f(0.0f, 100.0f, 0.0f);
+  glVertex3f(0.0f, -scale * 1.3, 0.0f);
+  glVertex3f(0.0f, scale * 1.3, 0.0f);
 
   // Ось Z (синий цвет)
   glColor3f(0.0f, 0.0f, 100.0f);
-  glVertex3f(0.0f, 0.0f, -100.0f);
-  glVertex3f(0.0f, 0.0f, 100.0f);
+  glVertex3f(0.0f, 0.0f, -scale * 1.3);
+  glVertex3f(0.0f, 0.0f, scale * 1.3);
 
   glEnd();
 
-  if (view_type) {
-    double fov = frustum_fov * M_PI / 180;
-    double frustum_near = frustum_hight / (2 * tan(fov / 2));
-    frustum_near *= fabs(scale);
-    glFrustum(-frustum_widht, frustum_widht, -frustum_hight, frustum_hight,
-              frustum_near, frustum_far);
-  } else {
-    glOrtho(-scale, scale, -scale, scale, -scale, scale);
-  }
-
   if (line_type) {
     glLineStipple(1, 0x3333);
-    glEnable(GL_LINE_STIPPLE);
   }
 
   // Включение атрибута вершин
   glEnableClientState(GL_VERTEX_ARRAY);
-//   glVertexPointer(3, GL_DOUBLE, 0, 0);
+
    glVertexPointer(3, GL_DOUBLE, 0, vertices_->data());
 
   if (vertex_type != NONE) {
@@ -119,24 +109,21 @@ void OGLwidget::paintGL() {
 
     if (vertex_type == CIRCLE) glEnable(GL_POINT_SMOOTH);
 
-  
     // paint vertex
     glDrawArrays(GL_POINTS, 0, vertices_->size());
     if (vertex_type == CIRCLE) glDisable(GL_POINT_SMOOTH);
   }
 
-  glLineWidth(1);
+  glLineWidth(line_size);
   glColor3d(line_color_r / 255.0, line_color_g / 255.0,
             line_color_b / 255.0);
 
-  //  std::cerr << ">>>>>>>paintGL<<<<<<<" << std::endl;/////////////////////TODO
-  //  auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+   if (line_type) glEnable(GL_LINE_STIPPLE);
 
-  // Отрисовка куба
+  // Отрисовка
   glDrawElements(GL_LINES, edges_->size(), GL_UNSIGNED_INT, edges_->data());
 
-  //  auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
-  //  std::cerr << millisec_end - millisec_start << "<<<<<<<<paintGL>>>>>>>" << std::endl;/////////////////////TODO
+  if (line_type) glDisable(GL_LINE_STIPPLE);
 
   // Отключение атрибута вершин
   glDisableClientState(GL_VERTEX_ARRAY);

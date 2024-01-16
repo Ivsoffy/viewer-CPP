@@ -11,7 +11,7 @@
 #include <sstream>
 #include <string>
 
-#include "AffineTransformations.h"
+#include "affine_transformations.h"
 
 namespace s21 {
 
@@ -37,9 +37,10 @@ class Figure {
   };
   ~Figure(){};
 
-  void copy_figure(Figure *other) {
+  void CopyFigure(Figure *other) {
     this->SetVertexesVector(other->GetVerticesVector());
     this->SetEdgesVector(other->GetEdgesVector());
+    this->Set_Max(other->Get_Max());
   };
 
   void TransformFigure(s21::Figure* figure_draw_) {
@@ -70,7 +71,6 @@ class Figure {
 
   void AddVertex(double x, double y, double z);
   void AddVertexToEdgesVector(unsigned num);
-  void AddPolygonsSize(unsigned num);
 
  private:
   std::vector<s21::Vertex> vertices_{};
