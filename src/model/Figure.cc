@@ -8,10 +8,3 @@ void s21::Figure::AddVertex(double x, double y, double z) {
 void s21::Figure::AddVertexToEdgesVector(unsigned num) {
   edges_.push_back(num);
 }
-
-void s21::Figure::TransformFigure() {
-  unsigned vector_size = vertices_.size();
-  for (unsigned i = 0; i < vector_size; i++) {
-    vertices_.at(i).TransformVertex();
-  }
-}

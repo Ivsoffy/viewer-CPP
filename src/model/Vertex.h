@@ -1,8 +1,6 @@
 #ifndef MODEL_VERTEX_H_
 #define MODEL_VERTEX_H_
 
-#include "AffineTransformations.h"
-
 namespace s21 {
 
 class Vertex {
@@ -21,10 +19,6 @@ class Vertex {
   void SetX(double x) { x_ = x; };
   void SetY(double y) { y_ = y; };
   void SetZ(double z) { z_ = z; };
-
- void TransformVertex() {
-   AffineTransformations::Trasformate(&x_, &y_, &z_);
- };
 
  private:
   double x_{};

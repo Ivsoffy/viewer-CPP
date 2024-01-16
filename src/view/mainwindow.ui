@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1070</width>
-    <height>570</height>
+    <width>1222</width>
+    <height>556</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1070</width>
-    <height>570</height>
+    <width>1</width>
+    <height>1</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1130</width>
-    <height>570</height>
+    <width>1500</width>
+    <height>797</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -65,33 +65,6 @@ background-color: rgb(50, 50, 50);</string>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QPushButton" name="pushButton_file_open">
-     <property name="geometry">
-      <rect>
-       <x>1</x>
-       <y>1</y>
-       <width>301</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-     border: 1px  solid rgb(150, 150, 150) ;
-	background-color: rgb(64, 140, 191);
- }
-
- QPushButton:pressed {
-	border: 1px solid rgb(150, 150, 150) ;
-     background-color:  rgb(84, 160, 211);
- }
-
-
-</string>
-     </property>
-     <property name="text">
-      <string>Открыть</string>
-     </property>
-    </widget>
     <widget class="QLineEdit" name="lineEdit_file_input">
      <property name="geometry">
       <rect>
@@ -712,7 +685,7 @@ background-color: rgb(50, 50, 50);</string>
        <rect>
         <x>1</x>
         <y>1</y>
-        <width>151</width>
+        <width>91</width>
         <height>51</height>
        </rect>
       </property>
@@ -730,6 +703,62 @@ background-color: rgb(50, 50, 50);
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="scale_lable">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>0</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
+background-color: rgb(50, 50, 50);
+ 
+
+
+
+</string>
+      </property>
+      <property name="text">
+       <string>100</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QSlider" name="slider_scale">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>20</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>-300</number>
+      </property>
+      <property name="maximum">
+       <number>300</number>
+      </property>
+      <property name="singleStep">
+       <number>1</number>
+      </property>
+      <property name="pageStep">
+       <number>1</number>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+      <property name="sliderPosition">
+       <number>0</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </widget>
@@ -907,8 +936,8 @@ background-color: rgb(50, 50, 50);</string>
      <rect>
       <x>560</x>
       <y>10</y>
-      <width>502</width>
-      <height>502</height>
+      <width>641</width>
+      <height>481</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -924,10 +953,10 @@ background-color: rgb(50, 50, 50);</string>
     <widget class="OGLwidget" name="openGLWidget">
      <property name="geometry">
       <rect>
-       <x>1</x>
-       <y>1</y>
-       <width>500</width>
-       <height>500</height>
+       <x>0</x>
+       <y>0</y>
+       <width>640</width>
+       <height>480</height>
       </rect>
      </property>
      <property name="minimumSize">
@@ -1082,6 +1111,12 @@ background-color: rgb(50, 50, 50);
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
+      <property name="maximum">
+       <double>100.000000000000000</double>
+      </property>
+      <property name="singleStep">
+       <double>0.100000000000000</double>
+      </property>
      </widget>
      <widget class="QPushButton" name="pushButton_settings_view_polygon_color">
       <property name="geometry">
@@ -1219,6 +1254,9 @@ background-color: rgb(50, 50, 50);
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="singleStep">
+       <double>0.100000000000000</double>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_settings_view_vertex_color">
@@ -1424,7 +1462,7 @@ background-color: rgb(50, 50, 50);
      <rect>
       <x>10</x>
       <y>400</y>
-      <width>549</width>
+      <width>541</width>
       <height>33</height>
      </rect>
     </property>
@@ -1640,119 +1678,13 @@ background-color: rgb(50, 50, 50);
      </widget>
     </widget>
    </widget>
-   <widget class="QSlider" name="horizontalSlider_settings_move_scale">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>470</y>
-      <width>151</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-    </property>
-    <property name="minimum">
-     <number>0</number>
-    </property>
-    <property name="maximum">
-     <number>20</number>
-    </property>
-    <property name="pageStep">
-     <number>0</number>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QSlider" name="slider_scale">
-    <property name="geometry">
-     <rect>
-      <x>380</x>
-      <y>490</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="minimum">
-     <number>-50</number>
-    </property>
-    <property name="maximum">
-     <number>50</number>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_settings_move_scale">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>430</y>
-      <width>150</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="decimals">
-     <number>1</number>
-    </property>
-    <property name="minimum">
-     <double>0.100000000000000</double>
-    </property>
-    <property name="maximum">
-     <double>20.000000000000000</double>
-    </property>
-    <property name="singleStep">
-     <double>0.100000000000000</double>
-    </property>
-    <property name="value">
-     <double>1.000000000000000</double>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="double_spinbox_scale">
-    <property name="geometry">
-     <rect>
-      <x>381</x>
-      <y>450</y>
-      <width>91</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="minimum">
-     <double>-50.000000000000000</double>
-    </property>
-    <property name="maximum">
-     <double>50.000000000000000</double>
-    </property>
-    <property name="singleStep">
-     <double>0.100000000000000</double>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1070</width>
+     <width>1222</width>
      <height>24</height>
     </rect>
    </property>

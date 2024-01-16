@@ -59,43 +59,22 @@ class MainWindow : public QMainWindow {
 //  void user_settings_color_change();
 
  private slots:  
-  void valueChanged_to_Slider_rot_x(int value);
-  void valueChanged_to_Spinbox_rot_x(int value);
-  void valueChanged_to_Slider_rot_y(int value);
-  void valueChanged_to_Spinbox_rot_y(int value);
-  void valueChanged_to_Slider_rot_z(int value);
-  void valueChanged_to_Spinbox_rot_z(int value);
-
-  void valueChanged_to_Slider_move_x(int value);
-  void valueChanged_to_Spinbox_move_x(int value);
-  void valueChanged_to_Slider_move_y(int value);
-  void valueChanged_to_Spinbox_move_y(int value);
-  void valueChanged_to_Slider_move_z(int value);
-  void valueChanged_to_Spinbox_move_z(int value);
-
   void valueChanged_to_Slider_scale(int value);
-  void valueChanged_to_Double_spinbox_scale(double value);
 
-//  void on_comboBox_settings_view_projection_type_currentIndexChanged(int index);
-
-  void on_comboBox_settings_view_polygon_type_currentIndexChanged(int index);
-  void on_doubleSpinBox_settings_view_polygon_width_valueChanged(double arg1);
-
-  void on_comboBox_settings_view_vertex_type_currentIndexChanged(int index);
-  void on_doubleSpinBox_settings_view_vertex_size_valueChanged(double arg1);
+  void combo_box_change();
+  void spinbox_change();
+  void double_spinbox_change();
 
   void on_pushButton_screen_start_clicked();
   void on_pushButton_screen_gif_start_clicked();
   void recording_gif();
   void recording_stop();
 
-private:
+ private:
   s21::Controller *controller_;
-//  s21::ParamDTO * paramDTO_;
 
   Ui::MainWindow *ui;
 
-  //  struct object_data data = {0, NULL, 0, NULL, 0, 0, 0, 0, 0, 0};
   double max_coord;
 
 //  void init_settings();

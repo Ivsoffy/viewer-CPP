@@ -7,11 +7,7 @@ using std::chrono::milliseconds;////////////////////////////TODO
 using std::chrono::system_clock;////////////////////////////TODO
 
 void s21::Figure::FileParser::Parser(s21::Figure *figure, std::string file_name) {
-  std::cerr << "(((((((((((((((((((())))))))))))))))))))" << std::endl;/////////////////////TODO
-  auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
-
-//  figure->GetEdgesVector().clear();
-//  figure->GetVertexesVector().clear();
+  // auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
 
   std::ifstream file;
   file.open(file_name);
@@ -28,17 +24,17 @@ void s21::Figure::FileParser::Parser(s21::Figure *figure, std::string file_name)
   file.close();
 //////////////////////////////////////////////////////////////////////////////////////////
   // std::cerr << std::endl;/////////////////////
-  // for (unsigned i = 0; i < figure->GetEdgesVector().size(); ++i) {
+  // // for (unsigned i = 0; i < figure->GetEdgesVector().size(); ++i) {
+  // for (unsigned i = 0; i < 10; ++i) {
   //   std::cerr << figure->GetEdgesVector().at(i) + 1 << "|";/////////////////////
   // }
   // std::cerr << std::endl;/////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-  std::cerr << "))))))))))))))))))))((((((((((((((((((((" << std::endl;/////////////////////TODO
-  auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
-  std::cerr << millisec_end - millisec_start << std::endl;/////////////////////TODO
+  // auto millisec_end = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
+  // std::cerr << "))))))))))))))))))))" << millisec_end - millisec_start << "((((((((((((((((((((" << std::endl;/////////////////////TODO
 }
-
+ 
 void s21::Figure::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
   double num_double = 0;
   double temp_vertex_arr[3];
@@ -63,8 +59,8 @@ void s21::Figure::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
           space_2 = index;
           num_double = std::stod(line.substr(space_1 + 1, space_2 - (space_1 + 1)));
           temp_vertex_arr[j++] = num_double;
-          if (figure->GetMax() < std::fabs(num_double)) {
-            figure->SetMax(std::fabs(num_double));
+          if (figure->Get_Max() < std::fabs(num_double)) {
+            figure->Set_Max(std::fabs(num_double));
           }
           space_couter = 1;
           space_1 = index;
@@ -74,8 +70,8 @@ void s21::Figure::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
     }
     num_double = std::stod(line.substr(space_1 + 1, space_2 - (space_1 + 1)));
     temp_vertex_arr[j] = num_double;
-    if (figure->GetMax() < std::fabs(num_double)) {
-      figure->SetMax(std::fabs(num_double));
+    if (figure->Get_Max() < std::fabs(num_double)) {
+      figure->Set_Max(std::fabs(num_double));
     }
   } catch(const std::exception& e) {
     throw std::invalid_argument("ERROR: Invalid data in 'v'-line in object file.");
@@ -120,14 +116,17 @@ void s21::Figure::FileParser::ParsFLine(std::string line, s21::Figure* figure) {
       }
     }
     if (edge_counter != 0) {
-      if ((index - 1 - space_1) > 1) {
-        num_int = std::stoi(line.substr(space_1 + 1, index - (space_1 + 1)));
-        if (num_int < 0) {
-          num_int = figure->vertices_.size() + num_int + 1;
+      if ((index - 1 - space_1) > 0) {
+        std::string string_to_check = line.substr(space_1 + 1, index - (space_1 + 1));
+        if (string_to_check != "\r") {
+          num_int = std::stoi(string_to_check);
+          if (num_int < 0) {
+            num_int = figure->vertices_.size() + num_int + 1;
+          }
+          figure->edges_.push_back(num_int - 1);
+          figure->edges_.push_back(num_int - 1);
+          edge_counter += 2;
         }
-        figure->edges_.push_back(num_int - 1);
-        figure->edges_.push_back(num_int - 1);
-        edge_counter += 2;
       }
       index_to_loop = figure->edges_.size() - edge_counter;
       figure->edges_.push_back(figure->edges_[index_to_loop]);

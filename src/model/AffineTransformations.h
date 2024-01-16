@@ -3,10 +3,9 @@
 
 #include <cmath>
 #include <vector>
+#include "Vertex.h"
 
 namespace s21 {
-
-    // class Vertex;
 
 class AffineTransformations {
 
@@ -22,27 +21,25 @@ class AffineTransformations {
         void SetAngleZ(double angle);
         void SetScale(double scale);
 
-        // void TrasformateVertex(s21::Vertex *vertex);
-        static void Trasformate(double *x_, double *y_, double *z_);
-        // void TrasformateVectorOfVerteces(s21::Figure *figure_draw);
+        static void TrasformateVertex(s21::Vertex *vertex_def, s21::Vertex *vertex_draw);
         void CleanData();
         
     private:
-        static inline double move_x_{};
-        static inline double move_y_{};
-        static inline double move_z_{};
-        static inline double angle_x_{};
-        static inline double angle_y_{};
-        static inline double angle_z_{};
-        static inline double scale_{};
+        static inline double move_x_{0};
+        static inline double move_y_{0};
+        static inline double move_z_{0};
+        static inline double angle_x_{0};
+        static inline double angle_y_{0};
+        static inline double angle_z_{0};
+        static inline double scale_{0};
 
-        static inline double old_move_x_{};
-        static inline double old_move_y_{};
-        static inline double old_move_z_{};
-        static inline double old_angle_x_{};
-        static inline double old_angle_y_{};
-        static inline double old_angle_z_{};
-        static inline double old_scale_{};
+        static inline double old_move_x_{0};
+        static inline double old_move_y_{0};
+        static inline double old_move_z_{0};
+        static inline double old_angle_x_{0};
+        static inline double old_angle_y_{0};
+        static inline double old_angle_z_{0};
+        static inline double old_scale_{0};
 };
 
 } //namespace s21
