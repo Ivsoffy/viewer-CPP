@@ -18,7 +18,7 @@ class Controller {
   s21::GLBufferDTO TransferGLBuffer();
 
   void TransferFigureParams();
-  void TransferObject(std::string file_name);
+  std::string TransferObject(std::string file_name);
 
   std::vector<s21::Vertex> *GetVertecisRef();
   std::vector<unsigned> *GetEdgesRef();

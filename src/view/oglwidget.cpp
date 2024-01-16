@@ -79,25 +79,25 @@ void OGLwidget::paintGL() {
 
   glLineWidth(1);
   // Отрисовка осей
-  glBegin(GL_LINES);
-  axis_scale_ = scale_*1.3*window_ratio_;
+//  glBegin(GL_LINES);
+//  axis_scale_ = scale_*1.3*window_ratio_;
 
-  // Ось X (красный цвет)
-  glColor3f(1.0f, 0.0f, 0.0f);
-  glVertex3f(-axis_scale_, 0.0f, 0.0f);
-  glVertex3f(axis_scale_, 0.0f, 0.0f);
+//  // Ось X (красный цвет)
+//  glColor3f(1.0f, 0.0f, 0.0f);
+//  glVertex3f(-axis_scale_, 0.0f, 0.0f);
+//  glVertex3f(axis_scale_, 0.0f, 0.0f);
 
-  // Ось Y (зеленый цвет)
-  glColor3f(0.0f, 100.0f, 0.0f);
-  glVertex3f(0.0f, -axis_scale_, 0.0f);
-  glVertex3f(0.0f, axis_scale_, 0.0f);
+//  // Ось Y (зеленый цвет)
+//  glColor3f(0.0f, 100.0f, 0.0f);
+//  glVertex3f(0.0f, -axis_scale_, 0.0f);
+//  glVertex3f(0.0f, axis_scale_, 0.0f);
 
-  // Ось Z (синий цвет)
-  glColor3f(0.0f, 0.0f, 100.0f);
-  glVertex3f(0.0f, 0.0f, -axis_scale_);
-  glVertex3f(0.0f, 0.0f, axis_scale_);
+//  // Ось Z (синий цвет)
+//  glColor3f(0.0f, 0.0f, 100.0f);
+//  glVertex3f(0.0f, 0.0f, -axis_scale_);
+//  glVertex3f(0.0f, 0.0f, axis_scale_);
 
-  glEnd();
+//  glEnd();
 
   if (line_type_) {
     glLineStipple(1, 0x3333);

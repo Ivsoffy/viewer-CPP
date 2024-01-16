@@ -4,8 +4,14 @@ void s21::Controller::TransferFigureParams() {
   facade_->TrasformateFigure();
 }
 
-void s21::Controller::TransferObject(std::string file_name) {
-  facade_->SetPathToObject(file_name);
+std::string s21::Controller::TransferObject(std::string file_name) {
+  std::string err_msg = "OK";
+  try{
+    facade_->SetPathToObject(file_name);
+  } catch (const std::exception& e) {
+    err_msg = e.what();
+  }
+  return err_msg;
 }
 
 s21::GLBufferDTO s21::Controller::TransferGLBuffer() {

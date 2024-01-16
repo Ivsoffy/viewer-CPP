@@ -47,23 +47,19 @@ class MainWindow : public QMainWindow {
   //  struct user_settings user_settings;
 
  public slots:
-  void choose_file();
-
-  void redraw();
-
-  void take_screenshot();
-  void record_gif();
+  void ChooseFile();
+  void Redraw();
 
 //  void user_settings_combo_box_change();
 //  void user_settings_double_spin_box_change();
 //  void user_settings_color_change();
 
  private slots:  
-  void valueChanged_to_Slider_scale(int value);
+  void ScaleSliderChange(int value);
 
-  void combo_box_change();
-  void spinbox_change();
-  void double_spinbox_change();
+  void ComboboxChange();
+  void SpinboxChange();
+  void DoubleSpinboxChange();
 
   void on_pushButton_screen_start_clicked();
   void on_pushButton_screen_gif_start_clicked();
@@ -78,8 +74,7 @@ class MainWindow : public QMainWindow {
   double max_coord;
 
 //  void init_settings();
-  QString take_style_sheet_color_button(struct rgb_color color);
-  void connects();
+  void Connects();
 
 //  void user_settings_set();
 //  void user_settings_save();

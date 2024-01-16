@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['get_5fmax_0',['Get_Max',['../classs21_1_1_figure.html#a2d4b1f15796dd1a1001e9732c38ece79',1,'s21::Figure']]],
+  ['getaffinetransformations_1',['GetAffineTransformations',['../classs21_1_1_facade.html#a1bba31df710b31255bd9bd45183a3339',1,'s21::Facade']]],
+  ['getaffinetransformationsref_2',['GetAffineTransformationsRef',['../classs21_1_1_facade.html#ae384170701ed21407b53fbe35df8b642',1,'s21::Facade::GetAffineTransformationsRef()'],['../classs21_1_1_controller.html#a21acf56edbee88c223baa2d909060695',1,'s21::Controller::GetAffineTransformationsRef()']]],
+  ['getdefedgesref_3',['GetDefEdgesRef',['../classs21_1_1_facade.html#a779d07b9a9c255c3119f21970113165b',1,'s21::Facade']]],
+  ['getdefvertecisref_4',['GetDefVertecisRef',['../classs21_1_1_facade.html#a72dafe374ab6150c4e096a10ff4a148d',1,'s21::Facade']]],
+  ['getdrawedgesref_5',['GetDrawEdgesRef',['../classs21_1_1_facade.html#a2c2045cd14b3421370155198bbcd1d3d',1,'s21::Facade']]],
+  ['getdrawvertecisref_6',['GetDrawVertecisRef',['../classs21_1_1_facade.html#a52210021beb1040161a162cced9674cc',1,'s21::Facade']]],
+  ['getedgesref_7',['GetEdgesRef',['../class_o_g_lwidget.html#a60468e14878d8e756f61735173afd506',1,'OGLwidget::GetEdgesRef()'],['../classs21_1_1_controller.html#a56b63d46b19a612f2951e1961d5a4931',1,'s21::Controller::GetEdgesRef()']]],
+  ['getedgesvector_8',['GetEdgesVector',['../classs21_1_1_figure.html#a182d33f7f251eb124334c965f116c3d7',1,'s21::Figure']]],
+  ['getedgesvectorref_9',['GetEdgesVectorRef',['../classs21_1_1_figure.html#aca85325a9db15506ba08721b7ab5d6f8',1,'s21::Figure']]],
+  ['getfiguredef_10',['GetFigureDef',['../classs21_1_1_facade.html#aca9b34eb07998461efe087e44634cfc6',1,'s21::Facade']]],
+  ['getfiguredraw_11',['GetFigureDraw',['../classs21_1_1_facade.html#acd633050b162d7fc54b83ca2cdfebb92',1,'s21::Facade']]],
+  ['getfileparser_12',['GetFileParser',['../classs21_1_1_facade.html#ab0f5f9ee6438a1e654ca33ad2c64416f',1,'s21::Facade']]],
+  ['getmax_13',['GetMax',['../classs21_1_1_facade.html#aab28209f810650e644bbf38761032fe9',1,'s21::Facade::GetMax()'],['../classs21_1_1_controller.html#ab77a9621791a2e30989d075b3000194a',1,'s21::Controller::GetMax()']]],
+  ['getvertecisref_14',['GetVertecisRef',['../classs21_1_1_controller.html#ae080aeb18761a59ead250d4466f2052f',1,'s21::Controller']]],
+  ['getverticesref_15',['GetVerticesRef',['../class_o_g_lwidget.html#af5e93b2c49510f7ac5d6ed48732176b0',1,'OGLwidget']]],
+  ['getverticesvector_16',['GetVerticesVector',['../classs21_1_1_figure.html#a47d4aa541da01234557fb4e10073116c',1,'s21::Figure']]],
+  ['getverticesvectorref_17',['GetVerticesVectorRef',['../classs21_1_1_figure.html#aa9c40c204091901c9be2812797b0d415',1,'s21::Figure']]],
+  ['getx_18',['GetX',['../classs21_1_1_figure.html#a1ded4dbd1fd8bc8c5d714d42f4741f7f',1,'s21::Figure::GetX()'],['../classs21_1_1_vertex.html#a3158f67c430bba7df7cccdd8b666dd6f',1,'s21::Vertex::GetX()']]],
+  ['gety_19',['GetY',['../classs21_1_1_figure.html#a84b827f01f07aa18c92b880daa9ac3b7',1,'s21::Figure::GetY()'],['../classs21_1_1_vertex.html#a0f7aaaf2057fa5c0a0e48a891c7c6928',1,'s21::Vertex::GetY()']]],
+  ['getz_20',['GetZ',['../classs21_1_1_figure.html#aeea047b36def4a049edf4822d10109f3',1,'s21::Figure::GetZ()'],['../classs21_1_1_vertex.html#acd18416fd11ebf73b1b196f955626619',1,'s21::Vertex::GetZ()']]],
+  ['glbufferdto_21',['GLBufferDTO',['../classs21_1_1_g_l_buffer_d_t_o.html#a1fcf8628e9124299fa65f50c9b7127af',1,'s21::GLBufferDTO']]]
+];

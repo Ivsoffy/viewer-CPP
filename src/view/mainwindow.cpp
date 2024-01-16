@@ -23,7 +23,7 @@ MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
   ui->setupUi(this);
   //  ui->openGLWidget->main_window = this;
 //  init_settings();
-  connects();
+  Connects();
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -35,64 +35,59 @@ MainWindow::~MainWindow() { delete ui; }
 //}
 
 
-void MainWindow::connects() {
+void MainWindow::Connects() {
   connect(ui->pushButton_file_select, SIGNAL(clicked()), this,
           SLOT(choose_file()));
 
   connect(ui->comboBox_settings_view_projection_type,
-          SIGNAL(currentIndexChanged(int)), this, SLOT(combo_box_change()));
+          SIGNAL(currentIndexChanged(int)), this, SLOT(ComboboxChange()));
   connect(ui->comboBox_settings_view_polygon_type,
           SIGNAL(currentIndexChanged(int)), this,
-          SLOT(combo_box_change()));
+          SLOT(ComboboxChange()));
   connect(ui->comboBox_settings_view_vertex_type,
           SIGNAL(currentIndexChanged(int)), this,
-          SLOT(combo_box_change()));
+          SLOT(ComboboxChange()));
 
   connect (ui->spinbox_move_x, SIGNAL(valueChanged(int)),ui->slider_move_x, SLOT(setValue(int)));
   connect (ui->slider_move_x, SIGNAL(valueChanged(int)),ui->spinbox_move_x, SLOT(setValue(int)));
   connect(ui->spinbox_move_x, SIGNAL(valueChanged(int)), this,
-          SLOT(spinbox_change()));
+          SLOT(SpinboxChange()));
 
   connect (ui->spinbox_move_y, SIGNAL(valueChanged(int)),ui->slider_move_y, SLOT(setValue(int)));
   connect (ui->slider_move_y, SIGNAL(valueChanged(int)),ui->spinbox_move_y, SLOT(setValue(int)));
   connect(ui->spinbox_move_y, SIGNAL(valueChanged(int)), this,
-          SLOT(spinbox_change()));
+          SLOT(SpinboxChange()));
 
   connect (ui->spinbox_move_z, SIGNAL(valueChanged(int)),ui->slider_move_z, SLOT(setValue(int)));
   connect (ui->slider_move_z, SIGNAL(valueChanged(int)),ui->spinbox_move_z, SLOT(setValue(int)));
   connect(ui->spinbox_move_z, SIGNAL(valueChanged(int)), this,
-          SLOT(spinbox_change()));
+          SLOT(SpinboxChange()));
 
   connect (ui->spinbox_rot_x, SIGNAL(valueChanged(int)),ui->slider_rot_x, SLOT(setValue(int)));
   connect (ui->slider_rot_x, SIGNAL(valueChanged(int)),ui->spinbox_rot_x, SLOT(setValue(int)));
   connect(ui->spinbox_rot_x, SIGNAL(valueChanged(int)), this,
-          SLOT(spinbox_change()));
+          SLOT(SpinboxChange()));
 
   connect (ui->spinbox_rot_y, SIGNAL(valueChanged(int)),ui->slider_rot_y, SLOT(setValue(int)));
   connect (ui->slider_rot_y, SIGNAL(valueChanged(int)),ui->spinbox_rot_y, SLOT(setValue(int)));
   connect(ui->spinbox_rot_y, SIGNAL(valueChanged(int)), this,
-          SLOT(spinbox_change()));
+          SLOT(SpinboxChange()));
 
   connect (ui->spinbox_rot_z, SIGNAL(valueChanged(int)),ui->slider_rot_z, SLOT(setValue(int)));
   connect (ui->slider_rot_z, SIGNAL(valueChanged(int)),ui->spinbox_rot_z, SLOT(setValue(int)));
   connect(ui->spinbox_rot_z, SIGNAL(valueChanged(int)), this,
-          SLOT(spinbox_change()));
+          SLOT(SpinboxChange()));
 
   connect(ui->slider_scale, SIGNAL(valueChanged(int)), this,
-          SLOT(valueChanged_to_Slider_scale(int)));
+          SLOT(ScaleSliderChange(int)));
 
   connect(ui->doubleSpinBox_settings_view_polygon_width, SIGNAL(valueChanged(double)), this,
-          SLOT(double_spinbox_change()));
+          SLOT(DoubleSpinboxChange()));
   connect(ui->doubleSpinBox_settings_view_vertex_size, SIGNAL(valueChanged(double)), this,
-          SLOT(double_spinbox_change()));
-
-  connect(ui->pushButton_screen_start, SIGNAL(clicked()), this,
-          SLOT(take_screenshot()));
-  connect(ui->pushButton_screen_gif_start, SIGNAL(clicked()), this,
-          SLOT(record_gif()));
+          SLOT(DoubleSpinboxChange()));
 }
 
-void MainWindow::choose_file() {
+void MainWindow::ChooseFile() {
   ui->openGLWidget->need_paint_ = false;
   if (file_dialog.exec()) {
     QStringList fileNames = file_dialog.selectedFiles();
@@ -113,7 +108,8 @@ void MainWindow::choose_file() {
     ui->spinbox_rot_y->setValue(0);
     ui->spinbox_rot_z->setValue(0);
 
-    controller_->TransferObject(filename.toStdString());
+    std::string err_msg = controller_->TransferObject(filename.toStdString());
+    if (err_msg == "OK") {
     ui->openGLWidget->scale_ = controller_->GetMax()*2;
 
     ui->openGLWidget->SetVertices(controller_->GetVertecisRef());
@@ -121,10 +117,13 @@ void MainWindow::choose_file() {
     ui->openGLWidget->update();
     ui->openGLWidget->need_paint_ = true;
     ui->lineEdit_file_input->setText(filename);
+      }
+    else
+      ui->label_info->setText(QString::fromStdString(err_msg));
   }
 }
 
-void MainWindow::redraw() {
+void MainWindow::Redraw() {
   if (ui->openGLWidget->need_paint_) {
 //      auto millisec_start = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();/////////////////////TODO
       controller_->TransferFigureParams();
@@ -134,7 +133,7 @@ void MainWindow::redraw() {
   }
 }
 
-void MainWindow::combo_box_change() {
+void MainWindow::ComboboxChange() {
   QComboBox *worked = (QComboBox *)sender();
 
   if (worked == ui->comboBox_settings_view_projection_type) {
@@ -147,7 +146,7 @@ void MainWindow::combo_box_change() {
   ui->openGLWidget->repaint();
 }
 
-void MainWindow::spinbox_change() {
+void MainWindow::SpinboxChange() {
   QSpinBox *worked = (QSpinBox *)sender();
   if (worked == ui->spinbox_move_x)
     controller_->GetAffineTransformationsRef()->SetMoveX(worked->value() * ui->openGLWidget->axis_scale_ / 100);
@@ -161,22 +160,22 @@ void MainWindow::spinbox_change() {
     controller_->GetAffineTransformationsRef()->SetAngleY(worked->value());
   else if (worked == ui->spinbox_rot_z)
     controller_->GetAffineTransformationsRef()->SetAngleZ(worked->value());
-  redraw();
+  Redraw();
 }
 
-void MainWindow::valueChanged_to_Slider_scale(int value) {
+void MainWindow::ScaleSliderChange(int value) {
     controller_->GetAffineTransformationsRef()->SetScale(value);
     ui->scale_lable->setText(QString::number(pow(3, value / 100.0) * 100, 'f', 2));
-    redraw();
+    Redraw();
 }
 
-void MainWindow::double_spinbox_change() {
+void MainWindow::DoubleSpinboxChange() {
   QDoubleSpinBox *worked = (QDoubleSpinBox *)sender();
   if (worked == ui->doubleSpinBox_settings_view_polygon_width)
     ui->openGLWidget->line_size_ = worked->value();
   else if (worked == ui->doubleSpinBox_settings_view_vertex_size)
     ui->openGLWidget->vertex_size_ = worked->value();
-  redraw();
+  Redraw();
 }
 
 void MainWindow::on_pushButton_screen_start_clicked() {

@@ -68,6 +68,7 @@ void s21::Figure::FileParser::ParsVLine(std::string line, s21::Figure* figure) {
         continue;
       }
     }
+    if (j != 2) throw std::invalid_argument("<3");
     num_double = std::stod(line.substr(space_1 + 1, space_2 - (space_1 + 1)));
     temp_vertex_arr[j] = num_double;
     if (figure->Get_Max() < std::fabs(num_double)) {
