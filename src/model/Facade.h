@@ -4,6 +4,7 @@
 #include "../controller/controller_dto.h"
 #include "figure.h"
 #include "vertex.h"
+#include "snapshot.h"
 #include "affine_transformations.h"
 
 namespace s21 {
@@ -30,10 +31,27 @@ class Facade {
     return affineTransformations_;
   }
 
-  Figure::FileParser GetFileParser() { return *fileParser_; }
+  void CreateSnapshot(double move_x,
+                      double move_y,
+                      double move_z,
+                      double angle_x,
+                      double angle_y,
+                      double angle_z,
+                      double scale) {
+    snapshot_ = new Snapshot(figure_draw_,
+                              move_x,
+                              move_y,
+                              move_z,
+                              angle_x,
+                              angle_y,
+                              angle_z,
+                              scale);
+  }
 
+  Figure::FileParser GetFileParser() { return *fileParser_; }
   Figure* GetFigureDef() { return figure_def_; }
   Figure* GetFigureDraw() { return figure_draw_; }
+  Snapshot* GetSnapshot() { return snapshot_; }
 
   double GetMax() { return figure_draw_->Get_Max(); }
 
@@ -42,6 +60,7 @@ class Facade {
   Figure *figure_def_ = nullptr;
   Figure *figure_draw_ = nullptr;
   Figure::FileParser *fileParser_;
+  Snapshot *snapshot_ = nullptr;
 };
 
 }  // namespace s21

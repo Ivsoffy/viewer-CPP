@@ -4,7 +4,7 @@
 MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   controller_ = controller;
-  controller_->paramDTO_ = new s21::ParamDTO(0, 0, 0, 0, 0, 0, 1);
+//  controller_->paramDTO_ = new s21::ParamDTO(0, 0, 0, 0, 0, 0, 1);
 //  file_dialog.setParent(parent);
   file_dialog.setFileMode(QFileDialog::ExistingFile);
   file_dialog.setNameFilter(tr("Object Files (*.obj)"));
@@ -25,7 +25,6 @@ MainWindow::~MainWindow() { delete ui; }
 ////  user_settings_save_file(&user_settings);
 //  close();
 //}
-
 
 void MainWindow::connects() {
     connect(this->ui->slider_move_x, SIGNAL(valueChanged(int)), this,
@@ -264,4 +263,21 @@ void MainWindow::recording_stop() {
   gif->save(gifFileName);
   delete gif;
   repaint();
+}
+
+void MainWindow::CreateSnapshot(double move_x,
+                                double move_y,
+                                double move_z,
+                                double angle_x,
+                                double angle_y,
+                                double angle_z,
+                                double scale) 
+                                {
+                                  move_x = ui->spinbox_move_x->value();
+                                  move_y = ui->spinbox_move_y->value();
+                                  move_z = ui->spinbox_move_z->value();
+                                  angle_x = ui->spinbox_rot_x->value();
+                                  angle_y = ui->spinbox_rot_y->value();
+                                  angle_z = ui->spinbox_rot_z->value();
+                                  scale = ui->slider_scale->value();
 }

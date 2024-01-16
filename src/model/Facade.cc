@@ -5,6 +5,7 @@ s21::Facade::Facade() {
   // figure_draw_ = new Figure();/////
   affineTransformations_ = new AffineTransformations();
   fileParser_ = new Figure::FileParser();
+//  snapshot_ = new Snapshot(new Figure(), 4,4,4,4,4,4,4);///////////////
 }
 
 void s21::Facade::SetPathToObject(std::string path) {

@@ -14,7 +14,7 @@ class Controller {
     facade_ = facade;
   }
 
-  ParamDTO* paramDTO_;
+//  ParamDTO* paramDTO_;
   s21::GLBufferDTO TransferGLBuffer();
 
   void TransferFigureParams();
@@ -26,6 +26,8 @@ class Controller {
   double GetMax();
 
   s21::AffineTransformations *GetAffineTransformationsRef();
+
+  Facade* GetFacadeRef() {return facade_; };
 
  private:
   Facade *facade_;

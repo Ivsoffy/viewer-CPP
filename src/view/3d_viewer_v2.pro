@@ -22,6 +22,7 @@ SOURCES +=         \
     ../model/facade.cc \
     ../model/figure.cc \
     ../model/file_parser.cc \
+#    ../model/snapshot.cc \
     main.cpp       \
     mainwindow.cpp \
     oglwidget.cpp
@@ -29,9 +30,11 @@ SOURCES +=         \
 HEADERS +=       \
     ../controller/controller.h \
     ../controller/controller_dto.h \
+    ../model/ snapshot.h \
     ../model/affine_transformations.h \
     ../model/facade.h \
     ../model/figure.h \
+    ../model/snapshot.h \
     ../model/vertex.h \
     mainwindow.h \
     oglwidget.h

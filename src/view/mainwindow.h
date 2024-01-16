@@ -48,11 +48,18 @@ class MainWindow : public QMainWindow {
 
  public slots:
   void choose_file();
-
   void redraw();
 
   void take_screenshot();
   void record_gif();
+
+  void CreateSnapshot(double move_x,
+                      double move_y,
+                      double move_z,
+                      double angle_x,
+                      double angle_y,
+                      double angle_z,
+                      double scale);
 
 //  void user_settings_combo_box_change();
 //  void user_settings_double_spin_box_change();
@@ -88,9 +95,7 @@ class MainWindow : public QMainWindow {
 
  private:
   s21::Controller *controller_;
-
   Ui::MainWindow *ui;
-
   double max_coord;
 
 //  void init_settings();

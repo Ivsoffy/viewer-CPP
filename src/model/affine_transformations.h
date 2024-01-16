@@ -21,11 +21,6 @@ class AffineTransformations {
         void SetAngleZ(double angle);
         void SetScale(double scale);
         
-        
-        static double GetMoveX() { return move_x_; };////////////////////////
-
-
-
         static void TrasformateVertex(s21::Vertex *vertex_def, s21::Vertex *vertex_draw);
         void CleanData();
         

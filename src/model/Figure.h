@@ -34,13 +34,13 @@ class Figure {
   Figure(){
     vertices_.reserve(10000010);
     edges_.reserve(1000010);
-  };
+    };
   ~Figure(){};
 
   void CopyFigure(Figure *other) {
-    this->SetVertexesVector(other->GetVerticesVector());
-    this->SetEdgesVector(other->GetEdgesVector());
-    this->Set_Max(other->Get_Max());
+  this->SetVertexesVector(other->GetVerticesVector());
+  this->SetEdgesVector(other->GetEdgesVector());
+  this->Set_Max(other->Get_Max());
   };
 
   void TransformFigure(s21::Figure* figure_draw_) {
