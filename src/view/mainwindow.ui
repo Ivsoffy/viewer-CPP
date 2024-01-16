@@ -1658,6 +1658,32 @@ background-color: rgb(50, 50, 50);
      <string notr="true">border: 3px  solid rgb(150, 150, 150) ;</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_CreateSnapshot">
+    <property name="geometry">
+     <rect>
+      <x>199</x>
+      <y>450</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CreateSnapshot</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Restore">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>450</y>
+      <width>100</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Restore</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

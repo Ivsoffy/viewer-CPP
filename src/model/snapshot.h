@@ -2,6 +2,7 @@
 #define MODEL_SNAPSHOT_H_
 
 #include "figure.h"
+#include <iostream>////////////////////
 
 namespace s21 {
 
@@ -24,12 +25,37 @@ public:
             angle_y_(angle_y),
             angle_z_(angle_z),
             scale_(scale)
-            { figure_def_.CopyFigure(figure_def);
-              figure_draw_.CopyFigure(figure_draw); };
+            {
+                std::cerr << "===Snapshot===" << std::endl;/////////////////////
+                figure_def_.CopyFigure(figure_def);
+                figure_draw_.CopyFigure(figure_draw);
+                // ////////////////////////////////////////////////////////////////////////////////////////
+                 std::cerr << std::endl;/////////////////////
+                 for (unsigned i = 0; i < figure_draw_.GetVerticesVectorRef()->size(); ++i) {
+                   std::cerr << figure_draw_.GetVerticesVectorRef()->at(i).GetX() << " "
+                             << figure_draw_.GetVerticesVectorRef()->at(i).GetY() << " "
+                             << figure_draw_.GetVerticesVectorRef()->at(i).GetZ() << std::endl;/////////////////////
+                 }
+                 std::cerr << std::endl;/////////////////////
+                // //////////////////////////////////////////////////////////////////////////////////////
+
+    };
     ~Snapshot(){};
     void Restore(Figure *figure_def, Figure *figure_draw) {
+        std::cerr << "===Restore===" << std::endl;/////////////////////
         figure_def->CopyFigure(&figure_def_);
         figure_draw->CopyFigure(&figure_draw_);
+        // ////////////////////////////////////////////////////////////////////////////////////////
+         std::cerr << std::endl;/////////////////////
+         for (unsigned i = 0; i < figure_draw_.GetVerticesVectorRef()->size(); ++i) {
+           std::cerr << figure_draw_.GetVerticesVectorRef()->at(i).GetX() << " "
+                     << figure_draw_.GetVerticesVectorRef()->at(i).GetY() << " "
+                     << figure_draw_.GetVerticesVectorRef()->at(i).GetZ() << std::endl;/////////////////////
+         }
+         std::cerr << std::endl;/////////////////////
+        // //////////////////////////////////////////////////////////////////////////////////////
+        // figure_draw_ = new Figure();
+        // figure_draw_->CopyFigure(figure_def_);
     };
 
 private:

@@ -74,6 +74,12 @@ void MainWindow::connects() {
           SLOT(take_screenshot()));
   connect(ui->pushButton_screen_gif_start, SIGNAL(clicked()), this,
           SLOT(record_gif()));
+
+  ////////////////////////////////////////
+  ////////////////////////////////////////
+  ////////////////////////////////////////
+  connect(ui->pushButton_CreateSnapshot, SIGNAL(clicked()), this, SLOT(CreateSnapshot()));
+  connect(ui->pushButton_Restore, SIGNAL(clicked()), this, SLOT(Restore()));
 }
 
 
@@ -274,3 +280,7 @@ void MainWindow::CreateSnapshot() {
                                 ui->spinbox_rot_z->value(),
                                 ui->slider_scale->value());
 }
+
+void MainWindow::Restore() {
+    controller_->Restore();
+    ui->openGLWidget->update(); };

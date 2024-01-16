@@ -54,8 +54,7 @@ class MainWindow : public QMainWindow {
   void record_gif();
 
   void CreateSnapshot();
-
-  void Restore() { controller_->Restore(); };
+  void Restore();
 
 //  void user_settings_combo_box_change();
 //  void user_settings_double_spin_box_change();
