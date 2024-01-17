@@ -17,23 +17,24 @@ TARGET = 3d_viewer_v2
 OBJECTS_DIR = $$PWD/../build/obj/3d_viewer_v2
 
 SOURCES +=         \
-    ../controller/Controller.cc \
-    ../controller/ControllerDTO.cc \
-    ../model/AffineTransformations.cc \
-    ../model/Facade.cc \
-    ../model/Figure.cc \
-    ../model/FileParser.cc \
+    ../controller/controller.cc \
+    ../dto/dto.cc \
+    ../model/affine_transformations.cc \
+    ../model/facade.cc \
+    ../model/figure.cc \
+    ../model/file_parser.cc \
     main.cpp       \
     mainwindow.cpp \
     oglwidget.cpp
 
 HEADERS +=       \
-    ../controller/Controller.h \
-    ../controller/ControllerDTO.h \
-    ../model/AffineTransformations.h \
-    ../model/Facade.h \
-    ../model/Figure.h \
-    ../model/Vertex.h \
+    ../controller/controller.h \
+    ../dto/dto.h \
+    ../model/affine_transformations.h \
+    ../model/facade.h \
+    ../model/figure.h \
+    ../model/vertex.h \
+    ../model/snapshot.h \
     mainwindow.h \
     oglwidget.h
 

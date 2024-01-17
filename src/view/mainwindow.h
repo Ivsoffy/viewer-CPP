@@ -11,7 +11,8 @@
 #include <QTimer>
 #include <iostream>
 
-#include "../controller/Controller.h"
+#include "../controller/controller.h"
+#include "../dto/dto.h"
 #include "oglwidget.h"
 
 #ifdef __APPLE__
@@ -70,6 +71,9 @@ class MainWindow : public QMainWindow {
   /// @brief Slot for change all double spinbox
   void DoubleSpinboxChange();
 
+  void CreateSnapshot();
+  void Restore();
+
   void on_pushButton_screen_start_clicked();
   void on_pushButton_screen_gif_start_clicked();
   void recording_gif();
@@ -78,6 +82,7 @@ class MainWindow : public QMainWindow {
  private:
   s21::Controller *controller_;
   Ui::MainWindow *ui;
+  s21::ParamDTO *dto_;
 
   /// @brief Contain all connects
   void Connects();

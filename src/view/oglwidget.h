@@ -9,7 +9,7 @@
 #include <QOpenGLWidget>
 #include <QWindow>
 
-#include "../model/Vertex.h"
+#include "../model/vertex.h"
 
 class OGLwidget : public QOpenGLWidget, public QOpenGLFunctions {
   Q_OBJECT

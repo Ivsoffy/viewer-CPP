@@ -1,7 +1,4 @@
-#include "AffineTransformations.h"
-
-#include <iostream>////////////////////////////TODO
-#include <iomanip>
+#include "affine_transformations.h"
 
 void s21::AffineTransformations::SetMoveX(double value) {
   CleanData();
@@ -55,7 +52,6 @@ void s21::AffineTransformations::CleanData() {
   angle_z_ = 0;
   scale_ = 0;
 }
-
 
 void s21::AffineTransformations::TrasformateVertex(s21::Vertex *vertex_def, s21::Vertex *vertex_draw) {
   double angle_x = angle_x_ * M_PI / 180;

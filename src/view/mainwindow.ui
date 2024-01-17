@@ -931,45 +931,6 @@ background-color: rgb(50, 50, 50);</string>
      </widget>
     </widget>
    </widget>
-   <widget class="QFrame" name="frame_open_gl">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>10</y>
-      <width>641</width>
-      <height>481</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: 2px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="OGLwidget" name="openGLWidget">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>640</width>
-       <height>480</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>4</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border: 3px  solid rgb(150, 150, 150) ;</string>
-     </property>
-    </widget>
-   </widget>
    <widget class="QFrame" name="frame_settings_view">
     <property name="geometry">
      <rect>
@@ -1678,13 +1639,58 @@ background-color: rgb(50, 50, 50);
      </widget>
     </widget>
    </widget>
+   <widget class="OGLwidget" name="openGLWidget">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>10</y>
+      <width>640</width>
+      <height>480</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>4</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 3px  solid rgb(150, 150, 150) ;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_CreateSnapshot">
+    <property name="geometry">
+     <rect>
+      <x>199</x>
+      <y>450</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CreateSnapshot</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Restore">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>450</y>
+      <width>100</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Restore</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1222</width>
+     <width>1300</width>
      <height>24</height>
     </rect>
    </property>

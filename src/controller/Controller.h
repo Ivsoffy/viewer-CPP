@@ -4,8 +4,8 @@
 #include <QOpenGLFunctions>
 #include <string>
 
-#include "../model/Facade.h"
-#include "ControllerDTO.h"
+#include "../model/facade.h"
+#include "../dto/dto.h"
 
 namespace s21 {
 class Controller {
@@ -14,7 +14,6 @@ class Controller {
     facade_ = facade;
   }
 
-  ParamDTO* paramDTO_;
   s21::GLBufferDTO TransferGLBuffer();
 
   void TransferFigureParams();
@@ -25,7 +24,15 @@ class Controller {
 
   double GetMax();
 
+  void CreateSnapshot(ParamDTO *dto) { facade_->CreateSnapshot(dto); };
+
+  void Restore(ParamDTO *dto) {
+    facade_->Restore(dto);
+  };
+
   s21::AffineTransformations *GetAffineTransformationsRef();
+
+  Facade* GetFacadeRef() {return facade_; };
 
  private:
   Facade *facade_;

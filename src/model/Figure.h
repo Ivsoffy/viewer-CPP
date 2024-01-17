@@ -3,15 +3,15 @@
 
 #include <cmath>
 #include <cstdio>
-#include <vector>
 #include <exception>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
 
-#include "AffineTransformations.h"
+#include "affine_transformations.h"
 
 namespace s21 {
 
@@ -20,35 +20,45 @@ class Vertex;
 class Figure {
  public:
   class FileParser {
-    public:
-      FileParser(){};
-      ~FileParser(){};
+   public:
+    FileParser(){};
+    ~FileParser(){};
 
-      void Parser(s21::Figure *figure, std::string file_name);
+    void Parser(s21::Figure* figure, std::string file_name);
 
-    private:
-      void ParsVLine(std::string strstr, s21::Figure *figure);
-      void ParsFLine(std::string strstr, s21::Figure *figure);
-    };
+   private:
+    void ParsVLine(std::string strstr, s21::Figure* figure);
+    void ParsFLine(std::string strstr, s21::Figure* figure);
+  };
 
-  Figure(){
+  Figure() {
     vertices_.reserve(10000010);
     edges_.reserve(1000010);
   };
-  ~Figure(){};
+  ~Figure(){
+    vertices_.clear();
+    edges_.clear();
 
-  void copy_figure(Figure *other) {
-    this->SetVertexesVector(other->GetVerticesVector());
-    this->SetEdgesVector(other->GetEdgesVector());
-    this->Set_Max(other->Get_Max());
   };
 
+  void copy_figure(Figure *other);
+
+//  Figure& operator=(const Figure& figure) {
+//    if (&figure != this) {
+//      vertices_ = figure.vertices_;
+//      edges_ = figure.edges_;
+//      max_ = figure.max_;
+//    }
+//    return *this;
+//  }
+
   void TransformFigure(s21::Figure* figure_draw_) {
-      unsigned vector_size =  this->GetVerticesVectorRef()->size();
-      for (unsigned i = 0; i < vector_size; i++) {
-        AffineTransformations::TrasformateVertex(&(this->GetVerticesVectorRef()->at(i)),
-                                                &(figure_draw_->GetVerticesVectorRef()->at(i)));
-      }
+    unsigned vector_size = this->GetVerticesVectorRef()->size();
+    for (unsigned i = 0; i < vector_size; i++) {
+      AffineTransformations::TrasformateVertex(
+          &(this->GetVerticesVectorRef()->at(i)),
+          &(figure_draw_->GetVerticesVectorRef()->at(i)));
+    }
   };
 
   std::vector<s21::Vertex> GetVerticesVector() { return vertices_; };
