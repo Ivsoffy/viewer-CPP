@@ -95,6 +95,8 @@ class MainWindow : public QMainWindow {
   s21::ParamDTO *dto_;
   double max_coord;
 
+  bool from_snapshot = false;
+
 //  void init_settings();
   QString take_style_sheet_color_button(struct rgb_color color);
   void connects();

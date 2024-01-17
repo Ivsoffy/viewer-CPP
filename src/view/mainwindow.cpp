@@ -291,5 +291,7 @@ void MainWindow::Restore() {
     ui->spinbox_rot_y->setValue(dto_->angle_y_);
     ui->spinbox_rot_z->setValue(dto_->angle_z_);
     ui->slider_scale->setValue(dto_->scale_);
+    from_snapshot = true;
     ui->openGLWidget->update(); 
+    from_snapshot = false;
     };

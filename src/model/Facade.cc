@@ -7,8 +7,8 @@ s21::Facade::Facade() {
 
 void s21::Facade::SetPathToObject(std::string path) {
    if (figure_def_ != nullptr && figure_draw_ != nullptr) {
-      delete figure_def_;
-      delete figure_draw_;
+       delete figure_def_;
+       delete figure_draw_;
    }
   figure_draw_ = new Figure();
   figure_def_ = new Figure();
