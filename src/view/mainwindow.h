@@ -20,9 +20,6 @@
 #define PATH_FROM_EXE_TO_SRC ".."
 #endif
 
-#define ICON_FINDER_PATH \
-  "/" PATH_FROM_EXE_TO_SRC "/../misc/images/mac_os_finder_icon.png"
-
 #define PATH_STD_OPEN_FINDER "/" PATH_FROM_EXE_TO_SRC "/3d_objects"
 
 enum screenshot_formats { SCREENSHOT_FORMAT_BMP, SCREENSHOT_FORMAT_JPEG };
@@ -33,7 +30,7 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
-//class Controller;
+// class Controller;
 
 class MainWindow : public QMainWindow {
   Q_OBJECT
@@ -42,23 +39,35 @@ class MainWindow : public QMainWindow {
   MainWindow(s21::Controller *controller, QWidget *parent = nullptr);
   ~MainWindow();
 
-//  void closeEvent(QCloseEvent *event);
+  //  void closeEvent(QCloseEvent *event);
 
   //  struct user_settings user_settings;
 
- public slots:
+  //  void user_settings_combo_box_change();
+  //  void user_settings_double_spin_box_change();
+  //  void user_settings_color_change();
+
+ private slots:
+  /// @brief Choose .obj file and transfer him to model
+
   void ChooseFile();
+  /// @brief Update figure param and repaint
+
   void Redraw();
-
-//  void user_settings_combo_box_change();
-//  void user_settings_double_spin_box_change();
-//  void user_settings_color_change();
-
- private slots:  
+  /**
+   * @brief Slot for change figure scale
+   *
+   * @param value New figure scale
+   */
   void ScaleSliderChange(int value);
 
+  /// @brief Slot for change all combobox
   void ComboboxChange();
+
+  /// @brief Slot for change all spinbox
   void SpinboxChange();
+
+  /// @brief Slot for change all double spinbox
   void DoubleSpinboxChange();
 
   void on_pushButton_screen_start_clicked();
@@ -68,17 +77,15 @@ class MainWindow : public QMainWindow {
 
  private:
   s21::Controller *controller_;
-
   Ui::MainWindow *ui;
 
-  double max_coord;
-
-//  void init_settings();
+  /// @brief Contain all connects
   void Connects();
 
-//  void user_settings_set();
-//  void user_settings_save();
-//  void projection_settings();
+  //  void init_settings();
+  //  void user_settings_set();
+  //  void user_settings_save();
+  //  void projection_settings();
 
   QFileDialog file_dialog;
 

@@ -3,26 +3,20 @@
 
 #define GL_SILENCE_DEPRECATION
 
+#include <OpenGL/glu.h>
+
 #include <QOpenGLFunctions>
 #include <QOpenGLWidget>
 #include <QWindow>
-#include <OpenGL/glu.h>
 
 #include "../model/Vertex.h"
 
-//class OGLwidget : public QOpenGLWidget, public QOpenGLFunctions {
-//  Q_OBJECT
-
 class OGLwidget : public QOpenGLWidget, public QOpenGLFunctions {
   Q_OBJECT
-  
+
  public:
-  OGLwidget(QWidget *parent = NULL) : QOpenGLWidget(parent)  {}
-  ~OGLwidget() {
-    //    if (vertex_array) {
-    //      opengl_array_destroy(polygons_array, edges_counter);
-    //    }
-  }
+  OGLwidget(QWidget* parent = NULL) : QOpenGLWidget(parent) {}
+  ~OGLwidget() {}
 
   /// @brief Standart method in OpenGL. Start when OpenGLwidget open.
   void initializeGL() override;
@@ -47,7 +41,7 @@ class OGLwidget : public QOpenGLWidget, public QOpenGLFunctions {
   int vertex_type_ = 1;
   uint total_edges_ = 0;
 
-  int view_type_ = 0;         // 0 - parallel, 1 - central
+  int view_type_ = 0;  // 0 - parallel, 1 - central
 
   double scale_ = 1;
   double axis_scale_;
@@ -69,9 +63,9 @@ class OGLwidget : public QOpenGLWidget, public QOpenGLFunctions {
   float vertex_size_ = 5;
 
  private:
-    enum vertex_type { NONE, CIRCLE, SQUARE };
-    std::vector<s21::Vertex>* vertices_;
-    std::vector<unsigned>* edges_;
+  enum vertex_type { NONE, CIRCLE, SQUARE };
+  std::vector<s21::Vertex>* vertices_;
+  std::vector<unsigned>* edges_;
 };
 
 #endif  // OGLWIDGET_H
