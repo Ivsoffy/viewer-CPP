@@ -146,6 +146,9 @@ void MainWindow::ComboboxChange() {
 }
 
 void MainWindow::SpinboxChange() {
+  if (from_snapshot) {
+      return;
+  }
   QSpinBox *worked = (QSpinBox *)sender();
   if (worked == ui->spinbox_move_x)
     controller_->GetAffineTransformationsRef()->SetMoveX(
@@ -166,9 +169,14 @@ void MainWindow::SpinboxChange() {
 }
 
 void MainWindow::ScaleSliderChange(int value) {
+    ui->scale_lable->setText(
+        QString::number(pow(3, value / 100.0) * 100, 'f', 2));
+    if (from_snapshot) {
+        return;
+    }
   controller_->GetAffineTransformationsRef()->SetScale(value);
-  ui->scale_lable->setText(
-      QString::number(pow(3, value / 100.0) * 100, 'f', 2));
+//  ui->scale_lable->setText(
+//      QString::number(pow(3, value / 100.0) * 100, 'f', 2));
   Redraw();
 }
 
@@ -178,7 +186,7 @@ void MainWindow::DoubleSpinboxChange() {
     ui->openGLWidget->line_size_ = worked->value();
   else if (worked == ui->doubleSpinBox_settings_view_vertex_size)
     ui->openGLWidget->vertex_size_ = worked->value();
-  Redraw();
+  ui->openGLWidget->update();
 }
 
 void MainWindow::on_pushButton_screen_start_clicked() {
@@ -241,7 +249,9 @@ void MainWindow::CreateSnapshot() {
 }
 
 void MainWindow::Restore() {
-    controller_->Restore(dto_);
+    controller_->Restore();
+    from_snapshot = true;
+    ui->openGLWidget->scale_ = controller_->GetMax() * 2;
     ui->spinbox_move_x->setValue(dto_->move_x_);
     ui->spinbox_move_y->setValue(dto_->move_y_);
     ui->spinbox_move_z->setValue(dto_->move_z_);
@@ -249,7 +259,6 @@ void MainWindow::Restore() {
     ui->spinbox_rot_y->setValue(dto_->angle_y_);
     ui->spinbox_rot_z->setValue(dto_->angle_z_);
     ui->slider_scale->setValue(dto_->scale_);
-    from_snapshot = true;
     ui->openGLWidget->update(); 
     from_snapshot = false;
     };

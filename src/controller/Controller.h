@@ -26,8 +26,11 @@ class Controller {
 
   void CreateSnapshot(ParamDTO *dto) { facade_->CreateSnapshot(dto); };
 
-  void Restore(ParamDTO *dto) {
-    facade_->Restore(dto);
+//  void Restore(ParamDTO *dto) {
+//    facade_->Restore(dto);
+//  };
+  void Restore() {
+    facade_->Restore();
   };
 
   s21::AffineTransformations *GetAffineTransformationsRef();

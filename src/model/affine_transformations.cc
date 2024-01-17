@@ -53,6 +53,16 @@ void s21::AffineTransformations::CleanData() {
   scale_ = 0;
 }
 
+void s21::AffineTransformations::SetData2(ParamDTO dto_old) {
+  old_move_x_ = dto_old.move_x_;
+  old_move_y_ = dto_old.move_y_;
+  old_move_z_ = dto_old.move_z_;
+  old_angle_x_ = dto_old.angle_x_;
+  old_angle_y_ = dto_old.angle_y_;
+  old_angle_z_ = dto_old.angle_z_;
+  old_scale_ = dto_old.scale_;
+}
+
 void s21::AffineTransformations::TrasformateVertex(s21::Vertex *vertex_def, s21::Vertex *vertex_draw) {
   double angle_x = angle_x_ * M_PI / 180;
   double angle_y = angle_y_ * M_PI / 180;

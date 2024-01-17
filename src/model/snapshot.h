@@ -22,16 +22,25 @@ public:
             scale_(dto->scale_)
             {
                 std::cerr << "===Snapshot===" << std::endl;/////////////////////
-                dto_old_ = dto;
+                dto_old_ = *dto;
+                dto_ptr_ = dto;
                 figure_def_ = *figure_def;
                 figure_draw_ = *figure_draw;
     };
     ~Snapshot(){};
-    void Restore(Figure *figure_def, Figure *figure_draw, ParamDTO *dto) {
+
+//    void Restore(Figure *figure_def, Figure *figure_draw, ParamDTO *dto) {
+//        std::cerr << "===Restore===" << std::endl;/////////////////////
+//        *dto = *dto_old_;
+//        *figure_def = figure_def_;
+//        *figure_draw = figure_draw_;
+//    };
+    void Restore(Figure *figure_def, Figure *figure_draw) {
         std::cerr << "===Restore===" << std::endl;/////////////////////
-        *dto = *dto_old_;
-        figure_def = &figure_def_;
-        figure_draw = &figure_draw_;
+        *dto_ptr_ = dto_old_;
+        *figure_def = figure_def_;
+        *figure_draw = figure_draw_;
+        s21::AffineTransformations::SetData2(dto_old_);
     };
 
     Snapshot& operator=(const Snapshot& snapshot) {
@@ -51,7 +60,8 @@ public:
 private:
     s21::Figure figure_def_;
     s21::Figure figure_draw_;
-    s21::ParamDTO *dto_old_;
+    s21::ParamDTO dto_old_;
+    s21::ParamDTO *dto_ptr_;
     double move_x_{0};
     double move_y_{0};
     double move_z_{0};

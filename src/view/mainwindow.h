@@ -83,6 +83,7 @@ class MainWindow : public QMainWindow {
   s21::Controller *controller_;
   Ui::MainWindow *ui;
   s21::ParamDTO *dto_;
+  bool from_snapshot = false;
 
   /// @brief Contain all connects
   void Connects();

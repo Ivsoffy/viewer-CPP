@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1222</width>
-    <height>556</height>
+    <width>1351</width>
+    <height>585</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -27,7 +27,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow {
-	background: rgb(60, 60, 60);
+	background: #7a8660;
 }
 QPushButton {
 	color: rgb(204, 204, 204);
@@ -49,15 +49,18 @@ QDoubleSpinBox {
    <widget class="QFrame" name="frame_settings_file">
     <property name="geometry">
      <rect>
-      <x>255</x>
-      <y>10</y>
-      <width>303</width>
-      <height>52</height>
+      <x>10</x>
+      <y>350</y>
+      <width>371</width>
+      <height>131</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border: 2px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);</string>
+     <string notr="true">border-style: outset;
+border-width: 2px;
+border-radius: 10px;
+border-color: #DBF9B8;
+background-color : #B6C399;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -65,24 +68,75 @@ background-color: rgb(50, 50, 50);</string>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLineEdit" name="lineEdit_file_input">
+    <widget class="QPushButton" name="pushButton_screen_gif_start">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>20</y>
-       <width>201</width>
+       <x>0</x>
+       <y>50</y>
+       <width>131</width>
        <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
+      <string notr="true">QPushButton{
+	background-color: #B0BC98;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 10px;
+     border-color: #DBF9B8;
+     font: bold 14px;
+     padding: 6px;
+}
 
-
-
+ QPushButton:pressed {
+     background-color:  #89996a;
+ }
 </string>
+     </property>
+     <property name="text">
+      <string>GIF</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_CreateSnapshot">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>90</y>
+       <width>131</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+	background-color: #B0BC98;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 10px;
+     border-color: #DBF9B8;
+     font: bold 14px;
+     padding: 6px;
+}
+
+ QPushButton:pressed {
+     background-color:  #89996a;
+ }
+</string>
+     </property>
+     <property name="text">
+      <string>CreateSnapshot</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_file_input">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>0</y>
+       <width>271</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #46571F;</string>
      </property>
      <property name="text">
       <string>3d_objects/cube.obj</string>
@@ -91,23 +145,710 @@ background-color: rgb(50, 50, 50);
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_file_input">
+    <widget class="QPushButton" name="pushButton_file_select">
      <property name="geometry">
       <rect>
-       <x>1</x>
-       <y>20</y>
-       <width>61</width>
+       <x>0</x>
+       <y>0</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+	background-color: #3D8F47;
+ }
+
+ QPushButton:pressed {
+     background-color:  #33DE82;
+ }
+
+
+</string>
+     </property>
+     <property name="text">
+      <string>Выбор файла</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_screen_start">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>50</y>
+       <width>131</width>
        <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
+      <string notr="true">QPushButton{
+	background-color: #B0BC98;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 10px;
+     border-color: #DBF9B8;
+     font: bold 14px;
+     padding: 6px;
+}
 
-
-
+ QPushButton:pressed {
+     background-color:  #89996a;
+ }
 </string>
+     </property>
+     <property name="text">
+      <string>Скриншот</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_Restore">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>90</y>
+       <width>231</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+	background-color: #B0BC98;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 10px;
+     border-color: #DBF9B8;
+     font: bold 14px;
+     padding: 6px;
+}
+
+ QPushButton:pressed {
+     background-color:  #89996a;
+ }
+</string>
+     </property>
+     <property name="text">
+      <string>Restore</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_screen_unit">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>50</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #46571F;</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>bmp</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>jpeg</string>
+      </property>
+     </item>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_settings_move">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>371</width>
+      <height>331</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-style: outset;
+border-width: 2px;
+border-radius: 10px;
+border-color: #DBF9B8;
+background-color : #B6C399;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QSlider" name="slider_scale">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>300</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>-300</number>
+     </property>
+     <property name="maximum">
+      <number>300</number>
+     </property>
+     <property name="singleStep">
+      <number>1</number>
+     </property>
+     <property name="pageStep">
+      <number>1</number>
+     </property>
+     <property name="value">
+      <number>0</number>
+     </property>
+     <property name="sliderPosition">
+      <number>0</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="scale_lable">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>300</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #46571F;</string>
+     </property>
+     <property name="text">
+      <string>100</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_settings_move_scale">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>260</y>
+       <width>371</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #46571F;</string>
+     </property>
+     <property name="text">
+      <string>Масштаб</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_settings_move_rotate_info">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>0</y>
+       <width>181</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #46571F;</string>
+     </property>
+     <property name="text">
+      <string>Поворот</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_settings_move_rotate_x">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>40</y>
+       <width>51</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #46571F;</string>
+     </property>
+     <property name="text">
+      <string>X</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QSlider" name="slider_rot_x">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>70</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>-180</number>
+     </property>
+     <property name="maximum">
+      <number>180</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinbox_rot_x">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>40</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #46571F;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="minimum">
+      <number>-180</number>
+     </property>
+     <property name="maximum">
+      <number>180</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_settings_move_rotate_y">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>110</y>
+       <width>51</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #46571F;</string>
+     </property>
+     <property name="text">
+      <string>Y</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinbox_rot_y">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>110</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #46571F;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="minimum">
+      <number>-180</number>
+     </property>
+     <property name="maximum">
+      <number>180</number>
+     </property>
+    </widget>
+    <widget class="QSlider" name="slider_rot_y">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>140</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>-180</number>
+     </property>
+     <property name="maximum">
+      <number>180</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_settings_move_rotate_z">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>180</y>
+       <width>51</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #46571F;</string>
+     </property>
+     <property name="text">
+      <string>Z</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QSlider" name="slider_rot_z">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>210</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>-180</number>
+     </property>
+     <property name="maximum">
+      <number>180</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinbox_rot_z">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>180</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #46571F;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="minimum">
+      <number>-180</number>
+     </property>
+     <property name="maximum">
+      <number>180</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_settings_move_move_info">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>181</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #46571F;</string>
+     </property>
+     <property name="text">
+      <string>Перемещение</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_settings_move_move_x">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>51</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #46571F;</string>
+     </property>
+     <property name="text">
+      <string>X</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinbox_move_x">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>40</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #46571F;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="minimum">
+      <number>-100</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+    </widget>
+    <widget class="QSlider" name="slider_move_x">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>70</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="minimum">
+      <number>-100</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_settings_move_move_y">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>110</y>
+       <width>51</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #46571F;</string>
+     </property>
+     <property name="text">
+      <string>Y</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinbox_move_y">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>110</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #46571F;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="minimum">
+      <number>-100</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+    </widget>
+    <widget class="QSlider" name="slider_move_y">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>140</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>-100</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_settings_move_move_z">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>180</y>
+       <width>51</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #46571F;</string>
+     </property>
+     <property name="text">
+      <string>Z</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinbox_move_z">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>180</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #46571F;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="minimum">
+      <number>-100</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+    </widget>
+    <widget class="QSlider" name="slider_move_z">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>210</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>-100</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_info">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>490</y>
+      <width>641</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-style: outset;
+border-width: 2px;
+border-radius: 10px;
+border-color: #DBF9B8;</string>
+    </property>
+    <property name="text">
+     <string>Инфо строка</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="OGLwidget" name="openGLWidget">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>10</y>
+      <width>680</width>
+      <height>510</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>4</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 3px  solid rgb(150, 150, 150) ;</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_screen_2">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>350</y>
+      <width>261</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-style: outset;
+border-width: 2px;
+border-radius: 10px;
+border-color: #DBF9B8;
+background-color : #B6C399;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_file_input">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>261</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #46571F;</string>
      </property>
      <property name="text">
       <string>Файл</string>
@@ -116,833 +857,150 @@ background-color: rgb(50, 50, 50);
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_file_select">
+    <widget class="QLabel" name="label_info_object_info_file_name_2">
      <property name="geometry">
       <rect>
-       <x>260</x>
-       <y>20</y>
-       <width>42</width>
+       <x>0</x>
+       <y>40</y>
+       <width>131</width>
        <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton {
-     border: 1px  solid rgb(150, 150, 150) ;
-	background-color: rgb(30, 35, 45);
- }
-
- QPushButton:pressed {
-	border: 1px solid rgb(150, 150, 150) ;
-     background-color:  rgb(50, 55, 65);
- }
+      <string notr="true">color: #46571F;</string>
+     </property>
+     <property name="text">
+      <string>Название файла</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_info_object_info_file_name_ans_2">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>40</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #46571F;
 
 
 </string>
      </property>
      <property name="text">
-      <string/>
+      <string>0</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-   </widget>
-   <widget class="QFrame" name="frame_settings_move">
-    <property name="geometry">
-     <rect>
-      <x>255</x>
-      <y>65</y>
-      <width>303</width>
-      <height>263</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: 2px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QFrame" name="frame_settings_move_rotate">
-     <property name="geometry">
-      <rect>
-       <x>150</x>
-       <y>0</y>
-       <width>151</width>
-       <height>213</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border: 2px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QLabel" name="label_settings_move_rotate_info">
-      <property name="geometry">
-       <rect>
-        <x>1</x>
-        <y>1</y>
-        <width>151</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>Поворот</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_settings_move_rotate_x">
-      <property name="geometry">
-       <rect>
-        <x>1</x>
-        <y>31</y>
-        <width>41</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>X</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_settings_move_rotate_y">
-      <property name="geometry">
-       <rect>
-        <x>1</x>
-        <y>91</y>
-        <width>41</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>Y</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_settings_move_rotate_z">
-      <property name="geometry">
-       <rect>
-        <x>1</x>
-        <y>151</y>
-        <width>41</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>Z</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QSlider" name="slider_rot_x">
-      <property name="geometry">
-       <rect>
-        <x>39</x>
-        <y>64</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="minimum">
-       <number>-180</number>
-      </property>
-      <property name="maximum">
-       <number>180</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QSlider" name="slider_rot_y">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>120</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="minimum">
-       <number>-180</number>
-      </property>
-      <property name="maximum">
-       <number>180</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="spinbox_rot_y">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>90</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-      <property name="minimum">
-       <number>-180</number>
-      </property>
-      <property name="maximum">
-       <number>180</number>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="spinbox_rot_z">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>150</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-      <property name="minimum">
-       <number>-180</number>
-      </property>
-      <property name="maximum">
-       <number>180</number>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="spinbox_rot_x">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>30</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-      <property name="minimum">
-       <number>-180</number>
-      </property>
-      <property name="maximum">
-       <number>180</number>
-      </property>
-     </widget>
-     <widget class="QSlider" name="slider_rot_z">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>180</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="minimum">
-       <number>-180</number>
-      </property>
-      <property name="maximum">
-       <number>180</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QFrame" name="frame_settings_move_move">
+    <widget class="QLabel" name="label_info_object_info_vertex_count_2">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>0</y>
-       <width>151</width>
-       <height>213</height>
+       <y>70</y>
+       <width>131</width>
+       <height>31</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);</string>
+      <string notr="true">color: #46571F;</string>
      </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+     <property name="text">
+      <string>Количество вершин</string>
      </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
-     <widget class="QLabel" name="label_settings_move_move_info">
-      <property name="geometry">
-       <rect>
-        <x>1</x>
-        <y>1</y>
-        <width>150</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>Перемещение</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_settings_move_move_x">
-      <property name="geometry">
-       <rect>
-        <x>1</x>
-        <y>31</y>
-        <width>41</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>X</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_settings_move_move_y">
-      <property name="geometry">
-       <rect>
-        <x>1</x>
-        <y>91</y>
-        <width>41</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>Y</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_settings_move_move_z">
-      <property name="geometry">
-       <rect>
-        <x>1</x>
-        <y>151</y>
-        <width>41</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>Z</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="spinbox_move_x">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>30</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-      <property name="minimum">
-       <number>-100</number>
-      </property>
-      <property name="maximum">
-       <number>100</number>
-      </property>
-     </widget>
-     <widget class="QSlider" name="slider_move_x">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>60</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="minimum">
-       <number>-100</number>
-      </property>
-      <property name="maximum">
-       <number>100</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QSlider" name="slider_move_y">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>120</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="minimum">
-       <number>-100</number>
-      </property>
-      <property name="maximum">
-       <number>100</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="spinbox_move_y">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>90</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-      <property name="minimum">
-       <number>-100</number>
-      </property>
-      <property name="maximum">
-       <number>100</number>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="spinbox_move_z">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>150</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-      <property name="minimum">
-       <number>-100</number>
-      </property>
-      <property name="maximum">
-       <number>100</number>
-      </property>
-     </widget>
-     <widget class="QSlider" name="slider_move_z">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>180</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="minimum">
-       <number>-100</number>
-      </property>
-      <property name="maximum">
-       <number>100</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
     </widget>
-    <widget class="QFrame" name="frame_settings_move_scale">
+    <widget class="QLabel" name="label_info_object_info_polygon_count_2">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>210</y>
-       <width>303</width>
-       <height>53</height>
+       <y>100</y>
+       <width>131</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);</string>
+      <string notr="true">color: #46571F;</string>
      </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+     <property name="text">
+      <string>Количество ребер</string>
      </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
-     <widget class="QLabel" name="label_settings_move_scale">
-      <property name="geometry">
-       <rect>
-        <x>1</x>
-        <y>1</y>
-        <width>91</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>Масштаб</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="scale_lable">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>0</y>
-        <width>91</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>100</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QSlider" name="slider_scale">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>20</y>
-        <width>211</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="minimum">
-       <number>-300</number>
-      </property>
-      <property name="maximum">
-       <number>300</number>
-      </property>
-      <property name="singleStep">
-       <number>1</number>
-      </property>
-      <property name="pageStep">
-       <number>1</number>
-      </property>
-      <property name="value">
-       <number>0</number>
-      </property>
-      <property name="sliderPosition">
-       <number>0</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
     </widget>
-   </widget>
-   <widget class="QFrame" name="frame_screen">
-    <property name="geometry">
-     <rect>
-      <x>255</x>
-      <y>330</y>
-      <width>303</width>
-      <height>63</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: 2px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QFrame" name="frame_screen_2">
+    <widget class="QLabel" name="label_info_object_info_vertex_count_ans_2">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>303</width>
-       <height>63</height>
+       <x>140</x>
+       <y>70</y>
+       <width>121</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);</string>
+      <string notr="true">background-color: #46571F;
+
+
+</string>
      </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+     <property name="text">
+      <string>0</string>
      </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
-     <widget class="QLabel" name="label_screen">
-      <property name="geometry">
-       <rect>
-        <x>1</x>
-        <y>1</y>
-        <width>150</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>Скриншот в формате</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_screen_gif">
-      <property name="geometry">
-       <rect>
-        <x>1</x>
-        <y>31</y>
-        <width>150</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
+    </widget>
+    <widget class="QLabel" name="label_info_object_info_polygon_count_ans_2">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>100</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #46571F;
 
 
 </string>
-      </property>
-      <property name="text">
-       <string>Запись Гиф</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="comboBox_screen_unit">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>1</y>
-        <width>81</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);</string>
-      </property>
-      <item>
-       <property name="text">
-        <string>bmp</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>jpeg</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QPushButton" name="pushButton_screen_start">
-      <property name="geometry">
-       <rect>
-        <x>230</x>
-        <y>1</y>
-        <width>72</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton {
-     border: 1px  solid rgb(150, 150, 150) ;
-	background-color: rgb(64, 140, 191);
- }
-
- QPushButton:pressed {
-	border: 1px solid rgb(150, 150, 150) ;
-     background-color:  rgb(84, 160, 211);
- }
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>Скриншот</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_screen_gif_start">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>31</y>
-        <width>152</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton {
-     border: 1px  solid rgb(150, 150, 150) ;
-	background-color: rgb(64, 140, 191);
- }
-
- QPushButton:pressed {
-	border: 1px solid rgb(150, 150, 150) ;
-     background-color:  rgb(84, 160, 211);
- }
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>Запись</string>
-      </property>
-     </widget>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
     </widget>
    </widget>
    <widget class="QFrame" name="frame_settings_view">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>390</x>
       <y>10</y>
-      <width>241</width>
-      <height>243</height>
+      <width>261</width>
+      <height>321</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border: 2px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);</string>
+     <string notr="true">border-style: outset;
+border-width: 2px;
+border-radius: 10px;
+border-color: #DBF9B8;
+background-color : #B6C399;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -954,14 +1012,13 @@ background-color: rgb(50, 50, 50);</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>60</y>
-       <width>241</width>
+       <y>120</y>
+       <width>261</width>
        <height>91</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -972,16 +1029,14 @@ background-color: rgb(50, 50, 50);</string>
      <widget class="QComboBox" name="comboBox_settings_view_polygon_type">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>140</x>
         <y>0</y>
         <width>120</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
-</string>
+       <string notr="true">background-color: #46571F;</string>
       </property>
       <item>
        <property name="text">
@@ -997,21 +1052,14 @@ background-color: rgb(50, 50, 50);
      <widget class="QLabel" name="label_settings_view_polygon_type">
       <property name="geometry">
        <rect>
-        <x>1</x>
+        <x>0</x>
         <y>0</y>
         <width>120</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
-
- 
-
-
-
-</string>
+       <string notr="true">color: #46571F;</string>
       </property>
       <property name="text">
        <string>Тип Ребер</string>
@@ -1023,7 +1071,7 @@ background-color: rgb(50, 50, 50);
      <widget class="QLabel" name="label_settings_view_polygon_width">
       <property name="geometry">
        <rect>
-        <x>1</x>
+        <x>0</x>
         <y>30</y>
         <width>120</width>
         <height>31</height>
@@ -1035,14 +1083,7 @@ background-color: rgb(50, 50, 50);
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
-
- 
-
-
-
-</string>
+       <string notr="true">color: #46571F;</string>
       </property>
       <property name="text">
        <string>Толщина ребра</string>
@@ -1054,20 +1095,14 @@ background-color: rgb(50, 50, 50);
      <widget class="QDoubleSpinBox" name="doubleSpinBox_settings_view_polygon_width">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>140</x>
         <y>30</y>
         <width>119</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
+       <string notr="true">background-color: #46571F;</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1079,46 +1114,17 @@ background-color: rgb(50, 50, 50);
        <double>0.100000000000000</double>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_settings_view_polygon_color">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>60</y>
-        <width>120</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_settings_view_polygon_color">
       <property name="geometry">
        <rect>
-        <x>1</x>
+        <x>0</x>
         <y>60</y>
         <width>120</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
-
- 
-
-
-
-</string>
+       <string notr="true">color: #46571F;</string>
       </property>
       <property name="text">
        <string>Цвет Ребер</string>
@@ -1127,19 +1133,34 @@ background-color: rgb(50, 50, 50);
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
+     <widget class="QPushButton" name="pushButton_settings_view_polygon_color">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>60</y>
+        <width>120</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #46571F;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
     <widget class="QFrame" name="frame_settings_view_vertex">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>150</y>
-       <width>241</width>
+       <y>230</y>
+       <width>261</width>
        <height>91</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -1157,12 +1178,7 @@ background-color: rgb(50, 50, 50);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
-
-
-
-</string>
+       <string notr="true">color: #46571F;</string>
       </property>
       <property name="text">
        <string>Размер вершин</string>
@@ -1181,12 +1197,7 @@ background-color: rgb(50, 50, 50);
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
-
-
-
-</string>
+       <string notr="true">color: #46571F;</string>
       </property>
       <property name="text">
        <string>Цвет Вершин</string>
@@ -1198,20 +1209,14 @@ background-color: rgb(50, 50, 50);
      <widget class="QDoubleSpinBox" name="doubleSpinBox_settings_view_vertex_size">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>140</x>
         <y>30</y>
         <width>119</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
+       <string notr="true">background-color: #46571F;</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1220,41 +1225,17 @@ background-color: rgb(50, 50, 50);
        <double>0.100000000000000</double>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_settings_view_vertex_color">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>60</y>
-        <width>120</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
      <widget class="QComboBox" name="comboBox_settings_view_vertex_type">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>140</x>
         <y>0</y>
         <width>120</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
-font-size: 12px;</string>
+       <string notr="true">background-color: #46571F;</string>
       </property>
       <property name="frame">
        <bool>true</bool>
@@ -1285,14 +1266,10 @@ font-size: 12px;</string>
        </rect>
       </property>
       <property name="font">
-       <font>
-        <pointsize>-1</pointsize>
-       </font>
+       <font/>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
-font-size: 13px;</string>
+       <string notr="true">color: #46571F;</string>
       </property>
       <property name="text">
        <string>Тип вершин</string>
@@ -1301,19 +1278,34 @@ font-size: 13px;</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
+     <widget class="QPushButton" name="pushButton_settings_view_vertex_color">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>60</y>
+        <width>120</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #46571F;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
     <widget class="QFrame" name="frame_settings_view_other">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>0</y>
-       <width>241</width>
+       <y>40</y>
+       <width>261</width>
        <height>61</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -1324,16 +1316,14 @@ background-color: rgb(50, 50, 50);</string>
      <widget class="QComboBox" name="comboBox_settings_view_projection_type">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>140</x>
         <y>0</y>
         <width>120</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
-font-size: 10px;</string>
+       <string notr="true">background-color: #46571F;</string>
       </property>
       <item>
        <property name="text">
@@ -1349,65 +1339,30 @@ font-size: 10px;</string>
      <widget class="QPushButton" name="pushButton_settings_view_other_color">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>140</x>
         <y>30</y>
         <width>120</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
+       <string notr="true">background-color: #46571F;</string>
       </property>
       <property name="text">
        <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="label_settings_view_other_type">
-      <property name="geometry">
-       <rect>
-        <x>1</x>
-        <y>0</y>
-        <width>120</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>Тип проекции</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_settings_view_other_color">
       <property name="geometry">
        <rect>
-        <x>1</x>
+        <x>0</x>
         <y>30</y>
         <width>120</width>
         <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
-
-
-
-</string>
+       <string notr="true">color: #46571F;</string>
       </property>
       <property name="text">
        <string>Цвет фона</string>
@@ -1416,273 +1371,45 @@ background-color: rgb(50, 50, 50);
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
+     <widget class="QLabel" name="label_settings_view_other_type">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>120</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #46571F;</string>
+      </property>
+      <property name="text">
+       <string>Тип проекции</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
     </widget>
-   </widget>
-   <widget class="QLabel" name="label_info">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>400</y>
-      <width>541</width>
-      <height>33</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: 2px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-    </property>
-    <property name="text">
-     <string>Инфо строка</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QFrame" name="frame_info">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>255</y>
-      <width>241</width>
-      <height>92</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: 2px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QFrame" name="frame_info_object_info_2">
+    <widget class="QLabel" name="label_file_input_2">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>241</width>
-       <height>92</height>
+       <width>261</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);</string>
+      <string notr="true">color: #46571F;</string>
      </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+     <property name="text">
+      <string>Проекция</string>
      </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
-     <widget class="QLabel" name="label_info_object_info_file_name_2">
-      <property name="geometry">
-       <rect>
-        <x>1</x>
-        <y>1</y>
-        <width>120</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>Название файла</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_info_object_info_vertex_count_2">
-      <property name="geometry">
-       <rect>
-        <x>1</x>
-        <y>30</y>
-        <width>120</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>Количество вершин</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_info_object_info_polygon_count_2">
-      <property name="geometry">
-       <rect>
-        <x>1</x>
-        <y>60</y>
-        <width>120</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
-color: rgb(204, 204, 204);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>Количество ребер</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_info_object_info_file_name_ans_2">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>1</y>
-        <width>120</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_info_object_info_vertex_count_ans_2">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>30</y>
-        <width>120</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_info_object_info_polygon_count_ans_2">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>60</y>
-        <width>120</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border: 1px  solid rgb(150, 150, 150) ;
-background-color: rgb(50, 50, 50);
- 
-
-
-
-</string>
-      </property>
-      <property name="text">
-       <string>0</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
     </widget>
-   </widget>
-   <widget class="OGLwidget" name="openGLWidget">
-    <property name="geometry">
-     <rect>
-      <x>610</x>
-      <y>10</y>
-      <width>640</width>
-      <height>480</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>4</width>
-      <height>0</height>
-     </size>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: 3px  solid rgb(150, 150, 150) ;</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_CreateSnapshot">
-    <property name="geometry">
-     <rect>
-      <x>199</x>
-      <y>450</y>
-      <width>151</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>CreateSnapshot</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_Restore">
-    <property name="geometry">
-     <rect>
-      <x>360</x>
-      <y>450</y>
-      <width>100</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Restore</string>
-    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -1690,7 +1417,7 @@ background-color: rgb(50, 50, 50);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1300</width>
+     <width>1351</width>
      <height>24</height>
     </rect>
    </property>
