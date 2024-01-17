@@ -122,7 +122,7 @@ TEST(model, affine_1_move) {
   figure_from->AddVertex(1, 1, 1);
   figure_from->AddVertex(2, 2, 2);
   figure_from->AddVertex(3, 3, 3);
-  figure_to->CopyFigure(figure_from);
+  figure_to = figure_from;
   s21::Figure *figure_assert = new s21::Figure();
   figure_assert->AddVertex(6, 1, 1);
   figure_assert->AddVertex(7, 2, 2);
@@ -133,46 +133,13 @@ TEST(model, affine_1_move) {
   ASSERT_TRUE(is_vertices_vectors_equal(figure_to->GetVerticesVector(), figure_assert->GetVerticesVector()));
 }
 
-//TO DELETE
-// TEST(model, affine_1_move) {
-//   s21::Facade model;
-//   s21::Controller controller(&model);
-//   controller.TransferObject("tests/model/3d_objects/vertices_3.obj");
-//   controller.GetAffineTransformationsRef()->SetMoveX(5);
-//   controller.TransferFigureParams();
-
-//   s21::Figure figure_assert = s21::Figure();
-//   figure_assert.AddVertex(6, 1, 1);
-//   figure_assert.AddVertex(7, 2, 2);
-//   figure_assert.AddVertex(8, 3, 3);
-//     ASSERT_TRUE(is_vertices_vectors_equal(*(model.GetDrawVertecisRef()), figure_assert.GetVerticesVector()));
-// }
-  // ////////////////////////////////////////////////////////////////////////////////////////
-  // std::cerr << std::endl;/////////////////////
-  // for (unsigned i = 0; i < model.GetDefVertecisRef()->size(); ++i) {
-  //   std::cerr << model.GetDefVertecisRef()->at(i).GetX() << " " 
-  //             << model.GetDefVertecisRef()->at(i).GetY() << " "
-  //             << model.GetDefVertecisRef()->at(i).GetZ() << std::endl;/////////////////////
-  // }
-  // std::cerr << std::endl;/////////////////////
-  // //////////////////////////////////////////////////////////////////////////////////////
-  // ////////////////////////////////////////////////////////////////////////////////////////
-  // std::cerr << std::endl;/////////////////////
-  // for (unsigned i = 0; i < model.GetDrawVertecisRef()->size(); ++i) {
-  //   std::cerr << model.GetDrawVertecisRef()->at(i).GetX() << " " 
-  //             << model.GetDrawVertecisRef()->at(i).GetY() << " "
-  //             << model.GetDrawVertecisRef()->at(i).GetZ() << std::endl;/////////////////////
-  // }
-  // std::cerr << std::endl;/////////////////////
-  // //////////////////////////////////////////////////////////////////////////////////////
-
 TEST(model, affine_2_turn) {
   s21::Figure *figure_from = new s21::Figure();
   s21::Figure *figure_to = new s21::Figure();
   figure_from->AddVertex(1, 1, 1);
   figure_from->AddVertex(2, 2, 2);
   figure_from->AddVertex(3, 3, 3);
-  figure_to->CopyFigure(figure_from);
+  figure_to = figure_from;
   s21::Figure *figure_assert = new s21::Figure();
   figure_assert->AddVertex(1, 1, -1);
   figure_assert->AddVertex(2, 2, -2);
@@ -189,7 +156,7 @@ TEST(model, affine_3_scale) {
   figure_from->AddVertex(1, 1, 1);
   figure_from->AddVertex(2, 2, 2);
   figure_from->AddVertex(3, 3, 3);
-  figure_to->CopyFigure(figure_from);
+  figure_to = figure_from;
   s21::Figure *figure_assert = new s21::Figure();
   figure_assert->AddVertex(3, 3, 3);
   figure_assert->AddVertex(6, 6, 6);

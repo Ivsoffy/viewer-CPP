@@ -12,7 +12,7 @@
 #include <iostream>
 
 #include "../controller/controller.h"
-#include "../controller/controller_dto.h"
+#include "../dto/dto.h"
 #include "oglwidget.h"
 
 #ifdef __APPLE__

@@ -19,15 +19,6 @@ void s21::Figure::FileParser::Parser(s21::Figure *figure, std::string file_name)
     }
   }
   file.close();
-
-//////////////////////////////////////////////////////////////////////////////////////////
-  // std::cerr << std::endl;/////////////////////
-  // // for (unsigned i = 0; i < figure->GetEdgesVector().size(); ++i) {
-  // for (unsigned i = 0; i < 10; ++i) {
-  //   std::cerr << figure->GetEdgesVector().at(i) + 1 << "|";/////////////////////
-  // }
-  // std::cerr << std::endl;/////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
 }
  
 void s21::Figure::FileParser::ParsVLine(std::string line, s21::Figure* figure) {

@@ -5,7 +5,7 @@
 #include <string>
 
 #include "../model/facade.h"
-#include "controller_dto.h"
+#include "../dto/dto.h"
 
 namespace s21 {
 class Controller {
@@ -14,7 +14,6 @@ class Controller {
     facade_ = facade;
   }
 
-//  ParamDTO* paramDTO_;
   s21::GLBufferDTO TransferGLBuffer();
 
   void TransferFigureParams();
@@ -26,23 +25,6 @@ class Controller {
   double GetMax();
 
   void CreateSnapshot(ParamDTO *dto) { facade_->CreateSnapshot(dto); };
-
-//  void CreateSnapshot(double move_x,
-//                      double move_y,
-//                      double move_z,
-//                      double angle_x,
-//                      double angle_y,
-//                      double angle_z,
-//                      double scale
-//                      ) {
-//    facade_->CreateSnapshot(move_x,
-//                            move_y,
-//                            move_z,
-//                            angle_x,
-//                            angle_y,
-//                            angle_z,
-//                            scale);
-//                      };
 
   void Restore(ParamDTO *dto) {
     facade_->Restore(dto);

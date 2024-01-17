@@ -1,7 +1,7 @@
 #ifndef MODEL_FACADE_H_
 #define MODEL_FACADE_H_
 
-#include "../controller/controller_dto.h"
+#include "../dto/dto.h"
 #include "figure.h"
 #include "vertex.h"
 #include "snapshot.h"
@@ -32,24 +32,6 @@ class Facade {
   }
 
   void CreateSnapshot(ParamDTO *dto) { snapshot_ = new Snapshot(figure_def_, figure_draw_, dto); }
-
-//  void CreateSnapshot(double move_x,
-//                      double move_y,
-//                      double move_z,
-//                      double angle_x,
-//                      double angle_y,
-//                      double angle_z,
-//                      double scale) {
-//    snapshot_ = new Snapshot(figure_def_,
-//                            figure_draw_,
-//                            move_x,
-//                            move_y,
-//                            move_z,
-//                            angle_x,
-//                            angle_y,
-//                            angle_z,
-//                            scale);
-//  }
 
   void Restore(ParamDTO *dto) {
       snapshot_->Restore(figure_def_, figure_draw_, dto);

@@ -280,13 +280,6 @@ void MainWindow::CreateSnapshot() {
                               ui->spinbox_rot_z->value(),
                               ui->slider_scale->value());
     controller_->CreateSnapshot(dto_);
-    // controller_->CreateSnapshot(ui->spinbox_move_x->value(),
-    //                             ui->spinbox_move_y->value(),
-    //                             ui->spinbox_move_z->value(),
-    //                             ui->spinbox_rot_x->value(),
-    //                             ui->spinbox_rot_y->value(),
-    //                             ui->spinbox_rot_z->value(),
-    //                             ui->slider_scale->value());
 }
 
 void MainWindow::Restore() {

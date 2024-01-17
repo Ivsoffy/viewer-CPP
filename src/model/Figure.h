@@ -37,11 +37,14 @@ class Figure {
     };
   ~Figure(){};
 
-  void CopyFigure(Figure *other) {
-  this->SetVertexesVector(other->GetVerticesVector());
-  this->SetEdgesVector(other->GetEdgesVector());
-  this->Set_Max(other->Get_Max());
-  };
+  Figure& operator=(const Figure& figure) {
+      if(&figure != this) {
+          vertices_ = figure.vertices_;
+          edges_ = figure.edges_;
+          max_ = figure.max_;
+      }
+      return *this;
+  }
 
   void TransformFigure(s21::Figure* figure_draw_) {
       unsigned vector_size =  this->GetVerticesVectorRef()->size();
