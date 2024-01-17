@@ -150,7 +150,8 @@ dist:
 	tar -cvzf ./dist/$(NAME).tgz Makefile model/* controller/* view/* config/* tests
 
 dvi:
-	$(OPEN) text.html
+	doxygen ../dox/conf
+	open ./../dox/html/index.html
 	
 # style:
 # 	cp ../materials/linters/.clang-format .clang-format

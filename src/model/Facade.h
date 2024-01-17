@@ -2,10 +2,10 @@
 #define MODEL_FACADE_H_
 
 #include "../dto/dto.h"
-#include "figure.h"
-#include "vertex.h"
-#include "snapshot.h"
 #include "affine_transformations.h"
+#include "figure.h"
+#include "snapshot.h"
+#include "vertex.h"
 
 namespace s21 {
 
@@ -17,11 +17,19 @@ class Facade {
   void SetPathToObject(std::string path);
   void TrasformateFigure() { figure_def_->TransformFigure(figure_draw_); }
 
-  std::vector<s21::Vertex>* GetDrawVertecisRef() { return figure_draw_->GetVerticesVectorRef(); }
-  std::vector<unsigned>* GetDrawEdgesRef() { return  figure_draw_->GetEdgesVectorRef(); }
+  std::vector<s21::Vertex> *GetDrawVertecisRef() {
+    return figure_draw_->GetVerticesVectorRef();
+  }
+  std::vector<unsigned> *GetDrawEdgesRef() {
+    return figure_draw_->GetEdgesVectorRef();
+  }
 
-  std::vector<s21::Vertex>* GetDefVertecisRef() { return figure_def_->GetVerticesVectorRef(); }
-  std::vector<unsigned>* GetDefEdgesRef() { return  figure_def_->GetEdgesVectorRef(); }
+  std::vector<s21::Vertex> *GetDefVertecisRef() {
+    return figure_def_->GetVerticesVectorRef();
+  }
+  std::vector<unsigned> *GetDefEdgesRef() {
+    return figure_def_->GetEdgesVectorRef();
+  }
 
   AffineTransformations GetAffineTransformations() {
     return *affineTransformations_;
@@ -31,16 +39,18 @@ class Facade {
     return affineTransformations_;
   }
 
-  void CreateSnapshot(ParamDTO *dto) { snapshot_ = new Snapshot(figure_def_, figure_draw_, dto); }
+  void CreateSnapshot(ParamDTO *dto) {
+    snapshot_ = new Snapshot(figure_def_, figure_draw_, dto);
+  }
 
   void Restore(ParamDTO *dto) {
-      snapshot_->Restore(figure_def_, figure_draw_, dto);
+    snapshot_->Restore(figure_def_, figure_draw_, dto);
   }
 
   Figure::FileParser GetFileParser() { return *fileParser_; }
-  Figure* GetFigureDef() { return figure_def_; }
-  Figure* GetFigureDraw() { return figure_draw_; }
-  Snapshot* GetSnapshot() { return snapshot_; }
+  Figure *GetFigureDef() { return figure_def_; }
+  Figure *GetFigureDraw() { return figure_draw_; }
+  Snapshot *GetSnapshot() { return snapshot_; }
 
   double GetMax() { return figure_draw_->Get_Max(); }
 

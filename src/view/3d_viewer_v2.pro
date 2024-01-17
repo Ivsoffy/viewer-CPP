@@ -10,6 +10,7 @@ include(QtGifImage/src/gifimage/qtgifimage.pri)
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
+ICON = ../../misc/3d_viewer_logo.icns
 
 TARGET = 3d_viewer_v2
 
@@ -29,12 +30,11 @@ SOURCES +=         \
 HEADERS +=       \
     ../controller/controller.h \
     ../dto/dto.h \
-    ../model/ snapshot.h \
     ../model/affine_transformations.h \
     ../model/facade.h \
     ../model/figure.h \
-    ../model/snapshot.h \
     ../model/vertex.h \
+    ../model/snapshot.h \
     mainwindow.h \
     oglwidget.h
 

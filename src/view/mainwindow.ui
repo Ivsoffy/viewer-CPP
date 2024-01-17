@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1300</width>
-    <height>570</height>
+    <width>1222</width>
+    <height>556</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1300</width>
-    <height>570</height>
+    <width>1</width>
+    <height>1</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>1500</width>
-    <height>570</height>
+    <height>797</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -1423,7 +1423,7 @@ background-color: rgb(50, 50, 50);
      <rect>
       <x>10</x>
       <y>400</y>
-      <width>549</width>
+      <width>541</width>
       <height>33</height>
      </rect>
     </property>
