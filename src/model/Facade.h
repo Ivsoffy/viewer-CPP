@@ -31,26 +31,28 @@ class Facade {
     return affineTransformations_;
   }
 
-  void CreateSnapshot(double move_x,
-                      double move_y,
-                      double move_z,
-                      double angle_x,
-                      double angle_y,
-                      double angle_z,
-                      double scale) {
-    snapshot_ = new Snapshot(figure_def_,
-                            figure_draw_,
-                            move_x,
-                            move_y,
-                            move_z,
-                            angle_x,
-                            angle_y,
-                            angle_z,
-                            scale);
-  }
+  void CreateSnapshot(ParamDTO *dto) { snapshot_ = new Snapshot(figure_def_, figure_draw_, dto); }
 
-  void Restore() {
-      snapshot_->Restore(figure_def_, figure_draw_);
+//  void CreateSnapshot(double move_x,
+//                      double move_y,
+//                      double move_z,
+//                      double angle_x,
+//                      double angle_y,
+//                      double angle_z,
+//                      double scale) {
+//    snapshot_ = new Snapshot(figure_def_,
+//                            figure_draw_,
+//                            move_x,
+//                            move_y,
+//                            move_z,
+//                            angle_x,
+//                            angle_y,
+//                            angle_z,
+//                            scale);
+//  }
+
+  void Restore(ParamDTO *dto) {
+      snapshot_->Restore(figure_def_, figure_draw_, dto);
   }
 
   Figure::FileParser GetFileParser() { return *fileParser_; }

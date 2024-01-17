@@ -12,6 +12,7 @@
 #include <iostream>
 
 #include "../controller/controller.h"
+#include "../controller/controller_dto.h"
 #include "oglwidget.h"
 
 #ifdef __APPLE__
@@ -91,6 +92,7 @@ class MainWindow : public QMainWindow {
  private:
   s21::Controller *controller_;
   Ui::MainWindow *ui;
+  s21::ParamDTO *dto_;
   double max_coord;
 
 //  void init_settings();

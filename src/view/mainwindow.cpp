@@ -272,15 +272,31 @@ void MainWindow::recording_stop() {
 }
 
 void MainWindow::CreateSnapshot() {
-    controller_->CreateSnapshot(ui->spinbox_move_x->value(),
-                                ui->spinbox_move_y->value(),
-                                ui->spinbox_move_z->value(),
-                                ui->spinbox_rot_x->value(),
-                                ui->spinbox_rot_y->value(),
-                                ui->spinbox_rot_z->value(),
-                                ui->slider_scale->value());
+    dto_ = new s21::ParamDTO(ui->spinbox_move_x->value(),
+                              ui->spinbox_move_y->value(),
+                              ui->spinbox_move_z->value(),
+                              ui->spinbox_rot_x->value(),
+                              ui->spinbox_rot_y->value(),
+                              ui->spinbox_rot_z->value(),
+                              ui->slider_scale->value());
+    controller_->CreateSnapshot(dto_);
+    // controller_->CreateSnapshot(ui->spinbox_move_x->value(),
+    //                             ui->spinbox_move_y->value(),
+    //                             ui->spinbox_move_z->value(),
+    //                             ui->spinbox_rot_x->value(),
+    //                             ui->spinbox_rot_y->value(),
+    //                             ui->spinbox_rot_z->value(),
+    //                             ui->slider_scale->value());
 }
 
 void MainWindow::Restore() {
-    controller_->Restore();
-    ui->openGLWidget->update(); };
+    controller_->Restore(dto_);
+    ui->spinbox_move_x->setValue(dto_->move_x_);
+    ui->spinbox_move_y->setValue(dto_->move_y_);
+    ui->spinbox_move_z->setValue(dto_->move_z_);
+    ui->spinbox_rot_x->setValue(dto_->angle_x_);
+    ui->spinbox_rot_y->setValue(dto_->angle_y_);
+    ui->spinbox_rot_z->setValue(dto_->angle_z_);
+    ui->slider_scale->setValue(dto_->scale_);
+    ui->openGLWidget->update(); 
+    };
