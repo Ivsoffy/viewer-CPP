@@ -47,6 +47,8 @@ class Facade {
     snapshot_->Restore(figure_def_, figure_draw_, dto);
   }
 
+  void Reset();
+
   Figure::FileParser GetFileParser() { return *fileParser_; }
   Figure *GetFigureDef() { return figure_def_; }
   Figure *GetFigureDraw() { return figure_draw_; }

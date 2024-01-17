@@ -52,7 +52,7 @@ void OGLwidget::paintGL() {
     glLoadIdentity();
 
     if (view_type_) {
-      gluPerspective(perspective_fov_, window_ratio_, 0.1, scale_ * 3);
+      gluPerspective(perspective_fov_, window_ratio_, 0.1, scale_ * 5);
     } else {
       glOrtho(-scale_ * window_ratio_, scale_ * window_ratio_, -scale_, scale_,
               -scale_ * 5, scale_ * 5);

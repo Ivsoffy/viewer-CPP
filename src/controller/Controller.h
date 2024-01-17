@@ -30,6 +30,10 @@ class Controller {
     facade_->Restore(dto);
   };
 
+  void Reset() {
+    facade_->Reset();
+  }
+
   s21::AffineTransformations *GetAffineTransformationsRef();
 
   Facade* GetFacadeRef() {return facade_; };

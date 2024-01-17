@@ -88,6 +88,7 @@ void MainWindow::Connects() {
   connect(ui->pushButton_CreateSnapshot, SIGNAL(clicked()), this,
           SLOT(CreateSnapshot()));
   connect(ui->pushButton_Restore, SIGNAL(clicked()), this, SLOT(Restore()));
+  connect(ui->pushButton_Reset, SIGNAL(clicked()), this, SLOT(Reset()));
 }
 
 void MainWindow::ChooseFile() {
@@ -96,20 +97,9 @@ void MainWindow::ChooseFile() {
     QStringList fileNames = file_dialog.selectedFiles();
     QString filename = fileNames[0];
 
-    ui->slider_move_x->setValue(0);
-    ui->slider_move_y->setValue(0);
-    ui->slider_move_z->setValue(0);
-    ui->slider_rot_x->setValue(0);
-    ui->slider_rot_y->setValue(0);
-    ui->slider_rot_z->setValue(0);
-    ui->slider_scale->setValue(0);
+    SliderReset();
 
-    ui->spinbox_move_x->setValue(0);
-    ui->spinbox_move_y->setValue(0);
-    ui->spinbox_move_z->setValue(0);
-    ui->spinbox_rot_x->setValue(0);
-    ui->spinbox_rot_y->setValue(0);
-    ui->spinbox_rot_z->setValue(0);
+    ui->label_info->clear();
 
     std::string err_msg = controller_->TransferObject(filename.toStdString());
     if (err_msg == "OK") {
@@ -120,6 +110,10 @@ void MainWindow::ChooseFile() {
       ui->openGLWidget->update();
       ui->openGLWidget->need_paint_ = true;
       ui->lineEdit_file_input->setText(filename);
+      ui->label_info_object_info_vertex_count_ans_2->setText(QString::number(ui->openGLWidget->GetVerticesRef()->size()));
+      ui->label_info_object_info_polygon_count_ans_2->setText(QString::number(ui->openGLWidget->GetEdgesRef()->size()));
+      QFileInfo fi(filename);
+      ui->label_info_object_info_file_name_ans_2->setText(fi.baseName());
     } else
       ui->label_info->setText(QString::fromStdString(err_msg));
   }
@@ -142,7 +136,7 @@ void MainWindow::ComboboxChange() {
   } else if (worked == ui->comboBox_settings_view_polygon_type) {
     ui->openGLWidget->line_type_ = worked->currentIndex();
   }
-  ui->openGLWidget->repaint();
+  ui->openGLWidget->update();
 }
 
 void MainWindow::SpinboxChange() {
@@ -178,7 +172,7 @@ void MainWindow::DoubleSpinboxChange() {
     ui->openGLWidget->line_size_ = worked->value();
   else if (worked == ui->doubleSpinBox_settings_view_vertex_size)
     ui->openGLWidget->vertex_size_ = worked->value();
-  Redraw();
+  ui->openGLWidget->update();
 }
 
 void MainWindow::on_pushButton_screen_start_clicked() {
@@ -251,3 +245,28 @@ void MainWindow::Restore() {
   ui->slider_scale->setValue(dto_->scale_);
   ui->openGLWidget->update();
 };
+
+void MainWindow::Reset() {
+  SliderReset();
+  controller_->Reset();
+  ui->openGLWidget->SetVertices(controller_->GetVertecisRef());
+  ui->openGLWidget->SetEdges(controller_->GetEdgesRef());
+  ui->openGLWidget->update();
+}
+
+void MainWindow::SliderReset() {
+  ui->slider_move_x->setValue(0);
+  ui->slider_move_y->setValue(0);
+  ui->slider_move_z->setValue(0);
+  ui->slider_rot_x->setValue(0);
+  ui->slider_rot_y->setValue(0);
+  ui->slider_rot_z->setValue(0);
+  ui->slider_scale->setValue(0);
+
+  ui->spinbox_move_x->setValue(0);
+  ui->spinbox_move_y->setValue(0);
+  ui->spinbox_move_z->setValue(0);
+  ui->spinbox_rot_x->setValue(0);
+  ui->spinbox_rot_y->setValue(0);
+  ui->spinbox_rot_z->setValue(0);
+}
