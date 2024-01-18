@@ -244,6 +244,7 @@ void MainWindow::CreateSnapshot() {
 //      throw std::invalid_argument("ERROR: There is no object to Snapshot.");
       return;
   }
+  std::cerr << "===CreateSnapshot===ui->spinbox_move_x->value()===" << ui->spinbox_move_x->value() << std::endl;////////
   dto_ = new s21::ParamDTO(
       ui->spinbox_move_x->value(), ui->spinbox_move_y->value(),
       ui->spinbox_move_z->value(), ui->spinbox_rot_x->value(),
@@ -258,15 +259,26 @@ void MainWindow::Restore() {
        return;
     }
     controller_->Restore();
+//    std::cerr << "=======From_box========================================"<< std::endl;////////
+//    std::cerr << "===ui->spinbox_move_y->value()===" << ui->spinbox_move_x->value() << std::endl;////////
+//    std::cerr << "===ui->spinbox_move_z->value()===" << ui->spinbox_move_z->value() << std::endl;////////
+//    std::cerr << "===ui->slider_scale->value()===" << ui->slider_scale->value() << std::endl;////////
+
     from_snapshot = true;
     ui->openGLWidget->scale_ = controller_->GetMax() * 2;
+//    std::cerr << "===i->spinbox_move_x->value()===" << ui->spinbox_move_x->value() << std::endl;////////
     ui->spinbox_move_x->setValue(dto_->move_x_);
+//    std::cerr << "===i->spinbox_move_x->value()===" << ui->spinbox_move_x->value() << std::endl;////////
     ui->spinbox_move_y->setValue(dto_->move_y_);
     ui->spinbox_move_z->setValue(dto_->move_z_);
     ui->spinbox_rot_x->setValue(dto_->angle_x_);
     ui->spinbox_rot_y->setValue(dto_->angle_y_);
     ui->spinbox_rot_z->setValue(dto_->angle_z_);
     ui->slider_scale->setValue(dto_->scale_);
+//    std::cerr << "=======MainW========================================"<< std::endl;////////
+//    std::cerr << "===dto_old__move_x_===" << dto_->move_x_<< std::endl;////////
+//    std::cerr << "===dto_old__move_z_===" << dto_->move_z_<< std::endl;////////
+//    std::cerr << "===dto_old__scale_===" << dto_->scale_<< std::endl;////////
     ui->openGLWidget->update();
     from_snapshot = false;
     };
