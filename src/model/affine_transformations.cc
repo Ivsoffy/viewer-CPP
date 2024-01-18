@@ -1,12 +1,8 @@
 #include "affine_transformations.h"
 
 #include "../dto/dto.h"
-#include <iostream>////////////////////
 
 void s21::AffineTransformations::SetMoveX(double value) {
-  std::cerr << "=A_F=value=" << value << std::endl;////////
-  std::cerr << "=A_F=old_move_x_=" << old_move_x_ << std::endl;////////
-  std::cerr << "=A_F=move_x_=" << move_x_ << std::endl;////////
   CleanData();
   move_x_ = value - old_move_x_;
   old_move_x_ = value;
@@ -70,9 +66,7 @@ s21::ParamDTO s21::AffineTransformations::GetOldFielde() {
 }
 
 void s21::AffineTransformations::SetOldFielde(s21::ParamDTO dto) {
-  std::cerr << "=A_F=SetOldFielde_x_1=" << old_move_x_ << std::endl;////////
   old_move_x_ = dto.move_x_;
-  std::cerr << "=A_F=SetOldFielde_x_2=" << old_move_x_ << std::endl;////////
   old_move_y_ = dto.move_y_;
   old_move_z_ = dto.move_z_;
   old_angle_x_ = dto.angle_x_;

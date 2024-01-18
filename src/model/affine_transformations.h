@@ -28,7 +28,7 @@ class AffineTransformations {
         static void SetOldFielde(s21::ParamDTO dto);
 
         
-    // private://///<----------------------вернуть
+    private:
         static inline double move_x_{0};
         static inline double move_y_{0};
         static inline double move_z_{0};
