@@ -240,6 +240,10 @@ void MainWindow::recording_stop() {
 }
 
 void MainWindow::CreateSnapshot() {
+  if (controller_->GetFacadeRef()->GetFigureDraw() == nullptr) {
+//      throw std::invalid_argument("ERROR: There is no object to Snapshot.");
+      return;
+  }
   dto_ = new s21::ParamDTO(
       ui->spinbox_move_x->value(), ui->spinbox_move_y->value(),
       ui->spinbox_move_z->value(), ui->spinbox_rot_x->value(),
@@ -249,6 +253,10 @@ void MainWindow::CreateSnapshot() {
 }
 
 void MainWindow::Restore() {
+    if (controller_->GetFacadeRef()->GetSnapshot() == nullptr) {
+ //     throw std::invalid_argument("ERROR: There is no object to Restore.");
+       return;
+    }
     controller_->Restore();
     from_snapshot = true;
     ui->openGLWidget->scale_ = controller_->GetMax() * 2;
@@ -259,6 +267,6 @@ void MainWindow::Restore() {
     ui->spinbox_rot_y->setValue(dto_->angle_y_);
     ui->spinbox_rot_z->setValue(dto_->angle_z_);
     ui->slider_scale->setValue(dto_->scale_);
-    ui->openGLWidget->update(); 
+    ui->openGLWidget->update();
     from_snapshot = false;
     };

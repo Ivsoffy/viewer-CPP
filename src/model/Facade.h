@@ -42,10 +42,7 @@ class Facade {
   void CreateSnapshot(ParamDTO *dto) {
     snapshot_ = new Snapshot(figure_def_, figure_draw_, dto);
   }
-
-//  void Restore(ParamDTO *dto) {
-//    snapshot_->Restore(figure_def_, figure_draw_, dto);
-//  }
+  
   void Restore() {
     snapshot_->Restore(figure_def_, figure_draw_);
   }

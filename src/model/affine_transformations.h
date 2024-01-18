@@ -24,7 +24,7 @@ class AffineTransformations {
         
         static void TrasformateVertex(s21::Vertex *vertex_def, s21::Vertex *vertex_draw);
         void CleanData();
-        static void SetData2(ParamDTO dto_old);
+        static ParamDTO GetOldFielde();
         
     private:
         static inline double move_x_{0};

@@ -28,11 +28,11 @@ void OGLwidget::init_setttings() {
   //  background_color_b = init_set->background_color.blue;
 }
 
-void OGLwidget::SetVertices(std::vector<s21::Vertex>* vertices) {  //////////
+void OGLwidget::SetVertices(std::vector<s21::Vertex>* vertices) {
   vertices_ = vertices;
 }
 
-void OGLwidget::SetEdges(std::vector<unsigned>* edges) {  //////////
+void OGLwidget::SetEdges(std::vector<unsigned>* edges) {
   edges_ = edges;
 }
 
