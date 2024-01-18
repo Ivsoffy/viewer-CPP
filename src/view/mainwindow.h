@@ -95,7 +95,7 @@ class MainWindow : public QMainWindow {
 
   QFileDialog file_dialog;
 
-  int flag = 0;
+  int gif_recording = 0;
   QTimer *timer;
   QTimer *timer_2;
   QGifImage *gif;
