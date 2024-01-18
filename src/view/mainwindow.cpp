@@ -146,6 +146,9 @@ void MainWindow::ComboboxChange() {
 }
 
 void MainWindow::SpinboxChange() {
+  if (from_snapshot) {
+      return;
+  }
   QSpinBox *worked = (QSpinBox *)sender();
   if (worked == ui->spinbox_move_x)
     controller_->GetAffineTransformationsRef()->SetMoveX(
@@ -166,9 +169,14 @@ void MainWindow::SpinboxChange() {
 }
 
 void MainWindow::ScaleSliderChange(int value) {
+    ui->scale_lable->setText(
+        QString::number(pow(3, value / 100.0) * 100, 'f', 2));
+    if (from_snapshot) {
+        return;
+    }
   controller_->GetAffineTransformationsRef()->SetScale(value);
-  ui->scale_lable->setText(
-      QString::number(pow(3, value / 100.0) * 100, 'f', 2));
+//  ui->scale_lable->setText(
+//      QString::number(pow(3, value / 100.0) * 100, 'f', 2));
   Redraw();
 }
 
@@ -178,7 +186,7 @@ void MainWindow::DoubleSpinboxChange() {
     ui->openGLWidget->line_size_ = worked->value();
   else if (worked == ui->doubleSpinBox_settings_view_vertex_size)
     ui->openGLWidget->vertex_size_ = worked->value();
-  Redraw();
+  ui->openGLWidget->update();
 }
 
 void MainWindow::on_pushButton_screen_start_clicked() {
@@ -192,7 +200,7 @@ void MainWindow::on_pushButton_screen_start_clicked() {
 }
 
 void MainWindow::on_pushButton_screen_gif_start_clicked() {
-  if (!flag) {
+  if (!gif_recording) {
     ui->pushButton_screen_gif_start->setText("Остановить запись");
 
     gif = new QGifImage;
@@ -203,7 +211,7 @@ void MainWindow::on_pushButton_screen_gif_start_clicked() {
     timer->start(100);
     timer_2->start(1);
     QTimer::singleShot(5000, this, SLOT(recording_stop()));
-    flag = 1;
+    gif_recording = 1;
   } else {
     recording_stop();
   }
@@ -211,27 +219,36 @@ void MainWindow::on_pushButton_screen_gif_start_clicked() {
 
 void MainWindow::recording_gif() {
   QImage frameImage = ui->openGLWidget->grabFramebuffer();
-  gif->addFrame(frameImage, 100);
+  gif->addFrame(frameImage, 50);
 }
 
 void MainWindow::recording_stop() {
-  flag = 0;
-  ui->pushButton_screen_gif_start->setText("Запись");
-  timer->stop();
-  timer_2->stop();
-  delete timer;
-  delete timer_2;
+    if (gif_recording){
+        gif_recording = 0;
+        ui->pushButton_screen_gif_start->setText("GIF");
+        timer->stop();
+        timer_2->stop();
+        delete timer;
+        delete timer_2;
 
-  QString name = QDate::currentDate().toString("yyMMdd") + "_" +
-                 QTime::currentTime().toString("hhmmss") + ".gif";
-  QString gifFileName =
-      QApplication::applicationDirPath() + "/../../../" + name;
-  gif->save(gifFileName);
-  delete gif;
-  repaint();
+        QString name = QDate::currentDate().toString("yyMMdd") + "_" +
+                       QTime::currentTime().toString("hhmmss") + ".gif";
+      //  QString gifFileName =
+      //      QApplication::applicationDirPath() + "/../../../" + name;
+        QString gif_filename = QFileDialog::getSaveFileName(NULL, "Save to ...", "",
+                                                           "GIF image (*.gif)");
+      //  QString gif_filename = "/Users/errokele/projects/gifka.gif";
+        gif->save(gif_filename);
+        delete gif;
+        repaint();
+    }
 }
 
 void MainWindow::CreateSnapshot() {
+  if (controller_->GetFacadeRef()->GetFigureDraw() == nullptr) {
+//      throw std::invalid_argument("ERROR: There is no object to Snapshot.");
+      return;
+  }
   dto_ = new s21::ParamDTO(
       ui->spinbox_move_x->value(), ui->spinbox_move_y->value(),
       ui->spinbox_move_z->value(), ui->spinbox_rot_x->value(),
@@ -241,13 +258,21 @@ void MainWindow::CreateSnapshot() {
 }
 
 void MainWindow::Restore() {
-  controller_->Restore(dto_);
-  ui->spinbox_move_x->setValue(dto_->move_x_);
-  ui->spinbox_move_y->setValue(dto_->move_y_);
-  ui->spinbox_move_z->setValue(dto_->move_z_);
-  ui->spinbox_rot_x->setValue(dto_->angle_x_);
-  ui->spinbox_rot_y->setValue(dto_->angle_y_);
-  ui->spinbox_rot_z->setValue(dto_->angle_z_);
-  ui->slider_scale->setValue(dto_->scale_);
-  ui->openGLWidget->update();
-};
+    if (controller_->GetFacadeRef()->GetSnapshot() == nullptr) {
+ //     throw std::invalid_argument("ERROR: There is no object to Restore.");
+       return;
+    }
+    controller_->Restore();
+    
+    from_snapshot = true;
+    ui->openGLWidget->scale_ = controller_->GetMax() * 2;
+    ui->spinbox_move_x->setValue(dto_->move_x_);
+    ui->spinbox_move_y->setValue(dto_->move_y_);
+    ui->spinbox_move_z->setValue(dto_->move_z_);
+    ui->spinbox_rot_x->setValue(dto_->angle_x_);
+    ui->spinbox_rot_y->setValue(dto_->angle_y_);
+    ui->spinbox_rot_z->setValue(dto_->angle_z_);
+    ui->slider_scale->setValue(dto_->scale_);
+    ui->openGLWidget->update();
+    from_snapshot = false;
+    };

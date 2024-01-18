@@ -24,10 +24,12 @@ class Controller {
 
   double GetMax();
 
-  void CreateSnapshot(ParamDTO *dto) { facade_->CreateSnapshot(dto); };
+  void CreateSnapshot(ParamDTO *dto) {
+      facade_->CreateSnapshot(dto);
+  };
 
-  void Restore(ParamDTO *dto) {
-    facade_->Restore(dto);
+  void Restore() {
+    facade_->Restore();
   };
 
   s21::AffineTransformations *GetAffineTransformationsRef();

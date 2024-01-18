@@ -83,6 +83,7 @@ class MainWindow : public QMainWindow {
   s21::Controller *controller_;
   Ui::MainWindow *ui;
   s21::ParamDTO *dto_;
+  bool from_snapshot = false;
 
   /// @brief Contain all connects
   void Connects();
@@ -94,7 +95,7 @@ class MainWindow : public QMainWindow {
 
   QFileDialog file_dialog;
 
-  int flag = 0;
+  int gif_recording = 0;
   QTimer *timer;
   QTimer *timer_2;
   QGifImage *gif;

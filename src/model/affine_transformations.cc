@@ -1,5 +1,7 @@
 #include "affine_transformations.h"
 
+#include "../dto/dto.h"
+
 void s21::AffineTransformations::SetMoveX(double value) {
   CleanData();
   move_x_ = value - old_move_x_;
@@ -52,6 +54,26 @@ void s21::AffineTransformations::CleanData() {
   angle_z_ = 0;
   scale_ = 0;
 }
+
+s21::ParamDTO s21::AffineTransformations::GetOldFielde() {
+  return ParamDTO(old_move_x_,
+                  old_move_y_, 
+                  old_move_z_, 
+                  old_angle_x_, 
+                  old_angle_y_, 
+                  old_angle_z_, 
+                  old_scale_);
+}
+
+void s21::AffineTransformations::SetOldFielde(s21::ParamDTO dto) {
+  old_move_x_ = dto.move_x_;
+  old_move_y_ = dto.move_y_;
+  old_move_z_ = dto.move_z_;
+  old_angle_x_ = dto.angle_x_;
+  old_angle_y_ = dto.angle_y_;
+  old_angle_z_ = dto.angle_z_;
+  old_scale_ = dto.scale_;
+};
 
 void s21::AffineTransformations::TrasformateVertex(s21::Vertex *vertex_def, s21::Vertex *vertex_draw) {
   double angle_x = angle_x_ * M_PI / 180;

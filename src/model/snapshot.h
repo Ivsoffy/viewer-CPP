@@ -3,62 +3,44 @@
 
 #include "figure.h"
 #include "../dto/dto.h"
-#include <iostream>////////////////////
+#include "affine_transformations.h"
 
 namespace s21 {
 
 class Snapshot {
 public:
-    Snapshot(s21::Figure *figure_def,
-            s21::Figure *figure_draw,
-            s21::ParamDTO *dto)
-            :
-            move_x_(dto->move_x_),
-            move_y_(dto->move_y_),
-            move_z_(dto->move_z_),
-            angle_x_(dto->angle_x_),
-            angle_y_(dto->angle_y_),
-            angle_z_(dto->angle_z_),
-            scale_(dto->scale_)
-            {
-                std::cerr << "===Snapshot===" << std::endl;/////////////////////
-                dto_old_ = dto;
-                figure_def_ = *figure_def;
-                figure_draw_ = *figure_draw;
-    };
-    ~Snapshot(){};
-    void Restore(Figure *figure_def, Figure *figure_draw, ParamDTO *dto) {
-        std::cerr << "===Restore===" << std::endl;/////////////////////
-        *dto = *dto_old_;
-        figure_def = &figure_def_;
-        figure_draw = &figure_draw_;
-    };
-
     Snapshot& operator=(const Snapshot& snapshot) {
         if(&snapshot != this) {
-            move_x_ = snapshot.move_x_;
-            move_y_ = snapshot.move_y_;
-            move_z_ = snapshot.move_z_;
-            angle_x_ = snapshot.angle_x_;
-            angle_y_ = snapshot.angle_y_;
-            angle_z_ = snapshot.angle_z_;
-            scale_ = snapshot.scale_;
-            dto_old_ = snapshot.dto_old_;
+            figure_def_ = snapshot.figure_def_;
+            figure_draw_ = snapshot.figure_draw_;
+            dto_old_for_view_ = snapshot.dto_old_for_view_;
+            dto_old_for_afffin_tran_ = snapshot.dto_old_for_afffin_tran_;
+            dto_ptr_ = snapshot.dto_ptr_;
         }
         return *this;
     }
 
+    Snapshot(s21::Figure *figure_def, s21::Figure *figure_draw, s21::ParamDTO *dto) {
+        dto_old_for_afffin_tran_ = s21::AffineTransformations::GetOldFielde();
+        dto_old_for_view_ = *dto;
+        dto_ptr_ = dto;
+        figure_def_ = *figure_def;
+        figure_draw_ = *figure_draw;
+    };
+    ~Snapshot(){};
+    void Restore(Figure *figure_def, Figure *figure_draw) {
+        s21::AffineTransformations::SetOldFielde(dto_old_for_afffin_tran_);
+        *dto_ptr_ = dto_old_for_view_;
+        *figure_def = figure_def_;
+        *figure_draw = figure_draw_;
+    };
+
 private:
     s21::Figure figure_def_;
     s21::Figure figure_draw_;
-    s21::ParamDTO *dto_old_;
-    double move_x_{0};
-    double move_y_{0};
-    double move_z_{0};
-    double angle_x_{0};
-    double angle_y_{0};
-    double angle_z_{0};
-    double scale_{0};
+    s21::ParamDTO dto_old_for_afffin_tran_;
+    s21::ParamDTO dto_old_for_view_;
+    s21::ParamDTO *dto_ptr_;
 };
 
 }  // namespace s21

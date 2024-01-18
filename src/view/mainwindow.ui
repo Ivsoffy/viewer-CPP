@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1309</width>
-    <height>585</height>
+    <width>1350</width>
+    <height>578</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -27,7 +27,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow {
-	background: #7a8660;
+	background: #10151C;
 }
 QPushButton {
 	color: rgb(204, 204, 204);
@@ -59,8 +59,8 @@ QDoubleSpinBox {
      <string notr="true">border-style: outset;
 border-width: 2px;
 border-radius: 10px;
-border-color: #DBF9B8;
-background-color : #B6C399;</string>
+border-color: #697E9C;
+background-color : #0E1115;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -79,17 +79,16 @@ background-color : #B6C399;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton{
-	background-color: #B0BC98;
+	background-color:  #61738E;
      border-style: outset;
      border-width: 2px;
      border-radius: 10px;
-     border-color: #DBF9B8;
      font: bold 14px;
      padding: 6px;
 }
 
  QPushButton:pressed {
-     background-color:  #89996a;
+	background-color: #6D7A8E;
  }
 </string>
      </property>
@@ -108,17 +107,16 @@ background-color : #B6C399;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton{
-	background-color: #B0BC98;
+	background-color:  #61738E;
      border-style: outset;
      border-width: 2px;
      border-radius: 10px;
-     border-color: #DBF9B8;
      font: bold 14px;
      padding: 6px;
 }
 
  QPushButton:pressed {
-     background-color:  #89996a;
+	background-color: #6D7A8E;
  }
 </string>
      </property>
@@ -136,7 +134,7 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #46571F;</string>
+      <string notr="true">background-color: #0E1115;</string>
      </property>
      <property name="text">
       <string>3d_objects/cube.obj</string>
@@ -156,11 +154,11 @@ background-color : #B6C399;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton {
-	background-color: #3D8F47;
+	background-color: #93266D;
  }
 
  QPushButton:pressed {
-     background-color:  #33DE82;
+     background-color:  #600C42;
  }
 
 
@@ -181,17 +179,16 @@ background-color : #B6C399;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton{
-	background-color: #B0BC98;
+	background-color:  #61738E;
      border-style: outset;
      border-width: 2px;
      border-radius: 10px;
-     border-color: #DBF9B8;
      font: bold 14px;
      padding: 6px;
 }
 
  QPushButton:pressed {
-     background-color:  #89996a;
+	background-color: #6D7A8E;
  }
 </string>
      </property>
@@ -210,17 +207,16 @@ background-color : #B6C399;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton{
-	background-color: #B0BC98;
+	background-color:  #61738E;
      border-style: outset;
      border-width: 2px;
      border-radius: 10px;
-     border-color: #DBF9B8;
      font: bold 14px;
      padding: 6px;
 }
 
  QPushButton:pressed {
-     background-color:  #89996a;
+	background-color: #6D7A8E;
  }
 </string>
      </property>
@@ -238,7 +234,10 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #46571F;</string>
+      <string notr="true">background-color: #202A38;
+
+
+</string>
      </property>
      <item>
       <property name="text">
@@ -265,8 +264,8 @@ background-color : #B6C399;</string>
      <string notr="true">border-style: outset;
 border-width: 2px;
 border-radius: 10px;
-border-color: #DBF9B8;
-background-color : #B6C399;</string>
+border-color: #697E9C;
+background-color : #0E1115;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -315,7 +314,10 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #46571F;</string>
+      <string notr="true">background-color: #202A38;
+
+
+</string>
      </property>
      <property name="text">
       <string>100</string>
@@ -334,7 +336,7 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #46571F;</string>
+      <string notr="true">color: #6D7A8E;</string>
      </property>
      <property name="text">
       <string>Масштаб</string>
@@ -353,7 +355,7 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #46571F;</string>
+      <string notr="true">color: #6D7A8E;</string>
      </property>
      <property name="text">
       <string>Поворот</string>
@@ -372,7 +374,7 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #46571F;</string>
+      <string notr="true">color: #6D7A8E;</string>
      </property>
      <property name="text">
       <string>X</string>
@@ -415,7 +417,7 @@ background-color : #B6C399;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #46571F;</string>
+      <string notr="true">background-color: #202A38;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -437,7 +439,7 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #46571F;</string>
+      <string notr="true">color: #6D7A8E;</string>
      </property>
      <property name="text">
       <string>Y</string>
@@ -461,7 +463,7 @@ background-color : #B6C399;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #46571F;</string>
+      <string notr="true">background-color: #202A38;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -502,7 +504,7 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #46571F;</string>
+      <string notr="true">color: #6D7A8E;</string>
      </property>
      <property name="text">
       <string>Z</string>
@@ -545,7 +547,7 @@ background-color : #B6C399;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #46571F;</string>
+      <string notr="true">background-color: #202A38;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -567,7 +569,7 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #46571F;</string>
+      <string notr="true">color: #6D7A8E;</string>
      </property>
      <property name="text">
       <string>Перемещение</string>
@@ -586,7 +588,7 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #46571F;</string>
+      <string notr="true">color: #6D7A8E;</string>
      </property>
      <property name="text">
       <string>X</string>
@@ -610,7 +612,7 @@ background-color : #B6C399;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #46571F;</string>
+      <string notr="true">background-color: #202A38;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -654,7 +656,7 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #46571F;</string>
+      <string notr="true">color: #6D7A8E;</string>
      </property>
      <property name="text">
       <string>Y</string>
@@ -678,7 +680,7 @@ background-color : #B6C399;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #46571F;</string>
+      <string notr="true">background-color: #202A38;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -719,7 +721,7 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #46571F;</string>
+      <string notr="true">color: #6D7A8E;</string>
      </property>
      <property name="text">
       <string>Z</string>
@@ -743,7 +745,7 @@ background-color : #B6C399;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #46571F;</string>
+      <string notr="true">background-color: #202A38;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -778,9 +780,9 @@ background-color : #B6C399;</string>
    <widget class="QLabel" name="label_info">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>500</y>
-      <width>641</width>
+      <x>10</x>
+      <y>490</y>
+      <width>371</width>
       <height>33</height>
      </rect>
     </property>
@@ -788,7 +790,7 @@ background-color : #B6C399;</string>
      <string notr="true">border-style: outset;
 border-width: 2px;
 border-radius: 10px;
-border-color: #DBF9B8;</string>
+border-color: #697E9C;</string>
     </property>
     <property name="text">
      <string>Инфо строка</string>
@@ -800,10 +802,10 @@ border-color: #DBF9B8;</string>
    <widget class="OGLwidget" name="openGLWidget">
     <property name="geometry">
      <rect>
-      <x>660</x>
+      <x>390</x>
       <y>10</y>
-      <width>640</width>
-      <height>480</height>
+      <width>680</width>
+      <height>510</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -819,8 +821,8 @@ border-color: #DBF9B8;</string>
    <widget class="QFrame" name="frame_screen_2">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>10</y>
+      <x>1080</x>
+      <y>350</y>
       <width>261</width>
       <height>131</height>
      </rect>
@@ -829,8 +831,8 @@ border-color: #DBF9B8;</string>
      <string notr="true">border-style: outset;
 border-width: 2px;
 border-radius: 10px;
-border-color: #DBF9B8;
-background-color : #B6C399;</string>
+border-color: #697E9C;
+background-color : #0E1115;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -848,7 +850,7 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #46571F;</string>
+      <string notr="true">color: #6D7A8E;</string>
      </property>
      <property name="text">
       <string>Файл</string>
@@ -867,7 +869,7 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #46571F;</string>
+      <string notr="true">color: #6D7A8E;</string>
      </property>
      <property name="text">
       <string>Название файла</string>
@@ -886,7 +888,7 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #46571F;
+      <string notr="true">background-color: #202A38;
 
 
 </string>
@@ -913,7 +915,7 @@ background-color : #B6C399;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #46571F;</string>
+      <string notr="true">color: #6D7A8E;</string>
      </property>
      <property name="text">
       <string>Количество вершин</string>
@@ -932,7 +934,7 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #46571F;</string>
+      <string notr="true">color: #6D7A8E;</string>
      </property>
      <property name="text">
       <string>Количество ребер</string>
@@ -951,7 +953,7 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #46571F;
+      <string notr="true">background-color: #202A38;
 
 
 </string>
@@ -973,7 +975,7 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #46571F;
+      <string notr="true">background-color: #202A38;
 
 
 </string>
@@ -989,18 +991,18 @@ background-color : #B6C399;</string>
    <widget class="QFrame" name="frame_settings_view">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>160</y>
+      <x>1080</x>
+      <y>10</y>
       <width>261</width>
-      <height>321</height>
+      <height>331</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">border-style: outset;
 border-width: 2px;
 border-radius: 10px;
-border-color: #DBF9B8;
-background-color : #B6C399;</string>
+border-color: #697E9C;
+background-color : #0E1115;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -1036,7 +1038,10 @@ background-color : #B6C399;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: #46571F;</string>
+       <string notr="true">background-color: #202A38;
+
+
+</string>
       </property>
       <item>
        <property name="text">
@@ -1059,7 +1064,7 @@ background-color : #B6C399;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #46571F;</string>
+       <string notr="true">color: #6D7A8E;</string>
       </property>
       <property name="text">
        <string>Тип Ребер</string>
@@ -1083,7 +1088,7 @@ background-color : #B6C399;</string>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #46571F;</string>
+       <string notr="true">color: #6D7A8E;</string>
       </property>
       <property name="text">
        <string>Толщина ребра</string>
@@ -1102,7 +1107,10 @@ background-color : #B6C399;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: #46571F;</string>
+       <string notr="true">background-color: #202A38;
+
+
+</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1124,7 +1132,7 @@ background-color : #B6C399;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #46571F;</string>
+       <string notr="true">color: #6D7A8E;</string>
       </property>
       <property name="text">
        <string>Цвет Ребер</string>
@@ -1143,7 +1151,10 @@ background-color : #B6C399;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: #46571F;</string>
+       <string notr="true">background-color: #202A38;
+
+
+</string>
       </property>
       <property name="text">
        <string/>
@@ -1178,7 +1189,7 @@ background-color : #B6C399;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #46571F;</string>
+       <string notr="true">color: #6D7A8E;</string>
       </property>
       <property name="text">
        <string>Размер вершин</string>
@@ -1197,7 +1208,7 @@ background-color : #B6C399;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #46571F;</string>
+       <string notr="true">color: #6D7A8E;</string>
       </property>
       <property name="text">
        <string>Цвет Вершин</string>
@@ -1216,7 +1227,10 @@ background-color : #B6C399;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: #46571F;</string>
+       <string notr="true">background-color: #202A38;
+
+
+</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1235,7 +1249,10 @@ background-color : #B6C399;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: #46571F;</string>
+       <string notr="true">background-color: #202A38;
+
+
+</string>
       </property>
       <property name="frame">
        <bool>true</bool>
@@ -1269,7 +1286,7 @@ background-color : #B6C399;</string>
        <font/>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #46571F;</string>
+       <string notr="true">color: #6D7A8E;</string>
       </property>
       <property name="text">
        <string>Тип вершин</string>
@@ -1288,7 +1305,10 @@ background-color : #B6C399;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: #46571F;</string>
+       <string notr="true">background-color: #202A38;
+
+
+</string>
       </property>
       <property name="text">
        <string/>
@@ -1323,7 +1343,10 @@ background-color : #B6C399;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: #46571F;</string>
+       <string notr="true">background-color: #202A38;
+
+
+</string>
       </property>
       <item>
        <property name="text">
@@ -1346,7 +1369,10 @@ background-color : #B6C399;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: #46571F;</string>
+       <string notr="true">background-color: #202A38;
+
+
+</string>
       </property>
       <property name="text">
        <string/>
@@ -1362,7 +1388,7 @@ background-color : #B6C399;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #46571F;</string>
+       <string notr="true">color: #6D7A8E;</string>
       </property>
       <property name="text">
        <string>Цвет фона</string>
@@ -1381,7 +1407,7 @@ background-color : #B6C399;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: #46571F;</string>
+       <string notr="true">color: #6D7A8E;</string>
       </property>
       <property name="text">
        <string>Тип проекции</string>
@@ -1401,7 +1427,7 @@ background-color : #B6C399;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #46571F;</string>
+      <string notr="true">color: #6D7A8E;</string>
      </property>
      <property name="text">
       <string>Проекция</string>
@@ -1417,7 +1443,7 @@ background-color : #B6C399;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1309</width>
+     <width>1350</width>
      <height>24</height>
     </rect>
    </property>
