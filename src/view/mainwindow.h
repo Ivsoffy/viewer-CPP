@@ -10,6 +10,7 @@
 #include <QMainWindow>
 #include <QTimer>
 #include <iostream>
+#include <QFileInfo>
 
 #include "../controller/controller.h"
 #include "../dto/dto.h"
@@ -73,6 +74,9 @@ class MainWindow : public QMainWindow {
 
   void CreateSnapshot();
   void Restore();
+
+  void Reset();
+  void SliderReset();
 
   void on_pushButton_screen_start_clicked();
   void on_pushButton_screen_gif_start_clicked();

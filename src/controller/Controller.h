@@ -39,6 +39,10 @@ class Controller {
     facade_->Restore();
   };
 
+  void Reset() {
+    facade_->Reset();
+  }
+
   s21::AffineTransformations *GetAffineTransformationsRef();
 
   /// @brief Returns the maximum overall size
