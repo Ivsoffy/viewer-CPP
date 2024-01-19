@@ -12,10 +12,10 @@ std::string s21::Controller::TransferObject(std::string file_name) {
   return err_msg;
 }
 
-s21::GLBufferDTO s21::Controller::TransferGLBuffer() {
-  s21::GLBufferDTO glBufferDTO = s21::GLBufferDTO(facade_->GetDrawVertecisRef(),
+s21::FigureDataDTO s21::Controller::TransferFigureData() {
+  s21::FigureDataDTO figureDataDTO = s21::FigureDataDTO(facade_->GetDrawVertecisRef(),
                                                   facade_->GetDrawEdgesRef());
-  return glBufferDTO;
+  return figureDataDTO;
 }
 
 std::vector<s21::Vertex>* s21::Controller::GetVertecisRef() {

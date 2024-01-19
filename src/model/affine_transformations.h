@@ -11,6 +11,7 @@ namespace s21 {
 class AffineTransformations {
 
     public:
+        /// @brief 
         AffineTransformations(){};
         ~AffineTransformations(){};
 

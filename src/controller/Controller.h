@@ -14,9 +14,16 @@ class Controller {
     facade_ = facade;
   }
 
-  s21::GLBufferDTO TransferGLBuffer();
+  /// @brief Retern figureDataDTO
+  /// @return dto object
+  s21::FigureDataDTO TransferFigureData();
 
+  /// @brief Call TrasformateFigure function on facade object
   void TransferFigureParams();
+
+  /// @brief Transfer the name of the file to open
+  /// @param file_name Name of the file to open
+  /// @return status messege
   std::string TransferObject(std::string file_name);
 
   std::vector<s21::Vertex> *GetVertecisRef();
@@ -34,6 +41,8 @@ class Controller {
 
   s21::AffineTransformations *GetAffineTransformationsRef();
 
+  /// @brief Returns the maximum overall size
+  /// @return Returns value of maximum overall size
   Facade* GetFacadeRef() {return facade_; };
 
  private:

@@ -12,7 +12,7 @@ s21::ParamDTO::ParamDTO(double move_x, double move_y, double move_z,
  scale_ = scale;
 }
 
-s21::GLBufferDTO::GLBufferDTO(std::vector<s21::Vertex>* vertices, std::vector<unsigned>* edges) {
+s21::FigureDataDTO::FigureDataDTO(std::vector<s21::Vertex>* vertices, std::vector<unsigned>* edges) {
   vertices_ = vertices;
   edges_ = edges;
 }
