@@ -3,14 +3,11 @@
 
 namespace s21 {
 
+/// @brief Class stores the coordinates of one point
 class Vertex {
  public:
   Vertex(){};
-  Vertex(double x, double y, double z) {
-    x_ = x;
-    y_ = y;
-    z_ = z;
-  };
+  Vertex(double x, double y, double z) : x_(x), y_(y), z_(z) {};
   ~Vertex(){};
 
   double GetX() { return x_; };

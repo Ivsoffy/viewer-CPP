@@ -45,14 +45,11 @@ class Figure {
     vertices_.reserve(10000000);
     edges_.reserve(1000000);
   };
-  ~Figure(){
-    vertices_.clear();
-    edges_.clear();
-  };
+  ~Figure(){};
 
   void copy_figure(Figure *other);
 
-//  Figure& operator=(const Figure& figure) {
+//  Figure& operator=(const Figure& figure) {j
 //    if (&figure != this) {
 //      vertices_ = figure.vertices_;
 //      edges_ = figure.edges_;
@@ -61,7 +58,7 @@ class Figure {
 //    return *this;
 //  }
 
-  /// @brief Apply affine transformations to all vertices of the figure
+  /// @brief Apply affine transformations to all vertices of the figureJ
   /// @param figure_draw_ Referrence to a figure
   void TransformFigure(s21::Figure* figure_draw_) {
     unsigned vector_size = this->GetVerticesVectorRef()->size();
