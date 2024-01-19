@@ -94,8 +94,8 @@ FLAGS=-lgtest -lstdc++ -std=c++17
 # WCHECK=-Werror -Wall -Wextra
 NAME=3d_viewer_v2
 BUILD_DIR=build
-SOURCES=model/*.cc view/*.cpp controller/*.h
-HEADERS=model/*.h view/*.h controller/*.h
+SOURCES=model/*.cc view/*.cpp controller/*.cc dto/*.cc
+HEADERS=model/*.h view/*.h controller/*.h dto/*.h
 # TEST_CC=tests/main_test.cc tests/model/model_test.cc model/figure.cc model/file_parser.cc
 TEST_CC=tests/main_test.cc tests/model/model_test.cc model/figure.cc model/file_parser.cc model/affine_transformations.cc
 
@@ -147,7 +147,7 @@ tests: $(TEST_CC)
 
 dist:
 	mkdir -p ./dist
-	tar -cvzf ./dist/$(NAME).tgz Makefile model/* controller/* view/* config/* tests
+	tar -cvzf ./dist/$(NAME).tgz Makefile model/* controller/* view/* dto/* config/* tests
 
 dvi:
 	doxygen ../dox/conf
