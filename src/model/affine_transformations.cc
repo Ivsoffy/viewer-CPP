@@ -75,43 +75,43 @@ void s21::AffineTransformations::SetOldFielde(s21::ParamDTO dto) {
   old_scale_ = dto.scale_;
 };
 
-void s21::AffineTransformations::TrasformateVertex(s21::Vertex *vertex_def, s21::Vertex *vertex_draw) {
+void s21::AffineTransformations::TrasformateVertex(s21::Vertex *vertex) {
   double angle_x = angle_x_ * M_PI / 180;
   double angle_y = angle_y_ * M_PI / 180;
   double angle_z = angle_z_ * M_PI / 180;
 
   if (move_x_ != 0) {
-    vertex_draw->SetX(vertex_draw->GetX() + move_x_);
+    vertex->SetX(vertex->GetX() + move_x_);
   }
   if (move_y_ != 0) {
-    vertex_draw->SetY(vertex_draw->GetY() + move_y_);
+    vertex->SetY(vertex->GetY() + move_y_);
   }
   if (move_z_ != 0) {
-    vertex_draw->SetZ(vertex_draw->GetZ() + move_z_);
+    vertex->SetZ(vertex->GetZ() + move_z_);
   }
 
   if (angle_x_ != 0) {
-    double y = vertex_draw->GetY();
-    double z = vertex_draw->GetZ();
-    vertex_draw->SetY(vertex_draw->GetY() * cos(angle_x) - vertex_draw->GetZ() * sin(angle_x));
-    vertex_draw->SetZ(y * sin(angle_x) + z * cos(angle_x));
+    double y = vertex->GetY();
+    double z = vertex->GetZ();
+    vertex->SetY(vertex->GetY() * cos(angle_x) - vertex->GetZ() * sin(angle_x));
+    vertex->SetZ(y * sin(angle_x) + z * cos(angle_x));
   }
   if (angle_y_ != 0) {
-    double x = vertex_draw->GetX();
-    double z = vertex_draw->GetZ();
-    vertex_draw->SetX(vertex_draw->GetX() * cos(angle_y) + vertex_draw->GetZ() * sin(angle_y));
-    vertex_draw->SetZ(x * -sin(angle_y) + z * cos(angle_y));
+    double x = vertex->GetX();
+    double z = vertex->GetZ();
+    vertex->SetX(vertex->GetX() * cos(angle_y) + vertex->GetZ() * sin(angle_y));
+    vertex->SetZ(x * -sin(angle_y) + z * cos(angle_y));
   }
   if (angle_z_ != 0) {
-    double x = vertex_draw->GetX();
-    double y = vertex_draw->GetY();
-    vertex_draw->SetX(vertex_draw->GetX() * cos(angle_z) - vertex_draw->GetY() * sin(angle_z));
-    vertex_draw->SetY(x * sin(angle_z) + y * cos(angle_z));
+    double x = vertex->GetX();
+    double y = vertex->GetY();
+    vertex->SetX(vertex->GetX() * cos(angle_z) - vertex->GetY() * sin(angle_z));
+    vertex->SetY(x * sin(angle_z) + y * cos(angle_z));
   }
 
   if (scale_ != 0 ) {
-    vertex_draw->SetX(vertex_draw->GetX() * scale_);
-    vertex_draw->SetY(vertex_draw->GetY() * scale_);
-    vertex_draw->SetZ(vertex_draw->GetZ() * scale_);
+    vertex->SetX(vertex->GetX() * scale_);
+    vertex->SetY(vertex->GetY() * scale_);
+    vertex->SetZ(vertex->GetZ() * scale_);
   }
 }

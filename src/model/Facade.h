@@ -14,7 +14,10 @@ class Facade {
   Facade();
   ~Facade(){};
 
+  /// @brief Set the path of the file to open
   void SetPathToObject(std::string path);
+
+  /// @brief transform from first figure to another figure
   void TrasformateFigure() { figure_def_->TransformFigure(figure_draw_); }
 
   std::vector<s21::Vertex> *GetDrawVertecisRef() {
@@ -39,10 +42,13 @@ class Facade {
     return affineTransformations_;
   }
 
+  /// @brief Save 3d object parameters
+  /// @param dto reference to dto
   void CreateSnapshot(ParamDTO *dto) {
     snapshot_ = new Snapshot(figure_def_, figure_draw_, dto);
   }
   
+  /// @brief Restore 3d object parameters
   void Restore() {
     snapshot_->Restore(figure_def_, figure_draw_);
   }
@@ -51,6 +57,7 @@ class Facade {
   Figure *GetFigureDef() { return figure_def_; }
   Figure *GetFigureDraw() { return figure_draw_; }
   Snapshot *GetSnapshot() { return snapshot_; }
+
 
   double GetMax() { return figure_draw_->Get_Max(); }
 

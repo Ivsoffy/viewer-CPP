@@ -23,7 +23,7 @@ class Controller {
 
   /// @brief Transfer the name of the file to open
   /// @param file_name Name of the file to open
-  /// @return status messege
+  /// @return Status messege
   std::string TransferObject(std::string file_name);
 
   std::vector<s21::Vertex> *GetVertecisRef();

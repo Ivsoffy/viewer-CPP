@@ -11,7 +11,6 @@ namespace s21 {
 class AffineTransformations {
 
     public:
-        /// @brief 
         AffineTransformations(){};
         ~AffineTransformations(){};
 
@@ -23,9 +22,17 @@ class AffineTransformations {
         void SetAngleZ(double angle);
         void SetScale(double scale);
         
-        static void TrasformateVertex(s21::Vertex *vertex_def, s21::Vertex *vertex_draw);
+        /// @brief Recalculate the new coordinates of the vertex based on collected change parameters
+        static void TrasformateVertex(s21::Vertex *vertex);
+
+        /// @brief CLean up collected change parameters
         void CleanData();
+
+        /// @brief Get the values of the last accumulated change parameters
         static ParamDTO GetOldFielde();
+
+        /// @brief Set the values of the change parameters
+        /// @param dto 
         static void SetOldFielde(s21::ParamDTO dto);
 
         

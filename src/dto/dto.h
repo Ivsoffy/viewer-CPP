@@ -31,7 +31,6 @@ public:
  double angle_y_{0};
  double angle_z_{0};
  double scale_{1};
-
 };
 
 class FigureDataDTO {
