@@ -200,7 +200,7 @@ void MainWindow::on_pushButton_screen_start_clicked() {
 }
 
 void MainWindow::on_pushButton_screen_gif_start_clicked() {
-  if (!flag) {
+  if (!gif_recording) {
     ui->pushButton_screen_gif_start->setText("Остановить запись");
 
     gif = new QGifImage;
@@ -211,7 +211,7 @@ void MainWindow::on_pushButton_screen_gif_start_clicked() {
     timer->start(100);
     timer_2->start(1);
     QTimer::singleShot(5000, this, SLOT(recording_stop()));
-    flag = 1;
+    gif_recording = 1;
   } else {
     recording_stop();
   }
@@ -219,24 +219,29 @@ void MainWindow::on_pushButton_screen_gif_start_clicked() {
 
 void MainWindow::recording_gif() {
   QImage frameImage = ui->openGLWidget->grabFramebuffer();
-  gif->addFrame(frameImage, 100);
+  gif->addFrame(frameImage, 50);
 }
 
 void MainWindow::recording_stop() {
-  flag = 0;
-  ui->pushButton_screen_gif_start->setText("Запись");
-  timer->stop();
-  timer_2->stop();
-  delete timer;
-  delete timer_2;
+    if (gif_recording){
+        gif_recording = 0;
+        ui->pushButton_screen_gif_start->setText("GIF");
+        timer->stop();
+        timer_2->stop();
+        delete timer;
+        delete timer_2;
 
-  QString name = QDate::currentDate().toString("yyMMdd") + "_" +
-                 QTime::currentTime().toString("hhmmss") + ".gif";
-  QString gifFileName =
-      QApplication::applicationDirPath() + "/../../../" + name;
-  gif->save(gifFileName);
-  delete gif;
-  repaint();
+        QString name = QDate::currentDate().toString("yyMMdd") + "_" +
+                       QTime::currentTime().toString("hhmmss") + ".gif";
+      //  QString gifFileName =
+      //      QApplication::applicationDirPath() + "/../../../" + name;
+        QString gif_filename = QFileDialog::getSaveFileName(NULL, "Save to ...", "",
+                                                           "GIF image (*.gif)");
+      //  QString gif_filename = "/Users/errokele/projects/gifka.gif";
+        gif->save(gif_filename);
+        delete gif;
+        repaint();
+    }
 }
 
 void MainWindow::CreateSnapshot() {
