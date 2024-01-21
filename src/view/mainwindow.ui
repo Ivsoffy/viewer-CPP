@@ -1437,6 +1437,34 @@ background-color : #0E1115;</string>
      </property>
     </widget>
    </widget>
+   <widget class="QPushButton" name="pushButton_Reset">
+    <property name="geometry">
+     <rect>
+      <x>1090</x>
+      <y>490</y>
+      <width>241</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background-color:  #61738E;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 10px;
+     font: bold 14px;
+     padding: 6px;
+}
+
+ QPushButton:pressed {
+	background-color: #6D7A8E;
+ }
+</string>
+    </property>
+    <property name="text">
+     <string>Reset</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -1,9 +1,10 @@
 #ifndef CONTROLLERDTO_H
 #define CONTROLLERDTO_H
 
-#include <QOpenGLFunctions>
+// #include <QOpenGLFunctions>
 #include "../model/vertex.h"
 #include <vector>
+#include <string>
 
 namespace s21 {
 class ParamDTO {
@@ -33,6 +34,26 @@ public:
  double scale_{1};
 };
 
+class ObjectInfoDTO {
+public:
+      /// @brief DTO for save infomation about 3d object
+     ObjectInfoDTO(){};
+
+     /// @brief DTO for save infomation about 3d object 
+     ObjectInfoDTO(std::string object_info_file_path,
+                     std::string object_info_file_name,
+                     std::string object_info_vertex_count,
+                     std::string object_info_polygon_count
+                     );
+
+    ~ObjectInfoDTO(){};
+
+    std::string object_info_file_path_;
+    std::string object_info_file_name_;
+    std::string object_info_vertex_count_;
+    std::string object_info_polygon_count_;
+};
+
 class FigureDataDTO {
  public:
   /// @brief DTO for transferring references to vertices and edges vecters
@@ -45,6 +66,7 @@ class FigureDataDTO {
   std::vector<s21::Vertex>* vertices_;
   std::vector<unsigned>* edges_;
 };
+
 }  // namespace s21
 
 #endif // CONTROLLERDTO_H

@@ -96,8 +96,7 @@ NAME=3d_viewer_v2
 BUILD_DIR=build
 SOURCES=model/*.cc view/*.cpp controller/*.cc dto/*.cc
 HEADERS=model/*.h view/*.h controller/*.h dto/*.h
-# TEST_CC=tests/main_test.cc tests/model/model_test.cc model/figure.cc model/file_parser.cc
-TEST_CC=tests/main_test.cc tests/model/model_test.cc model/figure.cc model/file_parser.cc model/affine_transformations.cc
+TEST_CC=tests/main_test.cc tests/model/model_test.cc model/figure.cc model/file_parser.cc model/affine_transformations.cc dto/dto.cc
 
 OS=$(shell uname)
 ifeq ($(OS), Linux)
@@ -115,14 +114,6 @@ endif
 # ----------------------------------------------------------
 all: install
 
-# install: clean
-# 	mkdir -p $(BUILD_DIR)
-# 	cd $(BUILD_DIR)/; qmake  ../view/$(NAME).pro
-# 	cp config/settings.conf $(BUILD_DIR)
-# 	make -C $(BUILD_DIR)
-# 	# @rm -rf build/obj
-# 	$(OPEN) build/3d_viewer_v2.0.app
-
 install: clean
 	mkdir -p $(BUILD_DIR)
 	cd $(BUILD_DIR)/; qmake  ../view/$(NAME).pro
@@ -130,20 +121,16 @@ install: clean
 	make -C $(BUILD_DIR)/
 	@rm -rf build/obj
 	cd $(BUILD_DIR); $(OPEN) 3d_viewer_v2.app
+# $(OPEN) build/3d_viewer_v2.0.app
 
 
 uninstall:
 	@rm -rf $(BUILD_DIR)/
 
-# tests: model/figure.h
 tests: $(TEST_CC)
 	$(CC) $(TEST_CC) $(FLAGS) $(LIBS) $(WCHECK) -o test.out
-# $(CC) tests/main_test.cc tests/model/model_test.cc model/figure.h $(FLAGS) $(LIBS) $(WCHECK) -o test.out
+	@rm -r test.out.dSYM
 	./test.out
-
-# tests: $(TEST_CC)  
-# 	$(CC) $(TEST_CC) model/facade.cc controller/controller.cc controller/controller_dto.cc $(FLAGS) $(LIBS) $(WCHECK) -o test.out
-# 	./test.out
 
 dist:
 	mkdir -p ./dist
@@ -167,5 +154,6 @@ leaks: clean tests
 
 clean:
 	rm -rf ./report ./dist ./build
-	rm -rf *.o *.out *.gcno *.gcda *.gcov *.info *.dSYM *.DS_Store ../.DS_Store .DS_Store
+	rm -rf *.o *.out *.gcno *.gcda *.gcov *.info *.dSYM
+	rm -r ../dox/html
 # rm -rf $(HOME)/settings.conf

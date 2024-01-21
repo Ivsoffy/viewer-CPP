@@ -240,7 +240,6 @@ void MainWindow::recording_stop() {
 
 void MainWindow::CreateSnapshot() {
   if (controller_->GetFacadeRef()->GetFigureDraw() == nullptr) {
-//      throw std::invalid_argument("ERROR: There is no object to Snapshot.");
       return;
   }
   dto_ = new s21::ParamDTO(
@@ -249,11 +248,15 @@ void MainWindow::CreateSnapshot() {
       ui->spinbox_rot_y->value(), ui->spinbox_rot_z->value(),
       ui->slider_scale->value());
   controller_->CreateSnapshot(dto_);
+
+  objectInfoDTO_ = s21::ObjectInfoDTO(ui->lineEdit_file_input->text().toStdString(),
+                   ui->label_info_object_info_file_name_ans_2->text().toStdString(),
+                   ui->label_info_object_info_vertex_count_ans_2->text().toStdString(),
+                   ui->label_info_object_info_polygon_count_ans_2->text().toStdString());
 }
 
 void MainWindow::Restore() {
     if (controller_->GetFacadeRef()->GetSnapshot() == nullptr) {
- //     throw std::invalid_argument("ERROR: There is no object to Restore.");
        return;
     }
     controller_->Restore();
@@ -267,6 +270,12 @@ void MainWindow::Restore() {
     ui->spinbox_rot_y->setValue(dto_->angle_y_);
     ui->spinbox_rot_z->setValue(dto_->angle_z_);
     ui->slider_scale->setValue(dto_->scale_);
+
+    ui->lineEdit_file_input->setText(QString::fromStdString(objectInfoDTO_.object_info_file_path_));
+    ui->label_info_object_info_file_name_ans_2->setText(QString::fromStdString(objectInfoDTO_.object_info_file_name_));
+    ui->label_info_object_info_vertex_count_ans_2->setText(QString::fromStdString(objectInfoDTO_.object_info_vertex_count_));
+    ui->label_info_object_info_polygon_count_ans_2->setText(QString::fromStdString(objectInfoDTO_.object_info_polygon_count_));
+
     ui->openGLWidget->update();
     from_snapshot_ = false;
     };

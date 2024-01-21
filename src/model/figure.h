@@ -47,16 +47,14 @@ class Figure {
   };
   ~Figure(){};
 
-  void copy_figure(Figure *other);
-
-//  Figure& operator=(const Figure& figure) {j
-//    if (&figure != this) {
-//      vertices_ = figure.vertices_;
-//      edges_ = figure.edges_;
-//      max_ = figure.max_;
-//    }
-//    return *this;
-//  }
+ Figure& operator=(const Figure& figure) {
+   if (&figure != this) {
+     vertices_ = figure.vertices_;
+     edges_ = figure.edges_;
+     max_ = figure.max_;
+   }
+   return *this;
+ }
 
   /// @brief Apply affine transformations to all vertices of the figureJ
   /// @param figure_draw_ Referrence to a figure

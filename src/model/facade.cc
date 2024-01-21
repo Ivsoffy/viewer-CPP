@@ -13,15 +13,14 @@ void s21::Facade::SetPathToObject(std::string path) {
   figure_draw_ = new Figure();
   figure_def_ = new Figure();
   fileParser_->Parser(figure_def_, path);
-  figure_draw_->copy_figure(figure_def_);
-//  figure_draw_ = figure_def_;
+  *figure_draw_ = *figure_def_;
 }
 
 void s21::Facade::Reset() {
   if (figure_draw_ != nullptr) {
     delete figure_draw_;
     figure_draw_ = new Figure();
-    figure_draw_->copy_figure(figure_def_);
+    *figure_draw_ = *figure_def_;
   }
 
 }
