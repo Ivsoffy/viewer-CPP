@@ -47,11 +47,9 @@ class Facade {
   void CreateSnapshot(ParamDTO *dto) {
     snapshot_ = new Snapshot(figure_def_, figure_draw_, dto);
   }
-  
+
   /// @brief Restore 3d object parameters
-  void Restore() {
-    snapshot_->Restore(figure_def_, figure_draw_);
-  }
+  void Restore() { snapshot_->Restore(figure_def_, figure_draw_); }
 
   void Reset();
 
@@ -59,7 +57,6 @@ class Facade {
   Figure *GetFigureDef() { return figure_def_; }
   Figure *GetFigureDraw() { return figure_draw_; }
   Snapshot *GetSnapshot() { return snapshot_; }
-
 
   double GetMax() { return figure_draw_->Get_Max(); }
 

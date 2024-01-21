@@ -20,7 +20,7 @@ void s21::AffineTransformations::SetMoveZ(double value) {
   old_move_z_ = value;
 }
 
-void s21::AffineTransformations::SetAngleX(double angle) { 
+void s21::AffineTransformations::SetAngleX(double angle) {
   CleanData();
   angle_x_ = angle - old_angle_x_;
   old_angle_x_ = angle;
@@ -56,13 +56,8 @@ void s21::AffineTransformations::CleanData() {
 }
 
 s21::ParamDTO s21::AffineTransformations::GetOldFielde() {
-  return ParamDTO(old_move_x_,
-                  old_move_y_, 
-                  old_move_z_, 
-                  old_angle_x_, 
-                  old_angle_y_, 
-                  old_angle_z_, 
-                  old_scale_);
+  return ParamDTO(old_move_x_, old_move_y_, old_move_z_, old_angle_x_,
+                  old_angle_y_, old_angle_z_, old_scale_);
 }
 
 void s21::AffineTransformations::SetOldFielde(s21::ParamDTO dto) {
@@ -109,7 +104,7 @@ void s21::AffineTransformations::TrasformateVertex(s21::Vertex *vertex) {
     vertex->SetY(x * sin(angle_z) + y * cos(angle_z));
   }
 
-  if (scale_ != 0 ) {
+  if (scale_ != 0) {
     vertex->SetX(vertex->GetX() * scale_);
     vertex->SetY(vertex->GetY() * scale_);
     vertex->SetZ(vertex->GetZ() * scale_);

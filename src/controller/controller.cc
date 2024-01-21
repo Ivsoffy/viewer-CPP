@@ -13,8 +13,8 @@ std::string s21::Controller::TransferObject(std::string file_name) {
 }
 
 s21::FigureDataDTO s21::Controller::TransferFigureData() {
-  s21::FigureDataDTO figureDataDTO = s21::FigureDataDTO(facade_->GetDrawVertecisRef(),
-                                                  facade_->GetDrawEdgesRef());
+  s21::FigureDataDTO figureDataDTO = s21::FigureDataDTO(
+      facade_->GetDrawVertecisRef(), facade_->GetDrawEdgesRef());
   return figureDataDTO;
 }
 

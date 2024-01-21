@@ -6,27 +6,27 @@
 
 #include "../main_test.h"
 
-void printToFile(s21::Figure figure) {
+void printToFile(s21::Figure *figure) {
   std::ofstream out;
   out.open("tests/model/test_result.txt");
   if (!out) {
     std::cerr << "Could not open file" << std::endl;
   }
   if (out.is_open()) {
-    for (auto i : figure.GetVerticesVector()) {
+    for (auto i : figure->GetVerticesVector()) {
       out << std::setprecision(11) << i.GetX() << " " << i.GetY() << " "
           << i.GetZ() << std::endl;
     }
 
     out << "\n";
-    unsigned edgesVectorSize = figure.GetEdgesVector().size();
+    unsigned edgesVectorSize = figure->GetEdgesVector().size();
     for (unsigned i = 0; i < edgesVectorSize; ++i) {
-      out << figure.GetEdgesVector().at(i) + 1 << " ";
+      out << figure->GetEdgesVector().at(i) + 1 << " ";
     }
 
     out << "\n";
     out << "\n";
-    out << "max_=" << figure.Get_Max() << std::endl;
+    out << "max_=" << figure->Get_Max() << std::endl;
   }
   out.close();
 }
@@ -76,10 +76,10 @@ bool is_vertices_vectors_equal(std::vector<s21::Vertex> vector_1, std::vector<s2
 TEST(model, parser_1) {
   std::string path_file = "tests/model/test_result.txt";
   std::string path_etalon_file = "tests/model/parser_1_result_to_assert.txt";
-  s21::Figure* figure = new  s21::Figure();
-  s21::Figure::FileParser *file_parser = new s21::Figure::FileParser();
-  file_parser->Parser(figure, "tests/model/3d_objects/cube_good_1.obj");
-  printToFile(*figure);
+  s21::Figure figure = s21::Figure();
+  s21::Figure::FileParser file_parser = s21::Figure::FileParser();
+  file_parser.Parser(&figure, "tests/model/3d_objects/cube_good_1.obj");
+  printToFile(&figure);
   bool result = compareFile(path_file, path_etalon_file);
   ASSERT_TRUE(result);
 }
@@ -87,82 +87,82 @@ TEST(model, parser_1) {
 TEST(model, parser_2) {
   std::string path_file = "tests/model/test_result.txt";
   std::string path_etalon_file = "tests/model/parser_2_result_to_assert.txt";
-  s21::Figure* figure = new  s21::Figure();
-  s21::Figure::FileParser *file_parser = new s21::Figure::FileParser();
-  file_parser->Parser(figure, "tests/model/3d_objects/cube_good_2.obj");
-  printToFile(*figure);
+  s21::Figure figure = s21::Figure();
+  s21::Figure::FileParser file_parser = s21::Figure::FileParser();
+  file_parser.Parser(&figure, "tests/model/3d_objects/cube_good_2.obj");
+  printToFile(&figure);
   bool result = compareFile(path_file, path_etalon_file);
   ASSERT_TRUE(result);
 }
 
 TEST(model, parser_throw_1) {
-  s21::Figure* figure = new  s21::Figure();
-  s21::Figure::FileParser *file_parser = new s21::Figure::FileParser();
-    ASSERT_THROW(file_parser->Parser(figure,"tests/model/3d_objects/cube_bad_v_1.obj"),
+  s21::Figure figure = s21::Figure();
+  s21::Figure::FileParser file_parser = s21::Figure::FileParser();
+  ASSERT_THROW(file_parser.Parser(&figure,"tests/model/3d_objects/cube_bad_v_1.obj"),
                std::invalid_argument);
 }
 
 TEST(model, parser_throw_2) {
-  s21::Figure* figure = new  s21::Figure();
-  s21::Figure::FileParser *file_parser = new s21::Figure::FileParser();
-    ASSERT_THROW(file_parser->Parser(figure,"tests/model/3d_objects/cube_bad_v_2.obj"),
-               std::invalid_argument);
+  s21::Figure figure = s21::Figure();
+  s21::Figure::FileParser file_parser = s21::Figure::FileParser();
+  ASSERT_THROW(file_parser.Parser(&figure,"tests/model/3d_objects/cube_bad_v_2.obj"),
+               std::invalid_argument); 
 }
 
 TEST(model, parser_throw_3) {
-  s21::Figure* figure = new  s21::Figure();
-  s21::Figure::FileParser *file_parser = new s21::Figure::FileParser();
-    ASSERT_THROW(file_parser->Parser(figure,"tests/model/3d_objects/cube_bad_f.obj"),
-               std::invalid_argument);
+  s21::Figure figure = s21::Figure();
+  s21::Figure::FileParser file_parser = s21::Figure::FileParser();
+  ASSERT_THROW(file_parser.Parser(&figure,"tests/model/3d_objects/cube_bad_f.obj"),
+               std::invalid_argument);          
 }
 
 TEST(model, affine_1_move) {
-  s21::Figure *figure_from = new s21::Figure();
-  s21::Figure *figure_to = new s21::Figure();
-  figure_from->AddVertex(1, 1, 1);
-  figure_from->AddVertex(2, 2, 2);
-  figure_from->AddVertex(3, 3, 3);
+  s21::Figure figure_from = s21::Figure();
+  s21::Figure figure_to = s21::Figure();
+  figure_from.AddVertex(1, 1, 1);
+  figure_from.AddVertex(2, 2, 2);
+  figure_from.AddVertex(3, 3, 3);
   figure_to = figure_from;
-  s21::Figure *figure_assert = new s21::Figure();
-  figure_assert->AddVertex(6, 1, 1);
-  figure_assert->AddVertex(7, 2, 2);
-  figure_assert->AddVertex(8, 3, 3);
-  s21::AffineTransformations* aff_tran = new s21::AffineTransformations();
-  aff_tran->SetMoveX(5);
-  figure_from->TransformFigure(figure_to);
-  ASSERT_TRUE(is_vertices_vectors_equal(figure_to->GetVerticesVector(), figure_assert->GetVerticesVector()));
+  s21::Figure figure_assert = s21::Figure();
+  figure_assert.AddVertex(6, 1, 1);
+  figure_assert.AddVertex(7, 2, 2);
+  figure_assert.AddVertex(8, 3, 3);
+  s21::AffineTransformations aff_tran = s21::AffineTransformations();
+  aff_tran.SetMoveX(5);
+  figure_from.TransformFigure(&figure_to);
+  ASSERT_TRUE(is_vertices_vectors_equal(figure_to.GetVerticesVector(), figure_assert.GetVerticesVector()));
 }
 
 TEST(model, affine_2_turn) {
-  s21::Figure *figure_from = new s21::Figure();
-  s21::Figure *figure_to = new s21::Figure();
-  figure_from->AddVertex(1, 1, 1);
-  figure_from->AddVertex(2, 2, 2);
-  figure_from->AddVertex(3, 3, 3);
+  s21::Figure figure_from = s21::Figure();
+  s21::Figure figure_to = s21::Figure();
+  figure_from.AddVertex(1, 1, 1);
+  figure_from.AddVertex(2, 2, 2);
+  figure_from.AddVertex(3, 3, 3);
   figure_to = figure_from;
-  s21::Figure *figure_assert = new s21::Figure();
-  figure_assert->AddVertex(1, 1, -1);
-  figure_assert->AddVertex(2, 2, -2);
-  figure_assert->AddVertex(3, 3, -3);
-  s21::AffineTransformations* aff_tran = new s21::AffineTransformations();
-  aff_tran->SetAngleY(90);
-  figure_from->TransformFigure(figure_to);
-  ASSERT_TRUE(is_vertices_vectors_equal(figure_to->GetVerticesVector(), figure_assert->GetVerticesVector()));
+  s21::Figure figure_assert = s21::Figure();
+  figure_assert.AddVertex(1, 1, -1);
+  figure_assert.AddVertex(2, 2, -2);
+  figure_assert.AddVertex(3, 3, -3);
+  s21::AffineTransformations aff_tran = s21::AffineTransformations();
+  aff_tran.SetAngleY(90);
+  figure_from.TransformFigure(&figure_to);
+  ASSERT_TRUE(is_vertices_vectors_equal(figure_to.GetVerticesVector(), figure_assert.GetVerticesVector()));
 }
 
 TEST(model, affine_3_scale) {
-  s21::Figure *figure_from = new s21::Figure();
-  s21::Figure *figure_to = new s21::Figure();
-  figure_from->AddVertex(1, 1, 1);
-  figure_from->AddVertex(2, 2, 2);
-  figure_from->AddVertex(3, 3, 3);
+  s21::Figure figure_from = s21::Figure();
+  s21::Figure figure_to = s21::Figure();
+  figure_from.AddVertex(1, 1, 1);
+  figure_from.AddVertex(2, 2, 2);
+  figure_from.AddVertex(3, 3, 3);
   figure_to = figure_from;
-  s21::Figure *figure_assert = new s21::Figure();
-  figure_assert->AddVertex(3, 3, 3);
-  figure_assert->AddVertex(6, 6, 6);
-  figure_assert->AddVertex(9, 9, 9);
-  s21::AffineTransformations* aff_tran = new s21::AffineTransformations();
-  aff_tran->SetScale(100);
-  figure_from->TransformFigure(figure_to);
-  ASSERT_TRUE(is_vertices_vectors_equal(figure_to->GetVerticesVector(), figure_assert->GetVerticesVector()));
+  s21::Figure figure_assert = s21::Figure();
+  figure_assert.AddVertex(3, 3, 3);
+  figure_assert.AddVertex(6, 6, 6);
+  figure_assert.AddVertex(9, 9, 9);
+  s21::AffineTransformations aff_tran = s21::AffineTransformations();
+  aff_tran.SetScale(100);
+  figure_from.TransformFigure(&figure_to);
+  ASSERT_TRUE(is_vertices_vectors_equal(figure_to.GetVerticesVector(), figure_assert.GetVerticesVector()));
 }

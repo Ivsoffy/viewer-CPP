@@ -4,15 +4,13 @@
 #include <QOpenGLFunctions>
 #include <string>
 
-#include "../model/facade.h"
 #include "../dto/dto.h"
+#include "../model/facade.h"
 
 namespace s21 {
 class Controller {
  public:
-  Controller(Facade *facade) {
-    facade_ = facade;
-  }
+  Controller(Facade *facade) { facade_ = facade; }
 
   /// @brief Retern figureDataDTO
   /// @return dto object
@@ -31,23 +29,17 @@ class Controller {
 
   double GetMax();
 
-  void CreateSnapshot(ParamDTO *dto) {
-      facade_->CreateSnapshot(dto);
-  };
+  void CreateSnapshot(ParamDTO *dto) { facade_->CreateSnapshot(dto); };
 
-  void Restore() {
-    facade_->Restore();
-  };
+  void Restore() { facade_->Restore(); };
 
-  void Reset() {
-    facade_->Reset();
-  }
+  void Reset() { facade_->Reset(); }
 
   s21::AffineTransformations *GetAffineTransformationsRef();
 
   /// @brief Returns the maximum overall size
   /// @return Returns value of maximum overall size
-  Facade* GetFacadeRef() {return facade_; };
+  Facade *GetFacadeRef() { return facade_; };
 
  private:
   Facade *facade_;

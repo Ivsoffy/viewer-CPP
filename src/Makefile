@@ -91,7 +91,7 @@
 ###############################################################################
 CC=g++ -g
 FLAGS=-lgtest -lstdc++ -std=c++17
-# WCHECK=-Werror -Wall -Wextra
+WCHECK=-Werror -Wall -Wextra
 NAME=3d_viewer_v2
 BUILD_DIR=build
 SOURCES=model/*.cc view/*.cpp controller/*.cc dto/*.cc
@@ -116,7 +116,7 @@ all: install
 
 install: clean
 	mkdir -p $(BUILD_DIR)
-	cd $(BUILD_DIR)/; qmake  ../view/$(NAME).pro
+	cd $(BUILD_DIR)/; qmake ../view/$(NAME).pro
 	cp config/settings.conf $(BUILD_DIR)
 	make -C $(BUILD_DIR)/
 	@rm -rf build/obj
@@ -129,7 +129,6 @@ uninstall:
 
 tests: $(TEST_CC)
 	$(CC) $(TEST_CC) $(FLAGS) $(LIBS) $(WCHECK) -o test.out
-	@rm -r test.out.dSYM
 	./test.out
 
 dist:
@@ -140,20 +139,20 @@ dvi:
 	doxygen ../dox/conf
 	open ./../dox/html/index.html
 	
-# style:
-# 	cp ../materials/linters/.clang-format .clang-format
-# 	clang-format -i $(SOURCES) $(HEADERS)
-# 	clang-format -n $(SOURCES) $(HEADERS)
-# 	rm -rf .clang-format
+clang-format-n:
+	clang-format -style=Google -n $(SOURCES) $(HEADERS)
+clang-format-i:
+	clang-format -style=Google -i $(SOURCES) $(HEADERS)
 
 cppcheck:
 	cppcheck --enable=all --language=c++ --std=c++17 --suppress=unusedFunction --suppress=missingInclude $(SOURCES) $(HEADERS)
 
-leaks: clean tests
+# leaks: clean tests
+leaks: tests
 	$(LEAKS)
 
 clean:
 	rm -rf ./report ./dist ./build
 	rm -rf *.o *.out *.gcno *.gcda *.gcov *.info *.dSYM
-	rm -r ../dox/html
+	rm -rf ../dox/html
 # rm -rf $(HOME)/settings.conf

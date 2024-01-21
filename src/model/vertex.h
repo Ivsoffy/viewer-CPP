@@ -7,7 +7,7 @@ namespace s21 {
 class Vertex {
  public:
   Vertex(){};
-  Vertex(double x, double y, double z) : x_(x), y_(y), z_(z) {};
+  Vertex(double x, double y, double z) : x_(x), y_(y), z_(z){};
   ~Vertex(){};
 
   double GetX() { return x_; };

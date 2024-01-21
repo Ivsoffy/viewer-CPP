@@ -110,8 +110,10 @@ void MainWindow::ChooseFile() {
       ui->openGLWidget->update();
       ui->openGLWidget->need_paint_ = true;
       ui->lineEdit_file_input->setText(filename);
-      ui->label_info_object_info_vertex_count_ans_2->setText(QString::number(ui->openGLWidget->GetVerticesRef()->size()));
-      ui->label_info_object_info_polygon_count_ans_2->setText(QString::number(ui->openGLWidget->GetEdgesRef()->size()));
+      ui->label_info_object_info_vertex_count_ans_2->setText(
+          QString::number(ui->openGLWidget->GetVerticesRef()->size()));
+      ui->label_info_object_info_polygon_count_ans_2->setText(
+          QString::number(ui->openGLWidget->GetEdgesRef()->size()));
       QFileInfo fi(filename);
       ui->label_info_object_info_file_name_ans_2->setText(fi.baseName());
     } else
@@ -141,7 +143,7 @@ void MainWindow::ComboboxChange() {
 
 void MainWindow::SpinboxChange() {
   if (from_snapshot_) {
-      return;
+    return;
   }
   QSpinBox *worked = (QSpinBox *)sender();
   if (worked == ui->spinbox_move_x)
@@ -163,14 +165,14 @@ void MainWindow::SpinboxChange() {
 }
 
 void MainWindow::ScaleSliderChange(int value) {
-    ui->scale_lable->setText(
-        QString::number(pow(3, value / 100.0) * 100, 'f', 2));
-    if (from_snapshot_) {
-        return;
-    }
+  ui->scale_lable->setText(
+      QString::number(pow(3, value / 100.0) * 100, 'f', 2));
+  if (from_snapshot_) {
+    return;
+  }
   controller_->GetAffineTransformationsRef()->SetScale(value);
-//  ui->scale_lable->setText(
-//      QString::number(pow(3, value / 100.0) * 100, 'f', 2));
+  //  ui->scale_lable->setText(
+  //      QString::number(pow(3, value / 100.0) * 100, 'f', 2));
   Redraw();
 }
 
@@ -217,30 +219,30 @@ void MainWindow::recording_gif() {
 }
 
 void MainWindow::recording_stop() {
-    if (gif_recording){
-        gif_recording = 0;
-        ui->pushButton_screen_gif_start->setText("GIF");
-        timer->stop();
-        timer_2->stop();
-        delete timer;
-        delete timer_2;
+  if (gif_recording) {
+    gif_recording = 0;
+    ui->pushButton_screen_gif_start->setText("GIF");
+    timer->stop();
+    timer_2->stop();
+    delete timer;
+    delete timer_2;
 
-        QString name = QDate::currentDate().toString("yyMMdd") + "_" +
-                       QTime::currentTime().toString("hhmmss") + ".gif";
-      //  QString gifFileName =
-      //      QApplication::applicationDirPath() + "/../../../" + name;
-        QString gif_filename = QFileDialog::getSaveFileName(NULL, "Save to ...", "",
-                                                           "GIF image (*.gif)");
-      //  QString gif_filename = "/Users/errokele/projects/gifka.gif";
-        gif->save(gif_filename);
-        delete gif;
-        repaint();
-    }
+    QString name = QDate::currentDate().toString("yyMMdd") + "_" +
+                   QTime::currentTime().toString("hhmmss") + ".gif";
+    //  QString gifFileName =
+    //      QApplication::applicationDirPath() + "/../../../" + name;
+    QString gif_filename = QFileDialog::getSaveFileName(NULL, "Save to ...", "",
+                                                        "GIF image (*.gif)");
+    //  QString gif_filename = "/Users/errokele/projects/gifka.gif";
+    gif->save(gif_filename);
+    delete gif;
+    repaint();
+  }
 }
 
 void MainWindow::CreateSnapshot() {
   if (controller_->GetFacadeRef()->GetFigureDraw() == nullptr) {
-      return;
+    return;
   }
   dto_ = new s21::ParamDTO(
       ui->spinbox_move_x->value(), ui->spinbox_move_y->value(),
@@ -249,36 +251,41 @@ void MainWindow::CreateSnapshot() {
       ui->slider_scale->value());
   controller_->CreateSnapshot(dto_);
 
-  objectInfoDTO_ = s21::ObjectInfoDTO(ui->lineEdit_file_input->text().toStdString(),
-                   ui->label_info_object_info_file_name_ans_2->text().toStdString(),
-                   ui->label_info_object_info_vertex_count_ans_2->text().toStdString(),
-                   ui->label_info_object_info_polygon_count_ans_2->text().toStdString());
+  objectInfoDTO_ = s21::ObjectInfoDTO(
+      ui->lineEdit_file_input->text().toStdString(),
+      ui->label_info_object_info_file_name_ans_2->text().toStdString(),
+      ui->label_info_object_info_vertex_count_ans_2->text().toStdString(),
+      ui->label_info_object_info_polygon_count_ans_2->text().toStdString());
 }
 
 void MainWindow::Restore() {
-    if (controller_->GetFacadeRef()->GetSnapshot() == nullptr) {
-       return;
-    }
-    controller_->Restore();
-    
-    from_snapshot_ = true;
-    ui->openGLWidget->scale_ = controller_->GetMax() * 2;
-    ui->spinbox_move_x->setValue(dto_->move_x_);
-    ui->spinbox_move_y->setValue(dto_->move_y_);
-    ui->spinbox_move_z->setValue(dto_->move_z_);
-    ui->spinbox_rot_x->setValue(dto_->angle_x_);
-    ui->spinbox_rot_y->setValue(dto_->angle_y_);
-    ui->spinbox_rot_z->setValue(dto_->angle_z_);
-    ui->slider_scale->setValue(dto_->scale_);
+  if (controller_->GetFacadeRef()->GetSnapshot() == nullptr) {
+    return;
+  }
+  controller_->Restore();
 
-    ui->lineEdit_file_input->setText(QString::fromStdString(objectInfoDTO_.object_info_file_path_));
-    ui->label_info_object_info_file_name_ans_2->setText(QString::fromStdString(objectInfoDTO_.object_info_file_name_));
-    ui->label_info_object_info_vertex_count_ans_2->setText(QString::fromStdString(objectInfoDTO_.object_info_vertex_count_));
-    ui->label_info_object_info_polygon_count_ans_2->setText(QString::fromStdString(objectInfoDTO_.object_info_polygon_count_));
+  from_snapshot_ = true;
+  ui->openGLWidget->scale_ = controller_->GetMax() * 2;
+  ui->spinbox_move_x->setValue(dto_->move_x_);
+  ui->spinbox_move_y->setValue(dto_->move_y_);
+  ui->spinbox_move_z->setValue(dto_->move_z_);
+  ui->spinbox_rot_x->setValue(dto_->angle_x_);
+  ui->spinbox_rot_y->setValue(dto_->angle_y_);
+  ui->spinbox_rot_z->setValue(dto_->angle_z_);
+  ui->slider_scale->setValue(dto_->scale_);
 
-    ui->openGLWidget->update();
-    from_snapshot_ = false;
-    };
+  ui->lineEdit_file_input->setText(
+      QString::fromStdString(objectInfoDTO_.object_info_file_path_));
+  ui->label_info_object_info_file_name_ans_2->setText(
+      QString::fromStdString(objectInfoDTO_.object_info_file_name_));
+  ui->label_info_object_info_vertex_count_ans_2->setText(
+      QString::fromStdString(objectInfoDTO_.object_info_vertex_count_));
+  ui->label_info_object_info_polygon_count_ans_2->setText(
+      QString::fromStdString(objectInfoDTO_.object_info_polygon_count_));
+
+  ui->openGLWidget->update();
+  from_snapshot_ = false;
+};
 
 void MainWindow::Reset() {
   SliderReset();

@@ -32,9 +32,7 @@ void OGLwidget::SetVertices(std::vector<s21::Vertex>* vertices) {
   vertices_ = vertices;
 }
 
-void OGLwidget::SetEdges(std::vector<unsigned>* edges) {
-  edges_ = edges;
-}
+void OGLwidget::SetEdges(std::vector<unsigned>* edges) { edges_ = edges; }
 
 std::vector<s21::Vertex>* OGLwidget::GetVerticesRef() { return vertices_; }
 

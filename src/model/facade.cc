@@ -22,5 +22,4 @@ void s21::Facade::Reset() {
     figure_draw_ = new Figure();
     *figure_draw_ = *figure_def_;
   }
-
 }

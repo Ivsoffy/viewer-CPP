@@ -6,11 +6,11 @@
 
 #include <QColorDialog>
 #include <QFileDialog>
+#include <QFileInfo>
 #include <QImage>
 #include <QMainWindow>
 #include <QTimer>
 #include <iostream>
-#include <QFileInfo>
 
 #include "../controller/controller.h"
 #include "../dto/dto.h"
