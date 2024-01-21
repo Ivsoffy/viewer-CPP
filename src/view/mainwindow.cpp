@@ -12,17 +12,12 @@ MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
   file_dialog.setDirectory(std_path);
   //  user_settings_setup(&user_settings);
   ui->setupUi(this);
+  readSettings();
   //  init_settings();
   Connects();
 }
 
 MainWindow::~MainWindow() { delete ui; }
-
-// void MainWindow::closeEvent(QCloseEvent *event) {
-//   if (event) pass();
-// //  user_settings_save_file(&user_settings);
-//  close();
-// }
 
 void MainWindow::Connects() {
   connect(ui->pushButton_file_select, SIGNAL(clicked()), this,
@@ -311,3 +306,90 @@ void MainWindow::SliderReset() {
   ui->spinbox_rot_y->setValue(0);
   ui->spinbox_rot_z->setValue(0);
 }
+
+void MainWindow::on_pushButton_settings_view_other_color_clicked()
+{
+    QColor color = QColorDialog::getColor(QColor("white"), this);
+    back_color = color;
+    if (color.isValid()) {
+      ui->openGLWidget->background_color_b_ = color.blue();
+      ui->openGLWidget->background_color_r_ = color.red();
+      ui->openGLWidget->background_color_g_ = color.green();
+    }
+}
+
+void MainWindow::on_pushButton_settings_view_polygon_color_clicked()
+{
+    QColor color = QColorDialog::getColor(QColor("white"), this);
+    lines_color = color;
+    if (color.isValid()) {
+      ui->openGLWidget->line_color_b_ = color.blue();
+      ui->openGLWidget->line_color_r_ = color.red();
+      ui->openGLWidget->line_color_g_ = color.green();
+    }
+}
+
+void MainWindow::on_pushButton_settings_view_vertex_color_clicked()
+{
+    QColor color = QColorDialog::getColor(QColor("white"), this);
+    vertex_color = color;
+    if (color.isValid()) {
+      ui->openGLWidget->vertex_color_b_ = color.blue();
+      ui->openGLWidget->vertex_color_r_ = color.red();
+      ui->openGLWidget->vertex_color_g_ = color.green();
+    }
+}
+
+void MainWindow::closeEvent(QCloseEvent *event) {
+    writeSettings();
+    event->accept();
+}
+
+void MainWindow::writeSettings() {
+  QSettings settings("Cabbage.conf", "AAA");
+  int indexTypeProjection = ui->comboBox_settings_view_projection_type->currentIndex();
+  int indexEdges = ui->comboBox_settings_view_polygon_type->currentIndex();
+  int indexVertex = ui->comboBox_settings_view_vertex_type->currentIndex();
+
+
+  double sizeVertex = ui->doubleSpinBox_settings_view_vertex_size->value();
+  double sizeEdges = ui->doubleSpinBox_settings_view_polygon_width->value();
+
+  settings.beginGroup("MainWindow_UI");
+  settings.setValue("vertexSettenings/indexVertex", indexVertex);
+  settings.setValue("edgesSettenings/indexEdges", indexEdges);
+  settings.setValue("vertexSettenings/sizeVertex", sizeVertex);
+  settings.setValue("edgesSettenings/sizeEdges", sizeEdges);
+  settings.setValue("projection/indexTypeProjection", indexTypeProjection);
+
+
+  settings.endGroup();
+}
+
+void MainWindow::readSettings() {
+  QSettings settings("Cabbage.conf", "AAA");
+  settings.beginGroup("MainWindow_UI");
+  ui->comboBox_settings_view_projection_type->setCurrentIndex(settings.value("projection/indexTypeProjection").toInt());
+  ui->comboBox_settings_view_polygon_type->setCurrentIndex(settings.value("edgesSettenings/indexEdges").toInt());
+  ui->comboBox_settings_view_vertex_type->setCurrentIndex(settings.value("vertexSettenings/indexVertex").toInt());
+  ui->doubleSpinBox_settings_view_polygon_width->setValue(settings.value("edgesSettenings/sizeEdges").toDouble());
+  ui->doubleSpinBox_settings_view_vertex_size->setValue(settings.value("vertexSettenings/sizeVertex").toDouble());
+
+//  ui->Vertex_Settenings->setCurrentIndex(
+//      settings.value("Vertex_Settenings/indexVertex").toInt());
+//  ui->comboBox->setCurrentIndex(
+//      settings.value("comboBox/index_colorProjection").toInt());
+//  ui->comboBox_4->setCurrentIndex(
+//      settings.value("projectionType/indexTypeProjection").toInt());
+//  ui->doubleSpinBox->setValue(
+//      settings.value("doubleSpinBox/lineWidth").toDouble());
+//  ui->doubleSpinBox_2->setValue(
+//      settings.value("doubleSpinBox_2/pointWidth").toDouble());
+//  ui->lineEdit->setText(settings.value("file/filename").toString());
+//  ui->openGLWidget->setFilename(settings.value("file/filename").toString());
+  settings.endGroup();
+}
+
+
+
+

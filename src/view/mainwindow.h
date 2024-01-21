@@ -9,6 +9,8 @@
 #include <QFileInfo>
 #include <QImage>
 #include <QMainWindow>
+#include <QCloseEvent>
+#include <QSettings>
 #include <QTimer>
 #include <iostream>
 
@@ -83,7 +85,16 @@ class MainWindow : public QMainWindow {
   void recording_gif();
   void recording_stop();
 
- private:
+  void on_pushButton_settings_view_other_color_clicked();
+
+  void on_pushButton_settings_view_polygon_color_clicked();
+
+  void on_pushButton_settings_view_vertex_color_clicked();
+  void closeEvent(QCloseEvent *event);
+  void writeSettings();
+  void readSettings();
+
+private:
   s21::Controller *controller_;
   Ui::MainWindow *ui;
   s21::ParamDTO *dto_;
@@ -99,6 +110,8 @@ class MainWindow : public QMainWindow {
   //  void projection_settings();
 
   QFileDialog file_dialog;
+
+  QColor vertex_color, lines_color, back_color;
 
   int gif_recording = 0;
   QTimer *timer;
