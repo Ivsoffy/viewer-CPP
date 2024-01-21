@@ -20,9 +20,9 @@ MainWindow::~MainWindow() { delete ui; }
 
 // void MainWindow::closeEvent(QCloseEvent *event) {
 //   if (event) pass();
-////  user_settings_save_file(&user_settings);
+// //  user_settings_save_file(&user_settings);
 //  close();
-//}
+// }
 
 void MainWindow::Connects() {
   connect(ui->pushButton_file_select, SIGNAL(clicked()), this,
@@ -108,7 +108,6 @@ void MainWindow::ChooseFile() {
       ui->openGLWidget->SetVertices(controller_->GetVertecisRef());
       ui->openGLWidget->SetEdges(controller_->GetEdgesRef());
       ui->openGLWidget->update();
-      ui->openGLWidget->need_paint_ = true;
       ui->lineEdit_file_input->setText(filename);
       ui->label_info_object_info_vertex_count_ans_2->setText(
           QString::number(ui->openGLWidget->GetVerticesRef()->size()));
@@ -119,6 +118,7 @@ void MainWindow::ChooseFile() {
     } else
       ui->label_info->setText(QString::fromStdString(err_msg));
   }
+  ui->openGLWidget->need_paint_ = true;
 }
 
 void MainWindow::Redraw() {
@@ -215,7 +215,7 @@ void MainWindow::on_pushButton_screen_gif_start_clicked() {
 
 void MainWindow::recording_gif() {
   QImage frameImage = ui->openGLWidget->grabFramebuffer();
-  gif->addFrame(frameImage, 50);
+  gif->addFrame(frameImage, 100);
 }
 
 void MainWindow::recording_stop() {

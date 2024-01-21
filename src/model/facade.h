@@ -12,7 +12,13 @@ namespace s21 {
 class Facade {
  public:
   Facade();
-  ~Facade(){};
+  ~Facade(){ 
+    delete affineTransformations_;
+    delete fileParser_;
+    delete figure_def_;
+    delete figure_draw_;
+    delete snapshot_;
+  }
 
   /// @brief Set the path of the file to open
   void SetPathToObject(std::string path);
