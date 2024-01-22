@@ -71,9 +71,9 @@ background-color : #0E1115;</string>
     <widget class="QPushButton" name="pushButton_screen_gif_start">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>130</x>
        <y>50</y>
-       <width>131</width>
+       <width>121</width>
        <height>31</height>
       </rect>
      </property>
@@ -101,7 +101,7 @@ background-color : #0E1115;</string>
       <rect>
        <x>0</x>
        <y>90</y>
-       <width>131</width>
+       <width>121</width>
        <height>31</height>
       </rect>
      </property>
@@ -171,9 +171,9 @@ background-color : #0E1115;</string>
     <widget class="QPushButton" name="pushButton_screen_start">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>0</x>
        <y>50</y>
-       <width>131</width>
+       <width>121</width>
        <height>31</height>
       </rect>
      </property>
@@ -199,9 +199,9 @@ background-color : #0E1115;</string>
     <widget class="QPushButton" name="pushButton_Restore">
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>130</x>
        <y>90</y>
-       <width>231</width>
+       <width>121</width>
        <height>31</height>
       </rect>
      </property>
@@ -227,9 +227,9 @@ background-color : #0E1115;</string>
     <widget class="QComboBox" name="comboBox_screen_unit">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>260</x>
        <y>50</y>
-       <width>91</width>
+       <width>111</width>
        <height>31</height>
       </rect>
      </property>
@@ -1440,9 +1440,9 @@ background-color : #0E1115;</string>
    <widget class="QPushButton" name="pushButton_Reset">
     <property name="geometry">
      <rect>
-      <x>1090</x>
-      <y>490</y>
-      <width>241</width>
+      <x>270</x>
+      <y>440</y>
+      <width>111</width>
       <height>31</height>
      </rect>
     </property>
@@ -1463,6 +1463,62 @@ background-color : #0E1115;</string>
     </property>
     <property name="text">
      <string>Reset</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Restore_2">
+    <property name="geometry">
+     <rect>
+      <x>1080</x>
+      <y>490</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background-color:  #61738E;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 10px;
+     font: bold 14px;
+     padding: 6px;
+}
+
+ QPushButton:pressed {
+	background-color: #6D7A8E;
+ }
+</string>
+    </property>
+    <property name="text">
+     <string>Сохранить</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Restore_3">
+    <property name="geometry">
+     <rect>
+      <x>1220</x>
+      <y>490</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background-color:  #61738E;
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 10px;
+     font: bold 14px;
+     padding: 6px;
+}
+
+ QPushButton:pressed {
+	background-color: #6D7A8E;
+ }
+</string>
+    </property>
+    <property name="text">
+     <string>Загрузить</string>
     </property>
    </widget>
   </widget>

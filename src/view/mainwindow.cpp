@@ -87,15 +87,12 @@ void MainWindow::Connects() {
 }
 
 void MainWindow::ChooseFile() {
-  ui->openGLWidget->need_paint_ = false;
   if (file_dialog.exec()) {
+    ui->openGLWidget->need_paint_ = false;
     QStringList fileNames = file_dialog.selectedFiles();
     QString filename = fileNames[0];
-
     SliderReset();
-
     ui->label_info->clear();
-
     std::string err_msg = controller_->TransferObject(filename.toStdString());
     if (err_msg == "OK") {
       ui->openGLWidget->scale_ = controller_->GetMax() * 2;
@@ -110,10 +107,10 @@ void MainWindow::ChooseFile() {
           QString::number(ui->openGLWidget->GetEdgesRef()->size()));
       QFileInfo fi(filename);
       ui->label_info_object_info_file_name_ans_2->setText(fi.baseName());
+      ui->openGLWidget->need_paint_ = true;
     } else
       ui->label_info->setText(QString::fromStdString(err_msg));
   }
-  ui->openGLWidget->need_paint_ = true;
 }
 
 void MainWindow::Redraw() {
@@ -310,34 +307,46 @@ void MainWindow::SliderReset() {
 void MainWindow::on_pushButton_settings_view_other_color_clicked()
 {
     QColor color = QColorDialog::getColor(QColor("white"), this);
-    back_color = color;
-    if (color.isValid()) {
-      ui->openGLWidget->background_color_b_ = color.blue();
-      ui->openGLWidget->background_color_r_ = color.red();
-      ui->openGLWidget->background_color_g_ = color.green();
+    if (color.isValid()) {   
+      changeBackground(color);
     }
+}
+
+void MainWindow::changeBackground(QColor color){
+    back_color = color;
+    ui->openGLWidget->background_color_b_ = color.blue();
+    ui->openGLWidget->background_color_r_ = color.red();
+    ui->openGLWidget->background_color_g_ = color.green();
 }
 
 void MainWindow::on_pushButton_settings_view_polygon_color_clicked()
 {
     QColor color = QColorDialog::getColor(QColor("white"), this);
-    lines_color = color;
     if (color.isValid()) {
-      ui->openGLWidget->line_color_b_ = color.blue();
-      ui->openGLWidget->line_color_r_ = color.red();
-      ui->openGLWidget->line_color_g_ = color.green();
+      changeEdges(color);
     }
+}
+
+void MainWindow::changeEdges(QColor color){
+    edges_color = color;
+    ui->openGLWidget->line_color_b_ = color.blue();
+    ui->openGLWidget->line_color_r_ = color.red();
+    ui->openGLWidget->line_color_g_ = color.green();
 }
 
 void MainWindow::on_pushButton_settings_view_vertex_color_clicked()
 {
     QColor color = QColorDialog::getColor(QColor("white"), this);
-    vertex_color = color;
     if (color.isValid()) {
-      ui->openGLWidget->vertex_color_b_ = color.blue();
-      ui->openGLWidget->vertex_color_r_ = color.red();
-      ui->openGLWidget->vertex_color_g_ = color.green();
+      changeVertex(color);
     }
+}
+
+void MainWindow::changeVertex(QColor color){
+    vertex_color = color;
+    ui->openGLWidget->vertex_color_b_ = color.blue();
+    ui->openGLWidget->vertex_color_r_ = color.red();
+    ui->openGLWidget->vertex_color_g_ = color.green();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {
@@ -362,6 +371,17 @@ void MainWindow::writeSettings() {
   settings.setValue("edgesSettenings/sizeEdges", sizeEdges);
   settings.setValue("projection/indexTypeProjection", indexTypeProjection);
 
+  settings.setValue("vertexRgb/r", vertex_color.red());
+  settings.setValue("vertexRgb/g", vertex_color.green());
+  settings.setValue("vertexRgb/b", vertex_color.blue());
+
+  settings.setValue("edgesRgb/r", edges_color.red());
+  settings.setValue("edgesRgb/g", edges_color.green());
+  settings.setValue("edgesRgb/b", edges_color.blue());
+
+  settings.setValue("backRgb/r", back_color.red());
+  settings.setValue("backRgb/g", back_color.green());
+  settings.setValue("backRgb/b", back_color.blue());
 
   settings.endGroup();
 }
@@ -370,23 +390,23 @@ void MainWindow::readSettings() {
   QSettings settings("Cabbage.conf", "AAA");
   settings.beginGroup("MainWindow_UI");
   ui->comboBox_settings_view_projection_type->setCurrentIndex(settings.value("projection/indexTypeProjection").toInt());
+  ui->openGLWidget->view_type_ = settings.value("projection/indexTypeProjection").toInt();
   ui->comboBox_settings_view_polygon_type->setCurrentIndex(settings.value("edgesSettenings/indexEdges").toInt());
+  ui->openGLWidget->line_type_ = settings.value("edgesSettenings/indexEdges").toInt();
   ui->comboBox_settings_view_vertex_type->setCurrentIndex(settings.value("vertexSettenings/indexVertex").toInt());
+  ui->openGLWidget->vertex_type_ = settings.value("vertexSettenings/indexVertex").toInt();
   ui->doubleSpinBox_settings_view_polygon_width->setValue(settings.value("edgesSettenings/sizeEdges").toDouble());
+  ui->openGLWidget->line_size_ = settings.value("edgesSettenings/sizeEdges").toDouble();
   ui->doubleSpinBox_settings_view_vertex_size->setValue(settings.value("vertexSettenings/sizeVertex").toDouble());
+  ui->openGLWidget->vertex_size_ = settings.value("vertexSettenings/sizeVertex").toDouble();
 
-//  ui->Vertex_Settenings->setCurrentIndex(
-//      settings.value("Vertex_Settenings/indexVertex").toInt());
-//  ui->comboBox->setCurrentIndex(
-//      settings.value("comboBox/index_colorProjection").toInt());
-//  ui->comboBox_4->setCurrentIndex(
-//      settings.value("projectionType/indexTypeProjection").toInt());
-//  ui->doubleSpinBox->setValue(
-//      settings.value("doubleSpinBox/lineWidth").toDouble());
-//  ui->doubleSpinBox_2->setValue(
-//      settings.value("doubleSpinBox_2/pointWidth").toDouble());
-//  ui->lineEdit->setText(settings.value("file/filename").toString());
-//  ui->openGLWidget->setFilename(settings.value("file/filename").toString());
+  QColor color1(settings.value("backRgb/r").toInt(),settings.value("backRgb/g").toInt(),settings.value("backRgb/b").toInt());
+  changeBackground(color1);
+  QColor color2(settings.value("vertexRgb/r").toInt(),settings.value("vertexRgb/g").toInt(),settings.value("vertexRgb/b").toInt());
+  changeVertex(color2);
+  QColor color3(settings.value("edgesRgb/r").toInt(),settings.value("edgesRgb/g").toInt(),settings.value("edgesRgb/b").toInt());
+  changeEdges(color3);
+
   settings.endGroup();
 }
 

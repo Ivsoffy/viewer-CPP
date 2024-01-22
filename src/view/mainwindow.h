@@ -86,10 +86,11 @@ class MainWindow : public QMainWindow {
   void recording_stop();
 
   void on_pushButton_settings_view_other_color_clicked();
-
+  void changeBackground(QColor color);
   void on_pushButton_settings_view_polygon_color_clicked();
-
+  void changeEdges(QColor color);
   void on_pushButton_settings_view_vertex_color_clicked();
+  void changeVertex(QColor color);
   void closeEvent(QCloseEvent *event);
   void writeSettings();
   void readSettings();
@@ -111,7 +112,7 @@ private:
 
   QFileDialog file_dialog;
 
-  QColor vertex_color, lines_color, back_color;
+  QColor vertex_color, edges_color, back_color;
 
   int gif_recording = 0;
   QTimer *timer;
