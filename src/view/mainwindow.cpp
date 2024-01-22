@@ -92,13 +92,12 @@ void MainWindow::Connects() {
 }
 
 void MainWindow::ChooseFile() {
-  ui->openGLWidget->need_paint_ = false;
   if (file_dialog.exec()) {
+    ui->openGLWidget->need_paint_ = false;
     QStringList fileNames = file_dialog.selectedFiles();
     QString filename = fileNames[0];
 
     SliderReset();
-
     ui->label_info->clear();
 
     std::string err_msg = controller_->TransferObject(filename.toStdString());
@@ -115,10 +114,10 @@ void MainWindow::ChooseFile() {
           QString::number(ui->openGLWidget->GetEdgesRef()->size()));
       QFileInfo fi(filename);
       ui->label_info_object_info_file_name_ans_2->setText(fi.baseName());
+      ui->openGLWidget->need_paint_ = true;
     } else
       ui->label_info->setText(QString::fromStdString(err_msg));
   }
-  ui->openGLWidget->need_paint_ = true;
 }
 
 void MainWindow::Redraw() {
@@ -195,50 +194,118 @@ void MainWindow::on_pushButton_screen_start_clicked() {
   screenshot.save(path);
 }
 
-void MainWindow::on_pushButton_screen_gif_start_clicked() {
-  if (!gif_recording) {
-    ui->pushButton_screen_gif_start->setText("Остановить запись");
+//void MainWindow::on_pushButton_screen_gif_start_clicked() {
+//  if (!gif_recording) {
+//    ui->pushButton_screen_gif_start->setText("Остановить запись");
 
-    gif = new QGifImage;
-    timer = new QTimer(this);
-    timer_2 = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(recording_gif()));
-    connect(timer_2, SIGNAL(timeout()), ui->openGLWidget, SLOT(repaint()));
-    timer->start(100);
-    timer_2->start(1);
-    QTimer::singleShot(5000, this, SLOT(recording_stop()));
-    gif_recording = 1;
-  } else {
-    recording_stop();
-  }
+//    gif = new QGifImage;
+//    timer = new QTimer(this);
+//    timer_2 = new QTimer(this);
+//    connect(timer, SIGNAL(timeout()), this, SLOT(recording_gif()));
+//    connect(timer_2, SIGNAL(timeout()), ui->openGLWidget, SLOT(repaint()));
+//    timer->start(100);
+//    timer_2->start(1);
+//    QTimer::singleShot(5000, this, SLOT(recording_stop()));
+//    gif_recording = 1;
+//  } else {
+//    recording_stop();
+//  }
+//}
+
+//void MainWindow::recording_gif() {
+//  QImage frameImage = ui->openGLWidget->grabFramebuffer();
+//  gif->addFrame(frameImage, 100);
+//}
+
+//void MainWindow::recording_stop() {
+//  if (gif_recording) {
+//    gif_recording = 0;
+//    ui->pushButton_screen_gif_start->setText("GIF");
+//    timer->stop();
+//    timer_2->stop();
+//    delete timer;
+//    delete timer_2;
+
+//    QString name = QDate::currentDate().toString("yyMMdd") + "_" +
+//                   QTime::currentTime().toString("hhmmss") + ".gif";
+//    //  QString gifFileName =
+//    //      QApplication::applicationDirPath() + "/../../../" + name;
+//    QString gif_filename = QFileDialog::getSaveFileName(NULL, "Save to ...", "",
+//                                                        "GIF image (*.gif)");
+//    //  QString gif_filename = "/Users/errokele/projects/gifka.gif";
+//    gif->save(gif_filename);
+//    delete gif;
+//    repaint();
+//  }
+//}
+///// ///////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+//void MainWindow::on_pushButton_screen_gif_start_clicked() {
+//  gif = new QGifImage(QSize(640, 480));
+//  gif->setDefaultDelay(100);
+//  timer = new QTimer(this);
+//  timer->start(100);
+//  connect(timer, SIGNAL(timeout()), this, SLOT(recording_gif()));
+//}
+
+//void MainWindow::recording_gif() {
+//  if (gif->frameCount() < 50) {
+//    QImage image = ui->openGLWidget->grabFramebuffer();
+//    image = image.scaled(640, 480, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+//    gif->addFrame(image);
+//  } else {
+//      QString gif_filename = QFileDialog::getSaveFileName(NULL, "Save to ...", "",
+//                                                          "GIF image (*.gif)");
+//      gif->save(gif_filename);
+//      timer->stop();
+//      delete gif;
+//  }
+//}
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+/// /// ///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+void MainWindow::on_pushButton_screen_gif_start_clicked() {
+  gif = new QGifImage(QSize(640, 480));
+  gif-> setDefaultDelay(100);
+  timer = new QTimer(this);
+  QTimer::singleShot(5000, this, SLOT(recording_stop()));
+  timer->start(100);
+  connect(timer, SIGNAL(timeout()), this, SLOT(recording_gif()));
 }
 
 void MainWindow::recording_gif() {
-  QImage frameImage = ui->openGLWidget->grabFramebuffer();
-  gif->addFrame(frameImage, 100);
+    std::cerr << "-gif->frameCount()-" << gif->frameCount() << std::endl;
+    QImage image = ui->openGLWidget->grabFramebuffer();
+    image = image.scaled(640, 480, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+    gif->addFrame(image);
 }
 
 void MainWindow::recording_stop() {
-  if (gif_recording) {
-    gif_recording = 0;
-    ui->pushButton_screen_gif_start->setText("GIF");
-    timer->stop();
-    timer_2->stop();
-    delete timer;
-    delete timer_2;
-
-    QString name = QDate::currentDate().toString("yyMMdd") + "_" +
-                   QTime::currentTime().toString("hhmmss") + ".gif";
-    //  QString gifFileName =
-    //      QApplication::applicationDirPath() + "/../../../" + name;
-    QString gif_filename = QFileDialog::getSaveFileName(NULL, "Save to ...", "",
-                                                        "GIF image (*.gif)");
-    //  QString gif_filename = "/Users/errokele/projects/gifka.gif";
-    gif->save(gif_filename);
-    delete gif;
-    repaint();
-  }
+      QString gif_filename = QFileDialog::getSaveFileName(NULL, "Save to ...", "",
+                                                          "GIF image (*.gif)");
+      timer->stop();
+      gif->save(gif_filename);
+      delete gif;
+      delete timer;
 }
+//void MainWindow::recording_gif() {
+//  if (gif->frameCount() < 50) {
+//    std::cerr << "-gif->frameCount()-" << gif->frameCount() << std::endl;
+//    QImage image = ui->openGLWidget->grabFramebuffer();
+//    image = image.scaled(640, 480, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+//    gif->addFrame(image);
+//  } else {
+//      QString gif_filename = QFileDialog::getSaveFileName(NULL, "Save to ...", "",
+//                                                          "GIF image (*.gif)");
+//      timer->stop();
+//      gif->save(gif_filename);
+//      delete gif;
+//      delete timer;
+//  }
+//}
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
 
 void MainWindow::CreateSnapshot() {
   if (controller_->GetFacadeRef()->GetFigureDraw() == nullptr) {
