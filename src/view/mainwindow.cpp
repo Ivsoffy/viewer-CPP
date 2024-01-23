@@ -307,13 +307,12 @@ void MainWindow::SliderReset() {
 void MainWindow::on_pushButton_settings_view_other_color_clicked()
 {
     QColor color = QColorDialog::getColor(QColor("white"), this);
-    if (color.isValid()) {   
+    if (color.isValid()) {
       changeBackground(color);
     }
 }
 
 void MainWindow::changeBackground(QColor color){
-    back_color = color;
     ui->openGLWidget->background_color_b_ = color.blue();
     ui->openGLWidget->background_color_r_ = color.red();
     ui->openGLWidget->background_color_g_ = color.green();
@@ -328,7 +327,6 @@ void MainWindow::on_pushButton_settings_view_polygon_color_clicked()
 }
 
 void MainWindow::changeEdges(QColor color){
-    edges_color = color;
     ui->openGLWidget->line_color_b_ = color.blue();
     ui->openGLWidget->line_color_r_ = color.red();
     ui->openGLWidget->line_color_g_ = color.green();
@@ -343,48 +341,128 @@ void MainWindow::on_pushButton_settings_view_vertex_color_clicked()
 }
 
 void MainWindow::changeVertex(QColor color){
-    vertex_color = color;
     ui->openGLWidget->vertex_color_b_ = color.blue();
     ui->openGLWidget->vertex_color_r_ = color.red();
     ui->openGLWidget->vertex_color_g_ = color.green();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {
-    writeSettings();
-    event->accept();
+   bs = new BaseSetting(ui);
+   InterfaceDecorator *link1 = nullptr, *link2 = nullptr, *link3=nullptr;
+   bs->writeSettings();
+   if (ui->checkBox_vertex->checkState()){
+       bs = new DecoratorVertexes(bs, ui);
+       link1 = bs;
+       bs->writeSettings();
+   }
+   if (ui->checkBox_edges->checkState()){
+       bs = new DecoratorEdges(bs,ui);
+       link2=bs;
+       bs->writeSettings();
+   }
+   if (ui->checkBox_projection->checkState()){
+       bs = new DecoratorProjection(bs,ui);
+       link3=bs;
+       bs->writeSettings();
+   }
+
+
+//   delete bs.*std::static_cast<BaseSetting*>(bs);
+   if (link1 != nullptr){
+       delete link1;
+   }
+   if (link2!= nullptr){
+       delete link2;
+   }
+   if (link3!=nullptr){
+       delete link3;
+   }
+    if (!link1&&!link2&&!link3){
+         delete bs;
+    }
+
+//   delete link1;
+//   delete link2;
+//   delete link3;
+//   delete id;
+   event->accept();
 }
 
-void MainWindow::writeSettings() {
+//void MainWindow::writeSettings() {
+//  QSettings settings("Cabbage.conf", "AAA");
+
+//  int indexEdges = ui->comboBox_settings_view_polygon_type->currentIndex();
+//  int indexVertex = ui->comboBox_settings_view_vertex_type->currentIndex();
+
+
+//  double sizeVertex = ui->doubleSpinBox_settings_view_vertex_size->value();
+//  double sizeEdges = ui->doubleSpinBox_settings_view_polygon_width->value();
+
+//  settings.beginGroup("MainWindow_UI");
+//  settings.setValue("vertexSettenings/indexVertex", indexVertex);
+//  settings.setValue("edgesSettenings/indexEdges", indexEdges);
+//  settings.setValue("vertexSettenings/sizeVertex", sizeVertex);
+//  settings.setValue("edgesSettenings/sizeEdges", sizeEdges);
+//  settings.setValue("projection/indexTypeProjection", indexTypeProjection);
+
+//  settings.setValue("vertexRgb/r", ui->openGLWidget->vertex_color_r_);
+//  settings.setValue("vertexRgb/g", ui->openGLWidget->vertex_color_g_);
+//  settings.setValue("vertexRgb/b", ui->openGLWidget->vertex_color_b_);
+
+//  settings.setValue("edgesRgb/r", ui->openGLWidget->line_color_r_);
+//  settings.setValue("edgesRgb/g", ui->openGLWidget->line_color_g_);
+//  settings.setValue("edgesRgb/b", ui->openGLWidget->line_color_b_);
+
+//  settings.setValue("backRgb/r", ui->openGLWidget->background_color_r_);
+//  settings.setValue("backRgb/g", ui->openGLWidget->background_color_g_);
+//  settings.setValue("backRgb/b", ui->openGLWidget->background_color_b_);
+
+//  settings.endGroup();
+//}
+
+void MainWindow::BaseSetting::writeSettings() {
   QSettings settings("Cabbage.conf", "AAA");
-  int indexTypeProjection = ui->comboBox_settings_view_projection_type->currentIndex();
-  int indexEdges = ui->comboBox_settings_view_polygon_type->currentIndex();
-  int indexVertex = ui->comboBox_settings_view_vertex_type->currentIndex();
-
-
-  double sizeVertex = ui->doubleSpinBox_settings_view_vertex_size->value();
-  double sizeEdges = ui->doubleSpinBox_settings_view_polygon_width->value();
-
   settings.beginGroup("MainWindow_UI");
-  settings.setValue("vertexSettenings/indexVertex", indexVertex);
-  settings.setValue("edgesSettenings/indexEdges", indexEdges);
-  settings.setValue("vertexSettenings/sizeVertex", sizeVertex);
-  settings.setValue("edgesSettenings/sizeEdges", sizeEdges);
-  settings.setValue("projection/indexTypeProjection", indexTypeProjection);
-
-  settings.setValue("vertexRgb/r", vertex_color.red());
-  settings.setValue("vertexRgb/g", vertex_color.green());
-  settings.setValue("vertexRgb/b", vertex_color.blue());
-
-  settings.setValue("edgesRgb/r", edges_color.red());
-  settings.setValue("edgesRgb/g", edges_color.green());
-  settings.setValue("edgesRgb/b", edges_color.blue());
-
-  settings.setValue("backRgb/r", back_color.red());
-  settings.setValue("backRgb/g", back_color.green());
-  settings.setValue("backRgb/b", back_color.blue());
-
+  settings.setValue("backRgb/r", ui_->openGLWidget->background_color_r_);
+  settings.setValue("backRgb/g", ui_->openGLWidget->background_color_g_);
+  settings.setValue("backRgb/b", ui_->openGLWidget->background_color_b_);
   settings.endGroup();
 }
+
+void MainWindow::DecoratorVertexes::writeVertexes(){
+    QSettings settings("Cabbage.conf", "AAA");
+    int indexVertex = ui_->comboBox_settings_view_vertex_type->currentIndex();
+    double sizeVertex = ui_->doubleSpinBox_settings_view_vertex_size->value();
+    settings.beginGroup("MainWindow_UI");
+    settings.setValue("vertexSettenings/indexVertex", indexVertex);
+    settings.setValue("veDecoratorVertexesrtexSettenings/sizeVertex", sizeVertex);
+    settings.setValue("vertexRgb/r", ui_->openGLWidget->vertex_color_r_);
+    settings.setValue("vertexRgb/g", ui_->openGLWidget->vertex_color_g_);
+    settings.setValue("vertexRgb/b", ui_->openGLWidget->vertex_color_b_);
+    settings.endGroup();
+}
+
+void MainWindow::DecoratorEdges::writeEdges(){
+    int indexEdges = ui_->comboBox_settings_view_polygon_type->currentIndex();
+    double sizeEdges = ui_->doubleSpinBox_settings_view_polygon_width->value();
+    QSettings settings("Cabbage.conf", "AAA");
+    settings.beginGroup("MainWindow_UI");
+    settings.setValue("edgesSettenings/sizeEdges", sizeEdges);
+    settings.setValue("edgesSettenings/indexEdges", indexEdges);
+    settings.setValue("edgesRgb/r", ui_->openGLWidget->line_color_r_);
+    settings.setValue("edgesRgb/g", ui_->openGLWidget->line_color_g_);
+    settings.setValue("edgesRgb/b", ui_->openGLWidget->line_color_b_);
+    settings.endGroup();
+}
+
+void MainWindow::DecoratorProjection::writeProjection(){
+    int indexTypeProjection = ui_->comboBox_settings_view_projection_type->currentIndex();
+    QSettings settings("Cabbage.conf", "AAA");
+    settings.beginGroup("MainWindow_UI");
+    settings.setValue("projection/indexTypeProjection", indexTypeProjection);
+    settings.endGroup();
+}
+
 
 void MainWindow::readSettings() {
   QSettings settings("Cabbage.conf", "AAA");
@@ -410,6 +488,13 @@ void MainWindow::readSettings() {
   settings.endGroup();
 }
 
+//void MainWindow::on_checkBox_vertex_clicked()
+//{
+////    flag = 1;
+////    bs = new BaseSetting(ui);
+////    InterfaceDecorator *id = new DecoratorVertexes(bs, ui);
+////    id->writeSettings();
+////    delete id;
 
-
+//}
 

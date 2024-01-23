@@ -92,12 +92,14 @@ class MainWindow : public QMainWindow {
   void on_pushButton_settings_view_vertex_color_clicked();
   void changeVertex(QColor color);
   void closeEvent(QCloseEvent *event);
-  void writeSettings();
+//  void writeSettings();
   void readSettings();
 
+public:
+  Ui::MainWindow *ui;
 private:
   s21::Controller *controller_;
-  Ui::MainWindow *ui;
+
   s21::ParamDTO *dto_;
   s21::ObjectInfoDTO objectInfoDTO_;
   bool from_snapshot_ = false;
@@ -118,6 +120,72 @@ private:
   QTimer *timer;
   QTimer *timer_2;
   QGifImage *gif;
+
+  class InterfaceDecorator { //interface
+  public:
+      virtual ~InterfaceDecorator() = default;
+      virtual void writeSettings() = 0;
+  };
+
+  class BaseSetting : public InterfaceDecorator{
+    public:
+      ~BaseSetting() = default;
+      BaseSetting(Ui::MainWindow *ui) : ui_(ui){}
+      void writeSettings() override;
+     private:
+      Ui::MainWindow *ui_;
+  };
+
+  class Decorator : public InterfaceDecorator{
+    public:
+      InterfaceDecorator *common_;
+      Decorator(InterfaceDecorator *id){
+          common_ = id;
+      }
+      void writeSettings(){
+          common_->writeSettings();
+      }
+  };
+
+  class DecoratorVertexes : public Decorator{
+  public:
+      DecoratorVertexes(InterfaceDecorator *id, Ui::MainWindow *ui): Decorator(id), ui_(ui){}
+
+      void writeSettings(){
+          Decorator::writeSettings();
+          writeVertexes();
+      }
+
+      void writeVertexes();
+      Ui::MainWindow *ui_;
+  };
+
+  class DecoratorEdges : public Decorator{
+  public:
+      DecoratorEdges(InterfaceDecorator *id, Ui::MainWindow *ui): Decorator(id), ui_(ui){}
+
+      void writeSettings(){
+          Decorator::writeSettings();
+          writeEdges();
+      }
+      void writeEdges();
+      Ui::MainWindow *ui_;
+  };
+
+  class DecoratorProjection : public Decorator{
+  public:
+      DecoratorProjection(InterfaceDecorator *id, Ui::MainWindow *ui): Decorator(id), ui_(ui){}
+
+      void writeSettings(){
+          Decorator::writeSettings();
+          writeProjection();
+      }
+      void writeProjection();
+      Ui::MainWindow *ui_;
+  };
+
+  InterfaceDecorator  *bs;
+
 };
 
 #endif  // MAINWINDOW_H
