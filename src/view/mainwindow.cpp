@@ -10,10 +10,8 @@ MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
   QString std_path =
       QCoreApplication::applicationDirPath() + PATH_STD_OPEN_FINDER;
   file_dialog.setDirectory(std_path);
-  //  user_settings_setup(&user_settings);
   ui->setupUi(this);
   readSettings();
-  //  init_settings();
   Connects();
 }
 
@@ -316,6 +314,7 @@ void MainWindow::changeBackground(QColor color){
     ui->openGLWidget->background_color_b_ = color.blue();
     ui->openGLWidget->background_color_r_ = color.red();
     ui->openGLWidget->background_color_g_ = color.green();
+    ui->pushButton_settings_view_other_color->setStyleSheet(QString("background-color: %1").arg(color.name()));
 }
 
 void MainWindow::on_pushButton_settings_view_polygon_color_clicked()
@@ -330,6 +329,7 @@ void MainWindow::changeEdges(QColor color){
     ui->openGLWidget->line_color_b_ = color.blue();
     ui->openGLWidget->line_color_r_ = color.red();
     ui->openGLWidget->line_color_g_ = color.green();
+    ui->pushButton_settings_view_polygon_color->setStyleSheet(QString("background-color: %1").arg(color.name()));
 }
 
 void MainWindow::on_pushButton_settings_view_vertex_color_clicked()
@@ -344,6 +344,7 @@ void MainWindow::changeVertex(QColor color){
     ui->openGLWidget->vertex_color_b_ = color.blue();
     ui->openGLWidget->vertex_color_r_ = color.red();
     ui->openGLWidget->vertex_color_g_ = color.green();
+    ui->pushButton_settings_view_vertex_color->setStyleSheet(QString("background-color: %1").arg(color.name()));
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {
@@ -423,6 +424,7 @@ void MainWindow::closeEvent(QCloseEvent *event) {
 void MainWindow::BaseSetting::writeSettings() {
   QSettings settings("Cabbage.conf", "AAA");
   settings.beginGroup("MainWindow_UI");
+  settings.setValue("alredySave", true);
   settings.setValue("backRgb/r", ui_->openGLWidget->background_color_r_);
   settings.setValue("backRgb/g", ui_->openGLWidget->background_color_g_);
   settings.setValue("backRgb/b", ui_->openGLWidget->background_color_b_);
@@ -467,23 +469,25 @@ void MainWindow::DecoratorProjection::writeProjection(){
 void MainWindow::readSettings() {
   QSettings settings("Cabbage.conf", "AAA");
   settings.beginGroup("MainWindow_UI");
-  ui->comboBox_settings_view_projection_type->setCurrentIndex(settings.value("projection/indexTypeProjection").toInt());
-  ui->openGLWidget->view_type_ = settings.value("projection/indexTypeProjection").toInt();
-  ui->comboBox_settings_view_polygon_type->setCurrentIndex(settings.value("edgesSettenings/indexEdges").toInt());
-  ui->openGLWidget->line_type_ = settings.value("edgesSettenings/indexEdges").toInt();
-  ui->comboBox_settings_view_vertex_type->setCurrentIndex(settings.value("vertexSettenings/indexVertex").toInt());
-  ui->openGLWidget->vertex_type_ = settings.value("vertexSettenings/indexVertex").toInt();
-  ui->doubleSpinBox_settings_view_polygon_width->setValue(settings.value("edgesSettenings/sizeEdges").toDouble());
-  ui->openGLWidget->line_size_ = settings.value("edgesSettenings/sizeEdges").toDouble();
-  ui->doubleSpinBox_settings_view_vertex_size->setValue(settings.value("vertexSettenings/sizeVertex").toDouble());
-  ui->openGLWidget->vertex_size_ = settings.value("vertexSettenings/sizeVertex").toDouble();
+  if (settings.contains("alredySave")) {
+    ui->comboBox_settings_view_projection_type->setCurrentIndex(settings.value("projection/indexTypeProjection").toInt());
+    ui->openGLWidget->view_type_ = settings.value("projection/indexTypeProjection").toInt();
+    ui->comboBox_settings_view_polygon_type->setCurrentIndex(settings.value("edgesSettenings/indexEdges").toInt());
+    ui->openGLWidget->line_type_ = settings.value("edgesSettenings/indexEdges").toInt();
+    ui->comboBox_settings_view_vertex_type->setCurrentIndex(settings.value("vertexSettenings/indexVertex").toInt());
+    ui->openGLWidget->vertex_type_ = settings.value("vertexSettenings/indexVertex").toInt();
+    ui->doubleSpinBox_settings_view_polygon_width->setValue(settings.value("edgesSettenings/sizeEdges").toDouble());
+    ui->openGLWidget->line_size_ = settings.value("edgesSettenings/sizeEdges").toDouble();
+    ui->doubleSpinBox_settings_view_vertex_size->setValue(settings.value("vertexSettenings/sizeVertex").toDouble());
+    ui->openGLWidget->vertex_size_ = settings.value("vertexSettenings/sizeVertex").toDouble();
 
-  QColor color1(settings.value("backRgb/r").toInt(),settings.value("backRgb/g").toInt(),settings.value("backRgb/b").toInt());
-  changeBackground(color1);
-  QColor color2(settings.value("vertexRgb/r").toInt(),settings.value("vertexRgb/g").toInt(),settings.value("vertexRgb/b").toInt());
-  changeVertex(color2);
-  QColor color3(settings.value("edgesRgb/r").toInt(),settings.value("edgesRgb/g").toInt(),settings.value("edgesRgb/b").toInt());
-  changeEdges(color3);
+    QColor color1(settings.value("backRgb/r").toInt(),settings.value("backRgb/g").toInt(),settings.value("backRgb/b").toInt());
+    changeBackground(color1);
+    QColor color2(settings.value("vertexRgb/r").toInt(),settings.value("vertexRgb/g").toInt(),settings.value("vertexRgb/b").toInt());
+    changeVertex(color2);
+    QColor color3(settings.value("edgesRgb/r").toInt(),settings.value("edgesRgb/g").toInt(),settings.value("edgesRgb/b").toInt());
+    changeEdges(color3);
+  }
 
   settings.endGroup();
 }
