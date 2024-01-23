@@ -60,7 +60,7 @@ class OGLwidget : public QOpenGLWidget, public QOpenGLFunctions {
   int background_color_g_ = 253;
   int background_color_b_ = 239;
 
-  float vertex_size_ = 5;
+  float vertex_size_ = 10;
 
  private:
   enum vertex_type { NONE, CIRCLE, SQUARE };

@@ -39,12 +39,12 @@ std::vector<s21::Vertex>* OGLwidget::GetVerticesRef() { return vertices_; }
 std::vector<unsigned>* OGLwidget::GetEdgesRef() { return edges_; }
 
 void OGLwidget::paintGL() {
-  if (need_paint_) {
-    glClearColor(background_color_r_ / 255.0, background_color_g_ / 255.0,
-                 background_color_b_ / 255.0, 0);
+  glClearColor(background_color_r_ / 255.0, background_color_g_ / 255.0,
+             background_color_b_ / 255.0, 0);
 
-    // очистка экрана и буфера глубины
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+// очистка экрана и буфера глубины
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  if (need_paint_) {
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();

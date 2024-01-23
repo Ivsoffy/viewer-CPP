@@ -23,7 +23,8 @@ SOURCES +=         \
     ../model/facade.cc \
     ../model/figure.cc \
     ../model/file_parser.cc \
-    ../model/snapshot.cc \
+    ../model/decorator_2.cc \
+    ../model/.cc \
     main.cpp       \
     mainwindow.cpp \
     oglwidget.cpp

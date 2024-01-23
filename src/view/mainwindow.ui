@@ -137,7 +137,7 @@ background-color : #0E1115;</string>
       <string notr="true">background-color: #0E1115;</string>
      </property>
      <property name="text">
-      <string>3d_objects/cube.obj</string>
+      <string/>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -265,7 +265,9 @@ background-color : #0E1115;</string>
 border-width: 2px;
 border-radius: 10px;
 border-color: #697E9C;
-background-color : #0E1115;</string>
+background-color : #0E1115;
+color : white;
+</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -314,10 +316,7 @@ background-color : #0E1115;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #202A38;
-
-
-</string>
+      <string notr="true">background-color: #202A38;</string>
      </property>
      <property name="text">
       <string>100</string>
@@ -419,8 +418,14 @@ background-color : #0E1115;</string>
      <property name="styleSheet">
       <string notr="true">background-color: #202A38;</string>
      </property>
+     <property name="inputMethodHints">
+      <set>Qt::ImhNone</set>
+     </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="keyboardTracking">
+      <bool>false</bool>
      </property>
      <property name="minimum">
       <number>-180</number>
@@ -793,7 +798,7 @@ border-radius: 10px;
 border-color: #697E9C;</string>
     </property>
     <property name="text">
-     <string>Инфо строка</string>
+     <string>OK</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -1107,19 +1112,25 @@ background-color : #0E1115;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: #202A38;
-
-
-</string>
+       <string notr="true">background-color: #202A38;</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="decimals">
+       <number>1</number>
+      </property>
+      <property name="minimum">
+       <double>0.500000000000000</double>
       </property>
       <property name="maximum">
        <double>100.000000000000000</double>
       </property>
       <property name="singleStep">
-       <double>0.100000000000000</double>
+       <double>0.500000000000000</double>
+      </property>
+      <property name="value">
+       <double>2.000000000000000</double>
       </property>
      </widget>
      <widget class="QLabel" name="label_settings_view_polygon_color">
@@ -1235,8 +1246,17 @@ background-color : #0E1115;</string>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
+      <property name="decimals">
+       <number>1</number>
+      </property>
+      <property name="minimum">
+       <double>0.500000000000000</double>
+      </property>
       <property name="singleStep">
-       <double>0.100000000000000</double>
+       <double>0.500000000000000</double>
+      </property>
+      <property name="value">
+       <double>10.000000000000000</double>
       </property>
      </widget>
      <widget class="QComboBox" name="comboBox_settings_view_vertex_type">
