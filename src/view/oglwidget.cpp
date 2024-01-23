@@ -7,27 +7,6 @@ void OGLwidget::initializeGL() {
   window_ratio_ = 1.0 * this->width() / this->height();
 }
 
-void OGLwidget::init_setttings() {
-  //  init_set = &main_window->user_settings;
-  //  view_type = (int)init_set->projection_type;
-
-  //  line_type = (int)init_set->polygon_type;
-  //  line_size = init_set->polygon_width;
-  //  line_color_r = init_set->polygon_color.red;
-  //  line_color_g = init_set->polygon_color.green;
-  //  line_color_b = init_set->polygon_color.blue;
-
-  //  vertex_type = (int)init_set->vertex_type;
-  //  vertex_size = init_set->vertex_size;
-  //  vertex_color_r = init_set->vertex_color.red;
-  //  vertex_color_g = init_set->vertex_color.green;
-  //  vertex_color_b = init_set->vertex_color.blue;
-
-  //  background_color_r = init_set->background_color.red;
-  //  background_color_g = init_set->background_color.green;
-  //  background_color_b = init_set->background_color.blue;
-}
-
 void OGLwidget::SetVertices(std::vector<s21::Vertex>* vertices) {
   vertices_ = vertices;
 }

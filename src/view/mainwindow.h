@@ -34,22 +34,12 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
-// class Controller;
-
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
  public:
   MainWindow(s21::Controller *controller, QWidget *parent = nullptr);
   ~MainWindow();
-
-  //  void closeEvent(QCloseEvent *event);
-
-  //  struct user_settings user_settings;
-
-  //  void user_settings_combo_box_change();
-  //  void user_settings_double_spin_box_change();
-  //  void user_settings_color_change();
 
  private slots:
   /// @brief Choose .obj file and transfer him to model
@@ -92,8 +82,6 @@ class MainWindow : public QMainWindow {
   void on_pushButton_settings_view_vertex_color_clicked();
   void changeVertex(QColor color);
   void closeEvent(QCloseEvent *event);
-//  void writeSettings();
-  void readSettings();
 
 public:
   Ui::MainWindow *ui;
@@ -107,11 +95,6 @@ private:
   /// @brief Contain all connects
   void Connects();
 
-  //  void init_settings();
-  //  void user_settings_set();
-  //  void user_settings_save();
-  //  void projection_settings();
-
   QFileDialog file_dialog;
 
   QColor vertex_color, edges_color, back_color;
@@ -121,7 +104,7 @@ private:
   QTimer *timer_2;
   QGifImage *gif;
 
-  class InterfaceDecorator { //interface
+  class InterfaceDecorator {
   public:
       virtual ~InterfaceDecorator() = default;
       virtual void writeSettings() = 0;

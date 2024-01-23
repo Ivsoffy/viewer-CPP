@@ -219,11 +219,8 @@ void MainWindow::recording_stop() {
 
     QString name = QDate::currentDate().toString("yyMMdd") + "_" +
                    QTime::currentTime().toString("hhmmss") + ".gif";
-    //  QString gifFileName =
-    //      QApplication::applicationDirPath() + "/../../../" + name;
     QString gif_filename = QFileDialog::getSaveFileName(NULL, "Save to ...", "",
                                                         "GIF image (*.gif)");
-    //  QString gif_filename = "/Users/errokele/projects/gifka.gif";
     gif->save(gif_filename);
     delete gif;
     repaint();
@@ -368,7 +365,6 @@ void MainWindow::closeEvent(QCloseEvent *event) {
    }
 
 
-//   delete bs.*std::static_cast<BaseSetting*>(bs);
    if (link1 != nullptr){
        delete link1;
    }
@@ -381,45 +377,8 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     if (!link1&&!link2&&!link3){
          delete bs;
     }
-
-//   delete link1;
-//   delete link2;
-//   delete link3;
-//   delete id;
    event->accept();
 }
-
-//void MainWindow::writeSettings() {
-//  QSettings settings("Cabbage.conf", "AAA");
-
-//  int indexEdges = ui->comboBox_settings_view_polygon_type->currentIndex();
-//  int indexVertex = ui->comboBox_settings_view_vertex_type->currentIndex();
-
-
-//  double sizeVertex = ui->doubleSpinBox_settings_view_vertex_size->value();
-//  double sizeEdges = ui->doubleSpinBox_settings_view_polygon_width->value();
-
-//  settings.beginGroup("MainWindow_UI");
-//  settings.setValue("vertexSettenings/indexVertex", indexVertex);
-//  settings.setValue("edgesSettenings/indexEdges", indexEdges);
-//  settings.setValue("vertexSettenings/sizeVertex", sizeVertex);
-//  settings.setValue("edgesSettenings/sizeEdges", sizeEdges);
-//  settings.setValue("projection/indexTypeProjection", indexTypeProjection);
-
-//  settings.setValue("vertexRgb/r", ui->openGLWidget->vertex_color_r_);
-//  settings.setValue("vertexRgb/g", ui->openGLWidget->vertex_color_g_);
-//  settings.setValue("vertexRgb/b", ui->openGLWidget->vertex_color_b_);
-
-//  settings.setValue("edgesRgb/r", ui->openGLWidget->line_color_r_);
-//  settings.setValue("edgesRgb/g", ui->openGLWidget->line_color_g_);
-//  settings.setValue("edgesRgb/b", ui->openGLWidget->line_color_b_);
-
-//  settings.setValue("backRgb/r", ui->openGLWidget->background_color_r_);
-//  settings.setValue("backRgb/g", ui->openGLWidget->background_color_g_);
-//  settings.setValue("backRgb/b", ui->openGLWidget->background_color_b_);
-
-//  settings.endGroup();
-//}
 
 void MainWindow::BaseSetting::writeSettings() {
   QSettings settings("Cabbage.conf", "AAA");
@@ -465,7 +424,6 @@ void MainWindow::DecoratorProjection::writeProjection(){
     settings.endGroup();
 }
 
-
 void MainWindow::readSettings() {
   QSettings settings("Cabbage.conf", "AAA");
   settings.beginGroup("MainWindow_UI");
@@ -491,14 +449,3 @@ void MainWindow::readSettings() {
 
   settings.endGroup();
 }
-
-//void MainWindow::on_checkBox_vertex_clicked()
-//{
-////    flag = 1;
-////    bs = new BaseSetting(ui);
-////    InterfaceDecorator *id = new DecoratorVertexes(bs, ui);
-////    id->writeSettings();
-////    delete id;
-
-//}
-

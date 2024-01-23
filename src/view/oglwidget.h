@@ -24,8 +24,6 @@ class OGLwidget : public QOpenGLWidget, public QOpenGLFunctions {
   /// @brief Standart method in OpenGL. All painting doing there.
   void paintGL() override;
 
-  void init_setttings();
-
   void SetVertices(std::vector<s21::Vertex>* vertices);
   void SetEdges(std::vector<unsigned>* edges);
 
