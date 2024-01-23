@@ -1524,6 +1524,9 @@ background-color : #0E1115;</string>
      <property name="text">
       <string>Вершины</string>
      </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_projection">
      <property name="geometry">
@@ -1540,6 +1543,9 @@ background-color : #0E1115;</string>
      <property name="text">
       <string>Проекция</string>
      </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
     </widget>
     <widget class="QCheckBox" name="checkBox_edges">
      <property name="geometry">
@@ -1555,6 +1561,9 @@ background-color : #0E1115;</string>
      </property>
      <property name="text">
       <string>Линии</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QLabel" name="label_saving">

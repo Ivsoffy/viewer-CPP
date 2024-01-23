@@ -11,7 +11,8 @@ MainWindow::MainWindow(s21::Controller *controller, QWidget *parent)
       QCoreApplication::applicationDirPath() + PATH_STD_OPEN_FINDER;
   file_dialog.setDirectory(std_path);
   ui->setupUi(this);
-  readSettings();
+  bs_read_ = new BaseSetting(ui, this);
+  bs_read_->readSettings();
   Connects();
 }
 
@@ -161,8 +162,6 @@ void MainWindow::ScaleSliderChange(int value) {
     return;
   }
   controller_->GetAffineTransformationsRef()->SetScale(value);
-  //  ui->scale_lable->setText(
-  //      QString::number(pow(3, value / 100.0) * 100, 'f', 2));
   Redraw();
 }
 
@@ -395,8 +394,8 @@ void MainWindow::DecoratorVertexes::writeVertexes(){
     int indexVertex = ui_->comboBox_settings_view_vertex_type->currentIndex();
     double sizeVertex = ui_->doubleSpinBox_settings_view_vertex_size->value();
     settings.beginGroup("MainWindow_UI");
+    settings.setValue("vertexSettenings/sizeVertex", sizeVertex);
     settings.setValue("vertexSettenings/indexVertex", indexVertex);
-    settings.setValue("veDecoratorVertexesrtexSettenings/sizeVertex", sizeVertex);
     settings.setValue("vertexRgb/r", ui_->openGLWidget->vertex_color_r_);
     settings.setValue("vertexRgb/g", ui_->openGLWidget->vertex_color_g_);
     settings.setValue("vertexRgb/b", ui_->openGLWidget->vertex_color_b_);
@@ -404,9 +403,9 @@ void MainWindow::DecoratorVertexes::writeVertexes(){
 }
 
 void MainWindow::DecoratorEdges::writeEdges(){
+    QSettings settings("Cabbage.conf", "AAA");
     int indexEdges = ui_->comboBox_settings_view_polygon_type->currentIndex();
     double sizeEdges = ui_->doubleSpinBox_settings_view_polygon_width->value();
-    QSettings settings("Cabbage.conf", "AAA");
     settings.beginGroup("MainWindow_UI");
     settings.setValue("edgesSettenings/sizeEdges", sizeEdges);
     settings.setValue("edgesSettenings/indexEdges", indexEdges);
@@ -417,34 +416,34 @@ void MainWindow::DecoratorEdges::writeEdges(){
 }
 
 void MainWindow::DecoratorProjection::writeProjection(){
-    int indexTypeProjection = ui_->comboBox_settings_view_projection_type->currentIndex();
     QSettings settings("Cabbage.conf", "AAA");
+    int indexTypeProjection = ui_->comboBox_settings_view_projection_type->currentIndex();
     settings.beginGroup("MainWindow_UI");
     settings.setValue("projection/indexTypeProjection", indexTypeProjection);
     settings.endGroup();
 }
 
-void MainWindow::readSettings() {
+void MainWindow::BaseSetting::readSettings() {
   QSettings settings("Cabbage.conf", "AAA");
   settings.beginGroup("MainWindow_UI");
   if (settings.contains("alredySave")) {
-    ui->comboBox_settings_view_projection_type->setCurrentIndex(settings.value("projection/indexTypeProjection").toInt());
-    ui->openGLWidget->view_type_ = settings.value("projection/indexTypeProjection").toInt();
-    ui->comboBox_settings_view_polygon_type->setCurrentIndex(settings.value("edgesSettenings/indexEdges").toInt());
-    ui->openGLWidget->line_type_ = settings.value("edgesSettenings/indexEdges").toInt();
-    ui->comboBox_settings_view_vertex_type->setCurrentIndex(settings.value("vertexSettenings/indexVertex").toInt());
-    ui->openGLWidget->vertex_type_ = settings.value("vertexSettenings/indexVertex").toInt();
-    ui->doubleSpinBox_settings_view_polygon_width->setValue(settings.value("edgesSettenings/sizeEdges").toDouble());
-    ui->openGLWidget->line_size_ = settings.value("edgesSettenings/sizeEdges").toDouble();
-    ui->doubleSpinBox_settings_view_vertex_size->setValue(settings.value("vertexSettenings/sizeVertex").toDouble());
-    ui->openGLWidget->vertex_size_ = settings.value("vertexSettenings/sizeVertex").toDouble();
+    ui_->comboBox_settings_view_projection_type->setCurrentIndex(settings.value("projection/indexTypeProjection").toInt());
+    ui_->openGLWidget->view_type_ = settings.value("projection/indexTypeProjection").toInt();
+    ui_->comboBox_settings_view_polygon_type->setCurrentIndex(settings.value("edgesSettenings/indexEdges").toInt());
+    ui_->openGLWidget->line_type_ = settings.value("edgesSettenings/indexEdges").toInt();
+    ui_->comboBox_settings_view_vertex_type->setCurrentIndex(settings.value("vertexSettenings/indexVertex").toInt());
+    ui_->openGLWidget->vertex_type_ = settings.value("vertexSettenings/indexVertex").toInt();
+    ui_->doubleSpinBox_settings_view_polygon_width->setValue(settings.value("edgesSettenings/sizeEdges").toDouble());
+    ui_->openGLWidget->line_size_ = settings.value("edgesSettenings/sizeEdges").toDouble();
+    ui_->doubleSpinBox_settings_view_vertex_size->setValue(settings.value("vertexSettenings/sizeVertex").toDouble());
+    ui_->openGLWidget->vertex_size_ = settings.value("vertexSettenings/sizeVertex").toDouble();
 
     QColor color1(settings.value("backRgb/r").toInt(),settings.value("backRgb/g").toInt(),settings.value("backRgb/b").toInt());
-    changeBackground(color1);
+    mw_->changeBackground(color1);
     QColor color2(settings.value("vertexRgb/r").toInt(),settings.value("vertexRgb/g").toInt(),settings.value("vertexRgb/b").toInt());
-    changeVertex(color2);
+    mw_->changeVertex(color2);
     QColor color3(settings.value("edgesRgb/r").toInt(),settings.value("edgesRgb/g").toInt(),settings.value("edgesRgb/b").toInt());
-    changeEdges(color3);
+    mw_->changeEdges(color3);
   }
 
   settings.endGroup();

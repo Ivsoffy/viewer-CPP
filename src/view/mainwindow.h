@@ -37,9 +37,14 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
+
  public:
   MainWindow(s21::Controller *controller, QWidget *parent = nullptr);
   ~MainWindow();
+public slots:
+  void changeBackground(QColor color);
+  void changeEdges(QColor color);
+  void changeVertex(QColor color);
 
  private slots:
   /// @brief Choose .obj file and transfer him to model
@@ -76,11 +81,9 @@ class MainWindow : public QMainWindow {
   void recording_stop();
 
   void on_pushButton_settings_view_other_color_clicked();
-  void changeBackground(QColor color);
   void on_pushButton_settings_view_polygon_color_clicked();
-  void changeEdges(QColor color);
   void on_pushButton_settings_view_vertex_color_clicked();
-  void changeVertex(QColor color);
+
   void closeEvent(QCloseEvent *event);
 
 public:
@@ -112,11 +115,14 @@ private:
 
   class BaseSetting : public InterfaceDecorator{
     public:
+      BaseSetting(Ui::MainWindow *ui) : ui_(ui) {}
+      BaseSetting(Ui::MainWindow *ui, MainWindow *mv) : ui_(ui), mw_(mv){}
       ~BaseSetting() = default;
-      BaseSetting(Ui::MainWindow *ui) : ui_(ui){}
       void writeSettings() override;
+      void readSettings();
      private:
       Ui::MainWindow *ui_;
+      MainWindow *mw_;
   };
 
   class Decorator : public InterfaceDecorator{
@@ -129,6 +135,8 @@ private:
           common_->writeSettings();
       }
   };
+
+    friend MainWindow::BaseSetting;
 
   class DecoratorVertexes : public Decorator{
   public:
@@ -168,6 +176,7 @@ private:
   };
 
   InterfaceDecorator  *bs;
+  BaseSetting *bs_read_;
 
 };
 
