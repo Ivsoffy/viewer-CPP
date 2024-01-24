@@ -10,7 +10,7 @@ include(QtGifImage/src/gifimage/qtgifimage.pri)
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
-ICON = ../../misc/3d_viewer_logo.icns
+ICON = ../images/3d_viewer_logo.icns
 
 TARGET = 3d_viewer_v2
 

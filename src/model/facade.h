@@ -12,7 +12,7 @@ namespace s21 {
 class Facade {
  public:
   Facade();
-  ~Facade(){ 
+  ~Facade() {
     delete affineTransformations_;
     delete fileParser_;
     delete figure_def_;

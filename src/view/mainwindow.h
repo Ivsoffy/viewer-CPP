@@ -4,12 +4,12 @@
 #include <qgifimage.h>
 #include <stdio.h>
 
+#include <QCloseEvent>
 #include <QColorDialog>
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QImage>
 #include <QMainWindow>
-#include <QCloseEvent>
 #include <QSettings>
 #include <QTimer>
 #include <iostream>
@@ -37,11 +37,10 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
-
  public:
   MainWindow(s21::Controller *controller, QWidget *parent = nullptr);
   ~MainWindow();
-public slots:
+ public slots:
   void changeBackground(QColor color);
   void changeEdges(QColor color);
   void changeVertex(QColor color);
@@ -86,9 +85,10 @@ public slots:
 
   void closeEvent(QCloseEvent *event);
 
-public:
+ public:
   Ui::MainWindow *ui;
-private:
+
+ private:
   s21::Controller *controller_;
 
   s21::ParamDTO *dto_;
@@ -108,66 +108,69 @@ private:
   QGifImage *gif;
 
   class InterfaceDecorator {
-  public:
-      virtual ~InterfaceDecorator() = default;
-      virtual void writeSettings() = 0;
+   public:
+    virtual ~InterfaceDecorator() = default;
+    virtual void writeSettings() = 0;
   };
 
-  class BaseSetting : public InterfaceDecorator{
-    public:
-      BaseSetting(Ui::MainWindow *ui) : ui_(ui) {}
-      BaseSetting(Ui::MainWindow *ui, MainWindow *mv) : ui_(ui), mw_(mv){}
-      ~BaseSetting() = default;
-      void writeSettings() override;
-      void readSettings();
-     private:
-      Ui::MainWindow *ui_;
-      MainWindow *mw_;
+  class BaseSetting : public InterfaceDecorator {
+   public:
+    BaseSetting(Ui::MainWindow *ui) : ui_(ui) {}
+    BaseSetting(Ui::MainWindow *ui, MainWindow *mv) : ui_(ui), mw_(mv) {}
+    ~BaseSetting() = default;
+    void writeSettings() override;
+    void readSettings();
+
+   private:
+    Ui::MainWindow *ui_;
+    MainWindow *mw_;
   };
 
-  class Decorator : public InterfaceDecorator{
-    public:
-      InterfaceDecorator *common_;
-      Decorator(InterfaceDecorator *id) : common_(id) {}
+  class Decorator : public InterfaceDecorator {
+   public:
+    InterfaceDecorator *common_;
+    Decorator(InterfaceDecorator *id) : common_(id) {}
 
-      void writeSettings();
+    void writeSettings();
   };
 
-    friend MainWindow::BaseSetting;
+  friend MainWindow::BaseSetting;
 
-  class DecoratorVertexes : public Decorator{
-  public:
-      DecoratorVertexes(InterfaceDecorator *id, Ui::MainWindow *ui): Decorator(id), ui_(ui) {}
+  class DecoratorVertexes : public Decorator {
+   public:
+    DecoratorVertexes(InterfaceDecorator *id, Ui::MainWindow *ui)
+        : Decorator(id), ui_(ui) {}
 
-      void writeSettings();
-      void writeVertexes();
+    void writeSettings();
+    void writeVertexes();
 
-      Ui::MainWindow *ui_;
+    Ui::MainWindow *ui_;
   };
 
-  class DecoratorEdges : public Decorator{
-  public:
-      DecoratorEdges(InterfaceDecorator *id, Ui::MainWindow *ui): Decorator(id), ui_(ui) {}
+  class DecoratorEdges : public Decorator {
+   public:
+    DecoratorEdges(InterfaceDecorator *id, Ui::MainWindow *ui)
+        : Decorator(id), ui_(ui) {}
 
-      void writeSettings();
-      void writeEdges();
+    void writeSettings();
+    void writeEdges();
 
-      Ui::MainWindow *ui_;
+    Ui::MainWindow *ui_;
   };
 
-  class DecoratorProjection : public Decorator{
-  public:
-      DecoratorProjection(InterfaceDecorator *id, Ui::MainWindow *ui): Decorator(id), ui_(ui) {}
+  class DecoratorProjection : public Decorator {
+   public:
+    DecoratorProjection(InterfaceDecorator *id, Ui::MainWindow *ui)
+        : Decorator(id), ui_(ui) {}
 
-      void writeSettings();
-      void writeProjection();
+    void writeSettings();
+    void writeProjection();
 
-      Ui::MainWindow *ui_;
+    Ui::MainWindow *ui_;
   };
 
-  InterfaceDecorator  *bs;
+  InterfaceDecorator *bs;
   BaseSetting *bs_read_;
-
 };
 
 #endif  // MAINWINDOW_H

@@ -44,9 +44,9 @@ class Figure {
     void ParsFLine(std::string strstr, s21::Figure* figure);
   };
 
-  Figure() {
-    // vertices_.reserve(10000000);
-    // edges_.reserve(1000000);
+  Figure(){
+      // vertices_.reserve(10000000);
+      // edges_.reserve(1000000);
   };
   ~Figure(){};
 
