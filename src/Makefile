@@ -40,7 +40,7 @@ tests: clean_for_tests $(TEST_CC)
 
 dist:
 	mkdir -p ./dist
-	tar -cvzf ./dist/$(NAME).tgz Makefile model controller view dto tests dox images
+	tar -cvzf ./dist/$(NAME).tgz Makefile model controller view dto tests dox/conf images
 
 dvi:
 	doxygen dox/conf
