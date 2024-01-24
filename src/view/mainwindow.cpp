@@ -448,3 +448,22 @@ void MainWindow::BaseSetting::readSettings() {
 
   settings.endGroup();
 }
+
+void MainWindow::Decorator::writeSettings() {
+     common_->writeSettings();
+}
+
+void MainWindow::DecoratorVertexes::writeSettings() {
+    Decorator::writeSettings();
+    writeVertexes();
+}
+
+void MainWindow::DecoratorEdges::writeSettings() {
+    Decorator::writeSettings();
+    writeEdges();
+}
+
+void MainWindow::DecoratorProjection::writeSettings() {
+    Decorator::writeSettings();
+    writeProjection();
+}

@@ -128,50 +128,40 @@ private:
   class Decorator : public InterfaceDecorator{
     public:
       InterfaceDecorator *common_;
-      Decorator(InterfaceDecorator *id){
-          common_ = id;
-      }
-      void writeSettings(){
-          common_->writeSettings();
-      }
+      Decorator(InterfaceDecorator *id) : common_(id) {}
+
+      void writeSettings();
   };
 
     friend MainWindow::BaseSetting;
 
   class DecoratorVertexes : public Decorator{
   public:
-      DecoratorVertexes(InterfaceDecorator *id, Ui::MainWindow *ui): Decorator(id), ui_(ui){}
+      DecoratorVertexes(InterfaceDecorator *id, Ui::MainWindow *ui): Decorator(id), ui_(ui) {}
 
-      void writeSettings(){
-          Decorator::writeSettings();
-          writeVertexes();
-      }
-
+      void writeSettings();
       void writeVertexes();
+
       Ui::MainWindow *ui_;
   };
 
   class DecoratorEdges : public Decorator{
   public:
-      DecoratorEdges(InterfaceDecorator *id, Ui::MainWindow *ui): Decorator(id), ui_(ui){}
+      DecoratorEdges(InterfaceDecorator *id, Ui::MainWindow *ui): Decorator(id), ui_(ui) {}
 
-      void writeSettings(){
-          Decorator::writeSettings();
-          writeEdges();
-      }
+      void writeSettings();
       void writeEdges();
+
       Ui::MainWindow *ui_;
   };
 
   class DecoratorProjection : public Decorator{
   public:
-      DecoratorProjection(InterfaceDecorator *id, Ui::MainWindow *ui): Decorator(id), ui_(ui){}
+      DecoratorProjection(InterfaceDecorator *id, Ui::MainWindow *ui): Decorator(id), ui_(ui) {}
 
-      void writeSettings(){
-          Decorator::writeSettings();
-          writeProjection();
-      }
+      void writeSettings();
       void writeProjection();
+
       Ui::MainWindow *ui_;
   };
 
